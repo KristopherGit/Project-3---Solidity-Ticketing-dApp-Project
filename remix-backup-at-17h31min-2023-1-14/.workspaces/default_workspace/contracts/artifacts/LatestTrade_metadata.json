@@ -1,0 +1,81 @@
+{
+	"compiler": {
+		"version": "0.5.0+commit.1d4f565a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getTrade",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "new_coin",
+						"type": "string"
+					},
+					{
+						"name": "new_price",
+						"type": "uint256"
+					},
+					{
+						"name": "is_buy",
+						"type": "bool"
+					}
+				],
+				"name": "updateTrade",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/LatestTrade.sol": "LatestTrade"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/LatestTrade.sol": {
+			"keccak256": "0x3a98ef149cb569d8823d6a723447ff13104c710154757b7e18949bfd51fe2817",
+			"urls": [
+				"bzzr://7edce9c0139fd615e270e945ff5959179f121a775d7041df91dd423015bb902f"
+			]
+		}
+	},
+	"version": 1
+}
