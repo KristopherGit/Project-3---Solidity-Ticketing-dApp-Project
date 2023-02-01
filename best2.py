@@ -39,18 +39,18 @@ with st.sidebar:
                 unsafe_allow_html=True)
     # text_input for customer info
     first_name_input = st.text_input(
-        label="", placeholder="first name")
+        label="first name", placeholder="required")
     last_name_input = st.text_input(
-        label="", placeholder="last name")
+        label="last name", placeholder="required")
 
     # Drop down for eth wallet addresses from customer
     wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
                         "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
                         "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
-    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
-                unsafe_allow_html=True)
+    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
+    #            unsafe_allow_html=True)
     selected_address = st.selectbox(
-        "", wallet_addresses)
+        "connect eth wallet", wallet_addresses)
 
     # company copyright info at bottom of sidebar
     for i in range(10):
@@ -79,7 +79,7 @@ for x in range(57):
             'aisle': x,
             'row': y,
             'name': f'{x},{y}',
-            'price': 10,
+            'price': 71000000000000000,
             'bought': False,
             'color': '#1E90FF',
             # Example Ethereum wallet address
@@ -225,7 +225,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 with col1:
     selected_seat = st.selectbox('Purchase seat (ticket):', seat_options)
-    if st.button('Confirm a seat'):
+    if st.button('confirm a seat'):
         seat_index = seat_options.index(selected_seat)
         gallery[list(gallery.keys())[seat_index]]['color'] = '#A9A9A9'
         st.write("")
@@ -278,3 +278,13 @@ for i, (key, value) in enumerate(gallery.items()):
     if i == 200:
         break
     print(f"{key}: {value}")
+
+
+# Appendix / Misc. Notes
+# i.) QR Code Venue/Event Enter Format [Based on Solidity Variable/Call Format] (https://www.qr-code-generator.com/)
+# use (https://pixlr.com/x/#editor) to piece NFT image together. Put into
+# i.e. (Gorillaz Concert Event)
+# bandName = Gorillaz
+# uint concertDate = 08/10/2023 @ 8:00pm
+# venueName = Massey Hall
+# uint seatNumber = 07
