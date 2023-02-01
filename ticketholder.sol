@@ -1,17 +1,25 @@
-pragma solidity ^0.5.0; 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0; 
 
-//import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+// not found import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
+
+
+//import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+//import "@openzeppelin/contracts/utils/Counters.sol";
+//import "./node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";        
 
 contract TickETHolder is ERC721 {
-        address payable contractOwner;
+        address payable public contractOwner;
         // Instantiate instance of the maximum total number of concert tickets to be minted (public viewable call variable)
         uint256 public MAX_TICKETS;
         // Instantiate instance of the ticketCount variable
         uint256 public ticketCount;
         // Instantiate _seatsMintedSoFar as a global variable to keep track of while minting
         // Set initially to 0, once contract is deployed it will update
-        uint public _seatsMintedSoFar = 0; 
+        uint256 public _seatsMintedSoFar = 0; 
     // Structure of the TickETHholder TicketData obj 
     struct TicketData {
         // Owner Info
@@ -38,12 +46,13 @@ contract TickETHolder is ERC721 {
     // Note: ticketData is *private* 
     mapping(uint256 => TicketData) private ticketData; 
     // ii.) Mapping tokenID -> 
-    mapping(uint256 => SoldData) public soldData;
+    //mapping(uint256 => SoldData) public soldData;
 
     // Create constructor
-    constructor() public {
+    constructor() ERC721("TickETHolder", "TETH") {
         // set owner of the contract as the one that deploys the contract 
-        contractOwner = msg.sender;
+        contractOwner =  payable(msg.sender);
+        //contactOwner = msg.sender;
         ticketCount=0;
     }
 
@@ -80,9 +89,11 @@ contract TickETHolder is ERC721 {
                 ticketData[ticketCount].concertDate = _concertDate; 
                 ticketData[ticketCount].price = _price;
                 ticketData[ticketCount].venueName = _venueName;
-                ticketData[ticketCount].seatNumber = _seatsMintedSoFar; 
+                //ticketData[ticketCount].seatNumber = _seatsMintedSoFar; 
+                ticketData[ticketCount].seatNumber = i; 
                 ticketData[ticketCount].seatColor = _seatColor;
             }
+            _seatsMintedSoFar += numToMint;
         }
 
     function setMAX_TICKETS (uint _maxNumberOfTickets) public {
@@ -93,16 +104,6 @@ contract TickETHolder is ERC721 {
     function getSeatsMintedSoFar() public view returns (uint) {
         return _seatsMintedSoFar;
     }
-
-    //function getAllTicketData() public view returns (TicketData[] memory) {
-    //TicketData[] memory result = new TicketData[](ticketCount);
-    //uint j = 0;
-    //for (uint i = 1; i <= ticketCount; i++) {
-    //    result[j] = ticketData[i];
-    //    j++;
-    //}
-    //return result;
-    //}
 
     event TicketPurchased(uint ticketId, address buyer, uint price);
 
@@ -122,4 +123,27 @@ contract TickETHolder is ERC721 {
         // Broadcast sale has been made & transfer of ticket to msg.sender (buyer) has been completed
         emit TicketPurchased(ticketId, msg.sender, ticketData[ticketId].price);
     }
+
+    function getTicketDetails(uint256 tokenId) public view returns (
+        address owner,
+        string memory ownerFirstName,
+        string memory ownerLastName,
+        string memory eventName,
+        uint concertDate,
+        uint price,
+        string memory venueName,
+        uint seatNumber,
+        string memory seatColor
+) {
+        owner = ticketData[tokenId].owner;
+        ownerFirstName = ticketData[tokenId].ownerFirstName;
+        ownerLastName = ticketData[tokenId].ownerLastName;
+        eventName = ticketData[tokenId].eventName;
+        concertDate = ticketData[tokenId].concertDate;
+        price = ticketData[tokenId].price;
+        venueName = ticketData[tokenId].venueName;
+        seatNumber = ticketData[tokenId].seatNumber;
+        seatColor = ticketData[tokenId].seatColor;
+}
+
 }
