@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
+
 st.set_page_config(page_title="Buttons Grid",
                    page_icon=":guardsman:", layout="wide")
 
@@ -70,6 +71,7 @@ contract = load_contract()
 # Main Logo Addition Function
 
 
+@st.cache
 def add_logo(logo_path, width, height):
     """Read and return a resized logo"""
     logo = Image.open(logo_path)
@@ -148,6 +150,7 @@ for x in range(57):
 
 
 # Create a layout for the plot
+
 layout = go.Layout(
     title='Section: Massey Hall (Gallery Level)',
     xaxis=dict(title='X-coordinate',
@@ -288,7 +291,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 with col1:
     selected_seat = st.selectbox('select seat(s):', seat_options)
-    if st.button('confirm seat(s)'):
+    if st.button('select seat(s)'):
         seat_index = seat_options.index(selected_seat)
         gallery[list(gallery.keys())[seat_index]]['color'] = '#A9A9A9'
         st.write("")
@@ -296,6 +299,8 @@ with col1:
         if selected_seat not in st.session_state:
             st.session_state[selected_seat] = gallery[list(
                 gallery.keys())[seat_index]]['color'] = '#A9A9A9'
+    if st.button('confirm seat(s)'):
+        st.write()
 
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
@@ -337,48 +342,70 @@ with st.sidebar:
             ticketId, first_name_input, last_name_input).transact({'from': selected_address, 'value': 71000000000000000})
 
     # company copyright info at bottom of sidebar
-    for i in range(10):
+    for i in range(8):
         st.write("")
     st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
                 unsafe_allow_html=True)
 
-
+#########################################################
 # Right hand side column section of code
-with col2:
-    if (selected_seat != 'Seat 0'):
-        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>Selected Seat Info:</p>",
-                    unsafe_allow_html=True)
-        st.write(selected_seat)
-        seat_index = seat_options.index(selected_seat)
-        st.write(gallery[list(gallery.keys())[seat_index]])
+#########################################################
 
+
+def show_venue_contact_info():
+    with col2:
+
+        if (selected_seat != 'Seat 0'):
+            st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>selected seat info:</p>",
+                        unsafe_allow_html=True)
+            st.write(selected_seat)
+            seat_index = seat_options.index(selected_seat)
+            st.write(gallery[list(gallery.keys())[seat_index]])
+
+        # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
+        #            unsafe_allow_html=True)
+        venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
+                      "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
+        st.selectbox("select venue:", venue_list)
+
+    # Creating spacing between seat seat info summary and contact info
+
+    with col2:
+
+        for i in range(3):
+            st.write("")
+
+        # Title for Option to Select Venue Seating Area View
+        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating chart perspective option:</p>",
+                    unsafe_allow_html=True)
+
+        # Option for Selecting Gallery View
+        gallery_1 = st.button("Gallery View")
+
+        # Option for Selecting Balcony View
+        gallery_1 = st.button("Balcony View")
+
+        # Contact info
+        #st.header("About Us:")
+        st.markdown("<p style='color: white; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: ticketholder.inquiryinfo@gmail.com</p>",
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
+                    unsafe_allow_html=True)
 
 #########################################################
 
-    # Creating spacing between seat seat info summary and contact info
-    for i in range(3):
-        st.write("")
 
-    # Title for Option to Select Venue Seating Area View
-    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating chart perspective option:</p>",
-                unsafe_allow_html=True)
+show_venue_contact_info()
 
-    # Option for Selecting Gallery View
-    gallery_1 = st.button("Gallery View")
+#########################################################
 
-    # Option for Selecting Balcony View
-    gallery_1 = st.button("Balcony View")
-
-    # Contact info
-    st.header("About Us:")
-    st.write("Contact Info:")
-    st.write("Phone: 416-555-5555")
-    st.write("Email: ticketholder.inquiryinfo@gmail.com")
-    st.write("Chatbot Assistant: <Click Here>")
-    st.markdown("<p style='color: white; font-size: 12px; margin-top: 12px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
-                unsafe_allow_html=True)
-
-
+#########################################################
 # Print data to terminal for troubleshooting
 # print("gallery.items()")
 
@@ -386,7 +413,7 @@ with col2:
 #    if i == 200:
 #        break
 #    print(f"{key}: {value}")
-
+#########################################################
 
 # Appendix / Misc. Notes
 # i.) QR Code Venue/Event Enter Format [Based on Solidity Variable/Call Format] (https://www.qr-code-generator.com/)
