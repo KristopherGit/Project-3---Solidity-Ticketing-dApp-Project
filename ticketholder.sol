@@ -107,7 +107,7 @@ contract TickETHolder is ERC721 {
 
     event TicketPurchased(uint ticketId, address buyer, uint price);
 
-    function buyTicket(uint ticketId) public payable {
+    function buyTicket(uint ticketId, string memory _ownerFirstName, string memory _ownerLastName) public payable {
         // Make sure to purchase the ticket the ticket is available (i.e. set to the contractOwner, so it's still in unsold stasis/pool of minted tickets
         require(ticketData[ticketId].owner == contractOwner, "Ticket isn't available for sale. Already sold. Sorry. Try to purchase a different seat, please.");
 
@@ -119,6 +119,12 @@ contract TickETHolder is ERC721 {
 
         // Reset the status of the ticketData attribute for the buyer's address to be the new owner ('address owner')
         ticketData[ticketId].owner = msg.sender;
+
+        // Reset the ownerFirstName to buyer _ownerFirstName
+        ticketData[ticketId].ownerFirstName = _ownerFirstName; 
+
+        // Reset the ownerLastName to buyer _ownerLastName
+        ticketData[ticketId].ownerLastName = _ownerLastName;
 
         // Broadcast sale has been made & transfer of ticket to msg.sender (buyer) has been completed
         emit TicketPurchased(ticketId, msg.sender, ticketData[ticketId].price);
