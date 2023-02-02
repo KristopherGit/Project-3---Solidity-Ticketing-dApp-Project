@@ -7,6 +7,14 @@ import qrcode
 import qrcode.image.pil
 
 
+# Import libraries to run Solidity smart contract & interact with json/files
+import os
+import json
+from web3 import Web3
+from pathlib import Path
+from dotenv import load_dotenv
+
+
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
 st.set_page_config(page_title="Buttons Grid",
@@ -18,6 +26,47 @@ secondary_color = "#010C80"
 text_color = "#000000"
 background_color = "#FFFFFF"
 
+#########################################################
+
+# Web3 Contract Loading & Execution
+
+# load dotenv
+load_dotenv()
+
+# Define and connect to a Web3 provider
+w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
+
+# Implement the contract helper function
+# a.) Loads the contract only once using the streamlit cache feature
+# b.) Connects to the contract once using the contract address & ABI
+
+
+@st.cache(allow_output_mutation=True)
+# Load the contract ABI
+def load_contract():
+
+    # Load the contract ABI
+    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
+        ticketholder_abi = json.load(f)
+
+    # Set the contract address (Ethereum address of the deployed contract)
+    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+
+    # Get the contract
+    contract = w3.eth.contract(
+        address=contract_address,
+        abi=ticketholder_abi
+    )
+
+    return contract
+
+
+# Load the ticketholder Ethereum contract
+contract = load_contract()
+
+#########################################################
+
+# TickETHolder Main GUI Streamlit Page Setup
 # Main Logo Addition Function
 
 
@@ -32,31 +81,42 @@ def add_logo(logo_path, width, height):
 st.sidebar.image(
     add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
 
+#########################################################
+
+# Setup access to user Ethereum eth.accounts (MetaMask)
+wallet_addresses = w3.eth.accounts
+
+
 # Create sidebar for customer form submission
-with st.sidebar:
-    # Top header section
-    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
-                unsafe_allow_html=True)
-    # text_input for customer info
-    first_name_input = st.text_input(
-        label="first name", placeholder="required")
-    last_name_input = st.text_input(
-        label="last name", placeholder="required")
+# with st.sidebar:
+#    # Top header section
+#    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
+#                unsafe_allow_html=True)
+#    # text_input for customer info
+#    first_name_input = st.text_input(
+#        label="first name", placeholder="required")
+#    last_name_input = st.text_input(
+#        label="last name", placeholder="required")
+#
+# Drop down for eth wallet addresses from customer
+# wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
+#                    "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+#                    "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
+# st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
+#            unsafe_allow_html=True)
+#    selected_address = st.selectbox(
+#        "connect eth wallet", options=wallet_addresses)
+#
+#    if st.button("confirm buy:"):
+#        tx_hash = contract.functions.buyTicket(
+#            ticketId, first_name_input, last_name_input).transact({'from': selected_address})
+#
+#    # company copyright info at bottom of sidebar
+#    for i in range(10):
+#        st.write("")
+#    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
+#                unsafe_allow_html=True)
 
-    # Drop down for eth wallet addresses from customer
-    wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
-                        "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
-                        "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
-    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
-    #            unsafe_allow_html=True)
-    selected_address = st.selectbox(
-        "connect eth wallet", wallet_addresses)
-
-    # company copyright info at bottom of sidebar
-    for i in range(10):
-        st.write("")
-    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
-                unsafe_allow_html=True)
 
 # Create columns for holding & centering the gallery layout
 col1, col2 = st.columns([3, 1], gap="medium")
@@ -80,10 +140,8 @@ for x in range(57):
             'row': y,
             'name': f'{x},{y}',
             'price': 71000000000000000,
-            'bought': False,
-            'color': '#1E90FF',
-            # Example Ethereum wallet address
-            'wallet_address': '0x123456789abcdefghijklmnopqrstuvwxyz'
+            # 'bought': False,
+            'color': '#1E90FF'
         }
         # Add the seat to the gallery dictionary
         gallery[seat['name']] = seat
@@ -216,6 +274,11 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
     )
 ))
 
+#########################################################
+
+### ***Select & Purchase Ticket Algorithms*** ###
+# Includes python functions to interact with Solidity TickETHolder contract in the 'ticketholder.sol' file
+
 # St.Selectbox - Selectbox dropdown for seat selection options
 
 # with col1:
@@ -224,8 +287,8 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 # St.Button - Confirm Seat With Session_State Gallery{key:"seat_name(x,y)" value:"seat(dic)"}
 
 with col1:
-    selected_seat = st.selectbox('Purchase seat (ticket):', seat_options)
-    if st.button('confirm a seat'):
+    selected_seat = st.selectbox('select seat(s):', seat_options)
+    if st.button('confirm seat(s)'):
         seat_index = seat_options.index(selected_seat)
         gallery[list(gallery.keys())[seat_index]]['color'] = '#A9A9A9'
         st.write("")
@@ -237,8 +300,50 @@ with col1:
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
 
+    # Create sidebar for customer form submission
+with st.sidebar:
+    # Top header section
+    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
+                unsafe_allow_html=True)
+    # text_input for customer info
+    first_name_input = st.text_input(
+        label="first name", placeholder="required")
+    last_name_input = st.text_input(
+        label="last name", placeholder="required")
 
-# Right hand side sidebar
+    # Drop down for eth wallet addresses from customer
+    # wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
+    #                    "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    #                    "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
+    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
+    #            unsafe_allow_html=True)
+    selected_address = st.selectbox(
+        "connect eth wallet", options=wallet_addresses)
+
+    # *** Important conversion ***
+    # Convert selected_seat to its tokenId equivalent (where selected_seat = tokenId -1) or in Solidity ticketData struct: seatNumber = ticketId -1
+    seat_string_stripped_list = selected_seat.split(" ")
+    print(seat_string_stripped_list)
+    seat_num_stripped = int(seat_string_stripped_list[1])
+    print(seat_num_stripped)
+    ticketId = seat_num_stripped + 1
+    print("ticket_Id:")
+    print(ticketId)
+    print("selected_address:")
+    print(selected_address)
+
+    if st.button("confirm buy:"):
+        tx_hash = contract.functions.buyTicket(
+            ticketId, first_name_input, last_name_input).transact({'from': selected_address, 'value': 71000000000000000})
+
+    # company copyright info at bottom of sidebar
+    for i in range(10):
+        st.write("")
+    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
+                unsafe_allow_html=True)
+
+
+# Right hand side column section of code
 with col2:
     if (selected_seat != 'Seat 0'):
         st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>Selected Seat Info:</p>",
@@ -246,6 +351,9 @@ with col2:
         st.write(selected_seat)
         seat_index = seat_options.index(selected_seat)
         st.write(gallery[list(gallery.keys())[seat_index]])
+
+
+#########################################################
 
     # Creating spacing between seat seat info summary and contact info
     for i in range(3):
@@ -272,12 +380,12 @@ with col2:
 
 
 # Print data to terminal for troubleshooting
-print("gallery.items()")
+# print("gallery.items()")
 
-for i, (key, value) in enumerate(gallery.items()):
-    if i == 200:
-        break
-    print(f"{key}: {value}")
+# for i, (key, value) in enumerate(gallery.items()):
+#    if i == 200:
+#        break
+#    print(f"{key}: {value}")
 
 
 # Appendix / Misc. Notes
