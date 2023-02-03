@@ -3,6 +3,7 @@
 from PIL import Image
 import streamlit as st
 import plotly.graph_objs as go
+import numpy as np
 import qrcode
 import qrcode.image.pil
 
@@ -13,6 +14,8 @@ import json
 from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
+
+# Import 'requests' to handle json file requests to central JSONbin servers (to update already sold seats that are not available)
 
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
@@ -222,23 +225,58 @@ for i in reversed(seats_to_remove):
 
 # Create stage layout as a half moon
 # Create a scatter trace for the stage
+# stage = go.Scatter(
+#    x=list(range(57)),
+#    y=([-2.5, -3, -3.5] + [-4]*(57-6) + [-3.5, -3, -2.5]),
+    # x=list(range(57))[::-1],
+    # y=[-2.5, -3, -3.5] + [-4.5]*(57-6) + [-3.5, -3, -2.5],
+#    mode='lines',
+#    fill='toself',
+#    line=dict(width=2, color='darkgrey'),
+#    fillcolor='lightgrey',
+#    text=['STAGE'],
+#    textposition='bottom center',
+#    textfont=dict(color='black')  # set the text color to white
+# )
+
+
+def stage_y_values(x):
+    return 6 * np.sin(x * np.pi / 56) - 4
+
+
+x = np.array(list(range(57)))
+y = stage_y_values(x)
+
 stage = go.Scatter(
-    x=list(range(57)),
-    y=([-2.5, -3, -3.5] + [-4]*(57-6) + [-3.5, -3, -2.5]),
+    x=x,
+    y=y,
     mode='lines',
     fill='toself',
-    line=dict(width=2, color='darkgrey'),
-    fillcolor='lightgrey',
+    line=dict(width=4, color='#333333'),
+    fillcolor='#333333',
     text=['STAGE'],
-    textposition='bottom center',
-    textfont=dict(color='black')  # set the text color to white
+    textposition='top center',
+    textfont=dict(color='white')  # set the text color to white
 )
+
 
 # Append the stage trace to the list of traces
 traces.append(stage)
 
 # Update stage formatting
-stage.update(fill='toself', fillcolor='lightgrey')
+stage.update(fill='toself', fillcolor='#333333',
+             line=dict(width=4, color='#333333'))
+
+# Add a contour line to the bottom of the half-moon stage outline
+bottom_line = go.Scatter(
+    x=list(range(57)),
+    y=[min(y) for i in range(57)],
+    mode='lines',
+    line=dict(width=2, color='#333333'),
+)
+
+# Append the bottom line trace to the list of traces
+traces.append(bottom_line)
 
 
 seat_options = [f'Seat {i}' for i in range(len(traces))]
@@ -265,10 +303,13 @@ custom_legend_name(seat_options)
 fig.update_traces(textposition='top center')
 fig.update_layout(autosize=True, width=950, height=600, annotations=[
     dict(
-        text="STAGE",
+        text="S T A G E",
         font=dict(
-            size=18
-        )
+            size=24,
+            family='monospace',
+            color='black'
+        ),
+        y=0.25
     )
 ], hoverlabel=dict(
     font=dict(
@@ -285,7 +326,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 # St.Selectbox - Selectbox dropdown for seat selection options
 
 # with col1:
-#selected_seat = st.selectbox('Purchase seat (ticket):', seat_options)
+# selected_seat = st.selectbox('Purchase seat (ticket):', seat_options)
 
 # St.Button - Confirm Seat With Session_State Gallery{key:"seat_name(x,y)" value:"seat(dic)"}
 
@@ -293,7 +334,7 @@ with col1:
     selected_seat = st.selectbox('select seat(s):', seat_options)
     if st.button('select seat(s)'):
         seat_index = seat_options.index(selected_seat)
-        gallery[list(gallery.keys())[seat_index]]['color'] = '#A9A9A9'
+        gallery[list(gallery.keys())[seat_index]]['color'] = '#00F00'
         st.write("")
 
         if selected_seat not in st.session_state:
@@ -316,12 +357,7 @@ with st.sidebar:
     last_name_input = st.text_input(
         label="last name", placeholder="required")
 
-    # Drop down for eth wallet addresses from customer
-    # wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
-    #                    "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
-    #                    "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
-    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
-    #            unsafe_allow_html=True)
+    # Drop down for eth wallet addresses ('selected_address') from customer
     selected_address = st.selectbox(
         "connect eth wallet", options=wallet_addresses)
 
@@ -340,6 +376,9 @@ with st.sidebar:
     if st.button("confirm buy:"):
         tx_hash = contract.functions.buyTicket(
             ticketId, first_name_input, last_name_input).transact({'from': selected_address, 'value': 71000000000000000})
+        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        st.write("Transaction receipt mined:")
+        st.write(dict(receipt))
 
     # company copyright info at bottom of sidebar
     for i in range(8):
@@ -375,8 +414,12 @@ def show_venue_contact_info():
         for i in range(3):
             st.write("")
 
+        # Venue Image
+        venue_image = Image.open('massey_hall_bw.png')
+        st.image(venue_image, 'Massey Hall - Neon Sign/North Entrance')
+
         # Title for Option to Select Venue Seating Area View
-        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating chart perspective option:</p>",
+        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating map section:</p>",
                     unsafe_allow_html=True)
 
         # Option for Selecting Gallery View
@@ -386,12 +429,12 @@ def show_venue_contact_info():
         gallery_1 = st.button("Balcony View")
 
         # Contact info
-        #st.header("About Us:")
+        # st.header("About Us:")
         st.markdown("<p style='color: white; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
                     unsafe_allow_html=True)
-        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: ticketholder.inquiryinfo@gmail.com</p>",
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
                     unsafe_allow_html=True)
