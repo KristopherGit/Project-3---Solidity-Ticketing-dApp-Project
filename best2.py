@@ -4,6 +4,7 @@ from PIL import Image
 import streamlit as st
 import plotly.graph_objs as go
 import numpy as np
+import time
 import qrcode
 import qrcode.image.pil
 
@@ -23,6 +24,7 @@ from dotenv import load_dotenv
 
 st.set_page_config(page_title="Buttons Grid",
                    page_icon=":guardsman:", layout="wide")
+
 
 # Set app.py streamlit custom color scheme for config.toml file
 primary_color = "#0000FF"
@@ -330,18 +332,27 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 # St.Button - Confirm Seat With Session_State Gallery{key:"seat_name(x,y)" value:"seat(dic)"}
 
+# Generate a placeholder list for holding seats for the customer
+selected_seats_list = []
+
 with col1:
     selected_seat = st.selectbox('select seat(s):', seat_options)
     if st.button('select seat(s)'):
         seat_index = seat_options.index(selected_seat)
-        gallery[list(gallery.keys())[seat_index]]['color'] = '#00F00'
+        gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
         st.write("")
+
+        if selected_seat:
+            selected_seats_list.append(selected_seat)
 
         if selected_seat not in st.session_state:
             st.session_state[selected_seat] = gallery[list(
-                gallery.keys())[seat_index]]['color'] = '#A9A9A9'
+                gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
     if st.button('confirm seat(s)'):
         st.write()
+
+    if st.button('clear all selected seat(s)'):
+        st.session_state.clear()
 
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
@@ -363,22 +374,37 @@ with st.sidebar:
 
     # *** Important conversion ***
     # Convert selected_seat to its tokenId equivalent (where selected_seat = tokenId -1) or in Solidity ticketData struct: seatNumber = ticketId -1
-    seat_string_stripped_list = selected_seat.split(" ")
-    print(seat_string_stripped_list)
-    seat_num_stripped = int(seat_string_stripped_list[1])
-    print(seat_num_stripped)
-    ticketId = seat_num_stripped + 1
-    print("ticket_Id:")
-    print(ticketId)
-    print("selected_address:")
-    print(selected_address)
+
+    # Also create a placeholder list for the seat tickets & corresponding ticketIds
+    seats_and_ticketIds_list = []
+
+    for selected_seat in selected_seats_list:
+        seat_string_stripped_list = selected_seat.split(" ")
+        # print(seat_string_stripped_list)
+        seat_num_stripped = int(seat_string_stripped_list[1])
+        # print(seat_num_stripped)
+        ticketId = seat_num_stripped + 1
+        # print("ticket_Id:")
+        # print(ticketId)
+        # print("selected_address:")
+        # print(selected_address)
+        if (selected_seat, ticketId):
+            seats_and_ticketIds_list.append((selected_seat, ticketId))
+
+    print(seats_and_ticketIds_list)
 
     if st.button("confirm buy:"):
-        tx_hash = contract.functions.buyTicket(
-            ticketId, first_name_input, last_name_input).transact({'from': selected_address, 'value': 71000000000000000})
-        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        st.write("Transaction receipt mined:")
-        st.write(dict(receipt))
+        selected_seats = list(st.session_state.keys())
+        print(selected_seats)
+        for selected_seat in selected_seats:
+            seat_string_stripped_list = selected_seat.split(" ")
+            seat_num_stripped = int(seat_string_stripped_list[1])
+            ticketId = seat_num_stripped + 1
+            tx_hash = contract.functions.buyTicket(
+                ticketId, first_name_input, last_name_input).transact({'from': selected_address, 'value': 71000000000000000})
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write("Transaction receipt mined:")
+            st.write(dict(receipt))
 
     # company copyright info at bottom of sidebar
     for i in range(8):
