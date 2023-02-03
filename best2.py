@@ -4,10 +4,8 @@ from PIL import Image
 import streamlit as st
 import plotly.graph_objs as go
 import numpy as np
-import time
-import qrcode
-import qrcode.image.pil
 
+#########################################################
 
 # Import libraries to run Solidity smart contract & interact with json/files
 import os
@@ -16,8 +14,13 @@ from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Import 'requests' to handle json file requests to central JSONbin servers (to update already sold seats that are not available)
+#########################################################
 
+# Import 'requests' to handle json file requests to central JSONbin servers (to update already sold seats that are not available)
+import requests
+
+# Import config.py Config JSONbin config info (API Secret Key)
+from config import Config
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -335,6 +338,51 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 # Generate a placeholder list for holding seats for the customer
 selected_seats_list = []
 
+#########################################################
+# JSON Read/Write to Central Server - To Update Seat Color & Non-Sensitive Info for Data Analysis
+#########################################################
+
+
+def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
+    # jsonbin url for .json file data
+    url = "https://api.jsonbin.io/v3/b/63dd8aa2c0e7653a056e92b9"
+
+    # define headers for api request
+    headers = {"content-type": "application/json",
+               # "secret-key": "{secret_key}"}
+               "secret-key": Config.JSONBIN_SECRET_KEY,
+               # "X-Master-Key": Config.JSONBIN_MASTER_KEY}
+               "X-Master-Key": '$2b$10$TBShXqVtrokNLIU1b2GD7upkZ7ZV6cgi1gv0rRXYVkS656gRM1tqq'}
+
+    # retrieve most recent json from JSONbin
+    response = requests.get(url, headers=headers)
+    data = response.json()
+
+    if "ticketholder" not in data:
+        data["ticketholder"] = []
+    data["ticketholder"].append({
+        "tokenID": ticketId,
+        "first_name": first_name_input,
+        "last_name": last_name_input,
+        "selected_address": selected_address,
+        "seat_color": "#1E90FF",  # default blue/unsold
+        "selected_seat": selected_seat
+    })
+
+    # test print data to see if it's reading/writing to the json ok
+    print(data)
+
+    # send put request to jsonbin to update the json data
+    response = requests.put(url, headers=headers, json=data)
+
+    # check if request was successful
+    if response.status_code == 200:
+        st.write("json data was successfully updated to corresponding JSONbin")
+    else:
+        st.write("Error updating json data on JSONbin")
+        st.write(response.text)
+
+
 with col1:
     selected_seat = st.selectbox('select seat(s):', seat_options)
     if st.button('select seat(s)'):
@@ -342,8 +390,8 @@ with col1:
         gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
         st.write("")
 
-        if selected_seat:
-            selected_seats_list.append(selected_seat)
+        # if selected_seat:
+        #    selected_seats_list.append(selected_seat)
 
         if selected_seat not in st.session_state:
             st.session_state[selected_seat] = gallery[list(
@@ -405,6 +453,11 @@ with st.sidebar:
             receipt = w3.eth.waitForTransactionReceipt(tx_hash)
             st.write("Transaction receipt mined:")
             st.write(dict(receipt))
+            update_jsonbin(ticketId, first_name_input,
+                           last_name_input, selected_address, selected_seat)
+            # check if request was successful
+            # data = requests.get(
+            #    url='https://api.jsonbin.io/v3/b/63dcac6fc0e7653a056dc7ab').json()
 
     # company copyright info at bottom of sidebar
     for i in range(8):
@@ -442,7 +495,7 @@ def show_venue_contact_info():
 
         # Venue Image
         venue_image = Image.open('massey_hall_bw.png')
-        st.image(venue_image, 'Massey Hall - Neon Sign/North Entrance')
+        st.image(venue_image, 'Massey Hall - North Entrance')
 
         # Title for Option to Select Venue Seating Area View
         st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating map section:</p>",
