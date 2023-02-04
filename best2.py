@@ -183,22 +183,68 @@ layout = go.Layout(
         color='black'
     )
 )
+#print("Gallery dictionary")
+#print("Index, key/value pairs:")
+# print()
+# for index, (key, value) in enumerate(gallery.items()):
+#    print("Index:", index)
+#    print("Key:", key)
+#    print("Value:", value)
+
+#########################################################
+
+# Create & Call 'update_seat_colors' function that pulls updated seat colors from JSONbin based on sold seats
+
+# JSONBin Bin Active URL
+url = "https://api.jsonbin.io/v3/b/63de19e2ebd26539d075bb9f"
+# define headers for api request
+headers = {"content-type": "application/json",
+           "secret-key": Config.JSONBIN_SECRET_KEY,
+           "X-Master-Key": '$2b$10$TBShXqVtrokNLIU1b2GD7upkZ7ZV6cgi1gv0rRXYVkS656gRM1tqq'}
+response = requests.get(url, headers=headers)
+data_json = response.json()
+print(data_json)
+print("")
+print("")
+for i in data_json['record']['ticketholder']:
+    print(i['tokenID'])
+
+
+#########################################################
 
 # Create a list of scatter traces to represent the seats in the gallery
+# Create a list of scatter traces to represent the seats in the gallery
 traces = []
-for seat in gallery.values():
-    # Create a scatter trace for the current seat
+for seat_number, seat in gallery.items():
+    color = '#1E90FF'
     trace = go.Scatter(
         x=[seat['aisle']],
         y=[seat['row']],
         mode='markers',
-        marker=dict(size=6, color=seat['color']),
+        marker=dict(size=6, color=color),
         textfont=dict(
             size=20
         )
     )
-    # Append the trace to the list of traces
     traces.append(trace)
+
+
+#########################################################
+
+#traces = []
+# for seat in gallery.values():
+    # Create a scatter trace for the current seat
+    # trace = go.Scatter(
+    #   x=[seat['aisle']],
+    #   y=[seat['row']],
+    #   mode='markers',
+    #   marker=dict(size=6, color=seat['color']),
+    #   textfont=dict(
+    #       size=20
+    #  )
+    # )
+    # Append the trace to the list of traces
+    # traces.append(trace)
 
 to_remove_2 = [29*28+i for i in range(28)]
 # Sort the indices in reverse order to avoid shifting
@@ -283,6 +329,22 @@ bottom_line = go.Scatter(
 # Append the bottom line trace to the list of traces
 traces.append(bottom_line)
 
+#########################################################
+
+# Update traces to color ones 'darkgrey' that appear in the 'ticketholders' JSONbin json server
+# for index, trace in enumerate(traces):
+#    print(f"index: {index}, trace: {trace}")
+
+
+if 'record' in data_json and 'ticketholder' in data_json['record']:
+    ticketholders = data_json['record']['ticketholder']
+    for ticketholder in ticketholders[1:]:
+        for index, trace in enumerate(traces):
+            token_id = str(ticketholder['tokenID'])
+            if token_id.isdigit() and int(token_id) - 1 == index:
+                trace['marker']['color'] = 'darkgrey'
+#########################################################
+
 
 seat_options = [f'Seat {i}' for i in range(len(traces))]
 
@@ -345,32 +407,37 @@ selected_seats_list = []
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63dd8aa2c0e7653a056e92b9"
+    url = "https://api.jsonbin.io/v3/b/63de19e2ebd26539d075bb9f"
 
     # define headers for api request
     headers = {"content-type": "application/json",
-               # "secret-key": "{secret_key}"}
                "secret-key": Config.JSONBIN_SECRET_KEY,
-               # "X-Master-Key": Config.JSONBIN_MASTER_KEY}
                "X-Master-Key": '$2b$10$TBShXqVtrokNLIU1b2GD7upkZ7ZV6cgi1gv0rRXYVkS656gRM1tqq'}
 
     # retrieve most recent json from JSONbin
     response = requests.get(url, headers=headers)
     data = response.json()
 
+    if "record" in data:
+        data = data["record"]
+
     if "ticketholder" not in data:
         data["ticketholder"] = []
+
+    ticket_id = ticketId
+    counter = 0
+    while any(d['tokenID'] == ticket_id for d in data["ticketholder"]):
+        counter += 1
+        ticket_id = f"{ticketId}_{counter}"
+
     data["ticketholder"].append({
-        "tokenID": ticketId,
+        "tokenID": ticket_id,
         "first_name": first_name_input,
         "last_name": last_name_input,
         "selected_address": selected_address,
         "seat_color": "#1E90FF",  # default blue/unsold
         "selected_seat": selected_seat
     })
-
-    # test print data to see if it's reading/writing to the json ok
-    print(data)
 
     # send put request to jsonbin to update the json data
     response = requests.put(url, headers=headers, json=data)
