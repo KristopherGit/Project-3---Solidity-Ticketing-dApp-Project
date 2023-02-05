@@ -21,8 +21,111 @@ import datetime
 # Import JSON Request Library
 import requests
 
+#########################################################
+# Setup Admin / Minter / NFT Gen Streamlit Web Interface
+#########################################################
+st.set_page_config(page_title="Buttons Grid",
+                   page_icon=":guardsman:", layout="wide")
+
+# Create columns for holding & centering the gallery layout
+col1, col2 = st.columns([1, 1], gap="medium")
+
+# Sidebar Main Logo Image
+# Main Logo Addition Function
+
+
+@st.cache
+def add_logo(logo_path, width, height):
+    """Read and return a resized logo"""
+    logo = Image.open(logo_path)
+    modified_logo = logo.resize((width, height))
+    return modified_logo
+
+
+st.sidebar.image(
+    add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
+st.sidebar.write("NFT Image Data Input")
 
 #########################################################
+
+# Web3 Contract Loading & Execution
+
+# load dotenv
+load_dotenv()
+
+# Define and connect to a Web3 provider
+w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
+
+# Implement the contract helper function
+# a.) Loads the contract only once using the streamlit cache feature
+# b.) Connects to the contract once using the contract address & ABI
+
+
+@st.cache(allow_output_mutation=True)
+# Load the contract ABI
+def load_contract():
+
+    # Load the contract ABI
+    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
+        ticketholder_abi = json.load(f)
+
+    # Set the contract address (Ethereum address of the deployed contract)
+    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+
+    # Get the contract
+    contract = w3.eth.contract(
+        address=contract_address,
+        abi=ticketholder_abi
+    )
+
+    return contract
+
+
+# Load the ticketholder Ethereum contract
+contract = load_contract()
+
+#########################################################
+
+#########################################################
+
+# Minter Program
+
+# Show minter_layout header
+
+with col1:
+    st.header("Minter & NFT Gen Admin Console")
+    st.write("Event Contract Generator Form:")
+    st.write("File: ticketholder.sol -> contract.functions.mint")
+    st.write("")
+    st.write("")
+    _ownerFirstName = st.text_input(
+        "Enter string memory _ownerFirstName", "First Name")
+    _ownerLastName = st.text_input(
+        "Enter string memory _ownerLastName", "Last Name")
+    _eventName = st.text_input("Enter string memory _eventName", "Event Name")
+    _concertDate = st.number_input(
+        "Enter uint _concertDate [UNIX Format]", 1660176000)
+    _price = st.number_input("Enter uint _price (ETH)", 0.071)
+    _venueName = st.text_input("Enter uint _price", "Venue Name")
+
+with col2:
+    st.header("Links")
+    st.write("col2 test")
+
+    # contract.functions.mint(_owner)
+
+    # //address payable contractOwner,
+    # string memory _ownerFirstName,
+    # string memory _ownerLastName,
+    # string memory _eventName,
+    # uint _concertDate,
+    # uint _price,
+    # string memory _venueName,
+    # string memory _seatColor,
+    # uint batchSize
+
+#########################################################
+
 
 # Create & Call 'update_seat_colors' function that pulls updated seat colors from JSONbin based on sold seats
 
@@ -114,7 +217,7 @@ for ticketId, info in ticket_holders.items():
 
         # Fetch UNIX event date stamp from Solidity and convert to formatted_date_time format ('%m/%d/%Y %H:%M:%S')
         date_time = datetime.datetime.fromtimestamp(
-            1660176000)  # UNIX timestamp variable inputs here
+            _concertDate)  # UNIX timestamp variable inputs here
         formatted_date_time = date_time.strftime('%m/%d/%Y %H:%M:%S')
 
         # Create aisle, row & seat text variables
