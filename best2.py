@@ -196,7 +196,7 @@ layout = go.Layout(
 # Create & Call 'update_seat_colors' function that pulls updated seat colors from JSONbin based on sold seats
 
 # JSONBin Bin Active URL
-url = "https://api.jsonbin.io/v3/b/63de19e2ebd26539d075bb9f"
+url = "https://api.jsonbin.io/v3/b/63df0c52ace6f33a22d68450"
 # define headers for api request
 headers = {"content-type": "application/json",
            "secret-key": Config.JSONBIN_SECRET_KEY,
@@ -331,6 +331,12 @@ traces.append(bottom_line)
 
 #########################################################
 
+# Resort gallery layout sequentially
+
+# Create an array of seat positions
+
+#########################################################
+
 # Update traces to color ones 'darkgrey' that appear in the 'ticketholders' JSONbin json server
 # for index, trace in enumerate(traces):
 #    print(f"index: {index}, trace: {trace}")
@@ -345,9 +351,8 @@ if 'record' in data_json and 'ticketholder' in data_json['record']:
                 trace['marker']['color'] = 'darkgrey'
 #########################################################
 
-
+# Create a list of seats as 'Seat {i}' corresponding to each i in traces list
 seat_options = [f'Seat {i}' for i in range(len(traces))]
-
 
 if st.session_state:
     for seat_name, seat_color in st.session_state.items():
@@ -398,7 +403,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 # St.Button - Confirm Seat With Session_State Gallery{key:"seat_name(x,y)" value:"seat(dic)"}
 
 # Generate a placeholder list for holding seats for the customer
-selected_seats_list = []
+#selected_seats_list = []
 
 #########################################################
 # JSON Read/Write to Central Server - To Update Seat Color & Non-Sensitive Info for Data Analysis
@@ -407,7 +412,7 @@ selected_seats_list = []
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63de19e2ebd26539d075bb9f"
+    url = "https://api.jsonbin.io/v3/b/63df0c52ace6f33a22d68450"
 
     # define headers for api request
     headers = {"content-type": "application/json",
@@ -430,13 +435,19 @@ def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address
         counter += 1
         ticket_id = f"{ticketId}_{counter}"
 
+    # Access the row & aisle values from each trace (seat) that corresponds to each tokenId/seat number
+    aisle = traces[ticket_id - 1]['x'][0]
+    row = traces[ticket_id - 1]['y'][0]
+
     data["ticketholder"].append({
         "tokenID": ticket_id,
         "first_name": first_name_input,
         "last_name": last_name_input,
         "selected_address": selected_address,
         "seat_color": "#1E90FF",  # default blue/unsold
-        "selected_seat": selected_seat
+        "selected_seat": selected_seat,
+        "aisle": aisle,
+        "row": row
     })
 
     # send put request to jsonbin to update the json data
@@ -493,20 +504,20 @@ with st.sidebar:
     # Also create a placeholder list for the seat tickets & corresponding ticketIds
     seats_and_ticketIds_list = []
 
-    for selected_seat in selected_seats_list:
-        seat_string_stripped_list = selected_seat.split(" ")
-        # print(seat_string_stripped_list)
-        seat_num_stripped = int(seat_string_stripped_list[1])
-        # print(seat_num_stripped)
-        ticketId = seat_num_stripped + 1
-        # print("ticket_Id:")
-        # print(ticketId)
-        # print("selected_address:")
-        # print(selected_address)
-        if (selected_seat, ticketId):
-            seats_and_ticketIds_list.append((selected_seat, ticketId))
+    # for selected_seat in selected_seats_list:
+    #    seat_string_stripped_list = selected_seat.split(" ")
+    #    # print(seat_string_stripped_list)
+    #    seat_num_stripped = int(seat_string_stripped_list[1])
+    #    # print(seat_num_stripped)
+    #    ticketId = seat_num_stripped + 1
+    #    # print("ticket_Id:")
+    # print(ticketId)
+    # print("selected_address:")
+    # print(selected_address)
+    #    if (selected_seat, ticketId):
+    #        seats_and_ticketIds_list.append((selected_seat, ticketId))
 
-    print(seats_and_ticketIds_list)
+    # print(seats_and_ticketIds_list)
 
     if st.button("confirm buy:"):
         selected_seats = list(st.session_state.keys())
