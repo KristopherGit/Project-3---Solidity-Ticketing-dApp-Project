@@ -28,7 +28,7 @@ st.set_page_config(page_title="Buttons Grid",
                    page_icon=":guardsman:", layout="wide")
 
 # Create columns for holding & centering the gallery layout
-col1, col2 = st.columns([1, 1], gap="medium")
+col1, col2 = st.columns(2)
 
 # Sidebar Main Logo Image
 # Main Logo Addition Function
@@ -41,14 +41,10 @@ def add_logo(logo_path, width, height):
     modified_logo = logo.resize((width, height))
     return modified_logo
 
-
-st.sidebar.image(
-    add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
-st.sidebar.write("NFT Image Data Input")
-
 #########################################################
 
 # Web3 Contract Loading & Execution
+
 
 # load dotenv
 load_dotenv()
@@ -90,27 +86,93 @@ contract = load_contract()
 
 # Minter Program
 
+# Load Minter Admin Wallet & Additional Wallet Options
+# Setup access to user Ethereum eth.accounts (MetaMask)
+wallet_addresses = w3.eth.accounts
+
+# Drop down for eth wallet addresses ('selected_address') from customer
+with st.sidebar:
+    st.header("Admin Dashboard")
+    st.sidebar.image(
+        add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
+    selected_address = st.selectbox(
+        "connect eth wallet", options=wallet_addresses)
+    st.write("Connection Status:")
+    if w3.isConnected():
+        #st.write("Connected to ETH Test Network.")
+        st.markdown("<p style='color: green; font-size: 14px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
+                    unsafe_allow_html=True)
+    else:
+        #st.write("Unable to Connect to ETH Test Network.")
+        st.markdown("<p style='color: red; font-size: 14px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+                    unsafe_allow_html=True)
+
+    # Add Selector for Appropriate Solidity Contract feature button
+    solidity_contract_file = st.file_uploader(
+        "Upload Solidity Contract File (.sol)", type=["json"])
+
+    # Add 'Deploy Contract' button to deploy the contract to the Ethereum network
+    if st.button("Deploy Contract"):
+        # load contract
+        if solidity_contract_file is not None:
+            with solidity_contract_file.open() as sol_file:
+                contract_data = json.load(sol_file)
+
+            # deploy contract to ETH network
+            contract = w3.eth.contract(
+                abi=contract_data["abi"],
+                bytecode=contract_data["bytecode"],
+            )
+            tx_hash = contract.constructor().transact(
+                {"from": selected_address})
+            tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write("ETH contract deployed at address:",
+                     tx_receipt["contractAddress"])
+        else:
+            st.write("Unable to load. No contract file (.sol) selected.")
+
 # Show minter_layout header
 
 with col1:
-    st.header("Minter & NFT Gen Admin Console")
-    st.write("Event Contract Generator Form:")
-    st.write("File: ticketholder.sol -> contract.functions.mint")
-    st.write("")
-    st.write("")
-    _ownerFirstName = st.text_input(
-        "Enter string memory _ownerFirstName", "First Name")
-    _ownerLastName = st.text_input(
-        "Enter string memory _ownerLastName", "Last Name")
-    _eventName = st.text_input("Enter string memory _eventName", "Event Name")
-    _concertDate = st.number_input(
-        "Enter uint _concertDate [UNIX Format]", 1660176000)
-    _price = st.number_input("Enter uint _price (ETH)", 0.071)
-    _venueName = st.text_input("Enter uint _price", "Venue Name")
+    with st.container():
+        #st.header("Minter Admin Console")
+        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
+                    unsafe_allow_html=True)
+        st.write("Event Contract Generator Form:")
+        st.write("File: ticketholder.sol -> contract.functions.mint")
+        st.write("")
+        st.write("")
+        _ownerFirstName = st.text_input(
+            "Enter string memory _ownerFirstName", "First Name")
+        _ownerLastName = st.text_input(
+            "Enter string memory _ownerLastName", "Last Name")
+        _eventName = st.text_input(
+            "Enter string memory _eventName", "Event Name")
+        _concertDate = st.number_input(
+            "Enter uint _concertDate [UNIX Format]", 1660176000)
+        gwei_price = st.number_input("Enter uint _price (in Gwei)", 71000000)
+        _venueName = st.text_input("Enter uint _price", "Venue Name")
+        _seatColor = "#5A5A5A"
+        batchSize = st.number_input(
+            "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 100)
+
+        # Gwei to wei converter function
+        _price = int(gwei_price * 10**9)  # in wei
+
+        # Mint batchSize of Tickets
+        if st.button("Mint Batch"):
+            mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
+                                           _eventName, 1660176000, _price, _venueName, _seatColor, batchSize).transact({"from": selected_address})
 
 with col2:
-    st.header("Links")
-    st.write("col2 test")
+    #st.header("NFT Image Constructor")
+    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>NFT Image Constructor:</b></u></p>",
+                unsafe_allow_html=True)
+    for i in range(10):
+        st.write("")
+    st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'><b>Remix IDE Hyperlink:</b></p>",
+                unsafe_allow_html=True)
+    st.write("https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
 
     # contract.functions.mint(_owner)
 
