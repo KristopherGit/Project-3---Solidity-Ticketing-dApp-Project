@@ -35,6 +35,8 @@ contract TickETHolder is ERC721 {
         uint seatNumber;
         // GUI streamlit / plotly reference variable (ties to session_state reference & enables GUI seat map update realtime)
         string seatColor;
+        // IPFS Hash (NFT Image Addresss)
+        string ipfsHash;
     }
     // Structure of the TickETHolder SoldData obj
     struct SoldData {
@@ -55,6 +57,9 @@ contract TickETHolder is ERC721 {
         //contactOwner = msg.sender;
         ticketCount=0;
     }
+
+    // Create event log to broadcast mint() function 
+    event Minted(uint ticketCount, uint batchSize, uint _seatsMintedSoFar);
 
     // Create mint function to produce all tickets for the event at once (modify if advance ticket sale required)
     function mint(
@@ -94,6 +99,7 @@ contract TickETHolder is ERC721 {
                 ticketData[ticketCount].seatColor = _seatColor;
             }
             _seatsMintedSoFar += numToMint;
+            emit Minted(ticketCount, batchSize, _seatsMintedSoFar);
         }
 
     function setMAX_TICKETS (uint _maxNumberOfTickets) public {
@@ -139,7 +145,8 @@ contract TickETHolder is ERC721 {
         uint price,
         string memory venueName,
         uint seatNumber,
-        string memory seatColor
+        string memory seatColor,
+        string memory ipfsHash
 ) {
         owner = ticketData[tokenId].owner;
         ownerFirstName = ticketData[tokenId].ownerFirstName;
@@ -150,6 +157,12 @@ contract TickETHolder is ERC721 {
         venueName = ticketData[tokenId].venueName;
         seatNumber = ticketData[tokenId].seatNumber;
         seatColor = ticketData[tokenId].seatColor;
+        ipfsHash = ticketData[tokenId].ipfsHash;
 }
+    function updateTicketIpfsHashID(uint tokenId, string memory newIpfsHash) public {
+        require(ticketData[tokenId].owner == contractOwner, "Not authorized to override IPFS data.");
+        TicketData storage ticket = ticketData[tokenId]; 
+        ticket.ipfsHash = newIpfsHash;
+    }
 
 }

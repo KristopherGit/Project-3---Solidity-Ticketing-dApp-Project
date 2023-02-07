@@ -21,6 +21,10 @@ import datetime
 # Import JSON Request Library
 import requests
 
+# Import Moralis API Keys
+from api_keys import MORALIS_API_KEY
+
+
 #########################################################
 # Setup Admin / Minter / NFT Gen Streamlit Web Interface
 #########################################################
@@ -43,27 +47,78 @@ def add_logo(logo_path, width, height):
 
 #########################################################
 
+
+# Implement the contract helper function
+# a.) Loads the contract only once using the streamlit cache feature
+# b.) Connects to the contract once using the contract address & ABI
+
+#########################################################
+
+st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
+                    unsafe_allow_html=True)
+st.sidebar.image(
+    add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
+
 # Web3 Contract Loading & Execution
-
-
 # load dotenv
 load_dotenv()
 
 # Define and connect to a Web3 provider
 w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 
-# Implement the contract helper function
-# a.) Loads the contract only once using the streamlit cache feature
-# b.) Connects to the contract once using the contract address & ABI
+# Connected ETH wallet
+wallet_addresses = w3.eth.accounts
+
+selected_address = st.sidebar.selectbox(
+    "connect eth wallet", options=wallet_addresses)
+st.sidebar.write("Connection Status:")
+
+if w3.isConnected():
+    #st.write("Connected to ETH Test Network.")
+    st.sidebar.markdown("<p style='color: green; font-size: 14px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
+                        unsafe_allow_html=True)
+else:
+    #st.write("Unable to Connect to ETH Test Network.")
+    st.sidebar.markdown("<p style='color: red; font-size: 14px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+                        unsafe_allow_html=True)
+
+# Current Smart Contract Address
+current_smart_contract_address = st.sidebar.text_input(
+    "Deployed Smart Contract Address:", placeholder=None)
+if st.sidebar.button("Update Contract Address"):
+    with open(".env", "w") as env_file:
+        env_file.write(
+            "WEB3_PROVIDER_URI=http://127.0.0.1:7545\n"
+            f"SMART_CONTRACT_ADDRESS={current_smart_contract_address}")
+        st.success("New contract address has been updated successfully.")
 
 
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 # Load the contract ABI
-def load_contract():
+# def load_contract():
+# def load_contract():
+#    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
+#        # with open(Path(f'./contracts/compiled/{abi_contract_file_name}')) as f:
+#        ticketholder_abi = json.load(f)
+        #abi = json.load(f)
 
-    # Load the contract ABI
-    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
-        ticketholder_abi = json.load(f)
+    # Set the contract address (Ethereum address of the deployed contract)
+#    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+
+#    # Get the contract
+#    contract = w3.eth.contract(
+#        address=contract_address,
+#        abi=ticketholder_abi
+        # abi=abi
+#    )
+
+#    return contract
+
+
+with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
+    # with open(Path(f'./contracts/compiled/{abi_contract_file_name}')) as f:
+    ticketholder_abi = json.load(f)
+    #abi = json.load(f)
 
     # Set the contract address (Ethereum address of the deployed contract)
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -72,70 +127,100 @@ def load_contract():
     contract = w3.eth.contract(
         address=contract_address,
         abi=ticketholder_abi
+        # abi=abi
     )
 
-    return contract
-
-
-# Load the ticketholder Ethereum contract
-contract = load_contract()
-
 #########################################################
 
+#contract = load_contract()
+
+if contract is not None:
+    st.sidebar.write(
+        "Successfully connected to the deployed contract at address:", contract.address)
+else:
+    st.sidebar.write("Unable to connect to the deployed contract.")
 #########################################################
 
-# Minter Program
+abi_contract_file = st.sidebar.file_uploader(
+    "Upload the ABI contract (.json) file", type=["json"])
 
-# Load Minter Admin Wallet & Additional Wallet Options
-# Setup access to user Ethereum eth.accounts (MetaMask)
-wallet_addresses = w3.eth.accounts
+# Add 'Deploy Contract' button to deploy the contract to the Ethereum network
+if st.sidebar.button("Connect to ABI"):
+    if abi_contract_file is not None:
+        st.write("Filename: ", abi_contract_file.name)
+        abi_contract_file_name = abi_contract_file.name
+        contract = load_contract(abi_contract_file_name)
+    # if contract is not None:
+    #    st.sidebar.write(
+    #        "Successfully connected to the deployed contract at address:", contract.address)
+    # else:
+    #    st.sidebar.write("Unable to connect to the deployed contract.")
+# Admin Dashboard
 
-# Drop down for eth wallet addresses ('selected_address') from customer
-with st.sidebar:
-    st.header("Admin Dashboard")
-    st.sidebar.image(
-        add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
-    selected_address = st.selectbox(
-        "connect eth wallet", options=wallet_addresses)
-    st.write("Connection Status:")
-    if w3.isConnected():
-        #st.write("Connected to ETH Test Network.")
-        st.markdown("<p style='color: green; font-size: 14px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
+
+# getTicketDetails)
+for i in range(3):
+    st.sidebar.write("")
+st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getTicketDetails</u></b></p>",
                     unsafe_allow_html=True)
-    else:
-        #st.write("Unable to Connect to ETH Test Network.")
-        st.markdown("<p style='color: red; font-size: 14px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+ticket_tokenId = st.sidebar.number_input("tokenId:")
+ticket_tokenId = int(ticket_tokenId)
+st.sidebar.write("The tokenId value is %d", int(ticket_tokenId))
+if st.sidebar.button("Ticket Details"):
+    result = contract.functions.getTicketDetails(ticket_tokenId).call()
+    _owner = result[0]
+    _ownerFirstName = result[1]
+    _ownerLastName = result[2]
+    _eventName = result[3]
+    _concertDate = result[4]
+    _price = result[5]
+    _venueName = result[6]
+    _seatNumber = result[7]
+    _seatColor = result[8]
+    _ipfsHash = result[9]
+
+    st.sidebar.write("owner: ", _owner)
+    st.sidebar.write("owner first name ", _ownerFirstName)
+    st.sidebar.write("owner last name ", _ownerLastName)
+    st.sidebar.write("event name: ", _eventName)
+    st.sidebar.write("concert date: ", _concertDate)
+    st.sidebar.write("price ", _price)
+    st.sidebar.write("venue name ", _venueName)
+    st.sidebar.write("seat number: ", _seatNumber)
+    st.sidebar.write("seat color: ", _seatColor)
+    st.sidebar.write("ipfs Hash: ", _ipfsHash)
+
+    # getSeatsMintedSoFar
+st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getSeatsMintedSoFar</u></b></p>",
                     unsafe_allow_html=True)
+if st.sidebar.button("Seats Minted (So Far)"):
+    seats_minted_so_far = contract.functions.getSeatsMintedSoFar().call()
+    st.sidebar.write("Total Seats Minted (So Far): ", seats_minted_so_far)
 
-    # Add Selector for Appropriate Solidity Contract feature button
-    solidity_contract_file = st.file_uploader(
-        "Upload Solidity Contract File (.sol)", type=["json"])
+    # getSeatsMintedSoFar
+st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>MAX_TICKETS</u></b></p>",
+                    unsafe_allow_html=True)
+if st.sidebar.button("Get Max Tickets"):
+    max_tix = contract.functions.MAX_TICKETS().call()
+    st.sidebar.write("Maximum number of tickets : ", max_tix)
 
-    # Add 'Deploy Contract' button to deploy the contract to the Ethereum network
-    if st.button("Deploy Contract"):
-        # load contract
-        if solidity_contract_file is not None:
-            with solidity_contract_file.open() as sol_file:
-                contract_data = json.load(sol_file)
-
-            # deploy contract to ETH network
-            contract = w3.eth.contract(
-                abi=contract_data["abi"],
-                bytecode=contract_data["bytecode"],
-            )
-            tx_hash = contract.constructor().transact(
-                {"from": selected_address})
-            tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            st.write("ETH contract deployed at address:",
-                     tx_receipt["contractAddress"])
-        else:
-            st.write("Unable to load. No contract file (.sol) selected.")
 
 # Show minter_layout header
 
 with col1:
     with st.container():
         #st.header("Minter Admin Console")
+
+        # Set Maximum Tickets to Batch/Sell
+        st.write("Set Maximum Tickets Available for Mint/Purchase:")
+        # for trial purposes set to max Massey Hall gallery size
+        _maxNumberOfTickets = st.number_input("Enter max tickets", 1217)
+        if st.button("Set Max Tickets"):
+            set_max_tickets = contract.functions.setMAX_TICKETS(
+                _maxNumberOfTickets).transact({"from": selected_address})
+            tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
+            st.write("Transaction receipt:", tx_receipt)
+
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
                     unsafe_allow_html=True)
         st.write("Event Contract Generator Form:")
@@ -151,10 +236,11 @@ with col1:
         _concertDate = st.number_input(
             "Enter uint _concertDate [UNIX Format]", 1660176000)
         gwei_price = st.number_input("Enter uint _price (in Gwei)", 71000000)
-        _venueName = st.text_input("Enter uint _price", "Venue Name")
+        _venueName = st.text_input(
+            "Enter string memory _venueName", "Venue Name")
         _seatColor = "#5A5A5A"
         batchSize = st.number_input(
-            "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 100)
+            "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
 
         # Gwei to wei converter function
         _price = int(gwei_price * 10**9)  # in wei
@@ -163,6 +249,8 @@ with col1:
         if st.button("Mint Batch"):
             mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
                                            _eventName, 1660176000, _price, _venueName, _seatColor, batchSize).transact({"from": selected_address})
+            tx_receipt = w3.eth.waitForTransactionReceipt(mint)
+            st.write("Transaction receipt:", tx_receipt)
 
 with col2:
     #st.header("NFT Image Constructor")
@@ -174,17 +262,62 @@ with col2:
                 unsafe_allow_html=True)
     st.write("https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
 
-    # contract.functions.mint(_owner)
 
-    # //address payable contractOwner,
-    # string memory _ownerFirstName,
-    # string memory _ownerLastName,
-    # string memory _eventName,
-    # uint _concertDate,
-    # uint _price,
-    # string memory _venueName,
-    # string memory _seatColor,
-    # uint batchSize
+# Run main sidebar program
+
+
+# Load the ticketholder Ethereum contract
+#contract = load_contract()
+
+#########################################################
+
+#########################################################
+
+# Minter Program
+
+
+# Load Minter Admin Wallet & Additional Wallet Options
+# Setup access to user Ethereum eth.accounts (MetaMask)
+# Drop down for eth wallet addresses ('selected_address') from customer
+
+
+# Declare contract variable to hold contract that can be held when load_contract() function is invoked later from file_uploader & Deploy
+#contract = None
+#########################################################
+# Solidity Contract Load
+# Implement the @st.cache to cache the contract object
+
+
+# @st.cache(allow_output_mutation=True)
+# def load_contract(solidity_contract_file, abi_contract_file_path):
+#    if solidity_contract_file is not None:
+#        with open(abi_contract_file_path, 'r') as abi_file:
+#            abi = json.load(abi_file)
+
+#        bytecode = solidity_contract_file.read()
+#        contract_filename = solidity_contract_file.name
+#        contract_instance = w3.eth.contract(
+#            abi=abi,
+#            bytecode=bytecode
+#        )
+
+# deploy contract to ETH network
+#        selected_address = w3.eth.accounts[0]
+#        tx_hash = contract_instance.constructor().transact(
+#            {"from": selected_address})
+#        tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+#        st.write(
+#            f"ETH Solidity contract: '{contract_filename}'. Deployed at ETH address:", tx_receipt["contractAddress"])
+#        return contract_instance
+#    else:
+#        st.write(
+#            "Unable to load. No contract file (.sol) selected.")
+#        return None
+#########################################################
+
+
+# Main Sidebar App
+# def main_sidebar():
 
 #########################################################
 
@@ -224,8 +357,8 @@ for ticketId, info in ticket_holders.items():
     for key, value in info.items():
         #print(f'key:', key)
         #print(f'value:', value)
-        event_ticket_holders = "Gorillaz"
-        venue_ticket_holders = "Massey Hall"
+        event_ticket_holders = _eventName
+        venue_ticket_holders = _venueName
 
         aisle_ticket_holders = info['aisle']
         row_ticket_holders = info['row']

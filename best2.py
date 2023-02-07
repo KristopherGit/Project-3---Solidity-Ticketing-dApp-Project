@@ -5,6 +5,7 @@ import streamlit as st
 import plotly.graph_objs as go
 import numpy as np
 
+
 #########################################################
 
 # Import libraries to run Solidity smart contract & interact with json/files
@@ -21,6 +22,9 @@ import requests
 
 # Import config.py Config JSONbin config info (API Secret Key)
 from config import Config
+
+# Import Moralis API_KEYS (for NFT IPFS Storage)
+from api_keys import MORALIS_API_KEY
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -196,18 +200,13 @@ layout = go.Layout(
 # Create & Call 'update_seat_colors' function that pulls updated seat colors from JSONbin based on sold seats
 
 # JSONBin Bin Active URL
-url = "https://api.jsonbin.io/v3/b/63df0c52ace6f33a22d68450"
+url = "https://api.jsonbin.io/v3/b/63e159c5c0e7653a0570f1d5"
 # define headers for api request
 headers = {"content-type": "application/json",
            "secret-key": Config.JSONBIN_SECRET_KEY,
            "X-Master-Key": '$2b$10$TBShXqVtrokNLIU1b2GD7upkZ7ZV6cgi1gv0rRXYVkS656gRM1tqq'}
 response = requests.get(url, headers=headers)
 data_json = response.json()
-print(data_json)
-print("")
-print("")
-for i in data_json['record']['ticketholder']:
-    print(i['tokenID'])
 
 
 #########################################################
@@ -412,7 +411,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63df0c52ace6f33a22d68450"
+    url = "https://api.jsonbin.io/v3/b/63e159c5c0e7653a0570f1d5"
 
     # define headers for api request
     headers = {"content-type": "application/json",
