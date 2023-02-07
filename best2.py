@@ -4,27 +4,22 @@ from PIL import Image
 import streamlit as st
 import plotly.graph_objs as go
 import numpy as np
-
-
-#########################################################
-
 # Import libraries to run Solidity smart contract & interact with json/files
 import os
 import json
 from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
-
-#########################################################
-
 # Import 'requests' to handle json file requests to central JSONbin servers (to update already sold seats that are not available)
 import requests
-
 # Import config.py Config JSONbin config info (API Secret Key)
 from config import Config
-
 # Import Moralis API_KEYS (for NFT IPFS Storage)
 from api_keys import MORALIS_API_KEY
+# Import nft_generator() function from nftgen.py
+from nftgen import nft_generator
+# IMport the ipfsHash generator
+from ipfsgen import ipfs_gen
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -99,38 +94,6 @@ st.sidebar.image(
 
 # Setup access to user Ethereum eth.accounts (MetaMask)
 wallet_addresses = w3.eth.accounts
-
-
-# Create sidebar for customer form submission
-# with st.sidebar:
-#    # Top header section
-#    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
-#                unsafe_allow_html=True)
-#    # text_input for customer info
-#    first_name_input = st.text_input(
-#        label="first name", placeholder="required")
-#    last_name_input = st.text_input(
-#        label="last name", placeholder="required")
-#
-# Drop down for eth wallet addresses from customer
-# wallet_addresses = ["0x1b1fA7D8fA78Cf9A1658f06D0345ab8Bdc47CBE7",
-#                    "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
-#                    "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
-# st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select eth wallet:</p>",
-#            unsafe_allow_html=True)
-#    selected_address = st.selectbox(
-#        "connect eth wallet", options=wallet_addresses)
-#
-#    if st.button("confirm buy:"):
-#        tx_hash = contract.functions.buyTicket(
-#            ticketId, first_name_input, last_name_input).transact({'from': selected_address})
-#
-#    # company copyright info at bottom of sidebar
-#    for i in range(10):
-#        st.write("")
-#    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
-#                unsafe_allow_html=True)
-
 
 # Create columns for holding & centering the gallery layout
 col1, col2 = st.columns([3, 1], gap="medium")
@@ -226,7 +189,6 @@ for seat_number, seat in gallery.items():
         )
     )
     traces.append(trace)
-
 
 #########################################################
 
@@ -482,7 +444,79 @@ with col1:
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
 
-    # Create sidebar for customer form submission
+#########################################################
+# Right hand side column section of code
+#########################################################
+
+
+with col2:
+
+    if (selected_seat != 'Seat 0'):
+        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>selected seat info:</p>",
+                    unsafe_allow_html=True)
+        st.write(selected_seat)
+        seat_index = seat_options.index(selected_seat)
+        st.write(gallery[list(gallery.keys())[seat_index]])
+
+    # venue_list
+    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
+    #            unsafe_allow_html=True)
+    venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
+                  "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
+    venue_select = st.selectbox("select venue:", venue_list)
+
+    # event_list
+    event_list = ["Gorillaz", "Fleetwood Mac",
+                  "Bob Dylan", "Phoenix", "The Strokes"]
+    event_select = st.selectbox("select event:", event_list)
+
+    # date_select
+    # if event_select:
+    #event_list = "Gorillaz"
+    date_select = 1660176000
+
+    # Creating spacing between seat seat info summary and contact info
+
+with col2:
+
+    for i in range(3):
+        st.write("")
+
+    # Venue Image
+    venue_image = Image.open('massey_hall_bw.png')
+    st.image(venue_image, 'Massey Hall - North Entrance')
+
+    # Title for Option to Select Venue Seating Area View
+    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating map section:</p>",
+                unsafe_allow_html=True)
+
+    # Option for Selecting Gallery View
+    gallery_1 = st.button("Gallery View")
+
+    # Option for Selecting Balcony View
+    gallery_1 = st.button("Balcony View")
+
+    # Contact info
+    # st.header("About Us:")
+    st.markdown("<p style='color: white; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
+                unsafe_allow_html=True)
+    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
+                unsafe_allow_html=True)
+    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
+                unsafe_allow_html=True)
+    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
+                unsafe_allow_html=True)
+    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
+                unsafe_allow_html=True)
+
+#########################################################
+
+# Display Right Hand Side Column Section of Data
+
+# show_venue_contact_info()
+
+#########################################################
+# Create sidebar for customer form submission
 with st.sidebar:
     # Top header section
     st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
@@ -503,20 +537,7 @@ with st.sidebar:
     # Also create a placeholder list for the seat tickets & corresponding ticketIds
     seats_and_ticketIds_list = []
 
-    # for selected_seat in selected_seats_list:
-    #    seat_string_stripped_list = selected_seat.split(" ")
-    #    # print(seat_string_stripped_list)
-    #    seat_num_stripped = int(seat_string_stripped_list[1])
-    #    # print(seat_num_stripped)
-    #    ticketId = seat_num_stripped + 1
-    #    # print("ticket_Id:")
-    # print(ticketId)
-    # print("selected_address:")
-    # print(selected_address)
-    #    if (selected_seat, ticketId):
-    #        seats_and_ticketIds_list.append((selected_seat, ticketId))
-
-    # print(seats_and_ticketIds_list)
+    # Confirm Buy
 
     if st.button("confirm buy:"):
         selected_seats = list(st.session_state.keys())
@@ -532,77 +553,31 @@ with st.sidebar:
             st.write(dict(receipt))
             update_jsonbin(ticketId, first_name_input,
                            last_name_input, selected_address, selected_seat)
-            # check if request was successful
-            # data = requests.get(
-            #    url='https://api.jsonbin.io/v3/b/63dcac6fc0e7653a056dc7ab').json()
+            nft_filepath = nft_generator(traces, ticketId, event_select,
+                                         venue_select, selected_seat)
+            ipfsHash_img = ipfs_gen(nft_filepath)
+            ipfsHash_img_txhash = contract.functions.updateTicketIpfsHashID(ticketId, ipfsHash_img).transact(
+                {'from': selected_address, 'value': 50000000000})  # max gas to spend is 50 gas (50 gwei)
+            ipfsHashupdate_receipt = w3.eth.waitForTransactionReceipt(
+                ipfsHash_img_txhash)
+            st.write("IpfsHash image url updated on buyer's nft:")
+            st.write(dict(ipfsHashupdate_receipt))
 
     # company copyright info at bottom of sidebar
     for i in range(8):
         st.write("")
     st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
                 unsafe_allow_html=True)
-
-#########################################################
-# Right hand side column section of code
-#########################################################
-
-
-def show_venue_contact_info():
-    with col2:
-
-        if (selected_seat != 'Seat 0'):
-            st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>selected seat info:</p>",
-                        unsafe_allow_html=True)
-            st.write(selected_seat)
-            seat_index = seat_options.index(selected_seat)
-            st.write(gallery[list(gallery.keys())[seat_index]])
-
-        # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
-        #            unsafe_allow_html=True)
-        venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
-                      "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
-        st.selectbox("select venue:", venue_list)
-
-    # Creating spacing between seat seat info summary and contact info
-
-    with col2:
-
-        for i in range(3):
-            st.write("")
-
-        # Venue Image
-        venue_image = Image.open('massey_hall_bw.png')
-        st.image(venue_image, 'Massey Hall - North Entrance')
-
-        # Title for Option to Select Venue Seating Area View
-        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating map section:</p>",
+    # Display contract address to the sidebar for user knowledge/troubleshooting
+    if contract is None:
+        st.write("Unable to connect to the deployed contract.")
+        st.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
                     unsafe_allow_html=True)
-
-        # Option for Selecting Gallery View
-        gallery_1 = st.button("Gallery View")
-
-        # Option for Selecting Balcony View
-        gallery_1 = st.button("Balcony View")
-
-        # Contact info
-        # st.header("About Us:")
-        st.markdown("<p style='color: white; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
+    else:
+        st.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
                     unsafe_allow_html=True)
-        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
-                    unsafe_allow_html=True)
-        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
-                    unsafe_allow_html=True)
-        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
-                    unsafe_allow_html=True)
-        st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
-                    unsafe_allow_html=True)
+        st.write(contract.address)
 
-#########################################################
-
-
-show_venue_contact_info()
-
-#########################################################
 
 #########################################################
 # Print data to terminal for troubleshooting

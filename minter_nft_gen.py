@@ -21,9 +21,6 @@ import datetime
 # Import JSON Request Library
 import requests
 
-# Import Moralis API Keys
-from api_keys import MORALIS_API_KEY
-
 
 #########################################################
 # Setup Admin / Minter / NFT Gen Streamlit Web Interface
@@ -38,7 +35,7 @@ col1, col2 = st.columns(2)
 # Main Logo Addition Function
 
 
-@st.cache
+# @st.cache
 def add_logo(logo_path, width, height):
     """Read and return a resized logo"""
     logo = Image.open(logo_path)
@@ -75,45 +72,37 @@ st.sidebar.write("Connection Status:")
 
 if w3.isConnected():
     #st.write("Connected to ETH Test Network.")
-    st.sidebar.markdown("<p style='color: green; font-size: 14px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
+    st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
                         unsafe_allow_html=True)
 else:
     #st.write("Unable to Connect to ETH Test Network.")
-    st.sidebar.markdown("<p style='color: red; font-size: 14px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+    st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
                         unsafe_allow_html=True)
 
 # Current Smart Contract Address
 current_smart_contract_address = st.sidebar.text_input(
     "Deployed Smart Contract Address:", placeholder=None)
+
 if st.sidebar.button("Update Contract Address"):
     with open(".env", "w") as env_file:
         env_file.write(
             "WEB3_PROVIDER_URI=http://127.0.0.1:7545\n"
             f"SMART_CONTRACT_ADDRESS={current_smart_contract_address}")
         st.success("New contract address has been updated successfully.")
+    os.environ.update(dict(line.strip().split('=') for line in open('.env')))
 
-
-# @st.cache(allow_output_mutation=True)
 # Load the contract ABI
-# def load_contract():
+# @st.cache(allow_output_mutation=True)
 # def load_contract():
 #    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
-#        # with open(Path(f'./contracts/compiled/{abi_contract_file_name}')) as f:
 #        ticketholder_abi = json.load(f)
-        #abi = json.load(f)
-
-    # Set the contract address (Ethereum address of the deployed contract)
-#    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
-
-#    # Get the contract
-#    contract = w3.eth.contract(
-#        address=contract_address,
-#        abi=ticketholder_abi
-        # abi=abi
-#    )
-
+#        contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+#        contract = w3.eth.contract(
+#            address=contract_address,
+#            abi=ticketholder_abi
+#        )
+#
 #    return contract
-
 
 with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
     # with open(Path(f'./contracts/compiled/{abi_contract_file_name}')) as f:
@@ -128,17 +117,22 @@ with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
         address=contract_address,
         abi=ticketholder_abi
         # abi=abi
+
     )
 
 #########################################################
 
+
 #contract = load_contract()
 
-if contract is not None:
-    st.sidebar.write(
-        "Successfully connected to the deployed contract at address:", contract.address)
-else:
+if contract is None:
     st.sidebar.write("Unable to connect to the deployed contract.")
+    st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+                        unsafe_allow_html=True)
+else:
+    st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
+                        unsafe_allow_html=True)
+    st.sidebar.write(contract.address)
 #########################################################
 
 abi_contract_file = st.sidebar.file_uploader(

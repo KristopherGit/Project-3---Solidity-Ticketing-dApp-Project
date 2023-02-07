@@ -11,10 +11,10 @@ pinata_api = pinata.Pinata(
 url = "https://api.pinata.cloud/pinning/pinFileToIPFS"
 
 payload = {'pinataOptions': '{"cidVersion": 1}',
-           'pinataMetadata': '{"name": "NFT Gorillaz Massey Hall Seat 2", "keyvalues": {"company": "Pinata"}}'}
+           'pinataMetadata': '{"name": "NFT Gorillaz Massey Hall Seat 46", "keyvalues": {"company": "Pinata"}}'}
 files = [
     ('file', ('NFT_ticket_Gorillaz_Massey_Hall_Seat_2.png', open(
-        '/Users/chris/Desktop/Git/Project-3---Solidity-Ticketing-dApp-Project/NFT_Tickets/NFT_ticket_Gorillaz_Massey_Hall_Seat_2.png', 'rb'), 'application/octet-stream'))
+        '/Users/chris/Desktop/Git/Project-3---Solidity-Ticketing-dApp-Project/NFT_Tickets/NFT_ticket_Gorillaz_Massey Hall_Seat 46.png', 'rb'), 'application/octet-stream'))
 ]
 headers = {
     # 'Authorization': Bearer 'PINATA_ACCESS_TOKEN'
@@ -26,4 +26,9 @@ response = requests.request(
     "POST", url, headers=headers, data=payload, files=files)
 
 # Print the IPFS hash
-print("The IPFS hash is:", response)
+print("The JSON response is:", response.json())
+print("The ipfsHash is: ", response.json()['IpfsHash'])
+print("The NFT viewable link: ", 'https://gateway.pinata.cloud/ipfs/' +
+      response.json()['IpfsHash'])
+
+ipfsHash = 'https://gateway.pinata.cloud/ipfs/' + response.json()['IpfsHash']
