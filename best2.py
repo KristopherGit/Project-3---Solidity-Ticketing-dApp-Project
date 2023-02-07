@@ -20,6 +20,8 @@ from api_keys import MORALIS_API_KEY
 from nftgen import nft_generator
 # IMport the ipfsHash generator
 from ipfsgen import ipfs_gen
+# Import time for sleep delay
+import time
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -555,16 +557,20 @@ with st.sidebar:
                            last_name_input, selected_address, selected_seat)
             nft_filepath = nft_generator(traces, ticketId, event_select,
                                          venue_select, selected_seat)
+            print("nft_filepath: ", nft_filepath)
+            time.sleep(5)
             ipfsHash_img = ipfs_gen(nft_filepath)
+            time.sleep(5)
+            print("ipfsHash_img link: ", ipfsHash_img)
             ipfsHash_img_txhash = contract.functions.updateTicketIpfsHashID(ticketId, ipfsHash_img).transact(
-                {'from': selected_address, 'value': 50000000000})  # max gas to spend is 50 gas (50 gwei)
+                {'from': selected_address})  # max gas to spend is 50 gas (50 gwei)
             ipfsHashupdate_receipt = w3.eth.waitForTransactionReceipt(
                 ipfsHash_img_txhash)
             st.write("IpfsHash image url updated on buyer's nft:")
             st.write(dict(ipfsHashupdate_receipt))
 
     # company copyright info at bottom of sidebar
-    for i in range(8):
+    for i in range(4):
         st.write("")
     st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
                 unsafe_allow_html=True)

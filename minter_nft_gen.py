@@ -204,7 +204,12 @@ if st.sidebar.button("Get Max Tickets"):
 with col1:
     with st.container():
         #st.header("Minter Admin Console")
-
+        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
+                    unsafe_allow_html=True)
+        st.write("Event Contract Generator Form:")
+        st.write("File: ticketholder.sol -> contract.functions.mint")
+        st.write("")
+        st.write("")
         # Set Maximum Tickets to Batch/Sell
         st.write("Set Maximum Tickets Available for Mint/Purchase:")
         # for trial purposes set to max Massey Hall gallery size
@@ -215,12 +220,6 @@ with col1:
             tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
             st.write("Transaction receipt:", tx_receipt)
 
-        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
-                    unsafe_allow_html=True)
-        st.write("Event Contract Generator Form:")
-        st.write("File: ticketholder.sol -> contract.functions.mint")
-        st.write("")
-        st.write("")
         _ownerFirstName = st.text_input(
             "Enter string memory _ownerFirstName", "First Name")
         _ownerLastName = st.text_input(
