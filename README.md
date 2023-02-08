@@ -85,7 +85,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
 <u> 1.) tickETHolder™ Front End GUI Interface: </u>
 
   <p align= "left" width="50">
-  <img width= "100%" src="screenshots/ticketholder_gui01.png">
+  <img width= "100%" src="Screenshots/ticketholder_gui01.png">
   </p>
 
   <i>The figure above illustrates a user interaction with a test version of tickETHolder™ interface.</i>
@@ -95,7 +95,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
 <u> 2.) tickETHolder™ Admin End GUI Interface: </u>
 
   <p align= "left" width="50">
-  <img width= "100%" src="screenshots/ticketholder_gui02.png">
+  <img width= "100%" src="Screenshots/ticketholder_gui02.png">
   </p>
 
   <i>The admin front end dashboard enables custom ABI contract connectivity, flexible event/concert minting options & variable 'batch' minting that enables unique service features such as advanced ticket sales and sectional price configuration. In future versions, the 'NFT Image Constructor' panel will enable admin full control over NFT image design & deployment to make each event unique & memorable.</i>
@@ -106,7 +106,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
 <u> 3.) tickETHolder™ Ticket Purchase Complete with Blockchain Confirmation Receipts & Pinata Gateway IPFS Image Links for NFT Ticket Access:</u>
 
   <p align= "left" width="50">
-  <img width= "100%" src="screenshots/ticketholder_purchase04.png">
+  <img width= "100%" src="Screenshots/ticketholder_purchase04.png">
   </p>
 
   <i>The above completed test transaction displays to the user the blockchain confirmation receipts for each ticket purchase completed during a particular session, complete with its associated IPFS image associated links for access to each ticket.</i>
@@ -116,7 +116,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
   <u> 4.) tickETHolder™ Pinata IPFS Gateway Hyperlink to NFT Ticket Image</u>
 
   <p align= "left" width="60">
-  <img width= "100%" src="screenshots/ticketholder_purchase05.png">
+  <img width= "100%" src="Screenshots/ticketholder_purchase05.png">
   </p>
 
   <i> Illustrated above, is what the user will see if they open their ticket via the provided Image URL which has its unique IPFS hash code incorporated into the ubiquitous Pinata gateway URL. </i>
@@ -126,7 +126,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
 <u> 5.) tickETHolder™ Fully Customizable NFT Ticket Design With QR Code for Venue Access:</u>
 
   <p align= "left" width="20">
-  <img width= "25%" src="screenshots/ticketholder_nft01.png">
+  <img width= "25%" src="Screenshots/ticketholder_nft01.png">
   </p>
 
   <i>Example of ticket for theoretical 'Gorillaz' event to take place at Toronto's infamous 'Massey Hall' on 08/08/2022. Note: Gorillaz image useage is only for demonstration/example purposes and this NFT has no commercial value. The art & usage is borrowed and all IP is that of musician Damon Albarn and artist Jamie Hewlett, Parlophone, Virgin Music & © 2023 Warner Music UK Limited. All rights reserved.</i>
