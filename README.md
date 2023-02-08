@@ -113,7 +113,7 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
   <br>
   <br>
 
-  u> 4.) tickETHolder™ Pinata IPFS Gateway Hyperlink to NFT Ticket Image</u>
+  <u> 4.) tickETHolder™ Pinata IPFS Gateway Hyperlink to NFT Ticket Image</u>
 
   <p align= "left" width="60">
   <img width= "100%" src="screenshots/ticketholder_purchase05.png">
