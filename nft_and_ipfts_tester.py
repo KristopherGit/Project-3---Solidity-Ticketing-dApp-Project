@@ -61,13 +61,13 @@ for seat_number, seat in gallery.items():
 ticket_id = 2
 event_select = "Gorillaz"
 venue_select = "Massey Hall"
-selected_seat = "Seat 01"
+selected_seat = "Seat 57"
 
 # nft_generator(traces, ticket_id, event_select, venue_select, selected_seat)
 nft_url = nft_generator(traces, ticket_id, event_select,
                         venue_select, selected_seat)
 
 # ipfs_generator()
-ipfsHash_img = ipfs_gen(nft_url)
+ipfsHash_img = ipfs_gen(nft_url, event_select, venue_select, selected_seat)
 
 print(ipfsHash_img)
