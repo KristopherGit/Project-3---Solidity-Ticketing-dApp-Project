@@ -1,4 +1,4 @@
-# Import streamlit as GUI interface
+# Import Streamlit as gui interface
 import streamlit as st
 
 # Import libraries to run Solidity smart contract & interact with json/files
@@ -8,22 +8,22 @@ from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Import segno library (QR Code Generator)
+# Import segno library (qr code generator)
 import segno
 import qrcode
 
-# Import PIL Image Editor
+# Import PIL image editor
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 # Import datetime for UNIX data conversions
 import datetime
 
-# Import JSON Request Library
+# Import JSON Request library
 import requests
 
 
 #########################################################
-# Setup Admin / Minter / NFT Gen Streamlit Web Interface
+# Setup Admin Dashboard / Minter Admin Console / NFT Image Constructor Web Interface
 #########################################################
 st.set_page_config(page_title="Buttons Grid",
                    page_icon=":guardsman:", layout="wide")
@@ -44,12 +44,10 @@ def add_logo(logo_path, width, height):
 
 #########################################################
 
-
-# Implement the contract helper function
-# a.) Loads the contract only once using the streamlit cache feature
-# b.) Connects to the contract once using the contract address & ABI
+# Connect to Web3 & Provide Interface for Custom ABI Contract Switching
 
 #########################################################
+
 
 st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
                     unsafe_allow_html=True)
@@ -83,6 +81,7 @@ else:
 current_smart_contract_address = st.sidebar.text_input(
     "Deployed Smart Contract Address:", placeholder=None)
 
+# Create button for updating contract address
 if st.sidebar.button("Update Contract Address"):
     with open(".env", "w") as env_file:
         env_file.write(
@@ -91,23 +90,12 @@ if st.sidebar.button("Update Contract Address"):
         st.success("New contract address has been updated successfully.")
     os.environ.update(dict(line.strip().split('=') for line in open('.env')))
 
-# Load the contract ABI
-# @st.cache(allow_output_mutation=True)
-# def load_contract():
-#    with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
-#        ticketholder_abi = json.load(f)
-#        contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
-#        contract = w3.eth.contract(
-#            address=contract_address,
-#            abi=ticketholder_abi
-#        )
-#
-#    return contract
+
+# Open ticketholder_abi.json for ticketholer.sol file
 
 with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
     # with open(Path(f'./contracts/compiled/{abi_contract_file_name}')) as f:
     ticketholder_abi = json.load(f)
-    #abi = json.load(f)
 
     # Set the contract address (Ethereum address of the deployed contract)
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -116,15 +104,13 @@ with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
     contract = w3.eth.contract(
         address=contract_address,
         abi=ticketholder_abi
-        # abi=abi
+
 
     )
 
 #########################################################
 
-
-#contract = load_contract()
-
+# Create display for contract connection status & type for admin confirmation & troubleshooting
 if contract is None:
     st.sidebar.write("Unable to connect to the deployed contract.")
     st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
@@ -133,8 +119,10 @@ else:
     st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
                         unsafe_allow_html=True)
     st.sidebar.write(contract.address)
+
 #########################################################
 
+# File uploader to load specific ABI contract - Note: NOT WORKING DO NOT TOUCH
 abi_contract_file = st.sidebar.file_uploader(
     "Upload the ABI contract (.json) file", type=["json"])
 
@@ -144,15 +132,9 @@ if st.sidebar.button("Connect to ABI"):
         st.write("Filename: ", abi_contract_file.name)
         abi_contract_file_name = abi_contract_file.name
         contract = load_contract(abi_contract_file_name)
-    # if contract is not None:
-    #    st.sidebar.write(
-    #        "Successfully connected to the deployed contract at address:", contract.address)
-    # else:
-    #    st.sidebar.write("Unable to connect to the deployed contract.")
-# Admin Dashboard
 
 
-# getTicketDetails)
+# getTicketDetails) Solidity smart contract function
 for i in range(3):
     st.sidebar.write("")
 st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getTicketDetails</u></b></p>",
@@ -184,14 +166,14 @@ if st.sidebar.button("Ticket Details"):
     st.sidebar.write("seat color: ", _seatColor)
     st.sidebar.write("ipfs Hash: ", _ipfsHash)
 
-    # getSeatsMintedSoFar
+    # getSeatsMintedSoFar Solidity smart contract function
 st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getSeatsMintedSoFar</u></b></p>",
                     unsafe_allow_html=True)
 if st.sidebar.button("Seats Minted (So Far)"):
     seats_minted_so_far = contract.functions.getSeatsMintedSoFar().call()
     st.sidebar.write("Total Seats Minted (So Far): ", seats_minted_so_far)
 
-    # getSeatsMintedSoFar
+    # getSeatsMintedSoFar Solidity smart contract function
 st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>MAX_TICKETS</u></b></p>",
                     unsafe_allow_html=True)
 if st.sidebar.button("Get Max Tickets"):
@@ -200,7 +182,7 @@ if st.sidebar.button("Get Max Tickets"):
 
 
 # Show minter_layout header
-
+# mint() Solidity smart contract function & #setMAX_TICKETS Solidity smart contract function
 with col1:
     with st.container():
         #st.header("Minter Admin Console")
@@ -256,66 +238,7 @@ with col2:
     st.write("https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
 
 
-# Run main sidebar program
-
-
-# Load the ticketholder Ethereum contract
-#contract = load_contract()
-
-#########################################################
-
-#########################################################
-
-# Minter Program
-
-
-# Load Minter Admin Wallet & Additional Wallet Options
-# Setup access to user Ethereum eth.accounts (MetaMask)
-# Drop down for eth wallet addresses ('selected_address') from customer
-
-
-# Declare contract variable to hold contract that can be held when load_contract() function is invoked later from file_uploader & Deploy
-#contract = None
-#########################################################
-# Solidity Contract Load
-# Implement the @st.cache to cache the contract object
-
-
-# @st.cache(allow_output_mutation=True)
-# def load_contract(solidity_contract_file, abi_contract_file_path):
-#    if solidity_contract_file is not None:
-#        with open(abi_contract_file_path, 'r') as abi_file:
-#            abi = json.load(abi_file)
-
-#        bytecode = solidity_contract_file.read()
-#        contract_filename = solidity_contract_file.name
-#        contract_instance = w3.eth.contract(
-#            abi=abi,
-#            bytecode=bytecode
-#        )
-
-# deploy contract to ETH network
-#        selected_address = w3.eth.accounts[0]
-#        tx_hash = contract_instance.constructor().transact(
-#            {"from": selected_address})
-#        tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#        st.write(
-#            f"ETH Solidity contract: '{contract_filename}'. Deployed at ETH address:", tx_receipt["contractAddress"])
-#        return contract_instance
-#    else:
-#        st.write(
-#            "Unable to load. No contract file (.sol) selected.")
-#        return None
-#########################################################
-
-
-# Main Sidebar App
-# def main_sidebar():
-
-#########################################################
-
-
-# Create & Call 'update_seat_colors' function that pulls updated seat colors from JSONbin based on sold seats
+# NFT Generator Functions - CURRENTLY NOT IMPLEMENTED
 
 # JSONBin Bin Active URL
 url = "https://api.jsonbin.io/v3/b/63df0c52ace6f33a22d68450"
@@ -357,15 +280,12 @@ for ticketId, info in ticket_holders.items():
         row_ticket_holders = info['row']
         seat_ticket_holders = info['selected_seat']
 
-        #print("values[i]:", value[0], value[1], value[2], value[3], value[4], value[5])
-
-
-#########################################################
-
 
 #########################################################
 
 # NFT Image Gen Program
+
+#########################################################
 
 # NFT For-Loop Automatic NFT Generator
 for ticketId, info in ticket_holders.items():
@@ -513,11 +433,5 @@ for ticketId, info in ticket_holders.items():
         # Save as NFT ticket
         background.save(
             f"NFT_Tickets/NFT_ticket_{event_text}_{venue_text}_{selected_seat_text}.png")
-
-#########################################################
-
-#########################################################
-
-# Minter Program
 
 #########################################################
