@@ -23,150 +23,115 @@ The purpose of this program is to develop a decentralized blockchain ticket sale
 
 The sequence of steps that were involved in developing this application were as follows:
 <ol> 
-Step 1: Develop front end GUI Streamlit user interface; included designing and forming out algorithms to 'draw' the concert venue layouts as accurate seating representations. Design of the front end user interface included basic form submission fields for first name, last name, and wallet address to enable transactions to occur over the blockchain. 
+Step 1: Develop front end GUI Streamlit user interface; included designing algorithms capable of 'drawing' the concert venue layouts as accurate seating representations. Design of the front end user interface included basic form submission fields for first name, last name, and wallet address to enable transactions to occur over the blockchain. 
 <br>
 Step 2: Create JSONbin json update capabilities to handle long term variable storage for ticket/seat sales management while minimizing security breaches of customer data.
 <br>
 Step 3: Engineer backend blockchain smart contract interaction utilizing Solidity and Ethereum's ERC721 NFT framework & constructor/method libraries. 
 <br>
-Step 4: Build administration side GUI Streamlit interface that incorporates full customizable contract ABI selectivity, easier ticket minting customization & event/venue management that is provided in Remix. Additionally, it has a section dedicated for full NFT customization & generation.
+Step 4: Build administration side GUI Streamlit interface that incorporates fully customizable contract ABI selectivity, easier ticket minting customization & event/venue management that is provided in the standard Remix IDE. Additionally, the admin dashboard has a section dedicated for full NFT customization & generation.
 <br>
 Step 5: Setup and code IPFS generator software and interactivity between Pinata gateway to facilitate design of IPFS hashes & URLs for customer NFT access & use. 
 </ol>
 
 
-### <b><u>Step 1: Create a Joint Savings Account Contract in Solidity</b></u>
+### <b><u>Step 1: Development of Front End Gui Streamlit User Interface</b></u>
 <br>
-i.) Create a new Solidity file in the Remix IDE named joint_savings.sol. 
+Using an amalgamation of Python & Streamlit coding solutions, the philosophy behind the front end was to simplify user interaction but retain maximum capabilities in terms of intent of serviceability. In terms of form submission, the user is simply required to enter a first name, last name and connect their ETH wallet in order to make seat/ticket purchases. The body of the Streamlit dApp offers a comprehensive & accurate representation of the venue's seating options with sectional filtering optionality. A Streamlit selectbox dropdown menu enables users to select & confirm up to four seats per session for purchase. Selected seating is presented to the user via a change of color from 'light blue' to 'green', while sold seating is cached via JSONbin and appears greyed out to the user (as unavailable for purchase). On the right hand side bar, other optional drop down boxes will offer venue selection & event filtering as well as button interactivity to switch sectional views within a particular venue. In forthcoming versions of tickETHolder™, it is the intention to integrate an automated chatbot to facilitate any support & help inquiries the customer may have while interacting with the site.
 <br>
-ii.) Define a new contract called JointSavings. 
-<br>
-iii.) Define the following variables in the contract: 
-<br>
-<ol> 
-a.) Two variables of type 'address payable' named 'accountOne' and 'accountTwo'.
-<br>
-b.) A variable of type 'address public' named 'lastToWithDraw'.
-<br>
-c.) Two variables of type 'uint public' named 'lastWithdrawAccount' and 'contractBalance'. 
-</ol>
-iv.) Define a function named 'withdraw' that accepts two arguments: 'amount' of type 'uint' & 'recipient' of type 'payable address'. In this function, create code as follows: 
-<ol> a.) Define a 'require' statement that checks if 'recipient' is equal to either 'accountOne' or 'accountTwo'. If it isn't, the require statement will return the "You don't own this account!" text.
-<br>
-b.) Define a 'require' statement that checks if balance is sufficient for accomplishing the withdrawal operation. If insufficient funds exist, it will return "Insufficient funds!" text.
-<br>
-c.) Add an 'if' statement to check if lastToWithdraw is not equal to '(!=) recipient'. If it isn't equal, set it to the current value of 'recipient'.
-<br>
-d.) Call the 'transfer()' function of the 'recipient', and pass it the 'amount' to transfer as an argument. 
-<br>
-e.) Set 'lastWithdrawAmount' equal to 'amount'. 
-<br>
-f.) Set the 'contractBalance' variable equal to the balance of the contract by using 'address(this).balance' to reflect the new balance of the contract.
-<br></ol>
-v.) Define a 'public payable' function named 'deposit'. In this function, code is initiated as follows: 
-<br>
-<ol>a.) Set the 'contractBalance' variable equal to the balance of the contract by using 'address(this).balance'. 
-<br></ol>
-vi.) Define a 'public' function named 'setAccounts' that takes two 'address payable' arguments, named 'account1' and 'account2'. In the body of the function, set the values of 'accountOne' and 'accountTwo' to 'account1' and 'account2', respectively.
-<br>
-vii.) A fallback function is added so that the contract can store ETH that's sent from outside of the 'deposit' function.
+
 
 <br>
 
-### <u><b>Step 2: Compile and Deploy Contract in JavaScript VM (Remix (Berlin) or (London))</b></u>
+### <u><b>Step 2: Creation of JSONbin Integration</b></u>
 <br>
-i.) The smart contract is then check for errors & compiled. Any additional errors will be caught sequentially by the compiler. 
-<br>
-ii.) In Remix IDE, the 'Deploy & Run Transactions' pane is selected and the 'Remix (Berlin)' environment is set.
-<br>
-iii.) The deploy button is selected to deploy the smart contract.
+The front end is again supported by a variety of back-end features, which include data storage of data that is deemed functional to the user interface, but not critical or confidential in the sense it does not threaten the security of user's private information. Note: Any 'personal' information displayed in current JSONbin bin versions are for troubleshooting purposes only. In future versions, the only data to be retained in JSON will be logging seat numbers in order to determine binary states; i.e. that is which seats are sold or still available for purchase. 
+
 
 <br>
 
-### <u><b>Step 3: Interacting with Deployed Smart Contract</b></u>
+### <u><b>Step 3: Engineering Solidity Blockchain Back-End</b></u>
 <br>
-Testing of the smart contract is then undertaken. After each function & class call button is initiated captured screenshots were produced in order to verify the correct functionality of the smart contract. These cropped .png images are collectively stored in the root 'Execution_Results' folder, and additionally, listed below.
+i.) Front End User Integration - The back-end was engineered by leveraging blockchain smart contract interaction utilizing Solidity and Ethereum's ERC721 NFT framework & constructor/method libraries, as previously mentioned. The justification for developing the system with this approach was to take advantage of the ERC721's tokenization & attribute storage capabilities into object like form. ERC721 tokens enable tickETHolder™ to retain the necessary secure information related to each unique ticketing including ticket owner, first name, last name, event/concert name/title, the concert date (note: currently being stored in uint UNIX format), ticket price, venue name, seat number, seat color (for testing purposes; later to be dropped to reduce gas fees as its deemed during beta to not necessarily be required at this point), and ipfsHash. The ipfsHash being stored, currently, in the beta testing version of this app is actually the full URL (that has been concatenated with the Pinata gateway & unique hash identifier of each individual ticket). This enables the user to have quick hyperlink access if needed to access the ticket in multiple fashions & present the integrated QR code if/when required. 
+
+ii.) Front End Admin Integration - Additionally, the back-end provides the necessary code for running the ticket data customization, minting/distribution, and data call access and analysis from the admin side. (See below for further information). 
+<br>
+
+### <u><b>Step 4: Development of Front End Gui Streamlit Admin Interface </b></u>
+
+On the admin side, the specialized dashboard allows for the initial contract owner deployer (venue owner, management company, etc.) to connect directly with their contract via ABI text-input connectivity support. The admin sidebar dashboard displays Web3 & contract connectivity display & confirmation to ensure the admin is connected to their contract properly. From there, the 'Minter Admin Console' provides a customizable form that enables complete ticket concert/event customization including enabling the admin to set maximum number of tickets available for minting/purchase (i.e. depending on the constraints of the particular venue size), _ownerFirstName, _ownerLastName, _eventName, _concertDate, _price (Gwei), _venueName, and batchSize. 
+
+For instance, when minting tickets for an event, the admin can leave the generic placeholder string variables i.e. 'First Name', 'Last Name', etc. while setting the basic ticket information such as '_eventName', '_venueName', '_concertDate', etc. 
+
+Furthermore, the '_batchSize' feature enables automatic minting of tickets in set batch sizes. Note: It is advisable during beta testing to limit batch size minting to 50-tickets at a time due to Solidity blockchain system constraints. In the future, code will be modified to handle higher batch requests through either code revision, or migrating to a faster blockchain token (i.e. Polygon (MATIC) testnet (Mumbai)). 
+
+### <u><b>Step 5: IPFS Generator Software & Pinata Gateway Access </b></u>
+
+On the admin side, the specialized dashboard allows for the initial contract owner deployer (venue owner, management company, etc.) to connect directly with their contract via ABI text-input connectivity support. The admin sidebar dashboard displays Web3 & contract connectivity display & confirmation to ensure the admin is connected to their contract properly. From there, the 'Minter Admin Console' provides a customizable form that enables complete ticket concert/event customization including enabling the admin to set maximum number of tickets available for minting/purchase (i.e. depending on the constraints of the particular venue size), _ownerFirstName, _ownerLastName, _eventName, _concertDate, _price (Gwei), _venueName, and batchSize. 
+
+For instance, when minting tickets for an event, the admin can leave the generic placeholder string variables i.e. 'First Name', 'Last Name', etc. while setting the basic ticket information such as '_eventName', '_venueName', '_concertDate', etc. 
+
+Furthermore, the '_batchSize' feature enables automatic minting of tickets in set batch sizes. Note: It is advisable during beta testing to limit batch size minting to 50-tickets at a time due to Solidity blockchain system constraints. In the future, code will be modified to handle higher batch requests through either code revision, or migrating to a faster blockchain token (i.e. Polygon (MATIC) testnet (Mumbai)). 
 
 <br>
 
-i.) Next, the 'setAccounts' function is called to define the authorized Ethereum addresses (for 'accountOne' & 'accountTwo'). The addresses can be simply copy/pasted from above on the environment contract dropdown menu. (Note: Each test ETH account should hold 100.0 ETH as default).
 <br>
-ii.) The 'deposit' functionality is then tested by sending the following amounts of ETH and recording screenshots of each transaction: 
-<br>
-<ol> a.) Transaction 1: Send 1 ETH as Wei.
-<br>
-b.) Transaction 2: Send 10 ETH as Wei. 
-<br>
-c.) Transaction 3: Send 5 ETH.
-<br></ol>
-iii.) Following each transactional step, the 'contractBalance', 'lastToWithdraw' & 'lastWithdrawAmount' functions are invoked to ensure the correct addresses & amounts have been called.
-<br>
+
 
 ---
 
 ## <b>Results:</b>
 
-<u> 1.) Testing 'setAccounts' Functionality: </u>
+<u> 1.) tickETHolder™ Front End GUI Interface: </u>
 
-  <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_1_setAccounts.png">
+  <p align= "left" width="50">
+  <img width= "100%" src="screenshots/ticketholder_gui01.png">
   </p>
 
-  <i>The figure above demonstrates invoking the 'setAccounts()' function button to set 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2' & 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db' to their respective Remix (Berlin) test wallet addresses (index 1 & index 2, respectively).</i>
+  <i>The figure above illustrates a user interaction with a test version of tickETHolder™ interface.</i>
   <br>
   <br>
 
-<u> 2.) Testing 'deposit()' Functionality (Transaction 1: Send 1 ETH as Wei): </u>
+<u> 2.) tickETHolder™ Admin End GUI Interface: </u>
 
-  <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_2_deposit_transaction_1.png">
+  <p align= "left" width="50">
+  <img width= "100%" src="screenshots/ticketholder_gui02.png">
   </p>
 
-  <i>Above, the 'deposit()' function is used to send 1 ETH as Wei from both 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2' & 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db' to the contract address wallet. This can be confirmed by the 2 ETH total shown in the JointSavings (contract address ='0XD91...39138') total Deployed Contract ETH Balance at the bottom of the left-sidebar.</i>
+  <i>The admin front end dashboard enables custom ABI contract connectivity, flexible event/concert minting options & variable 'batch' minting that enables unique service features such as advanced ticket sales and sectional price configuration. In future versions, the 'NFT Image Constructor' panel will enable admin full control over NFT image design & deployment to make each event unique & memorable.</i>
   <br>
   <br>
 
-<u> 3.) Testing 'deposit()' Functionality (Transaction 2: Send 10 ETH as Wei):</u>
 
-  <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_2_deposit_transaction_2.png">
+<u> 3.) tickETHolder™ Ticket Purchase Complete with Blockchain Confirmation Receipts & Pinata Gateway IPFS Image Links for NFT Ticket Access:</u>
+
+  <p align= "left" width="50">
+  <img width= "100%" src="screenshots/ticketholder_purchase04.png">
   </p>
 
-  <i>Above, the 'deposit()' function is used to send 10 ETH as Wei from both 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2' & 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db' to the contract address wallet. This can be confirmed by the 22 ETH total shown in the JointSavings (contract address ='0XD91...39138') total Deployed Contract ETH Balance at the bottom of the left-sidebar.</i>
+  <i>The above completed test transaction displays to the user the blockchain confirmation receipts for each ticket purchase completed during a particular session, complete with its associated IPFS image associated links for access to each ticket.</i>
   <br>
   <br>
 
-<u> 4.) Testing 'deposit()' Functionality (Transaction 3: Send 5 ETH):</u>
+  u> 4.) tickETHolder™ Pinata IPFS Gateway Hyperlink to NFT Ticket Image</u>
 
   <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_2_deposit_transaction_3.png">
+  <img width= "100%" src="screenshots/ticketholder_purchase05.png">
   </p>
 
-  <i> Above, the 'deposit()' function is used to send 5 ETH as Wei from both 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2' & 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db' to the contract address wallet. This can be confirmed by the 32 ETH total shown in the JointSavings (contract address ='0XD91...39138') total Deployed Contract ETH Balance at the bottom of the left-sidebar. </i>
+  <i> Illustrated above, is what the user will see if they open their ticket via the provided Image URL which has its unique IPFS hash code incorporated into the ubiquitous Pinata gateway URL. </i>
   <br>
   <br>
 
-<u> 5.) Testing 'withdraw()' Functionality (Withdraw 5 ETH Into 'accountOne'):</u>
+<u> 5.) tickETHolder™ Fully Customizable NFT Ticket Design With QR Code for Venue Access:</u>
 
-  <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_3_withdraw_5eth_accountOne.png">
+  <p align= "left" width="20">
+  <img width= "25%" src="screenshots/ticketholder_nft01.png">
   </p>
 
-  <i>Above, the 'withdraw()' function is used to send 5 ETH as Wei from the JointSavings contract address into 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2'. This is confirmed by the 'lastToWithDraw' address being 'accountOne = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2', contract address being reduced by 5 ETH, and the 'lastWithdrawAmount' as 5 ETH.</i> 
+  <i>Example of ticket for theoretical 'Gorillaz' event to take place at Toronto's infamous 'Massey Hall' on 08/08/2022. Note: Gorillaz image useage is only for demonstration/example purposes and this NFT has no commercial value. The art & usage is borrowed and all IP is that of musician Damon Albarn and artist Jamie Hewlett, Parlophone, Virgin Music & © 2023 Warner Music UK Limited. All rights reserved.</i>
   <br>
   <br>
-
-<u> 6.) Testing 'withdraw()' Functionality (Withdraw 10 ETH Into 'accountTwo'):</u>
-
-  <p align= "left" width="60">
-  <img width= "100%" src="Starter_Code/Execution_Results/step3_3_withdraw_10eth_accountTwo.png">
-  </p>
-
-  <i>Above, the 'withdraw()' function is used to send 10 ETH as Wei from the JointSavings contract address into 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db'. This is confirmed by the 'lastToWithDraw' address being 'accountTwo = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db', contract address being reduced further by 10 ETH, and the 'lastWithdrawAmount' as 10 ETH. </i>
-  <br>
-  <br>
-
-
 
 
 ## <b>Summary:</b>
