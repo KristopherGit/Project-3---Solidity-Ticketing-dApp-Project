@@ -136,4 +136,5 @@ Furthermore, the '_batchSize' feature enables automatic minting of tickets in se
 
 ## <b>Summary:</b>
 
-In summary, the functionality of the ETH Smart Contract 'JointSavings' proves promising as an alternative decentralized joint savings account compared to a conventional savings account. The main 'JointSavings' contract address was able to act as a centralized store of value for ETH in which two assigned ('accountOne' & 'accountTwo') ETH wallets could interact to deposit funds, but also withdraw funds to their respective wallets out of the main contract account. 
+In summary, functionality of the dApp was a success, but there are further improvements, developments & add-ons to be implemented in the future. 
+In the future modular add-ons will include functions/library imports to include plug & play unique venue and sectional space options. Furthermore, the NFT Generator Lab will be completed in order to customize NFT tickets depending upon their current venue requirements. Additionally, this progam is expected to be tested on the ETH Goerli test-net & eventually migrated to the Polygon (MATIC) Mumbai test-net. 
