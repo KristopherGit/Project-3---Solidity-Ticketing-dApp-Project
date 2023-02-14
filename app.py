@@ -15,17 +15,16 @@ from dotenv import load_dotenv
 import requests
 # Import config.py Config JSONbin config info (API Secret Key)
 from config import Config
-# Import Moralis API_KEYS (for NFT IPFS Storage)
-from api_keys import MORALIS_API_KEY
 # Import nft_generator() function from nftgen.py
 from nftgen import nft_generator
 # IMport the ipfsHash generator
 from ipfsgen import ipfs_gen
 # Import time for sleep delay
 import time
-# Import aes cipher for 'usepass' hashing
-#import aes_cipher as aes
+# import fernet_cipher as frenciph (Fernet encryption for 'UsePass' built on AES cipher platform)
 import fernet_cipher as fernciph
+# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -470,9 +469,9 @@ with st.sidebar:
                 unsafe_allow_html=True)
     # text_input for customer info
     first_name_input = st.text_input(
-        label="first name", placeholder="required")
+        label="first name", placeholder="optional")
     last_name_input = st.text_input(
-        label="last name", placeholder="required")
+        label="last name", placeholder="optional")
     # text_input for aes_cipher/hashing ipfsHash data
     usepass_input = st.text_input(
         label="tickETHholder UsePass¹:", placeholder="required")
@@ -554,13 +553,30 @@ with st.sidebar:
 
                 # ipfsHash_decrypted = aes.get_string_from_hash(
                 #    usepass_input, all_encrypted_ipfsHashes_from_owner[i])
-                ipfsHash_decrypted = fernciph.decrypt_url(
+                ipfsHash_decrypted_url = fernciph.decrypt_url(
                     all_encrypted_ipfsHashes_from_owner[i], usepass_input)
+                response_ipfsHash_decrypted_url = requests.get(
+                    ipfsHash_decrypted_url)
+                print(f"ipfsHash_decrypted_url: {ipfsHash_decrypted_url}")
 
-                print(f"ipfsHash_decrypted_i: {ipfsHash_decrypted}")
-                ipfsHash_decrypted = ipfsHash_decrypted.rstrip("%10")
+                if response_ipfsHash_decrypted_url.status_code == 200:
+                    soup = BeautifulSoup(
+                        response_ipfsHash_decrypted_url.text, 'html.parser')
+                    # Go through code & find all links in the html
+                    links = soup.find_all('a')
+                    # Go though all links and find one with correct file extension
+                    for link in links:
+                        if '.png' in link.get('href'):
+                            # Direct link to the .png file
+                            nft_ticket_png_url = link.get('href')
+                            break
+                    concatenate_url = "https://gateway.pinata.cloud/" + nft_ticket_png_url
+                    print("Full url: ", concatenate_url)
+                else:
+                    print("Error - Unable to retrieve html from url")
+                #ipfsHash_decrypted = ipfsHash_decrypted.rstrip("%10")
                 #ipfsHash_decrypted = ipfsHash_decrypted.replace("%10", "")
-                st.markdown(f"[NFT Ticket {i + 1}]({ipfsHash_decrypted})")
+                st.markdown(f"[NFT Ticket {i + 1}]({concatenate_url})")
 
             # **** testing 02/11/23 encrypt/decrypt nft tickets
 
