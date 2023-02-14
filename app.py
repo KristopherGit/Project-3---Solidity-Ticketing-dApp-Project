@@ -23,6 +23,9 @@ from nftgen import nft_generator
 from ipfsgen import ipfs_gen
 # Import time for sleep delay
 import time
+# Import aes cipher for 'usepass' hashing
+#import aes_cipher as aes
+import fernet_cipher as fernciph
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -158,7 +161,7 @@ layout = go.Layout(
 # Pull updated seats color from JSONbin json archive to color sold seats grey downstream
 
 # JSONBin Bin Active URL
-url = "https://api.jsonbin.io/v3/b/63e159c5c0e7653a0570f1d5"
+url = "https://api.jsonbin.io/v3/b/63e7f171ebd26539d07b9ee0"
 # define headers for api request
 headers = {"content-type": "application/json",
            "secret-key": Config.JSONBIN_SECRET_KEY,
@@ -326,7 +329,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63e159c5c0e7653a0570f1d5"
+    url = "https://api.jsonbin.io/v3/b/63e7f171ebd26539d07b9ee0"
 
     # define headers for api request
     headers = {"content-type": "application/json",
@@ -470,6 +473,9 @@ with st.sidebar:
         label="first name", placeholder="required")
     last_name_input = st.text_input(
         label="last name", placeholder="required")
+    # text_input for aes_cipher/hashing ipfsHash data
+    usepass_input = st.text_input(
+        label="tickETHholder UsePass¹:", placeholder="required")
 
     # Drop down for eth wallet addresses ('selected_address') from customer
     selected_address = st.selectbox(
@@ -508,22 +514,57 @@ with st.sidebar:
             nft_filepath = nft_generator(traces, ticketId, event_select,
                                          venue_select, selected_seat)
             print("nft_filepath: ", nft_filepath)
-            time.sleep(5)
+            time.sleep(2)
             ipfsHash_img = ipfs_gen(nft_filepath)
-            time.sleep(5)
-            print("ipfsHash_img link: ", ipfsHash_img)
-            ipfsHash_img_txhash = contract.functions.updateTicketIpfsHashID(ticketId, ipfsHash_img).transact(
+            print("ipfsHash_img URL (pre-encryption):", ipfsHash_img)
+
+            # ****** testing 02/11/23 - usepass hashing
+
+            # encrypted_ipfsHash_img = aes.hash_string(
+            #    usepass_input, ipfsHash_img)
+            encrypted_ipfsHash_img = fernciph.encrypt_url(
+                ipfsHash_img, usepass_input)  # fernet encryption/decryption
+
+            time.sleep(2)
+            print("ipfsHash_img byte code (byte): ", encrypted_ipfsHash_img)
+            ipfsHash_img_txhash = contract.functions.updateTicketIpfsHashID(ticketId, encrypted_ipfsHash_img).transact(
                 {'from': selected_address})  # max gas to spend is 50 gas (50 gwei)
             ipfsHashupdate_receipt = w3.eth.waitForTransactionReceipt(
                 ipfsHash_img_txhash)
             st.write("IpfsHash image url updated on buyer's nft:")
             st.write(dict(ipfsHashupdate_receipt))
-            nft_ticket_list.append(ipfsHash_img)
+            nft_ticket_list.append(encrypted_ipfsHash_img)
+
+            # ****** testing 02/11/23 - usepass hashing
+
         st.sidebar.markdown("<p style='color: orange; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
                             unsafe_allow_html=True)
         st.sidebar.write(nft_ticket_list)
         print("NFT Ticket List: ", nft_ticket_list)
-    # company copyright info at bottom of sidebar
+
+    # **** testing 02/11/23 encrypt/decrypt nft tickets
+    if st.button("retrieve tickets"):
+        #decrypted_nft_ticket_list = []
+        all_encrypted_ipfsHashes_from_owner = contract.functions.getAllIpfsHashes(
+            selected_address).call()
+        if len(all_encrypted_ipfsHashes_from_owner) > 0:
+            st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>Viewable NFT Tickets Available:</p>",
+                        unsafe_allow_html=True)
+            for i in range(len(all_encrypted_ipfsHashes_from_owner)):
+
+                # ipfsHash_decrypted = aes.get_string_from_hash(
+                #    usepass_input, all_encrypted_ipfsHashes_from_owner[i])
+                ipfsHash_decrypted = fernciph.decrypt_url(
+                    all_encrypted_ipfsHashes_from_owner[i], usepass_input)
+
+                print(f"ipfsHash_decrypted_i: {ipfsHash_decrypted}")
+                ipfsHash_decrypted = ipfsHash_decrypted.rstrip("%10")
+                #ipfsHash_decrypted = ipfsHash_decrypted.replace("%10", "")
+                st.markdown(f"[NFT Ticket {i + 1}]({ipfsHash_decrypted})")
+
+            # **** testing 02/11/23 encrypt/decrypt nft tickets
+
+            # company copyright info at bottom of sidebar
     for i in range(4):
         st.write("")
     st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",

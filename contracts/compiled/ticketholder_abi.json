@@ -60,6 +60,25 @@
 			{
 				"indexed": false,
 				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "updater",
+				"type": "address"
+			}
+		],
+		"name": "IpfsHashUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
 				"name": "ticketCount",
 				"type": "uint256"
 			},
@@ -231,6 +250,25 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"name": "getAllIpfsHashes",
+		"outputs": [
+			{
+				"internalType": "bytes[]",
+				"name": "",
+				"type": "bytes[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "tokenId",
 				"type": "uint256"
@@ -316,9 +354,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "string",
+				"internalType": "bytes",
 				"name": "ipfsHash",
-				"type": "string"
+				"type": "bytes"
 			}
 		],
 		"stateMutability": "view",
@@ -605,9 +643,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "string",
+				"internalType": "bytes",
 				"name": "newIpfsHash",
-				"type": "string"
+				"type": "bytes"
 			}
 		],
 		"name": "updateTicketIpfsHashID",

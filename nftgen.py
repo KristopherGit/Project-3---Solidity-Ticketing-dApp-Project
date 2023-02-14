@@ -11,6 +11,9 @@ import datetime
 # Import JSON Request Library
 import requests
 
+# Import urllib.parse to fix filepaths (to remove spaces that affect url hyperlinks)
+import urllib.parse
+
 def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
 
     # Access the row & aisle values from each trace (seat) that corresponds to each tokenId/seat number
@@ -150,11 +153,19 @@ def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
     #########################################################
 
     # Save as NFT ticket
-    background.save(f"NFT_Tickets/NFT_ticket_{event_text}_{venue_text}_{selected_seat_text}.png")
+    background.save(f"NFT_Tickets/NFT_ticket_{event_text}_{venue_text}_{selected_seat_text}.png") #-> change 02/13/2023 to fix hyperlinks for NFT Tickets in main app.py when 'retrieve tickets' is activated
+    
+    #file_name = f"NFT_Tickets/NFT_ticket_{event_text}_{venue_text}_{selected_seat_text}.png"
+    
+    #encoded_file_name = urllib.parse.quote(file_name)
+    
+    #background.save(encoded_file_name)
     
     # Save string to variable to return from function
     
     url = f"NFT_Tickets/NFT_ticket_{event_text}_{venue_text}_{selected_seat_text}.png"
+    
+    #url = encoded_file_name
     
     return url
 

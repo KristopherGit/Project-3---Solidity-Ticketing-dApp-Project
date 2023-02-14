@@ -37,4 +37,7 @@ def ipfs_gen(nft_filepath):
     ipfsHash_img = 'https://gateway.pinata.cloud/ipfs/' + \
         response.json()['IpfsHash']
 
+    #ipfsHash_img = 'https://ipfs.io/ipfs/' + \
+    #    response.json()['IpfsHash']
+
     return ipfsHash_img
