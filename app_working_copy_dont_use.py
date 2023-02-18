@@ -46,9 +46,7 @@ st.set_page_config(page_title="Buttons Grid",
 load_dotenv()
 
 # Define and connect to a Web3 provider
-#w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
-w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI"),
-          request_kwargs={'timeout': 35}))
+w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 
 # Implement the contract helper function
 # a.) Loads the contract only once using the streamlit cache feature
@@ -117,6 +115,8 @@ gallery = {}
 # Instantiate each seat in a for-loop for each x,y-coord with attributes including: {x, y, name, price, bought=<boolean>, color=<#010C80>, owner_hash=address}
 for x in range(57):
     for y in range(28):
+        # calculates seat number
+        #seat_num = y * 57 + x
         # Create a dictionary for the current seat
         seat = {
             'aisle': x,
@@ -125,6 +125,8 @@ for x in range(57):
             'price': 71000000000000000,
             # 'bought': False,
             'color': '#1E90FF'
+            # 'seat_num': seat_num
+
         }
         # Add the seat to the gallery dictionary
         gallery[seat['name']] = seat
@@ -137,7 +139,7 @@ layout = go.Layout(
     xaxis=dict(title='X-coordinate',
                autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
     yaxis=dict(title='Y-coordinate',
-               autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+               autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False, scaleanchor="x",  scaleratio=1),
     showlegend=True,
     legend=dict(itemclick="toggleothers"),
     annotations=[
@@ -162,7 +164,7 @@ layout = go.Layout(
 # Pull updated seats color from JSONbin json archive to color sold seats grey downstream
 
 # JSONBin Bin Active URL
-url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+url = "https://api.jsonbin.io/v3/b/63e7f171ebd26539d07b9ee0"
 # define headers for api request
 headers = {"content-type": "application/json",
            "secret-key": Config.JSONBIN_SECRET_KEY,
@@ -182,6 +184,7 @@ for seat_number, seat in gallery.items():
         y=[seat['row']],
         mode='markers',
         marker=dict(size=6, color=color),
+        # text=[seat['seat_num']],
         textfont=dict(
             size=20
         )
@@ -261,6 +264,60 @@ bottom_line = go.Scatter(
 # Append the bottom line trace to the list of traces
 traces.append(bottom_line)
 
+# * modified 02/15/2023
+
+
+# @st.cache(hash_funcs={list: lambda x: None})
+# def rename_traces(traces):
+# Initialize a counter for the seat number
+#    seat_no = 0
+# Iterate through the rows of the gallery
+#    for y_coord in range(28):
+# Iterate through the columns of the gallery
+#        for x_coord in range(57):
+# Check if there is a trace with this x and y coordinate
+#            trace = next(
+#                (t for t in traces if t['x'][0] == x_coord and t['y'][0] == y_coord), None)
+#            if trace is not None:
+# If there is a trace, rename it with the seat number
+#                seat_name = f'Seat {seat_no}'
+#                trace['name'] = seat_name
+#                # Increment the seat number counter
+#                seat_no += 1
+# If there is no trace, move on to the next seat without incrementing the seat number counter
+#    return traces
+
+def rename_traces(traces):
+    # Initialize a counter for the seat number
+    seat_no = 0
+    # Create a dictionary to store the traces by x and y coordinates
+    traces_dict = {(t['x'][0], t['y'][0]): t for t in traces}
+    # Iterate through the rows of the gallery
+    for y_coord in range(28):
+        # Iterate through the columns of the gallery
+        for x_coord in range(57):
+            # Check if there is a trace with this x and y coordinate
+            trace = traces_dict.get((x_coord, y_coord))
+            if trace is not None:
+                # If there is a trace, rename it with the seat number
+                seat_name = f'Seat {seat_no}'
+                trace['name'] = seat_name
+                # Increment the seat number counter
+                seat_no += 1
+            # If there is no trace, move on to the next seat without incrementing the seat number counter
+    return traces
+
+
+rename_traces(traces)
+
+# for trace in traces:
+#    x_coord = trace['x'][0]
+#    y_coord = trace['y'][0]
+#    if 0 <= x_coord <= 57 and y_coord <= 1:
+#        print(f"x_coord: {x_coord}, y_coord: {y_coord}")
+# * modified 02/15/2023
+
+
 #########################################################
 
 # Update traces to color ones 'darkgrey' that appear in the 'ticketholders' JSONbin json server
@@ -279,7 +336,12 @@ if 'record' in data_json and 'ticketholder' in data_json['record']:
 #########################################################
 
 # Create a list of seats as 'Seat {i}' corresponding to each i in traces list
-seat_options = [f'Seat {i}' for i in range(len(traces))]
+#seat_options = [f'Seat {i}' for i in range(len(traces))]
+seat_options = []
+for trace in traces:
+    seat_options.append(trace['name'])
+#seat_options = seat_options.sort(key=lambda e: (e is None, e))
+# print(seat_options)
 
 # Update recently created seats in venue pulling archived/cached seat_color from session_state that was created on previous run downstream
 if st.session_state:
@@ -295,6 +357,7 @@ fig = go.Figure(data=traces, layout=layout)
 # Create function to update gallery seat names
 
 
+@st.cache
 def custom_legend_name(new_names):
     for i, new_name in enumerate(new_names):
         fig.data[i].name = new_name
@@ -330,7 +393,7 @@ fig.update_layout(autosize=True, width=950, height=600, annotations=[
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+    url = "https://api.jsonbin.io/v3/b/63e7f171ebd26539d07b9ee0"
 
     # define headers for api request
     headers = {"content-type": "application/json",
@@ -486,7 +549,7 @@ with st.sidebar:
     # Convert selected_seat to its tokenId equivalent (where selected_seat = tokenId -1) or in Solidity ticketData struct: seatNumber = ticketId -1
 
     # Also create a placeholder list for the seat tickets & corresponding ticketIds
-    #seats_and_ticketIds_list = []
+    seats_and_ticketIds_list = []
 
     # Confirm Buy section of code takes selected seats from session_state keys list, strips info to get seat number & convert to (ticketId) (Solidity: tokenId)
     # to interact with contract.functions.<function name> during 'buyTicket()' function process
@@ -498,7 +561,7 @@ with st.sidebar:
 
     if st.button("confirm buy:"):
         selected_seats = list(st.session_state.keys())
-        # print(selected_seats)
+        print(selected_seats)
         # *New test
         nft_ticket_list = []
         for selected_seat in selected_seats:
@@ -514,10 +577,10 @@ with st.sidebar:
                            last_name_input, selected_address, selected_seat)
             nft_filepath = nft_generator(traces, ticketId, event_select,
                                          venue_select, selected_seat)
-            #print("nft_filepath: ", nft_filepath)
+            print("nft_filepath: ", nft_filepath)
             time.sleep(2)
             ipfsHash_img = ipfs_gen(nft_filepath)
-            #print("ipfsHash_img URL (pre-encryption):", ipfsHash_img)
+            print("ipfsHash_img URL (pre-encryption):", ipfsHash_img)
 
             # ****** testing 02/11/23 - usepass hashing
 
@@ -527,38 +590,27 @@ with st.sidebar:
                 ipfsHash_img, usepass_input)  # fernet encryption/decryption
 
             time.sleep(2)
-            #print("ipfsHash_img byte code (byte): ", encrypted_ipfsHash_img)
+            print("ipfsHash_img byte code (byte): ", encrypted_ipfsHash_img)
             ipfsHash_img_txhash = contract.functions.updateTicketIpfsHashID(ticketId, encrypted_ipfsHash_img).transact(
                 {'from': selected_address})  # max gas to spend is 50 gas (50 gwei)
             ipfsHashupdate_receipt = w3.eth.waitForTransactionReceipt(
                 ipfsHash_img_txhash)
             st.write("IpfsHash image url updated on buyer's nft:")
             st.write(dict(ipfsHashupdate_receipt))
-            # nft_ticket_list.append(encrypted_ipfsHash_img)
-            nft_ticket_list.append(ipfsHash_img)
+            nft_ticket_list.append(encrypted_ipfsHash_img)
 
             # ****** testing 02/11/23 - usepass hashing
 
         st.sidebar.markdown("<p style='color: orange; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
                             unsafe_allow_html=True)
         st.sidebar.write(nft_ticket_list)
-        #print("NFT Ticket List: ", nft_ticket_list)
-        if len(nft_ticket_list) == 1:
-            ticket = nft_ticket_list[0]
-            st.sidebar.markdown(f"[NFT Ticket Hyperlink]({ticket})")
-        else:
-            for i, ticket in enumerate(nft_ticket_list):
-                st.sidebar.markdown(
-                    f"[NFT Ticket {i + 1} Hyperlink]({ticket})")
+        print("NFT Ticket List: ", nft_ticket_list)
 
     # **** testing 02/11/23 encrypt/decrypt nft tickets
     if st.button("retrieve tickets"):
         #decrypted_nft_ticket_list = []
         all_encrypted_ipfsHashes_from_owner = contract.functions.getAllIpfsHashes(
             selected_address).call()
-        print(f"Selected Address (Wallet Address): {selected_address}")
-        print(
-            f"All encrypted ipfsHashes from owner: {all_encrypted_ipfsHashes_from_owner}")
         if len(all_encrypted_ipfsHashes_from_owner) > 0:
             st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>Viewable NFT Tickets Available:</p>",
                         unsafe_allow_html=True)
@@ -572,7 +624,6 @@ with st.sidebar:
                     ipfsHash_decrypted_url)
                 print(f"ipfsHash_decrypted_url: {ipfsHash_decrypted_url}")
 
-                time.sleep(1)
                 if response_ipfsHash_decrypted_url.status_code == 200:
                     soup = BeautifulSoup(
                         response_ipfsHash_decrypted_url.text, 'html.parser')
@@ -588,7 +639,6 @@ with st.sidebar:
                     print("Full url: ", concatenate_url)
                 else:
                     print("Error - Unable to retrieve html from url")
-                time.sleep(1)
                 #ipfsHash_decrypted = ipfsHash_decrypted.rstrip("%10")
                 #ipfsHash_decrypted = ipfsHash_decrypted.replace("%10", "")
                 st.markdown(f"[NFT Ticket {i + 1}]({concatenate_url})")
