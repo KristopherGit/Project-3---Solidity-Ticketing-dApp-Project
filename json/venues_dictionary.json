@@ -1,0 +1,11 @@
+{
+    "Massey Hall": {
+        "Massey Hall Gallery Section": "create_venue_massey_hall_gallery",
+        "Massey Hall Balcony Section": "create_venue_massey_hall_balcony",
+        "Massey Hall Mezzanine Section": "create_venue_massey_hall_mezzanine"
+    },
+
+	"Opera House": {
+	"Opera House General Admission": "create_venue_opera_house_gen_asm"
+	}
+}

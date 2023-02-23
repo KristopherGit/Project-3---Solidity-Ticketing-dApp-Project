@@ -1,25 +1,22 @@
 # Import Streamlit as gui interface
 import streamlit as st
-
 # Import libraries to run Solidity smart contract & interact with json/files
 import os
 import json
 from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
-
 # Import segno library (qr code generator)
 import segno
 import qrcode
-
 # Import PIL image editor
 from PIL import Image, ImageFont, ImageDraw, ImageOps
-
 # Import datetime for UNIX data conversions
 import datetime
-
 # Import JSON Request library
 import requests
+# Import venues info
+import venues
 
 
 #########################################################
@@ -52,7 +49,7 @@ def add_logo(logo_path, width, height):
 st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
                     unsafe_allow_html=True)
 st.sidebar.image(
-    add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
+    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=500, height=500))
 
 # Web3 Contract Loading & Execution
 # load dotenv
@@ -185,7 +182,76 @@ if st.sidebar.button("Get Max Tickets"):
 # mint() Solidity smart contract function & #setMAX_TICKETS Solidity smart contract function
 with col1:
     with st.container():
-        #st.header("Minter Admin Console")
+
+        # load venue names from the venues_dictionary.json JSON file (the original venue builder file from form input in col2 to build venue functions [venues.py])
+        with open("json/venues_dictionary.json", "r") as file:
+            venueDictionary = json.load(file)
+            venueNamesJSONList = list(venueDictionary.keys())
+
+        # create session_state to save selectedVenueNameNew for multiple refreshers
+        # if 'venueNameNew' not in st.session_state:
+        if 'selected_venue' not in st.session_state:
+            st.session_state.selected_venue = venueNamesJSONList[0]
+
+        # event and venue generator admin user text input requirements (eventNameNew, venueNameNew, dateTimeNew, smartContractNew)
+        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Event & Venue Generator:</b></u></p>",
+                    unsafe_allow_html=True)
+        eventNameNew = st.text_input("Enter event:", placeholder="")
+        venueNameNew = st.selectbox(
+            "Select venue:", venueNamesJSONList, index=venueNamesJSONList.index(st.session_state.selected_venue))
+        dateTimeNew = st.date_input(
+            "Enter event date:", datetime.date(2023, 1, 1))
+        unixTimeStampFloatNew = datetime.datetime.combine(
+            dateTimeNew, datetime.datetime.min.time()).timestamp()
+        unixTimeStampNew = int(unixTimeStampFloatNew)
+        smartContractNew = st.text_input(
+            "Enter associated smart contract:", placeholder="")
+
+        # convert dateTimeNew datetime format to str to store in event_dictionary.json file
+        dateTimeNewString = dateTimeNew.strftime("%Y-%m-%d")
+
+        # package all event related variables into a dictionary for JSON submission
+        eventForJSONInput = {
+            "eventName": eventNameNew,
+            "venueName": venueNameNew,
+            "dateTime": dateTimeNewString,
+            "timeStamp": unixTimeStampNew,
+            "smartContract": smartContractNew
+        }
+
+        st.session_state.selected_venue = venueNameNew
+        print(st.session_state.selected_venue)
+
+        selectedEventNameNewText = st.text(f"Selected event: {eventNameNew}")
+        selectedVenueNameNewText = st.text(f"Selected venue: {venueNameNew}")
+        selectedDateTimeNewText = st.text(
+            f"Selected datetime: {dateTimeNew}. UNIX timestamp format: {unixTimeStampNew}.")
+        selectedSmartContractText = st.text(
+            f"Selected smart contract: {contract.address}")
+
+        st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
+                    unsafe_allow_html=True)
+        if st.button("Submit Event Details"):
+            with open("json/event_dictionary.json", "a") as file:
+                json.dump(eventForJSONInput, file)
+                file.write("\n")
+            st.success(
+                "Event successfully added to event_dictionary.json database", icon="✅")
+        st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
+                    unsafe_allow_html=True)
+        if st.button("View"):
+            with open("json/event_dictionary.json", "r") as file:
+                eventsList = [json.loads(line) for line in file]
+            with st.container():
+                st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Events Database:</b></u></p>",
+                            unsafe_allow_html=True)
+                for event in eventsList:
+                    st.write(event)
+
+            # if st.button("Submit Event & Venue to Master JSON List"):
+            #    eventList.append(eventNameNew)
+
+            #st.header("Minter Admin Console")
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
                     unsafe_allow_html=True)
         st.write("Event Contract Generator Form:")
@@ -229,8 +295,99 @@ with col1:
 
 with col2:
     #st.header("NFT Image Constructor")
-    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>NFT Image Constructor:</b></u></p>",
+    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Venue Generator & Admin Database:</b></u></p>",
                 unsafe_allow_html=True)
+
+    # Load the venues_dictionary.json from JSON file
+    with open("json/venues_dictionary.json", "r") as file:
+        venues_dictionary_json = json.load(file)
+
+    # Form Submission for Venue Addition
+    venue_name = st.text_input("venue name: ")
+    section_name = st.text_input("section name: ")
+    section_function_name = st.text_input("section function name: ")
+
+    if st.button("Add to venues"):
+        # check to see if venue_name already exists as a main key in the venues_dictionary.json file
+        if venue_name in venues_dictionary_json:
+            # check if section_name already exists as a value in the venues_dictionary.json file
+            if section_name in venues_dictionary_json[venue_name]:
+                st.write("Section name currently exists. No updates made.")
+            else:
+                # check to see if function already exists in the venues.py venue layout builder file
+                if hasattr(venues, section_function_name):
+                    # add section/function to existing venue
+                    section_function = getattr(venues, section_function_name)
+                    venues_dictionary_json[venue_name][section_name] = section_function.__name__
+                    # venues_dictionary_json[venue_name][section_name] = getattr(
+                    #    venues, section_function_name)
+                    st.write(
+                        f"Added section '{section_name}' to venue '{venue_name}' with function '{section_function_name}'.")
+                else:
+                    st.write(
+                        f"Function '{section_function_name}' not found in venues.py file.")
+
+        else:
+            # check if function exists in venues.py
+            if hasattr(venues, section_function_name):
+                # add new venue with corresponding new section/function
+                venues_dictionary_json[venue_name] = {
+                    section_name: getattr(venues, section_function_name.__name__)}
+                st.write(
+                    f"Added venue '{venue_name}' with section '{section_name}' and function '{section_function_name}'.")
+            else:
+                st.write(
+                    f"Function '{section_function_name}' not found in venues.py layout builder file. No updates have occurred.")
+
+        with open("json/venues_dictionary.json", "w") as file:
+            json.dump(venues_dictionary_json, file, indent=4)
+
+    # def add_venues(venue_name, section_name, section_function_name):
+    #     if venue_name not in venues.venue_dictionary:
+    #         venues.venue_dictionary[venue_name] = {}
+    #         venues.venue_dictionary[venue_name][section_name] = getattr(
+    #             venues, section_function_name)
+    #     elif section_name not in venues.venue_dictionary[venue_name]:
+    #         venues.venue_dictionary[venue_name][section_name] = getattr(
+    #             venues, section_function_name)
+    #     else:
+    #         if not callable(venues.venue_dictionary[venue_name][section_name]):
+    #             venues.venue_dictionary[venue_name][section_name] = getattr(
+    #                 venues, section_function_name)
+
+    # Add venue, section & section function to venues.venue_dictionary
+    # if st.button("Add to venues"):
+    #     add_venues(venue_name, section_name, section_function_name)
+
+    # Add to the venues.py 'venue_section' dictionary if it does not already exist based on previous text_input from admin
+    # if venue_name and section_name and section_function:
+    #     if venue_name not in venues.venue_dictionary:
+    #         venues.venue_dictionary[venue_name] = {}
+    #     venues.venue_dictionary[venue_name][section_name] = eval(
+    #         section_function)
+
+    if st.button("Display Venue Database"):
+        # Load the venues_dictionary.json from JSON file
+        with open("json/venues_dictionary.json", "r") as file:
+            venues_dictionary_json = json.load(file)
+
+        def venue_database():
+            # Display all current venues & their respective sections
+            st.markdown(
+                "### Venues, Sections & Section Builder Function", unsafe_allow_html=True)
+            i = 1
+            # Retrieve the keys of the venues.py venue_section dictionary database
+            for venueName, venueSection in venues_dictionary_json.items():
+                st.markdown(
+                    f"<span style= 'color: green; font-family:monospace;'>{i}.)&nbsp;{venueName}</span>", unsafe_allow_html=True)
+                for sectionName, sectionFunction in venueSection.items():
+                    st.markdown(
+                        f"\t&nbsp;&nbsp;&nbsp;&nbsp; <span style= 'color: green; font-family:monospace;'>{sectionName}: {sectionFunction}</span>", unsafe_allow_html=True)
+                    #st.write(f"{sectionName}: {sectionFunction.__name__}")
+                i += 1
+        venue_database()
+    # venue_database()
+
     for i in range(10):
         st.write("")
     st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'><b>Remix IDE Hyperlink:</b></p>",
@@ -261,7 +418,7 @@ for ticketholder in data_json['record']['ticketholder'][1:]:
             ticketholder_dict[key] = str(value)
     ticket_holders[tokenID] = ticketholder_dict
 
-print(ticket_holders)
+# print(ticket_holders)
 
 # Extracting attributes from ticket_holders dictionary to save as dynamic variables to automate
 # ticket_holders_event_value = ticket_holders[i][]

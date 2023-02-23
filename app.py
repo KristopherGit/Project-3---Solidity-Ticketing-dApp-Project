@@ -25,6 +25,8 @@ import time
 import fernet_cipher as fernciph
 # from bs4 import BeautifulSoup
 from bs4 import BeautifulSoup
+# Import gallery, balcony, mezzanine section from venues
+import venues as ven
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -94,7 +96,7 @@ def add_logo(logo_path, width, height):
 
 # Sidebar Main Logo Image
 st.sidebar.image(
-    add_logo(logo_path="tickETHolder_logo.png", width=500, height=500))
+    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=500, height=500))
 
 #########################################################
 
@@ -106,28 +108,38 @@ col1, col2 = st.columns([3, 1], gap="medium")
 
 # Show concert_layout header
 with col1:
-    st.header("Venue: Massey Hall")
+    # st.header("tickETHolder")
+    st.markdown("<p style='color: #807501; font-size: 22px; margin-top: 0px;'><b>tickETHolder</b></p>",
+                unsafe_allow_html=True)
 
 # Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded
 "st.session_state object:", st.session_state
 
-# Create a dictionary for the gallery with seat names as keys and seat dictionaries as values
-gallery = {}
+# Import gallery & traces from venues.py as venue_massey_hall
+gallery, traces = ven.create_venue_massey_hall_gallery()
+# print("from venues.py import gallery:")
+# print(gallery)
+# print("from venues.py import traces: ")
+# print(traces)
 
-# Instantiate each seat in a for-loop for each x,y-coord with attributes including: {x, y, name, price, bought=<boolean>, color=<#010C80>, owner_hash=address}
-for x in range(57):
-    for y in range(28):
-        # Create a dictionary for the current seat
-        seat = {
-            'aisle': x,
-            'row': y,
-            'name': f'{x},{y}',
-            'price': 71000000000000000,
-            # 'bought': False,
-            'color': '#1E90FF'
-        }
-        # Add the seat to the gallery dictionary
-        gallery[seat['name']] = seat
+
+# # Create a dictionary for the gallery with seat names as keys and seat dictionaries as values
+# gallery = {}
+
+# # Instantiate each seat in a for-loop for each x,y-coord with attributes including: {x, y, name, price, bought=<boolean>, color=<#010C80>, owner_hash=address}
+# for x in range(57):
+#     for y in range(28):
+#         # Create a dictionary for the current seat
+#         seat = {
+#             'aisle': x,
+#             'row': y,
+#             'name': f'{x},{y}',
+#             'price': 71000000000000000,
+#             # 'bought': False,
+#             'color': '#1E90FF'
+#         }
+#         # Add the seat to the gallery dictionary
+#         gallery[seat['name']] = seat
 
 
 # Create a layout for the plot
@@ -173,93 +185,93 @@ data_json = response.json()
 
 #########################################################
 
-# Create a list of scatter traces to represent the seats in the gallery
-traces = []
-for seat_number, seat in gallery.items():
-    color = '#1E90FF'
-    trace = go.Scatter(
-        x=[seat['aisle']],
-        y=[seat['row']],
-        mode='markers',
-        marker=dict(size=6, color=color),
-        textfont=dict(
-            size=20
-        )
-    )
-    traces.append(trace)
+# # Create a list of scatter traces to represent the seats in the gallery
+# traces = []
+# for seat_number, seat in gallery.items():
+#     color = '#1E90FF'
+#     trace = go.Scatter(
+#         x=[seat['aisle']],
+#         y=[seat['row']],
+#         mode='markers',
+#         marker=dict(size=6, color=color),
+#         textfont=dict(
+#             size=20
+#         )
+#     )
+#     traces.append(trace)
 
-#########################################################
+# #########################################################
 
-# Remove unnecessary traces to shape venue gallery layout
+# # Remove unnecessary traces to shape venue gallery layout
 
-to_remove_2 = [29*28+i for i in range(28)]
-# Sort the indices in reverse order to avoid shifting
-to_remove_2.sort(reverse=True)
-# Remove the seats from the list
-for index in to_remove_2:
-    traces.pop(index)
+# to_remove_2 = [29*28+i for i in range(28)]
+# # Sort the indices in reverse order to avoid shifting
+# to_remove_2.sort(reverse=True)
+# # Remove the seats from the list
+# for index in to_remove_2:
+#     traces.pop(index)
 
-to_remove_3 = [28*28+i for i in range(28)]
-# Sort the indices in reverse order to avoid shifting
-to_remove_3.sort(reverse=True)
-# Remove the seats from the list
-for index in to_remove_3:
-    traces.pop(index)
+# to_remove_3 = [28*28+i for i in range(28)]
+# # Sort the indices in reverse order to avoid shifting
+# to_remove_3.sort(reverse=True)
+# # Remove the seats from the list
+# for index in to_remove_3:
+#     traces.pop(index)
 
-to_remove_4 = [27*28+i for i in range(28)]
-# Sort the indices in reverse order to avoid shifting
-to_remove_4.sort(reverse=True)
-# Remove the seats from the list
-for index in to_remove_4:
-    traces.pop(index)
+# to_remove_4 = [27*28+i for i in range(28)]
+# # Sort the indices in reverse order to avoid shifting
+# to_remove_4.sort(reverse=True)
+# # Remove the seats from the list
+# for index in to_remove_4:
+#     traces.pop(index)
 
-seats_to_remove = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 51, 52, 53, 54, 55, 56, 74, 79, 80, 81, 82, 83, 84, 101, 102, 108, 109, 110, 111, 112, 129, 137, 138, 139, 140, 156, 157, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 280, 281, 308, 309, 336, 337, 364, 365, 392, 393, 394, 420, 421, 422, 448, 449, 450, 476, 477, 478, 504, 505, 506, 532, 533, 534, 560, 561, 562, 563, 588, 589, 590, 591, 616, 617, 618, 619, 644, 645, 646, 647, 672, 673, 674, 675, 700, 701, 702, 703, 728, 729, 730, 731, 756, 757, 758, 759, 784, 785, 786, 787, 812, 813, 814, 815, 840, 841,
-                   842, 843, 868, 869, 870, 871, 896, 897, 898, 899, 924, 925, 926, 927, 952, 953, 954, 980, 981, 982, 1008, 1009, 1010, 1036, 1037, 1038, 1064, 1065, 1066, 1092, 1093, 1094, 1120, 1121, 1148, 1149, 1176, 1177, 1204, 1205, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1316, 1317, 1318, 1319, 1320, 1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1343, 1344, 1360, 1361, 1370, 1371, 1372, 1389, 1397, 1398, 1399, 1400, 1417, 1418, 1424, 1425, 1426, 1427, 1428, 1446, 1451, 1452, 1453, 1454, 1455, 1456, 1457, 1458, 1459, 1460, 1461, 1462, 1463, 1464, 1465, 1466, 1467, 1468, 1469, 1470, 1471, 1472, 1473, 1474, 1475, 1478, 1479, 1480, 1481, 1482, 1483, 1504, 1505, 1506, 1507, 1508, 1509, 1510, 1511]
+# seats_to_remove = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 51, 52, 53, 54, 55, 56, 74, 79, 80, 81, 82, 83, 84, 101, 102, 108, 109, 110, 111, 112, 129, 137, 138, 139, 140, 156, 157, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 280, 281, 308, 309, 336, 337, 364, 365, 392, 393, 394, 420, 421, 422, 448, 449, 450, 476, 477, 478, 504, 505, 506, 532, 533, 534, 560, 561, 562, 563, 588, 589, 590, 591, 616, 617, 618, 619, 644, 645, 646, 647, 672, 673, 674, 675, 700, 701, 702, 703, 728, 729, 730, 731, 756, 757, 758, 759, 784, 785, 786, 787, 812, 813, 814, 815, 840, 841,
+#                    842, 843, 868, 869, 870, 871, 896, 897, 898, 899, 924, 925, 926, 927, 952, 953, 954, 980, 981, 982, 1008, 1009, 1010, 1036, 1037, 1038, 1064, 1065, 1066, 1092, 1093, 1094, 1120, 1121, 1148, 1149, 1176, 1177, 1204, 1205, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1316, 1317, 1318, 1319, 1320, 1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1343, 1344, 1360, 1361, 1370, 1371, 1372, 1389, 1397, 1398, 1399, 1400, 1417, 1418, 1424, 1425, 1426, 1427, 1428, 1446, 1451, 1452, 1453, 1454, 1455, 1456, 1457, 1458, 1459, 1460, 1461, 1462, 1463, 1464, 1465, 1466, 1467, 1468, 1469, 1470, 1471, 1472, 1473, 1474, 1475, 1478, 1479, 1480, 1481, 1482, 1483, 1504, 1505, 1506, 1507, 1508, 1509, 1510, 1511]
 
-# Remove the seats from the gallery
-for i in reversed(seats_to_remove):
-    traces.pop(i)
+# # Remove the seats from the gallery
+# for i in reversed(seats_to_remove):
+#     traces.pop(i)
 
-# Create stage layout as a half moon trace figure
-
-
-def stage_y_values(x):
-    return 6 * np.sin(x * np.pi / 56) - 4
+# # Create stage layout as a half moon trace figure
 
 
-x = np.array(list(range(57)))
-y = stage_y_values(x)
-
-stage = go.Scatter(
-    x=x,
-    y=y,
-    mode='lines',
-    fill='toself',
-    line=dict(width=4, color='#333333'),
-    fillcolor='#333333',
-    text=['STAGE'],
-    textposition='top center',
-    textfont=dict(color='white')  # set the text color to white
-)
+# def stage_y_values(x):
+#     return 6 * np.sin(x * np.pi / 56) - 4
 
 
-# Append the stage trace to the list of traces
-traces.append(stage)
+# x = np.array(list(range(57)))
+# y = stage_y_values(x)
 
-# Update stage formatting
-stage.update(fill='toself', fillcolor='#333333',
-             line=dict(width=4, color='#333333'))
+# stage = go.Scatter(
+#     x=x,
+#     y=y,
+#     mode='lines',
+#     fill='toself',
+#     line=dict(width=4, color='#333333'),
+#     fillcolor='#333333',
+#     text=['STAGE'],
+#     textposition='top center',
+#     textfont=dict(color='white')  # set the text color to white
+# )
 
-# Add a contour line to the bottom of the half-moon stage outline
-bottom_line = go.Scatter(
-    x=list(range(57)),
-    y=[min(y) for i in range(57)],
-    mode='lines',
-    line=dict(width=2, color='#333333'),
-)
 
-# Append the bottom line trace to the list of traces
-traces.append(bottom_line)
+# # Append the stage trace to the list of traces
+# traces.append(stage)
+
+# # Update stage formatting
+# stage.update(fill='toself', fillcolor='#333333',
+#              line=dict(width=4, color='#333333'))
+
+# # Add a contour line to the bottom of the half-moon stage outline
+# bottom_line = go.Scatter(
+#     x=list(range(57)),
+#     y=[min(y) for i in range(57)],
+#     mode='lines',
+#     line=dict(width=2, color='#333333'),
+# )
+
+# # Append the bottom line trace to the list of traces
+# traces.append(bottom_line)
 
 #########################################################
 
@@ -414,17 +426,17 @@ with col2:
         seat_index = seat_options.index(selected_seat)
         st.write(gallery[list(gallery.keys())[seat_index]])
 
+    # event_list
+    event_list = ["Gorillaz", "Fleetwood Mac",
+                  "Bob Dylan", "Phoenix", "The Strokes"]
+    event_select = st.selectbox("select event:", event_list)
+
     # venue_list
     # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
     #            unsafe_allow_html=True)
     venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
                   "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
     venue_select = st.selectbox("select venue:", venue_list)
-
-    # event_list
-    event_list = ["Gorillaz", "Fleetwood Mac",
-                  "Bob Dylan", "Phoenix", "The Strokes"]
-    event_select = st.selectbox("select event:", event_list)
 
     # date_select override
     date_select = 1660176000
@@ -436,11 +448,11 @@ with col2:
         st.write("")
 
     # Venue Image
-    venue_image = Image.open('massey_hall_bw.png')
+    venue_image = Image.open('Image_Data/massey_hall_bw.png')
     st.image(venue_image, 'Massey Hall - North Entrance')
 
     # Title for Option to Select Venue Seating Area View
-    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>seating map section:</p>",
+    st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>seating map section:</b></p>",
                 unsafe_allow_html=True)
 
     # Option for Selecting Gallery View
@@ -451,15 +463,15 @@ with col2:
 
     # Contact info
     # st.header("About Us:")
-    st.markdown("<p style='color: white; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
+    st.markdown("<p style='color: #807501; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
+    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
+    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
+    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
+    st.markdown("<p style='color: #807501; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
                 unsafe_allow_html=True)
 
 
@@ -467,7 +479,7 @@ with col2:
 # Create sidebar for customer form submission
 with st.sidebar:
     # Top header section
-    st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>ticket purchase form:</p>",
+    st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>ticket purchase form:</b></p>",
                 unsafe_allow_html=True)
     # text_input for customer info
     first_name_input = st.text_input(
@@ -539,7 +551,7 @@ with st.sidebar:
 
             # ****** testing 02/11/23 - usepass hashing
 
-        st.sidebar.markdown("<p style='color: orange; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
+        st.sidebar.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
                             unsafe_allow_html=True)
         st.sidebar.write(nft_ticket_list)
         #print("NFT Ticket List: ", nft_ticket_list)
@@ -560,7 +572,7 @@ with st.sidebar:
         print(
             f"All encrypted ipfsHashes from owner: {all_encrypted_ipfsHashes_from_owner}")
         if len(all_encrypted_ipfsHashes_from_owner) > 0:
-            st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>Viewable NFT Tickets Available:</p>",
+            st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>Viewable NFT Tickets Available:</b></p>",
                         unsafe_allow_html=True)
             for i in range(len(all_encrypted_ipfsHashes_from_owner)):
 
@@ -598,7 +610,7 @@ with st.sidebar:
             # company copyright info at bottom of sidebar
     for i in range(4):
         st.write("")
-    st.markdown("<p style='color: white; font-size: 12px; margin-top: 0px;'>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</p>",
+    st.markdown("<p style='color: #807501; font-size: 12px; margin-top: 0px;'><b>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</b></p>",
                 unsafe_allow_html=True)
     # Display contract address to the sidebar for user knowledge/troubleshooting
     if contract is None:
