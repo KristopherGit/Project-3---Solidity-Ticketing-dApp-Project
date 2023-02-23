@@ -109,7 +109,7 @@ col1, col2 = st.columns([3, 1], gap="medium")
 # Show concert_layout header
 with col1:
     # st.header("tickETHolder")
-    st.markdown("<p style='color: #807501; font-size: 22px; margin-top: 0px;'><b>tickETHolder</b></p>",
+    st.markdown("<p style='color: #807501; font-size: 24px; margin-top: 0px;'><b>tickETHolder™</b></p>",
                 unsafe_allow_html=True)
 
 # Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded

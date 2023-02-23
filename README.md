@@ -4,7 +4,7 @@
 
 
 <p align= "left" width="100" height="100">
-<img width= "15%" height= "150" src="tickETHolder_logo.png">
+<img width= "15%" height= "150" src="Image_Data/tickETHolder_logo.png">
 </p>
 
 ---
