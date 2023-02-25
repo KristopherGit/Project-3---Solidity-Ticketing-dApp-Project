@@ -193,7 +193,7 @@ with col1:
         if 'selected_venue' not in st.session_state:
             st.session_state.selected_venue = venueNamesJSONList[0]
 
-        # event and venue generator admin user text input requirements (eventNameNew, venueNameNew, dateTimeNew, smartContractNew)
+        # event and venue generator admin user text input requirements (eventNameNew, venueNameNew, dateTimeNew, hourTimeNew, smartContractNew)
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Event & Venue Generator:</b></u></p>",
                     unsafe_allow_html=True)
         eventNameNew = st.text_input("Enter event:", placeholder="")
@@ -201,8 +201,19 @@ with col1:
             "Select venue:", venueNamesJSONList, index=venueNamesJSONList.index(st.session_state.selected_venue))
         dateTimeNew = st.date_input(
             "Enter event date:", datetime.date(2023, 1, 1))
-        unixTimeStampFloatNew = datetime.datetime.combine(
-            dateTimeNew, datetime.datetime.min.time()).timestamp()
+        hourTimeNewString = st.time_input(
+            "Enter event time:", datetime.time(20, 0)).strftime("%H:%M")
+        hourTimeNew = datetime.datetime.strptime(hourTimeNewString, "%H:%M")
+
+        # concatenate the dateTimeNew + hourTimeNew in order to get a combined net UNIX timestamp
+        dateTimeHourTimeCombinedNew = datetime.datetime.combine(dateTimeNew, datetime.datetime.min.time(
+        )) + datetime.timedelta(hours=hourTimeNew.hour, minutes=hourTimeNew.minute)
+
+        unixTimeStampFloatNew = dateTimeHourTimeCombinedNew.timestamp()
+
+        # unixTimeStampFloatNew = datetime.datetime.combine(
+        #     dateTimeNew, datetime.datetime.min.time()).timestamp()
+
         unixTimeStampNew = int(unixTimeStampFloatNew)
         smartContractNew = st.text_input(
             "Enter associated smart contract:", placeholder="")
@@ -210,14 +221,25 @@ with col1:
         # convert dateTimeNew datetime format to str to store in event_dictionary.json file
         dateTimeNewString = dateTimeNew.strftime("%Y-%m-%d")
 
-        # package all event related variables into a dictionary for JSON submission
+        # create dictionary to store events
+        #eventForJSONInput = {"eventList": []}
+
+        # package all event related variables into a dictionary for JSON submission & setup
         eventForJSONInput = {
             "eventName": eventNameNew,
             "venueName": venueNameNew,
             "dateTime": dateTimeNewString,
-            "timeStamp": unixTimeStampNew,
+            "hourTime": hourTimeNewString,
+            "timeStamp": str(unixTimeStampNew),
             "smartContract": smartContractNew
         }
+        # eventForJSONInput = {
+        #     "eventName": eventNameNew,
+        #     "venueName": venueNameNew,
+        #     "dateTime": dateTimeNewString,
+        #     "timeStamp": unixTimeStampNew,
+        #     "smartContract": smartContractNew
+        # }
 
         st.session_state.selected_venue = venueNameNew
         print(st.session_state.selected_venue)
@@ -225,33 +247,61 @@ with col1:
         selectedEventNameNewText = st.text(f"Selected event: {eventNameNew}")
         selectedVenueNameNewText = st.text(f"Selected venue: {venueNameNew}")
         selectedDateTimeNewText = st.text(
-            f"Selected datetime: {dateTimeNew}. UNIX timestamp format: {unixTimeStampNew}.")
+            f"Selected date & time: {dateTimeNew} @ {hourTimeNewString}. UNIX timestamp format: {unixTimeStampNew}.")
         selectedSmartContractText = st.text(
             f"Selected smart contract: {contract.address}")
 
         st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
                     unsafe_allow_html=True)
         if st.button("Submit Event Details"):
-            with open("json/event_dictionary.json", "a") as file:
-                json.dump(eventForJSONInput, file)
-                file.write("\n")
+            # with open("json/event_dictionary.json", "a") as file:
+            with open("json/event_dictionary.json", "r") as file:
+                eventDictionary = json.load(file)
+            # append new event to "eventList" list (which is the key to the list of dictionaries (value) ["eventList] = key, list of dictionaries = value)
+            eventDictionary["eventList"].append(eventForJSONInput)
+            # save upadated eventDictionary to file
+            with open("json/event_dictionary.json", "w") as file:
+                json.dump(eventDictionary, file, indent=4)
+                # file.write("\n")
             st.success(
                 "Event successfully added to event_dictionary.json database", icon="✅")
         st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
                     unsafe_allow_html=True)
         if st.button("View"):
             with open("json/event_dictionary.json", "r") as file:
-                eventsList = [json.loads(line) for line in file]
+                data = json.load(file)
+                eventList = data["eventList"]
+                # st.write(eventList)
+                #eventsList = [json.loads(line) for line in file]
             with st.container():
-                st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Events Database:</b></u></p>",
+                st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Events Database (Master List):</b></u></p>",
                             unsafe_allow_html=True)
-                for event in eventsList:
+                for event in eventList:
                     st.write(event)
 
             # if st.button("Submit Event & Venue to Master JSON List"):
             #    eventList.append(eventNameNew)
 
-            #st.header("Minter Admin Console")
+        with open("json/event_dictionary.json", "r") as file:
+            # load data from event_dictionary.json file
+            data = json.load(file)
+            # use "eventList" key from the data from the json file to get the key's value. in this case the "eventList" value is the list of event dictionaries
+            eventListValue = data.get("eventList", [])
+            print(eventListValue)
+            # generate a list with all unique "eventName" names
+            # check to see if there's only on dictionary 'event' entry in the entire "eventList" list, if so create a list from it so it follows convention and can be used
+            # in st.selectbox still later on from the "eventName" st.selectbox dropdown list
+            if isinstance(eventListValue, dict):
+                eventListValue = [eventListValue]
+            print(eventListValue)
+
+            # first creates a set of unique "eventName" values taken from the "eventList" key value pair 'eventListValue' (value of the key-value pair)
+            masterEventsList = list(
+                set(value["eventName"] for value in eventListValue))
+            masterEventsList.sort()
+            print(masterEventsList)
+
+        #st.header("Minter Admin Console")
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
                     unsafe_allow_html=True)
         st.write("Event Contract Generator Form:")
@@ -272,13 +322,65 @@ with col1:
             "Enter string memory _ownerFirstName", "First Name")
         _ownerLastName = st.text_input(
             "Enter string memory _ownerLastName", "Last Name")
-        _eventName = st.text_input(
-            "Enter string memory _eventName", "Event Name")
-        _concertDate = st.number_input(
-            "Enter uint _concertDate [UNIX Format]", 1660176000)
+        # _eventName = st.text_input(
+        #    "Enter string memory _eventName", "Event Name")
+        _eventName = st.selectbox(
+            "Select string memory _eventName", masterEventsList)
+
+        # function for obtaining all possible venues for a unique event (each 'event' is a dictionary structure, and are entered as a list where the entire list is a value corresponding to the "eventList" key)
+        def obtain_all_venues_for_event(eventName):
+            with open("json/event_dictionary.json", "r") as file:
+                data = json.load(file)
+                # if not isinstance(data, list):
+                eventList = data["eventList"]
+                venues = list(
+                    set(value["venueName"] for value in eventList if value['eventName'] == eventName))
+                venues.sort()
+                return venues
+
+        # use the 'obtain_all_venues_for_event' function to obtain list of unique venues pertaining to the specific '_eventName'
+        masterVenuesList = obtain_all_venues_for_event(_eventName)
+
+        # selectbox list of all venues pertaining to above _eventName
+        _venueName = st.selectbox(
+            "Select string memory _venueName", masterVenuesList)
+
+        # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+        def obtain_date_for_event_venue(venueName):
+            with open("json/event_dictionary.json", "r") as file:
+                data = json.load(file)
+                eventList = data["eventList"]
+                dates = list(
+                    set(value["timeStamp"] for value in eventList if value['venueName'] == venueName))
+                dates.sort()
+                return dates
+
+        # use the 'obtain_date_for_event_venue' function to obtain the unique timeStamp (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+        masterDatesList = obtain_date_for_event_venue(_venueName)
+
+        # convert date string elements to int
+        masterDatesList = [int(date) for date in masterDatesList]
+
+        # convert all masterDatesList items from string to int
+        # for date in masterDatesList:
+        #     print(type(date))
+        #     date_int = int(date)
+        #     print(type(date_int))
+        #     masterDatesList.remove(date)
+        #     masterDatesList.append(date_int)
+        #     masterDatesList.sort()
+
+        # selectbox list for all dates pertaining to above _venueName (and hence, _eventName)
+        _concertDate = st.selectbox(
+            "Select uint _concertDate [UNIX Format]", masterDatesList)
+
+        # _venueName = st.selectbox(
+        #     "Select string memory _eventName", masterVenuesList)
+        # _concertDate = st.number_input(
+        #     "Enter uint _concertDate [UNIX Format]", 1660176000)
         gwei_price = st.number_input("Enter uint _price (in Gwei)", 71000000)
-        _venueName = st.text_input(
-            "Enter string memory _venueName", "Venue Name")
+        # _venueName = st.text_input(
+        #    "Enter string memory _venueName", "Venue Name")
         _seatColor = "#5A5A5A"
         batchSize = st.number_input(
             "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)

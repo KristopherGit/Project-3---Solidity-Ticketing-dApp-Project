@@ -104,12 +104,12 @@ st.sidebar.image(
 wallet_addresses = w3.eth.accounts
 
 # Create columns for holding & centering the gallery layout
-col1, col2 = st.columns([3, 1], gap="medium")
+col1, col2 = st.columns([4, 1], gap="small")
 
 # Show concert_layout header
 with col1:
     # st.header("tickETHolder")
-    st.markdown("<p style='color: #807501; font-size: 24px; margin-top: 0px;'><b>tickETHolder™</b></p>",
+    st.markdown("<p style='color: #B3A301; font-size: 24px; margin-top: 0px;'><b>tickETHolder™</b></p>",
                 unsafe_allow_html=True)
 
 # Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded
@@ -145,7 +145,12 @@ gallery, traces = ven.create_venue_massey_hall_gallery()
 # Create a layout for the plot
 
 layout = go.Layout(
-    title='Section: Massey Hall (Gallery Level)',
+    title=dict(text='Massey Hall (Gallery Level)',
+               font=dict(
+                   family='monospace',
+                   color='#B3A301'
+               )
+               ),
     xaxis=dict(title='X-coordinate',
                autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
     yaxis=dict(title='Y-coordinate',
@@ -318,22 +323,32 @@ custom_legend_name(seat_options)
 
 # Update traces/seats & add stage name
 fig.update_traces(textposition='top center')
-fig.update_layout(autosize=True, width=950, height=600, annotations=[
-    dict(
-        text="S T A G E",
+fig.update_layout(
+    title={
+        'text': "Massey Hall (Gallery Level)",
+        'font': {'family': 'monospace', 'color': '#B3A301'}
+    },
+    title_font=dict(
+        family='monospace',
+        size=18,
+        color='#B3A301'
+    ),
+    autosize=True, width=950, height=600, annotations=[
+        dict(
+            text="S T A G E",
+            font=dict(
+                size=24,
+                family='monospace',
+                color='#B3A301'
+            ),
+            y=0.25
+        )
+    ], hoverlabel=dict(
         font=dict(
-            size=24,
-            family='monospace',
-            color='black'
-        ),
-        y=0.25
-    )
-], hoverlabel=dict(
-    font=dict(
-        size=20,
-        color="white"
-    )
-))
+            size=20,
+            color="#B3A301"
+        )
+    ))
 
 #########################################################
 # JSON Read/Write to Central Server - To Update Seat Color & Non-Sensitive Info for Data Analysis
@@ -393,6 +408,7 @@ def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address
 
 # Implement selectbox dropdown for seat options & when user selects seat name update seats in gallery to new 'color'= 'green' value
 with col1:
+
     selected_seat = st.selectbox('select seat(s):', seat_options)
     if st.button('select seat(s)'):
         seat_index = seat_options.index(selected_seat)
@@ -420,7 +436,7 @@ with col2:
 
     # Write selected seat dictionary attributes info to upper right hand corner
     if (selected_seat != 'Seat 0'):
-        st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>selected seat info:</p>",
+        st.markdown("<p style='color: B3A301; padding: 0; margin-top: 0px;'>selected seat info:</p>",
                     unsafe_allow_html=True)
         st.write(selected_seat)
         seat_index = seat_options.index(selected_seat)
@@ -463,15 +479,15 @@ with col2:
 
     # Contact info
     # st.header("About Us:")
-    st.markdown("<p style='color: #807501; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
+    st.markdown("<p style='color: #B3A301; font-size: 18px; margin-top: 0px;'>Contact Info:</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
+    st.markdown("<p style='color: #B3A301; font-size: 14px; margin-top: 0px;'>Phone: 416-555-5555</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
+    st.markdown("<p style='color: #B3A301; font-size: 14px; margin-top: 0px;'>Email: tickETHolder.info@gmail.com</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
+    st.markdown("<p style='color: #B3A301; font-size: 14px; margin-top: 0px;'>Chatbot Assistant: (Click Here)</p>",
                 unsafe_allow_html=True)
-    st.markdown("<p style='color: #807501; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
+    st.markdown("<p style='color: #B3A301; font-size: 12px; margin-top: 0px;'>Developed on Remix IDE. Powered by Web3. All rights reserved.</p>",
                 unsafe_allow_html=True)
 
 
@@ -479,17 +495,26 @@ with col2:
 # Create sidebar for customer form submission
 with st.sidebar:
     # Top header section
-    st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>ticket purchase form:</b></p>",
-                unsafe_allow_html=True)
+    # st.markdown("<p style='color: #B3A301; padding: 0; margin-top: 0px;'><b>ticket purchase form:</b></p>",
+    #            unsafe_allow_html=True)
+    st.markdown(
+        """
+    <style>
+    .stTextInput {
+        margin-right: 1px;
+    }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
     # text_input for customer info
     first_name_input = st.text_input(
-        label="first name", placeholder="optional")
+        label="first name", placeholder="first name")
     last_name_input = st.text_input(
-        label="last name", placeholder="optional")
+        label="last name", placeholder="last name")
     # text_input for aes_cipher/hashing ipfsHash data
     usepass_input = st.text_input(
         label="tickETHholder UsePass¹:", placeholder="required")
-
     # Drop down for eth wallet addresses ('selected_address') from customer
     selected_address = st.selectbox(
         "connect eth wallet", options=wallet_addresses)
@@ -550,8 +575,8 @@ with st.sidebar:
             nft_ticket_list.append(ipfsHash_img)
 
             # ****** testing 02/11/23 - usepass hashing
-
-        st.sidebar.markdown("<p style='color: #807501; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
+        st.success(f"{len(nft_ticket_list)} ticket(s) successfully purchased.", icon="✅")
+        st.sidebar.markdown("<p style='color: #B3A301; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
                             unsafe_allow_html=True)
         st.sidebar.write(nft_ticket_list)
         #print("NFT Ticket List: ", nft_ticket_list)
@@ -572,7 +597,7 @@ with st.sidebar:
         print(
             f"All encrypted ipfsHashes from owner: {all_encrypted_ipfsHashes_from_owner}")
         if len(all_encrypted_ipfsHashes_from_owner) > 0:
-            st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>Viewable NFT Tickets Available:</b></p>",
+            st.markdown("<p style='color: #B3A301; padding: 0; margin-top: 0px;'><b>Viewable NFT Tickets Available:</b></p>",
                         unsafe_allow_html=True)
             for i in range(len(all_encrypted_ipfsHashes_from_owner)):
 
@@ -608,18 +633,20 @@ with st.sidebar:
             # **** testing 02/11/23 encrypt/decrypt nft tickets
 
             # company copyright info at bottom of sidebar
-    for i in range(4):
-        st.write("")
-    st.markdown("<p style='color: #807501; font-size: 12px; margin-top: 0px;'><b>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</b></p>",
-                unsafe_allow_html=True)
+    # for i in range(4):
+    #    st.write("")
     # Display contract address to the sidebar for user knowledge/troubleshooting
     if contract is None:
         st.write("Unable to connect to the deployed contract.")
-        st.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+        st.markdown("<p style='color: red; font-size: 15px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
                     unsafe_allow_html=True)
     else:
-        st.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
+        st.markdown("<p style='color: green; font-size: 15px; margin-top: 0px;'><span style='color: #B3A301;'>Contract Status:</span><b><span style='color: green; font-size: 16px;'> Connected</span></b></p>",
                     unsafe_allow_html=True)
-        st.write(contract.address)
+        st.markdown(f"<p style='color: #B3A301; font-size: 15px; margin-top: 0px;'>Contract Address: <b>{contract.address}</b></p>",
+                    unsafe_allow_html=True)
+        # st.write(contract.address)
+    st.markdown("<p style='color: #B3A301; font-size: 12px; margin-top: 0px;'><b>Copyright ©2023 tickETHolder.streamlit.app. All rights reserved.</b></p>",
+                unsafe_allow_html=True)
 
 #########################################################
