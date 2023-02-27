@@ -27,6 +27,8 @@ import fernet_cipher as fernciph
 from bs4 import BeautifulSoup
 # Import gallery, balcony, mezzanine section from venues
 import venues as ven
+# Import minter_nft_gen.py program
+#from minter_nft_gen import obtain_all_venues_for_event, obtain_date_for_event_venue, obtain_date_string_for_event_venue
 
 # Initial Layout Mode to Wide (For Concert Hall Render to Fit Screen) -> Must be the first called Streamlit command
 # Main Streamlit Page Configuration
@@ -106,6 +108,113 @@ wallet_addresses = w3.eth.accounts
 # Create columns for holding & centering the gallery layout
 col1, col2 = st.columns([4, 1], gap="small")
 
+# Create col2 right hand side event, venue & date selector that determines the venue & sections to be imported
+# access event_dictionary master events list to compile unique events, venues, dates & associated JSONbin info
+
+with col2:
+    with open("json/event_dictionary.json", "r") as file:
+        data = json.load(file)
+        eventListValue = data.get("eventList", [])
+        print("eventList values:", eventListValue)
+        masterEventsList = list(
+            set(value["eventName"] for value in eventListValue))
+        masterEventsList.sort()
+        print("masterEventsList:", masterEventsList)
+
+    # event_list
+    # event_list = ["Gorillaz", "Fleetwood Mac",
+    #               "Bob Dylan", "Phoenix", "The Strokes"]
+    # event_select = st.selectbox("select event:", event_list)
+    _eventName = st.selectbox("select event:", masterEventsList)
+
+    # function to fetch all venues for a particular eventName
+    @st.cache(allow_output_mutation=True)
+    def obtain_all_venues_for_event(eventName):
+        with open("json/event_dictionary.json", "r") as file:
+            data = json.load(file)
+            # if not isinstance(data, list):
+            eventList = data["eventList"]
+            venues = list(
+                set(value["venueName"] for value in eventList if value['eventName'] == eventName))
+            venues.sort()
+            return venues
+
+    # function for obtaining all possible venues for a unique event (each 'event' is a dictionary structure and are entered in list format where the entirety of the list is a value corresponding to the "eventList" key name)
+    masterVenuesList = obtain_all_venues_for_event(_eventName)
+
+    # _venueName variable represents selectbox list choice of all possible unique events available for one event
+    _venueName = st.selectbox("select venue:", masterVenuesList)
+
+    # function to fetch all dates for a particular event & venue combination
+    @st.cache(allow_output_mutation=True)
+    def obtain_date_string_for_event_venue(venueName):
+        with open("json/event_dictionary.json", "r") as file:
+            data = json.load(file)
+            eventList = data["eventList"]
+            dates = list(
+                set(value["dateTime"] for value in eventList if value["venueName"] == venueName))
+            dates.sort()
+            return dates
+
+    # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+    masterDatesList = obtain_date_string_for_event_venue(_venueName)
+
+    # _concertDate variable represents selectbox list choice of all dates pertaining to the above _venueName (and hence, _eventName)
+    _concertDate = st.selectbox("select event date:", masterDatesList)
+
+    # function that will fetch the 'seat JSONbin url' that corresponds to its associated _eventName, _venueName & _concertDate above
+    @st.cache(allow_output_mutation=True)
+    def obtain_seat_json_for_event(_eventName, _venueName, _concertDate):
+        with open("json/event_dictionary.json", "r") as file:
+            data = json.load(file)
+            eventList = data["eventList"]
+            jsonBinURL = list(set(value["seatJSONBinURL"] for value in eventList if value["eventName"]
+                              == _eventName and value["venueName"] == _venueName and value["dateTime"] == _concertDate))
+            return jsonBinURL
+
+    # _jsonBinURL variable represents selectbox list choice of JSONbin URL pertaining to the above associated _eventName, _venueName & _concertDate
+    _jsonBinURLList = obtain_seat_json_for_event(
+        _eventName, _venueName, _concertDate)
+
+    # get the first (and should be only) JSONBin json url address to read/write to the concert venue seat purchased memory
+    _jsonBinURL = _jsonBinURLList[0]
+
+    # print("_jsonBinURL:", _jsonBinURL)
+    # print(type(_jsonBinURL))
+
+    # function that will generate a list of available seating sections for the specific venue selected above
+    @st.cache(allow_output_mutation=True)
+    def obtain_venue_section(_venueName):
+        with open("json/venues_dictionary.json", "r") as file:
+            data = json.load(file)
+            #venue_list = list(data.keys())
+            if _venueName in data.keys():
+                section_name_list = list(data[_venueName].keys())
+                section_function_list = list(data[_venueName].values())
+                section_dictionary = dict(
+                    zip(section_name_list, section_function_list))
+                return section_dictionary  # section_name_list#, section_function_list
+            else:
+                return []
+
+    # function for obtaining all possible sections pertaining to the above _venueName
+    masterSectionDict = obtain_venue_section(_venueName)
+
+    # _sectionName variable represents selectbox list choice of all sections pertaining to the corresponding _venueName input
+    _sectionName = st.selectbox(
+        "seating map section:", masterSectionDict.keys())
+    # print(_sectionName)
+
+    # connect to and populate the venue.py saved venue layouts to create visual representation of available & purchased seats for the above chosen _venueName (as a function of _eventName)
+    # print(masterSectionDict[_sectionName])
+    # print(type(masterSectionDict[_sectionName]))
+
+    sectionFunctionNameString = masterSectionDict[_sectionName]
+    # print("sectionFunctionNameString", sectionFunctionNameString)
+
+    venueSectionFunctionName = getattr(ven, sectionFunctionNameString)
+    # print(type(venueSectionFunctionName))
+
 # Show concert_layout header
 with col1:
     # st.header("tickETHolder")
@@ -116,7 +225,19 @@ with col1:
 "st.session_state object:", st.session_state
 
 # Import gallery & traces from venues.py as venue_massey_hall
-gallery, traces = ven.create_venue_massey_hall_gallery()
+# gallery, traces = ven.create_venue_massey_hall_gallery()
+try:
+    gallery, traces = venueSectionFunctionName()
+except:
+    st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
+                unsafe_allow_html=True)
+    image = Image.open('Image_Data/under_construction.jpeg')
+    st.image(image, caption='Maintenance underway.')
+    gallery, traces = {}, []
+
+
+
+
 # print("from venues.py import gallery:")
 # print(gallery)
 # print("from venues.py import traces: ")
@@ -143,43 +264,49 @@ gallery, traces = ven.create_venue_massey_hall_gallery()
 
 
 # Create a layout for the plot
-
-layout = go.Layout(
-    title=dict(text='Massey Hall (Gallery Level)',
-               font=dict(
-                   family='monospace',
-                   color='#B3A301'
-               )
-               ),
-    xaxis=dict(title='X-coordinate',
-               autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
-    yaxis=dict(title='Y-coordinate',
-               autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
-    showlegend=True,
-    legend=dict(itemclick="toggleothers"),
-    annotations=[
-        dict(
-            text='STAGE',
-            x=28,
-            y=-2.5,
-            xanchor='center',
-            yanchor='top',
-            showarrow=False,
+@st.cache(allow_output_mutation=True)
+def concert_layout():
+    layout = go.Layout(
+        title=dict(text='Massey Hall (Gallery Level)',
+                   font=dict(
+                       family='monospace',
+                       color='#B3A301'
+                   )
+                   ),
+        xaxis=dict(title='X-coordinate',
+                   autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+        yaxis=dict(title='Y-coordinate',
+                   autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+        showlegend=True,
+        legend=dict(itemclick="toggleothers"),
+        annotations=[
+            dict(
+                text='STAGE',
+                x=28,
+                y=-2.5,
+                xanchor='center',
+                yanchor='top',
+                showarrow=False,
+            )
+        ],
+        font=dict(
+            family='monospace',
+            size=32,
+            color='black'
         )
-    ],
-    font=dict(
-        family='monospace',
-        size=32,
-        color='black'
     )
-)
+    return layout
+
+
+layout = concert_layout()
 
 #########################################################
 
 # Pull updated seats color from JSONbin json archive to color sold seats grey downstream
 
 # JSONBin Bin Active URL
-url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+# url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+url = _jsonBinURL
 # define headers for api request
 headers = {"content-type": "application/json",
            "secret-key": Config.JSONBIN_SECRET_KEY,
@@ -299,13 +426,15 @@ if 'record' in data_json and 'ticketholder' in data_json['record']:
 seat_options = [f'Seat {i}' for i in range(len(traces))]
 
 # Update recently created seats in venue pulling archived/cached seat_color from session_state that was created on previous run downstream
-if st.session_state:
-    for seat_name, seat_color in st.session_state.items():
-        seat_index = seat_options.index(seat_name)
-        traces[seat_index]['marker']['color'] = seat_color
-        gallery[list(gallery.keys())[seat_index]]['color'] = seat_color
-        gallery[list(gallery.keys())[seat_index]]['bought'] = True
-
+try:
+    if st.session_state:
+        for seat_name, seat_color in st.session_state.items():
+            seat_index = seat_options.index(seat_name)
+            traces[seat_index]['marker']['color'] = seat_color
+            gallery[list(gallery.keys())[seat_index]]['color'] = seat_color
+            gallery[list(gallery.keys())[seat_index]]['bought'] = True
+except:
+    None
 # Plot seating layout
 fig = go.Figure(data=traces, layout=layout)
 
@@ -357,7 +486,8 @@ fig.update_layout(
 
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
-    url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+    # url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+    url = _jsonBinURL
 
     # define headers for api request
     headers = {"content-type": "application/json",
@@ -419,6 +549,8 @@ with col1:
             st.session_state[selected_seat] = gallery[list(
                 gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
     if st.button('confirm seat(s)'):
+        st.success(
+            f"{selected_seat} successfully confirmed.", icon="✅")
         st.write()
 
     if st.button('clear all selected seat(s)'):
@@ -435,27 +567,53 @@ with col1:
 with col2:
 
     # Write selected seat dictionary attributes info to upper right hand corner
-    if (selected_seat != 'Seat 0'):
-        st.markdown("<p style='color: B3A301; padding: 0; margin-top: 0px;'>selected seat info:</p>",
-                    unsafe_allow_html=True)
-        st.write(selected_seat)
-        seat_index = seat_options.index(selected_seat)
-        st.write(gallery[list(gallery.keys())[seat_index]])
+    try:
+        if (selected_seat != 'Seat 0'):
+            st.markdown("<p style='color: B3A301; padding: 0; margin-top: 0px;'>selected seat info:</p>",
+                        unsafe_allow_html=True)
+            st.write(selected_seat)
+            seat_index = seat_options.index(selected_seat)
+            st.write(gallery[list(gallery.keys())[seat_index]])
+    except:
+        None
 
-    # event_list
-    event_list = ["Gorillaz", "Fleetwood Mac",
-                  "Bob Dylan", "Phoenix", "The Strokes"]
-    event_select = st.selectbox("select event:", event_list)
+    # # access event_dictionary master events list to compile unique events, venues, dates & associated JSONbin info
+    # with open("json/event_dictionary.json", "r") as file:
+    #     data = json.load(file)
+    #     eventListValue = data.get("eventList", [])
+    #     print("eventList values:", eventListValue)
+    #     masterEventsList = list(
+    #         set(value["eventName"] for value in eventListValue))
+    #     masterEventsList.sort()
+    #     print("masterEventsList:", masterEventsList)
+
+    # # event_list
+    # # event_list = ["Gorillaz", "Fleetwood Mac",
+    # #               "Bob Dylan", "Phoenix", "The Strokes"]
+    # # event_select = st.selectbox("select event:", event_list)
+    # _eventName = st.selectbox("select event:", masterEventsList)
+
+    # # function for obtaining all possible venues for a unique event (each 'event' is a dictionary structure and are entered in list format where the entirety of the list is a value corresponding to the "eventList" key name)
+    # masterVenuesList = obtain_all_venues_for_event(_eventName)
+
+    # # _venueName variable represents selectbox list choice of all possible unique events available for one event
+    # _venueName = st.selectbox("select venue:", masterVenuesList)
+
+    # # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+    # masterDatesList = obtain_date_string_for_event_venue(_venueName)
+
+    # # _concertDate variable represents selectbox list choice of all dates pertaining to the above _venueName (and hence, _eventName)
+    # _concertDate = st.selectbox("select event date:", masterDatesList)
 
     # venue_list
     # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
     #            unsafe_allow_html=True)
-    venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
-                  "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
-    venue_select = st.selectbox("select venue:", venue_list)
+    # venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
+    #               "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
+    # venue_select = st.selectbox("select venue:", venue_list)
 
     # date_select override
-    date_select = 1660176000
+    # date_select = 1660176000
 
 
 with col2:
@@ -467,15 +625,15 @@ with col2:
     venue_image = Image.open('Image_Data/massey_hall_bw.png')
     st.image(venue_image, 'Massey Hall - North Entrance')
 
-    # Title for Option to Select Venue Seating Area View
-    st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>seating map section:</b></p>",
-                unsafe_allow_html=True)
+    # # Title for Option to Select Venue Seating Area View
+    # st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>seating map section:</b></p>",
+    #             unsafe_allow_html=True)
 
-    # Option for Selecting Gallery View
-    gallery_1 = st.button("Gallery View")
+    # # Option for Selecting Gallery View
+    # gallery_1 = st.button("Gallery View")
 
-    # Option for Selecting Balcony View
-    gallery_1 = st.button("Balcony View")
+    # # Option for Selecting Balcony View
+    # gallery_1 = st.button("Balcony View")
 
     # Contact info
     # st.header("About Us:")
@@ -533,7 +691,7 @@ with st.sidebar:
     # update ticket owners IPFS hash address by overwriting blank ipfsHash in their Solidity ticketData[tokenId].ipfsHash attributes
     # print IPFS image urls to sidebar for users to gain access to NFT ticket image
 
-    if st.button("confirm buy:"):
+    if st.button("confirm buy"):
         selected_seats = list(st.session_state.keys())
         # print(selected_seats)
         # *New test
@@ -575,7 +733,8 @@ with st.sidebar:
             nft_ticket_list.append(ipfsHash_img)
 
             # ****** testing 02/11/23 - usepass hashing
-        st.success(f"{len(nft_ticket_list)} ticket(s) successfully purchased.", icon="✅")
+        st.success(
+            f"{len(nft_ticket_list)} ticket(s) successfully purchased.", icon="✅")
         st.sidebar.markdown("<p style='color: #B3A301; font-size: 14px; margin-top: 0px;'>NFT Ticket List: </p>",
                             unsafe_allow_html=True)
         st.sidebar.write(nft_ticket_list)

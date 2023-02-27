@@ -202,7 +202,7 @@ with col1:
         dateTimeNew = st.date_input(
             "Enter event date:", datetime.date(2023, 1, 1))
         hourTimeNewString = st.time_input(
-            "Enter event time:", datetime.time(20, 0)).strftime("%H:%M")
+            "Enter event time (24hr time format):", datetime.time(20, 0)).strftime("%H:%M")
         hourTimeNew = datetime.datetime.strptime(hourTimeNewString, "%H:%M")
 
         # concatenate the dateTimeNew + hourTimeNew in order to get a combined net UNIX timestamp
@@ -217,6 +217,8 @@ with col1:
         unixTimeStampNew = int(unixTimeStampFloatNew)
         smartContractNew = st.text_input(
             "Enter associated smart contract:", placeholder="")
+        seatJSONBinURLNew = st.text_input(
+            "Enter associated JSONbin URL (for purchased seat memory):", placeholder="")
 
         # convert dateTimeNew datetime format to str to store in event_dictionary.json file
         dateTimeNewString = dateTimeNew.strftime("%Y-%m-%d")
@@ -231,7 +233,8 @@ with col1:
             "dateTime": dateTimeNewString,
             "hourTime": hourTimeNewString,
             "timeStamp": str(unixTimeStampNew),
-            "smartContract": smartContractNew
+            "smartContract": smartContractNew,
+            "seatJSONBinURL": seatJSONBinURLNew
         }
         # eventForJSONInput = {
         #     "eventName": eventNameNew,
@@ -247,9 +250,11 @@ with col1:
         selectedEventNameNewText = st.text(f"Selected event: {eventNameNew}")
         selectedVenueNameNewText = st.text(f"Selected venue: {venueNameNew}")
         selectedDateTimeNewText = st.text(
-            f"Selected date & time: {dateTimeNew} @ {hourTimeNewString}. UNIX timestamp format: {unixTimeStampNew}.")
+            f"Selected date & time: {dateTimeNew} @ {hourTimeNewString}. UNIX timestamp format: {unixTimeStampNew}")
         selectedSmartContractText = st.text(
             f"Selected smart contract: {contract.address}")
+        selectedseatJSONBinURLNewText = st.text(
+            f"Selected seat bin url: {seatJSONBinURLNew}")
 
         st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
                     unsafe_allow_html=True)
@@ -352,6 +357,15 @@ with col1:
                 eventList = data["eventList"]
                 dates = list(
                     set(value["timeStamp"] for value in eventList if value['venueName'] == venueName))
+                dates.sort()
+                return dates
+
+        def obtain_date_string_for_event_venue(venueName):
+            with open("json/event_dictionary.json", "r") as file:
+                data = json.load(file)
+                eventList = data["eventList"]
+                dates = list(
+                    set(value["dateTime"] for value in eventList if value["venueName"] == venueName))
                 dates.sort()
                 return dates
 

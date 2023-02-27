@@ -1,20 +1,13 @@
 {
     "eventList": [
         {
-            "eventName": "eventNameNew",
-            "venueName": "venueNameNew",
-            "dateTime": "dateTimeNewString",
-            "hourTime": "hourTimeNewString",
-            "timeStamp": "1660176000",
-            "smartContract": "smartContractNew"
-        },
-        {
             "eventName": "Gorillaz",
             "venueName": "Massey Hall",
             "dateTime": "2022-08-10",
             "hourTime": "20:00",
             "timeStamp": "1660176000",
-            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1"
+            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
         }
     ]
 }
