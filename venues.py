@@ -20,7 +20,7 @@ def create_venue_massey_hall_gallery():
                 'aisle': x,
                 'row': y,
                 'name': f'{x},{y}',
-                'price': 71000000000000000,
+                # 'price': 71000000000000000,
                 # 'bought': False,
                 'color': '#1E90FF'
             }

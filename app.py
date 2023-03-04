@@ -222,20 +222,20 @@ with col1:
                 unsafe_allow_html=True)
 
 # Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded
-"st.session_state object:", st.session_state
+#"st.session_state object:", st.session_state
 
 # Import gallery & traces from venues.py as venue_massey_hall
 # gallery, traces = ven.create_venue_massey_hall_gallery()
 try:
     gallery, traces = venueSectionFunctionName()
+    print("gallery:", gallery)
+    print("traces:", traces)
 except:
     st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
                 unsafe_allow_html=True)
     image = Image.open('Image_Data/under_construction.jpeg')
     st.image(image, caption='Maintenance underway.')
     gallery, traces = {}, []
-
-
 
 
 # print("from venues.py import gallery:")
@@ -707,8 +707,8 @@ with st.sidebar:
             st.write(dict(receipt))
             update_jsonbin(ticketId, first_name_input,
                            last_name_input, selected_address, selected_seat)
-            nft_filepath = nft_generator(traces, ticketId, event_select,
-                                         venue_select, selected_seat)
+            nft_filepath = nft_generator(traces, ticketId, _eventName,
+                                         _venueName, selected_seat)
             #print("nft_filepath: ", nft_filepath)
             time.sleep(2)
             ipfsHash_img = ipfs_gen(nft_filepath)
