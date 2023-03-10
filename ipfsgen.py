@@ -31,13 +31,14 @@ def ipfs_gen(nft_filepath):
     # Print the IPFS hash
     print("The JSON response is:", response.json())
     print("The ipfsHash is: ", response.json()['IpfsHash'])
-    print("The NFT viewable link: ", 'https://gateway.pinata.cloud/ipfs/' +
+    print("The NFT viewable link: ", 'https://peach-fancy-koala-731.mypinata.cloud/' +
           response.json()['IpfsHash'])
 
-    ipfsHash_img = 'https://gateway.pinata.cloud/ipfs/' + \
+    # Original https://gateway.pinata.cloud/ipfs/ gateway prefix url
+    ipfsHash_img = 'https://peach-fancy-koala-731.mypinata.cloud/ipfs/' + \
         response.json()['IpfsHash']
 
-    #ipfsHash_img = 'https://ipfs.io/ipfs/' + \
+    # ipfsHash_img = 'https://ipfs.io/ipfs/' + \
     #    response.json()['IpfsHash']
 
     return ipfsHash_img

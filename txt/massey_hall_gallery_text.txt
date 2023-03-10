@@ -1,0 +1,6 @@
+Sec 100 Row G Seat 16: {'name': 'Sec 100 Row G Seat 16', 'sec': '100', 'row': 'G', 'seat number': '16', 'x': 11, 'y': 9, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}
+Sec 100 Row G Seat 17: {'name': 'Sec 100 Row G Seat 17', 'sec': '100', 'row': 'G', 'seat number': '17', 'x': 12, 'y': 9, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}
+Sec 200 Row K Seat 25: {'name': 'Sec 200 Row K Seat 25', 'sec': '200', 'row': 'K', 'seat number': '25', 'x': 25, 'y': 13, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}
+Sec 200 Row K Seat 26: {'name': 'Sec 200 Row K Seat 26', 'sec': '200', 'row': 'K', 'seat number': '26', 'x': 26, 'y': 13, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}
+Sec 200 Row K Seat 27: {'name': 'Sec 200 Row K Seat 27', 'sec': '200', 'row': 'K', 'seat number': '27', 'x': 27, 'y': 13, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}
+Sec 200 Row K Seat 28: {'name': 'Sec 200 Row K Seat 28', 'sec': '200', 'row': 'K', 'seat number': '28', 'x': 28, 'y': 13, 'color': '#010C80', 'minted': False, 'ticketID': None, 'price': 0, 'bought': False}

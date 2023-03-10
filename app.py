@@ -228,8 +228,8 @@ with col1:
 # gallery, traces = ven.create_venue_massey_hall_gallery()
 try:
     gallery, traces = venueSectionFunctionName()
-    print("gallery:", gallery)
-    print("traces:", traces)
+    #print("gallery:", gallery)
+    #print("traces:", traces)
 except:
     st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
                 unsafe_allow_html=True)
@@ -780,7 +780,9 @@ with st.sidebar:
                             # Direct link to the .png file
                             nft_ticket_png_url = link.get('href')
                             break
-                    concatenate_url = "https://gateway.pinata.cloud/" + nft_ticket_png_url
+                    #concatenate_url = "https://gateway.pinata.cloud/" + nft_ticket_png_url
+                    concatenate_url = "https://peach-fancy-koala-731.mypinata.cloud" + nft_ticket_png_url
+
                     print("Full url: ", concatenate_url)
                 else:
                     print("Error - Unable to retrieve html from url")
