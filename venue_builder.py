@@ -1,7 +1,7 @@
-import streamlit as st
-import plotly.express as px
+import streamlit as st # Note: Requires Version: 1.17.0
+import plotly.express as px # Note: Requires Version 4.14.3 to run without dedacted errors
 import numpy as np
-from IPython.display import display
+from IPython.display import display # Note: Requires Version 7.34.0 to run properly 
 
 np.random.seed(1)
 

@@ -4,7 +4,7 @@
 
 import base64
 import hashlib
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet # Note: Use version Version: 39.0.1
 
 
 def encrypt_url(url, password):

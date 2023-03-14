@@ -2,17 +2,18 @@
 
 # Streamlit integrated image library
 from PIL import Image
-import streamlit as st
+import streamlit as st  # Note: Requires Version: 1.17.0
+# Note: Requires Version 4.14.3 to run without dedacted errors
 import plotly.graph_objs as go
 import numpy as np
 # Import libraries to run Solidity smart contract & interact with json/files
 import os
 import json
-from web3 import Web3
+from web3 import Web3  # Note: Requires Version: 5.31.3
 from pathlib import Path
 from dotenv import load_dotenv
 # Import 'requests' to handle json file requests to central JSONbin servers (to update already sold seats that are not available)
-import requests
+import requests  # Note: Requires Version: 2.28.1
 # Import config.py Config JSONbin config info (API Secret Key)
 from config import Config
 # Import nft_generator() function from nftgen.py
@@ -228,7 +229,7 @@ with col1:
 # gallery, traces = ven.create_venue_massey_hall_gallery()
 try:
     gallery, traces = venueSectionFunctionName()
-    #print("gallery:", gallery)
+    print("gallery:", gallery)
     #print("traces:", traces)
 except:
     st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
@@ -265,24 +266,26 @@ except:
 
 # Create a layout for the plot
 @st.cache(allow_output_mutation=True)
-def concert_layout():
+def concert_layout(gallery):
+    largest_x_value = max(seat['x'] for seat in gallery.values())
+    center_x_value = largest_x_value/2
     layout = go.Layout(
-        title=dict(text='Massey Hall (Gallery Level)',
+        title=dict(text=str(_sectionName),
                    font=dict(
                        family='monospace',
                        color='#B3A301'
-                   )
-                   ),
+        )
+        ),
         xaxis=dict(title='X-coordinate',
                    autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
         yaxis=dict(title='Y-coordinate',
                    autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
-        showlegend=True,
+        showlegend=False,
         legend=dict(itemclick="toggleothers"),
         annotations=[
             dict(
                 text='STAGE',
-                x=28,
+                x=center_x_value,
                 y=-2.5,
                 xanchor='center',
                 yanchor='top',
@@ -298,7 +301,7 @@ def concert_layout():
     return layout
 
 
-layout = concert_layout()
+layout = concert_layout(gallery)
 
 #########################################################
 
@@ -423,7 +426,8 @@ if 'record' in data_json and 'ticketholder' in data_json['record']:
 #########################################################
 
 # Create a list of seats as 'Seat {i}' corresponding to each i in traces list
-seat_options = [f'Seat {i}' for i in range(len(traces))]
+# seat_options = [f'Seat {i}' for i in range(len(traces))] # works with original gallery only
+seat_options = [seat for seat in sorted(gallery.keys())]
 
 # Update recently created seats in venue pulling archived/cached seat_color from session_state that was created on previous run downstream
 try:
@@ -441,20 +445,20 @@ fig = go.Figure(data=traces, layout=layout)
 # Create function to update gallery seat names
 
 
-def custom_legend_name(new_names):
-    for i, new_name in enumerate(new_names):
-        fig.data[i].name = new_name
-        gallery[list(gallery.keys())[i]]['name'] = new_name
+# def custom_legend_name(new_names):
+#     for i, new_name in enumerate(new_names):
+#         fig.data[i].name = new_name
+#         gallery[list(gallery.keys())[i]]['name'] = new_name
 
 
 # Update original gallery seating names with custom seat_options ('Seat {i}') name for better transparency
-custom_legend_name(seat_options)
+# custom_legend_name(seat_options)
 
 # Update traces/seats & add stage name
-fig.update_traces(textposition='top center')
+fig.update_traces(textposition='top center', hoverlabel=(dict(namelength=-1)))
 fig.update_layout(
     title={
-        'text': "Massey Hall (Gallery Level)",
+        'text': str(_sectionName),
         'font': {'family': 'monospace', 'color': '#B3A301'}
     },
     title_font=dict(
