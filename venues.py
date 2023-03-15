@@ -994,10 +994,10 @@ def create_venue_massey_hall_balcony():
             mode='markers',
             name=seat['name'],
             hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
-            hovertemplate='<b>%{hovertext}</b><extra></extra>',
+            hovertemplate='%{hovertext}<extra></extra>',
             marker=dict(size=6, color=color),
             textfont=dict(
-                size=20
+                size=16
             )
         )
         traces.append(trace)

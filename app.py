@@ -427,16 +427,24 @@ if 'record' in data_json and 'ticketholder' in data_json['record']:
 
 # Create a list of seats as 'Seat {i}' corresponding to each i in traces list
 # seat_options = [f'Seat {i}' for i in range(len(traces))] # works with original gallery only
+# sorted_seats = sorted(gallery.items(), key=lambda x: x[0])
+# seat_options = [seat[0] for seat in sorted_seats]
 seat_options = [seat for seat in sorted(gallery.keys())]
 
 # Update recently created seats in venue pulling archived/cached seat_color from session_state that was created on previous run downstream
 try:
     if st.session_state:
         for seat_name, seat_color in st.session_state.items():
-            seat_index = seat_options.index(seat_name)
-            traces[seat_index]['marker']['color'] = seat_color
-            gallery[list(gallery.keys())[seat_index]]['color'] = seat_color
-            gallery[list(gallery.keys())[seat_index]]['bought'] = True
+            gallery[seat_name]['color'] = seat_color
+            gallery[seat_name]['bought'] = True
+            for trace in traces:
+                if trace.name == seat_name:
+                    trace.marker.color = seat_color
+                    break
+            # seat_index = seat_options.index(seat_name)
+            # traces[seat_index]['marker']['color'] = seat_color
+            # gallery[list(gallery.keys())[seat_index]]['color'] = seat_color
+            # gallery[list(gallery.keys())[seat_index]]['bought'] = True
 except:
     None
 # Plot seating layout
@@ -478,7 +486,7 @@ fig.update_layout(
         )
     ], hoverlabel=dict(
         font=dict(
-            size=20,
+            size=16,
             color="#B3A301"
         )
     ))
@@ -545,13 +553,15 @@ with col1:
 
     selected_seat = st.selectbox('select seat(s):', seat_options)
     if st.button('select seat(s)'):
-        seat_index = seat_options.index(selected_seat)
-        gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+        #seat_index = seat_options.index(selected_seat)
+        # gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+        gallery[selected_seat]['color'] = '#00FF00'  # green
         st.write("")
 
         if selected_seat not in st.session_state:
-            st.session_state[selected_seat] = gallery[list(
-                gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+            # st.session_state[selected_seat] = gallery[list(
+            #     gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+            st.session_state[selected_seat] = gallery[selected_seat]['color']
     if st.button('confirm seat(s)'):
         st.success(
             f"{selected_seat} successfully confirmed.", icon="✅")
@@ -577,7 +587,8 @@ with col2:
                         unsafe_allow_html=True)
             st.write(selected_seat)
             seat_index = seat_options.index(selected_seat)
-            st.write(gallery[list(gallery.keys())[seat_index]])
+            # st.write(gallery[list(gallery.keys())[seat_index]])
+            st.write(gallery[selected_seat])
     except:
         None
 
