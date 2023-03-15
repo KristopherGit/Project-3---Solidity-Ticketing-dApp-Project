@@ -17,6 +17,10 @@ import datetime
 import requests
 # Import venues info
 import venues
+# Import shutil, inspect, and importlib.util for file content copying (i.e. create unique event specific functions from venue.py function content)
+import shutil
+import inspect
+import importlib.util
 
 
 #########################################################
@@ -227,7 +231,10 @@ with col1:
         #eventForJSONInput = {"eventList": []}
 
         # package all event related variables into a dictionary for JSON submission & setup
+        # note all strings
+
         eventForJSONInput = {
+            "unique_id": f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.py',
             "eventName": eventNameNew,
             "venueName": venueNameNew,
             "dateTime": dateTimeNewString,
@@ -236,17 +243,12 @@ with col1:
             "smartContract": smartContractNew,
             "seatJSONBinURL": seatJSONBinURLNew
         }
-        # eventForJSONInput = {
-        #     "eventName": eventNameNew,
-        #     "venueName": venueNameNew,
-        #     "dateTime": dateTimeNewString,
-        #     "timeStamp": unixTimeStampNew,
-        #     "smartContract": smartContractNew
-        # }
 
         st.session_state.selected_venue = venueNameNew
         print(st.session_state.selected_venue)
 
+        selectedUniqueIDNewText = st.text(
+            f"Unique Id: {eventNameNew}_{venueNameNew}_{dateTimeNewString}.py")
         selectedEventNameNewText = st.text(f"Selected event: {eventNameNew}")
         selectedVenueNameNewText = st.text(f"Selected venue: {venueNameNew}")
         selectedDateTimeNewText = st.text(
@@ -256,8 +258,49 @@ with col1:
         selectedseatJSONBinURLNewText = st.text(
             f"Selected seat bin url: {seatJSONBinURLNew}")
 
+        # Function to create unique event .py file and functions based on event, venue and date data
+        # **** new added 03/15/2023
+        # **************
+
+        def create_unique_event_functions(event_name, venue_name, event_date):
+            # open and load venues_dictionary.json
+            with open("json/venues_dictionary.json", 'r') as file:
+                venues_dictionary = json.load(file)
+
+            # retrieve function names for selected venue
+            venue_functions = venues_dictionary[venue_name]
+
+            # generate .py file for unique functions
+            filename = f'event_venue_library/{event_name}_{venue_name}_{event_date}.py'
+            with open(filename, 'w') as file:
+                # write import statement
+                file.write(
+                    f"from venues import {', '.join(venue_functions.values())}\n\n")
+
+                # write function definitions
+                for function_name in venue_functions.values():
+                    spec = importlib.util.spec_from_file_location(
+                        "venues", "venues.py")
+                    module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(module)
+                    func = getattr(module, function_name)
+                    source = inspect.getsource(func)
+                    file.write(source)
+                    file.write('\n\n'
+                               )
+
+            # copy newly created .py file to the designated location (/event_venue_library/)
+            shutil.copy(filename, "event_venue_library/")
+
+            print(
+                f"Venue functions created for {event_name} at {venue_name} on {event_date}.")
+
+        # **** new added 03/15/2023
+        # **************
+
         st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
                     unsafe_allow_html=True)
+
         if st.button("Submit Event Details"):
             # with open("json/event_dictionary.json", "a") as file:
             with open("json/event_dictionary.json", "r") as file:
@@ -268,6 +311,11 @@ with col1:
             with open("json/event_dictionary.json", "w") as file:
                 json.dump(eventDictionary, file, indent=4)
                 # file.write("\n")
+            # create actual unique_id event, date and venue file (f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.py')
+            # def create_unique_event_functions(event_name, venue_name, event_date)
+            create_unique_event_functions(
+                eventNameNew, venueNameNew, dateTimeNewString)
+
             st.success(
                 "Event successfully added to event_dictionary.json database", icon="✅")
         st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
