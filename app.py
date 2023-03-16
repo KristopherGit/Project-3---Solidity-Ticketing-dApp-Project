@@ -474,7 +474,7 @@ fig.update_layout(
         size=18,
         color='#B3A301'
     ),
-    autosize=True, width=950, height=600, annotations=[
+    autosize=True, width=900, height=675, annotations=[
         dict(
             text="S T A G E",
             font=dict(

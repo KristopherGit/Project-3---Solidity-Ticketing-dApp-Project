@@ -290,7 +290,7 @@ with col1:
                                )
 
             # copy newly created .py file to the designated location (/event_venue_library/)
-            shutil.copy(filename, "event_venue_library/")
+            #shutil.copy(filename, "event_venue_library/")
 
             print(
                 f"Venue functions created for {event_name} at {venue_name} on {event_date}.")
@@ -371,70 +371,137 @@ with col1:
             tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
             st.write("Transaction receipt:", tx_receipt)
 
+        # new added 03/15/2023
+        # create code to get the 'unique_id' from the json/event_dictionary to get all info required to fill form to generate tickets
+        # function for obtaining all unique ids, therefore all scheduled events possible to autocomplete form more efficient
+
+        # def obtain_all_unique_ids():
+        #     with open("json/event_dictionary.json", 'r') as file:
+        #         data = json.load(file)
+        #         eventList = data["eventList"]
+        #         unique_ids = list(set(value["unique_id"]
+        #                           for value in eventList))
+        #         unique_ids.sort()
+        #         return unique_ids
+
+        # # call obtain_all_unique_ids
+        # masterUniqueIds = obtain_all_unique_ids()
+
+        # _unique_ids = st.selectbox(
+        #     "Select event (unique_id):", masterUniqueIds)
+
+        # create function to produce new dictionary that uses 'unique_id' as the key and value is dictionary of 'unique_id' properties/components
+        def obtain_all_unique_ids():
+            with open("json/event_dictionary.json", 'r') as file:
+                data = json.load(file)
+                eventList = data["eventList"]
+                unique_ids_dict = {}
+                for value in eventList:
+                    unique_id = value["unique_id"]
+                    unique_ids_dict[unique_id] = {
+                        "eventName": value["eventName"],
+                        "venueName": value["venueName"],
+                        "dateTime": value["dateTime"],
+                        "hourTime": value["hourTime"],
+                        "timeStamp": value["timeStamp"],
+                        "smartContract": value["smartContract"],
+                        "seatJSONBinURL": value["seatJSONBinURL"]
+                    }
+                print(unique_ids_dict)
+                return unique_ids_dict
+
+        # call the obtain all unique ids function and save returned dictionary to variable
+        masterUniqueIdsDictionary = obtain_all_unique_ids()
+
+        # create 'unique_Ids' list based on the above dictionary & sort() alphabetically
+        masterUniqueIdsList = list(masterUniqueIdsDictionary.keys())
+        masterUniqueIdsList.sort()
+
+        _uniqueId = st.selectbox(
+            "Select event (unique_id): ", masterUniqueIdsList)
+
+        if _uniqueId:
+            _uniqueIdValues = masterUniqueIdsDictionary[_uniqueId]
+            _eventName = _uniqueIdValues["eventName"]
+            _venueName = _uniqueIdValues["venueName"]
+            _dateTime = _uniqueIdValues["dateTime"]
+            _hourTime = _uniqueIdValues["hourTime"]
+            _timeStamp = _uniqueIdValues["timeStamp"]
+            _smartContract = _uniqueIdValues["smartContract"]
+            _seatContract = _uniqueIdValues["seatJSONBinURL"]
+
+        # Form text_input & unique_id selected output prior to batch minting nft ticket
         _ownerFirstName = st.text_input(
-            "Enter string memory _ownerFirstName", "First Name")
+            "enter string memory _ownerFirstName", "First Name")
         _ownerLastName = st.text_input(
-            "Enter string memory _ownerLastName", "Last Name")
+            "enter string memory _ownerLastName", "Last Name")
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _eventName: <span style='color:green'> {}</span></p>".format(_eventName),
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _venueName: <span style='color:green'> {}</span></p>".format(_venueName),
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _concertDate [UNIX Format]: <span style='color:green'> {}</span></p>".format(_timeStamp),
+                    unsafe_allow_html=True)
+
         # _eventName = st.text_input(
         #    "Enter string memory _eventName", "Event Name")
-        _eventName = st.selectbox(
-            "Select string memory _eventName", masterEventsList)
+        # _eventName = st.selectbox(
+        #     "Select string memory _eventName", masterEventsList)
 
         # function for obtaining all possible venues for a unique event (each 'event' is a dictionary structure, and are entered as a list where the entire list is a value corresponding to the "eventList" key)
-        def obtain_all_venues_for_event(eventName):
-            with open("json/event_dictionary.json", "r") as file:
-                data = json.load(file)
-                # if not isinstance(data, list):
-                eventList = data["eventList"]
-                venues = list(
-                    set(value["venueName"] for value in eventList if value['eventName'] == eventName))
-                venues.sort()
-                return venues
+        # def obtain_all_venues_for_event(eventName):
+        #     with open("json/event_dictionary.json", "r") as file:
+        #         data = json.load(file)
+        #         # if not isinstance(data, list):
+        #         eventList = data["eventList"]
+        #         venues = list(
+        #             set(value["venueName"] for value in eventList if value['eventName'] == eventName))
+        #         venues.sort()
+        #         return venues
 
-        # use the 'obtain_all_venues_for_event' function to obtain list of unique venues pertaining to the specific '_eventName'
-        masterVenuesList = obtain_all_venues_for_event(_eventName)
+        # # use the 'obtain_all_venues_for_event' function to obtain list of unique venues pertaining to the specific '_eventName'
+        # masterVenuesList = obtain_all_venues_for_event(_eventName)
 
-        # selectbox list of all venues pertaining to above _eventName
-        _venueName = st.selectbox(
-            "Select string memory _venueName", masterVenuesList)
+        # # selectbox list of all venues pertaining to above _eventName
+        # _venueName = st.selectbox(
+        #     "Select string memory _venueName", masterVenuesList)
 
-        # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
-        def obtain_date_for_event_venue(venueName):
-            with open("json/event_dictionary.json", "r") as file:
-                data = json.load(file)
-                eventList = data["eventList"]
-                dates = list(
-                    set(value["timeStamp"] for value in eventList if value['venueName'] == venueName))
-                dates.sort()
-                return dates
+        # # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+        # def obtain_date_for_event_venue(venueName):
+        #     with open("json/event_dictionary.json", "r") as file:
+        #         data = json.load(file)
+        #         eventList = data["eventList"]
+        #         dates = list(
+        #             set(value["timeStamp"] for value in eventList if value['venueName'] == venueName))
+        #         dates.sort()
+        #         return dates
 
-        def obtain_date_string_for_event_venue(venueName):
-            with open("json/event_dictionary.json", "r") as file:
-                data = json.load(file)
-                eventList = data["eventList"]
-                dates = list(
-                    set(value["dateTime"] for value in eventList if value["venueName"] == venueName))
-                dates.sort()
-                return dates
+        # def obtain_date_string_for_event_venue(venueName):
+        #     with open("json/event_dictionary.json", "r") as file:
+        #         data = json.load(file)
+        #         eventList = data["eventList"]
+        #         dates = list(
+        #             set(value["dateTime"] for value in eventList if value["venueName"] == venueName))
+        #         dates.sort()
+        #         return dates
 
-        # use the 'obtain_date_for_event_venue' function to obtain the unique timeStamp (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
-        masterDatesList = obtain_date_for_event_venue(_venueName)
+        # # use the 'obtain_date_for_event_venue' function to obtain the unique timeStamp (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
+        # masterDatesList = obtain_date_for_event_venue(_venueName)
 
-        # convert date string elements to int
-        masterDatesList = [int(date) for date in masterDatesList]
+        # # convert date string elements to int
+        # masterDatesList = [int(date) for date in masterDatesList]
 
-        # convert all masterDatesList items from string to int
-        # for date in masterDatesList:
-        #     print(type(date))
-        #     date_int = int(date)
-        #     print(type(date_int))
-        #     masterDatesList.remove(date)
-        #     masterDatesList.append(date_int)
-        #     masterDatesList.sort()
+        # # convert all masterDatesList items from string to int
+        # # for date in masterDatesList:
+        # #     print(type(date))
+        # #     date_int = int(date)
+        # #     print(type(date_int))
+        # #     masterDatesList.remove(date)
+        # #     masterDatesList.append(date_int)
+        # #     masterDatesList.sort()
 
-        # selectbox list for all dates pertaining to above _venueName (and hence, _eventName)
-        _concertDate = st.selectbox(
-            "Select uint _concertDate [UNIX Format]", masterDatesList)
+        # # selectbox list for all dates pertaining to above _venueName (and hence, _eventName)
+        # _concertDate = st.selectbox(
+        #     "Select uint _concertDate [UNIX Format]", masterDatesList)
 
         # _venueName = st.selectbox(
         #     "Select string memory _eventName", masterVenuesList)
@@ -646,7 +713,7 @@ for ticketId, info in ticket_holders.items():
 
         # Fetch UNIX event date stamp from Solidity and convert to formatted_date_time format ('%m/%d/%Y %H:%M:%S')
         date_time = datetime.datetime.fromtimestamp(
-            _concertDate)  # UNIX timestamp variable inputs here
+            int(_timeStamp))  # UNIX timestamp variable inputs here
         formatted_date_time = date_time.strftime('%m/%d/%Y %H:%M:%S')
 
         # Create aisle, row & seat text variables
