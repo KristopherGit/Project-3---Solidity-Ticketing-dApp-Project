@@ -1,7 +1,7 @@
 {
     "eventList": [
-        {	
-	    "unique_id": "Gorillaz_Massey Hall_2022-08-10.py",
+        {
+            "unique_id": "Gorillaz_Massey_Hall_2022-08-10.py",
             "eventName": "Gorillaz",
             "venueName": "Massey Hall",
             "dateTime": "2022-08-10",
@@ -11,12 +11,32 @@
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
         },
         {
-            "unique_id": "Massive Attack_Massey Hall_2023-05-20.py",
+            "unique_id": "Massive_Attack_Massey_Hall_2023-05-20.py",
             "eventName": "Massive Attack",
             "venueName": "Massey Hall",
             "dateTime": "2023-05-20",
             "hourTime": "19:00",
             "timeStamp": "1684623600",
+            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+        },
+        {
+            "unique_id": "Led Zeppelin_Massey Hall_2023-07-06.json",
+            "eventName": "Led Zeppelin",
+            "venueName": "Massey Hall",
+            "dateTime": "2023-07-06",
+            "hourTime": "20:00",
+            "timeStamp": "1688688000",
+            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+        },
+        {
+            "unique_id": "Massive Attack_Massey Hall_2023-01-01.json",
+            "eventName": "Massive Attack",
+            "venueName": "Massey Hall",
+            "dateTime": "2023-01-01",
+            "hourTime": "20:00",
+            "timeStamp": "1672621200",
             "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
         }
