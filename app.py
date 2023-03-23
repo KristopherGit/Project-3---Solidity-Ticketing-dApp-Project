@@ -285,10 +285,10 @@ def concert_layout(gallery):
         annotations=[
             dict(
                 text='STAGE',
-                x=center_x_value,
-                y=-2.5,
-                xanchor='center',
-                yanchor='top',
+                # x=center_x_value,
+                # y=-2.5,
+                # xanchor='center',
+                # yanchor='top',
                 showarrow=False,
             )
         ],
@@ -482,7 +482,8 @@ fig.update_layout(
                 family='monospace',
                 color='#B3A301'
             ),
-            y=0.25
+            x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+            y=min(traces[-2].y) + 2
         )
     ], hoverlabel=dict(
         font=dict(
