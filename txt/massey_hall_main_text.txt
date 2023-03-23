@@ -1,0 +1,5 @@
+gallery = {
+    'Sec 206 Row G Seat 15': {'name': 'Sec 206 Row G Seat 15', 'sec': '206', 'row': 'G', 'seat number': '15', 'x': 14, 'y': 6, 'color': '#010C80', 'minted': False, 'tokenID': None, 'price': 0, 'bought': False},
+    'Sec 206 Row G Seat 16': {'name': 'Sec 206 Row G Seat 16', 'sec': '206', 'row': 'G', 'seat number': '16', 'x': 15, 'y': 6, 'color': '#010C80', 'minted': False, 'tokenID': None, 'price': 0, 'bought': False},
+    'Sec 206 Row G Seat 17': {'name': 'Sec 206 Row G Seat 17', 'sec': '206', 'row': 'G', 'seat number': '17', 'x': 16, 'y': 6, 'color': '#010C80', 'minted': False, 'tokenID': None, 'price': 0, 'bought': False},
+}
