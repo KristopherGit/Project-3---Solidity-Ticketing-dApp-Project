@@ -1,8 +1,8 @@
 {
     "Massey Hall": {
-        "Massey Hall Gallery Section": "create_venue_massey_hall_gallery",
+        "Massey Hall Main Section": "create_venue_massey_hall_main",
         "Massey Hall Balcony Section": "create_venue_massey_hall_balcony",
-        "Massey Hall Mezzanine Section": "create_venue_massey_hall_mezzanine"
+        "Massey Hall Gallery Section": "create_venue_massey_hall_gallery"
     },
 
 	"Opera House": {
