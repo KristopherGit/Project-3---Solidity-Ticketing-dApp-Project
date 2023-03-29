@@ -280,7 +280,7 @@ with col1:
         # print(unique_sec)
 
         # create st.number_input boxes for each unique 'sec' value
-        for unique_sec in unique_sections:
+        for unique_sec in sorted(unique_sections):
             price = st.number_input(
                 f"Enter price for section {unique_sec}", value=0)
             # update price value for all seats with the current 'sec' value
