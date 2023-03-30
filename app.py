@@ -222,17 +222,36 @@ with col2:
     # _sectionName variable represents selectbox list choice of all sections pertaining to the corresponding _venueName input
     _sectionName = st.selectbox(
         "seating map section:", masterSectionDict.keys())
-    # print(_sectionName)
+    print("_sectionName: ", _sectionName)
 
     # connect to and populate the venue.py saved venue layouts to create visual representation of available & purchased seats for the above chosen _venueName (as a function of _eventName)
     # print(masterSectionDict[_sectionName])
     # print(type(masterSectionDict[_sectionName]))
 
     sectionFunctionNameString = masterSectionDict[_sectionName]
-    # print("sectionFunctionNameString", sectionFunctionNameString)
+    print("sectionFunctionNameString: ", sectionFunctionNameString)
 
     venueSectionFunctionName = getattr(ven, sectionFunctionNameString)
-    # print(type(venueSectionFunctionName))
+    print(type(venueSectionFunctionName))
+
+    # Obtain gallery={} equivalent dictionary data from .json file to be passed into the venues.py 'create_..' functions to be converted to gallery = {} below
+    # match section name from the unique_Id matching .json file to the _sectionName (key) and use that to obtain the values sectionFunctionNameString (value)
+    # ****** added 03/30/2023
+    @st.cache(allow_output_mutation=True)
+    def obtain_venue_section_json_dictionary(_sectionName, _uniqueId):
+        with open(f"event_venue_library/{_uniqueId}", "r") as file:
+            data = json.load(file)
+            if _sectionName in data["venueSections"][0]:
+                return data["venueSections"][0][_sectionName]
+            else:
+                return None
+    # ****** added 03/30/2023
+
+    # call the 'obtain_venue_section_json_dictionary' and map dictionary result to dictionary variable to be taken in as a parameter to the venues.py unique function
+    galleryDictInput = obtain_venue_section_json_dictionary(
+        _sectionName, _uniqueId)
+    #print("galleryDictInput: ", galleryDictInput)
+
 
 # Show concert_layout header
 with col1:
@@ -246,7 +265,7 @@ with col1:
 # Import gallery & traces from venues.py as venue_massey_hall
 # gallery, traces = ven.create_venue_massey_hall_gallery()
 try:
-    gallery, traces = venueSectionFunctionName()
+    gallery, traces = venueSectionFunctionName(galleryDictInput)
     #print("gallery:", gallery)
     #print("traces:", traces)
 except:
