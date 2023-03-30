@@ -195,8 +195,10 @@ with col1:
 
         # create session_state to save selectedVenueNameNew for multiple refreshers
         # if 'venueNameNew' not in st.session_state:
-        if 'selected_venue' not in st.session_state:
-            st.session_state.selected_venue = venueNamesJSONList[0]
+
+        # removed 03/29/2023 @ 7:17 PM -> cluttering up the event_dictionary.json
+        # if 'selected_venue' not in st.session_state:
+        #    st.session_state.selected_venue = venueNamesJSONList[0]
 
         # event and venue generator admin user text input requirements (eventNameNew, venueNameNew, dateTimeNew, hourTimeNew, smartContractNew)
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Event & Venue Generator:</b></u></p>",
@@ -235,7 +237,8 @@ with col1:
         # note all strings
 
         eventForJSONInput = {
-            "unique_id": f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.json',
+            # "unique_id": f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.json',
+            "unique_id": f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json',
             "eventName": eventNameNew,
             "venueName": venueNameNew,
             "dateTime": dateTimeNewString,

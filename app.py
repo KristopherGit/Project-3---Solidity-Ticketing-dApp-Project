@@ -99,7 +99,7 @@ def add_logo(logo_path, width, height):
 
 # Sidebar Main Logo Image
 st.sidebar.image(
-    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=500, height=500))
+    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=550, height=550))
 
 #########################################################
 
@@ -148,22 +148,40 @@ with col2:
 
     # function to fetch all dates for a particular event & venue combination
     @st.cache(allow_output_mutation=True)
-    def obtain_date_string_for_event_venue(venueName):
+    def obtain_date_string_for_event_venue(_eventName, _venueName):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
             eventList = data["eventList"]
             dates = list(
-                set(value["dateTime"] for value in eventList if value["venueName"] == venueName))
+                set(value["dateTime"] for value in eventList if value["venueName"] == _venueName and value["eventName"] == _eventName))
             dates.sort()
             return dates
 
     # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
-    masterDatesList = obtain_date_string_for_event_venue(_venueName)
+    masterDatesList = obtain_date_string_for_event_venue(
+        _eventName, _venueName)
 
     # _concertDate variable represents selectbox list choice of all dates pertaining to the above _venueName (and hence, _eventName)
     _concertDate = st.selectbox("select event date:", masterDatesList)
 
+    # retrieve the "unique_id" based on unique "_eventName", "_venueName" and "_concertDate"
+    @st.cache(allow_output_mutation=True)
+    def obtain_unique_id(_eventName, _venueName, _concertDate):
+        with open("json/event_dictionary.json", "r") as file:
+            data = json.load(file)
+            eventList = data["eventList"]
+            uniqueids = list(set(value["unique_id"] for value in eventList if value["eventName"] ==
+                             _eventName and value["venueName"] == _venueName and value["dateTime"] == _concertDate))
+            return uniqueids
+
+    # retrieve "_uniqueIdList" for "unique_id" then retrieve what should be the only item in the list at index 0
+    _uniqueIdList = obtain_unique_id(_eventName, _venueName, _concertDate)
+    print("_uniqueIdList: ", _uniqueIdList)
+    _uniqueId = _uniqueIdList[0]
+    print("_uniqueId: ", _uniqueId)
+
     # function that will fetch the 'seat JSONbin url' that corresponds to its associated _eventName, _venueName & _concertDate above
+
     @st.cache(allow_output_mutation=True)
     def obtain_seat_json_for_event(_eventName, _venueName, _concertDate):
         with open("json/event_dictionary.json", "r") as file:
@@ -229,7 +247,7 @@ with col1:
 # gallery, traces = ven.create_venue_massey_hall_gallery()
 try:
     gallery, traces = venueSectionFunctionName()
-    print("gallery:", gallery)
+    #print("gallery:", gallery)
     #print("traces:", traces)
 except:
     st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
