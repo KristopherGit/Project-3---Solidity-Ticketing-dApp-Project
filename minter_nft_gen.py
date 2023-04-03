@@ -653,7 +653,7 @@ with col2:
                 if hasattr(venues, section_function_name):
                     # add section/function to existing venue
                     section_function = getattr(venues, section_function_name)
-                    venues_dictionary_json[venue_name][section_name] = section_function.__name__
+                    venues_dictionary_json[venue_name][section_name] = section_function_name
                     # venues_dictionary_json[venue_name][section_name] = getattr(
                     #    venues, section_function_name)
                     st.write(
@@ -667,7 +667,7 @@ with col2:
             if hasattr(venues, section_function_name):
                 # add new venue with corresponding new section/function
                 venues_dictionary_json[venue_name] = {
-                    section_name: getattr(venues, section_function_name.__name__)}
+                    section_name: section_function_name}
                 st.write(
                     f"Added venue '{venue_name}' with section '{section_name}' and function '{section_function_name}'.")
             else:

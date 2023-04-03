@@ -1,37 +1,7 @@
 {
     "eventList": [
         {
-            "unique_id": "Led Zeppelin_Massey Hall_2023-07-06.json",
-            "eventName": "Led Zeppelin",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-07-06",
-            "hourTime": "20:00",
-            "timeStamp": "1688688000",
-            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Massive Attack_Massey Hall_2023-01-01.json",
-            "eventName": "Massive Attack",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-01-01",
-            "hourTime": "20:00",
-            "timeStamp": "1672621200",
-            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Depeche Mode_Massey Hall_2023-04-07.json",
-            "eventName": "Depeche Mode",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-04-07",
-            "hourTime": "20:00",
-            "timeStamp": "1680912000",
-            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Radiohead_Massey Hall_2023-04-07.json",
+            "unique_id": "Radiohead_Massey_Hall_2023-04-07.json",
             "eventName": "Radiohead",
             "venueName": "Massey Hall",
             "dateTime": "2023-04-07",
@@ -47,6 +17,26 @@
             "dateTime": "2023-09-15",
             "hourTime": "20:00",
             "timeStamp": "1694822400",
+            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+        },
+        {
+            "unique_id": "Massive_Attack_Massey_Hall_2023-10-13.json",
+            "eventName": "Massive Attack",
+            "venueName": "Massey Hall",
+            "dateTime": "2023-10-13",
+            "hourTime": "20:00",
+            "timeStamp": "1697241600",
+            "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+        },
+        {
+            "unique_id": "Mac_Demarco_Danforth_Music_Hall_2023-06-17.json",
+            "eventName": "Mac Demarco",
+            "venueName": "Danforth Music Hall",
+            "dateTime": "2023-06-17",
+            "hourTime": "20:00",
+            "timeStamp": "1687046400",
             "smartContract": "0x85A15452938D53a2a7DAE730C4f1489dC0a337e1",
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
         }

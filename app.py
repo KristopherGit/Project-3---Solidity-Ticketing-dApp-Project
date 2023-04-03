@@ -147,7 +147,7 @@ with col2:
     _venueName = st.selectbox("select venue:", masterVenuesList)
 
     # function to fetch all dates for a particular event & venue combination
-    @st.cache(allow_output_mutation=True)
+    # @st.cache(allow_output_mutation=True)
     def obtain_date_string_for_event_venue(_eventName, _venueName):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
