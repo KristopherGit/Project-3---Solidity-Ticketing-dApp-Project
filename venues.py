@@ -350,6 +350,410 @@ def create_venue_danforth_music_hall_main_section(galleryDictInput):
     # Append the bottom line trace to the list of traces
     traces.append(bottom_line)
 
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Danforth Music Hall Main Section - Test Function"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='top center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Danforth Music Hall Main Section - Test Function"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=True, width=900, height=675, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                y=min(traces[-2].y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    return gallery, traces, fig
+
+
+def create_venue_elgin_theatre_orchestra_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Remove unnecessary traces to shape venue gallery layout
+
+    # Create stage layout as a half moon trace figure
+
+    # def stage_y_values(x):
+    #     return 6 * np.sin(x * np.pi / 41) - 4
+
+    # x = np.array(list(range(42)))
+    # y = stage_y_values(x)
+
+    stage = go.Scatter(
+        x=[17, 17, 31, 31, 17],
+        y=[35, 39, 39, 35, 35],
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        text='STAGE',
+        textposition='middle center',
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage)
+
+    # Add lines to separate rows for aesthetic purposes
+    rowline1 = go.Scatter(
+        x=[16, 16],
+        y=[5, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    rowline2 = go.Scatter(
+        x=[32, 32],
+        y=[5, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    # create list of alphabetical row text labels & their coordinates
+    text_labels = ['AA', 'BB', 'CC', 'DD', 'EE',
+                   'FF', 'GG', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W']
+    text_coords = [(17, 32), (17, 31), (17, 30), (12, 29),
+                   (11, 28), (11, 27), (10, 26), (9, 25), (8, 24), (8, 23), (15, 22), (15, 21), (4, 20), (3, 19), (2, 18), (1, 17), (1, 16), (1, 15), (1, 14), (1, 13), (1, 12), (1, 11), (4, 10), (3, 9), (2, 8), (1, 7), (1, 6), (1, 5)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # # Append the stage trace to the list of traces
+    # traces.append(stage)
+
+    # Update stage formatting
+    # stage.update(fill='toself', fillcolor='#333333',
+    #              line=dict(width=4, color='#333333'))
+
+    # Add a contour line to the bottom of the half-moon stage outline
+    # bottom_line = go.Scatter(
+    #     x=list(range(42)),
+    #     y=[min(y) for i in range(42)],
+    #     mode='lines',
+    #     line=dict(width=2, color='#333333'),
+    # )
+
+    # # Append the bottom line trace to the list of traces
+    # traces.append(bottom_line)
+
+    # return {
+    #     'gallery': gallery,
+    #     'traces' : traces
+    # }
+
+    # Calculate midpoint of the x-range/y-range fo the 'stage' trace object
+
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Elgin Theatre Orchestra Section - Test Function"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Elgin Theatre Orchestra Section - Test Function"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=True, width=900, height=675, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # y=min(traces[-2].y) + 2
+                x=(max(stage.x) - min(stage.x)) / 2 + min(stage.x),
+                y=(max(stage.y) - min(stage.y)) / 2 + min(stage.y)
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    return gallery, traces, fig
+
+
+def create_venue_elgin_theatre_mezzanine_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Remove unnecessary traces to shape venue gallery layout
+
+    # Create stage layout as a half moon trace figure
+
+    def stage_y_values(x):
+        return 6 * np.sin(x * np.pi / 41) - 4
+
+    x = np.array(list(range(42)))
+    y = stage_y_values(x)
+
+    stage = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#B3A301',
+        text=['STAGE'],
+        textposition='middle center',
+        textfont=dict(color='white')  # set the text color to white
+    )
+
+    # Append the stage trace to the list of traces
+    traces.append(stage)
+
+    # Update stage formatting
+    stage.update(fill='toself', fillcolor='#333333',
+                 line=dict(width=4, color='#333333'))
+
+    # Add a contour line to the bottom of the half-moon stage outline
+    bottom_line = go.Scatter(
+        x=list(range(42)),
+        y=[min(y) for i in range(42)],
+        mode='lines',
+        line=dict(width=2, color='#333333'),
+    )
+
+    # Append the bottom line trace to the list of traces
+    traces.append(bottom_line)
+
+    # return {
+    #     'gallery': gallery,
+    #     'traces' : traces
+    # }
+    return gallery, traces
+
+
+def create_venue_elgin_theatre_balcony_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Remove unnecessary traces to shape venue gallery layout
+
+    # Create stage layout as a half moon trace figure
+
+    def stage_y_values(x):
+        return 6 * np.sin(x * np.pi / 41) - 4
+
+    x = np.array(list(range(42)))
+    y = stage_y_values(x)
+
+    stage = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#B3A301',
+        text=['STAGE'],
+        textposition='middle center',
+        textfont=dict(color='white')  # set the text color to white
+    )
+
+    # Append the stage trace to the list of traces
+    traces.append(stage)
+
+    # Update stage formatting
+    stage.update(fill='toself', fillcolor='#333333',
+                 line=dict(width=4, color='#333333'))
+
+    # Add a contour line to the bottom of the half-moon stage outline
+    bottom_line = go.Scatter(
+        x=list(range(42)),
+        y=[min(y) for i in range(42)],
+        mode='lines',
+        line=dict(width=2, color='#333333'),
+    )
+
+    # Append the bottom line trace to the list of traces
+    traces.append(bottom_line)
+
     # return {
     #     'gallery': gallery,
     #     'traces' : traces

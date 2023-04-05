@@ -4,10 +4,12 @@
         "Massey Hall Balcony Section": "create_venue_massey_hall_balcony",
         "Massey Hall Gallery Section": "create_venue_massey_hall_gallery"
     },
-    "Opera House": {
-        "Opera House General Admission": "create_venue_opera_house_gen_asm"
-    },
     "Danforth Music Hall": {
         "Danforth Music Hall Main Section": "create_venue_danforth_music_hall_main_section"
+    },
+    "Elgin Theatre": {
+        "Elgin Theatre Orchestra Section": "create_venue_elgin_theatre_orchestra_section",
+        "Elgin Theatre Mezzanine Section": "create_venue_elgin_theatre_mezzanine_section",
+        "Elgin Theatre Balcony Section": "create_venue_elgin_theatre_balcony_section"
     }
 }
