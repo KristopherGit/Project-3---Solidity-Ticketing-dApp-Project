@@ -162,7 +162,7 @@ with col2:
         _eventName, _venueName)
 
     # _concertDate variable represents selectbox list choice of all dates pertaining to the above _venueName (and hence, _eventName)
-    _concertDate = st.selectbox("select event date:", masterDatesList)
+    _concertDate = st.selectbox("event date:", masterDatesList)
 
     # retrieve the "unique_id" based on unique "_eventName", "_venueName" and "_concertDate"
     @st.cache(allow_output_mutation=True)
@@ -462,23 +462,27 @@ def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address
 with col1:
 
     selected_seat = st.selectbox('select seat(s):', seat_options)
-    if st.button('select seat(s)'):
-        #seat_index = seat_options.index(selected_seat)
-        # gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
-        gallery[selected_seat]['color'] = '#00FF00'  # green
-        st.write("")
 
-        if selected_seat not in st.session_state:
-            # st.session_state[selected_seat] = gallery[list(
-            #     gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
-            st.session_state[selected_seat] = gallery[selected_seat]['color']
-    if st.button('confirm seat(s)'):
-        st.success(
-            f"{selected_seat} successfully confirmed.", icon="✅")
-        st.write()
+    button_container_1 = st.container()
+    with button_container_1:
 
-    if st.button('clear all selected seat(s)'):
-        st.session_state.clear()
+        if st.button('select seat(s)'):
+            #seat_index = seat_options.index(selected_seat)
+            # gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+            gallery[selected_seat]['color'] = '#00FF00'  # green
+            st.write("")
+
+            if selected_seat not in st.session_state:
+                # st.session_state[selected_seat] = gallery[list(
+                #     gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
+                st.session_state[selected_seat] = gallery[selected_seat]['color']
+        if st.button('confirm seat(s)'):
+            st.success(
+                f"{selected_seat} successfully confirmed.", icon="✅")
+            st.write()
+
+        if st.button('clear all selected seat(s)'):
+            st.session_state.clear()
 
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
@@ -498,7 +502,7 @@ with col2:
             st.write(selected_seat)
             seat_index = seat_options.index(selected_seat)
             # st.write(gallery[list(gallery.keys())[seat_index]])
-            st.write(gallery[selected_seat])
+            st.write(gallery[selected_seat], expanded=False)
     except:
         None
 
