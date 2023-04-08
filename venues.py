@@ -14,37 +14,7 @@ def create_venue_massey_hall_main(galleryDictInput):
     gallery = {}
     gallery = galleryDictInput
 
-    # Instantiate each seat in a for-loop for each x,y-coord with attributes including: {x, y, name, price, bought=<boolean>, color=<#010C80>, owner_hash=address}
-    # for x in range(57):
-    #     for y in range(28):
-    #         # Create a dictionary for the current seat
-    #         seat = {
-    #             'aisle': x,
-    #             'row': y,
-    #             'name': f'{x},{y}',
-    #             # 'price': 71000000000000000,
-    #             # 'bought': False,
-    #             'color': '#1E90FF'
-    #         }
-    #         # Add the seat to the gallery dictionary
-    #         gallery[seat['name']] = seat
-
-    #########################################################
-
     # Create a list of scatter traces to represent the seats in the gallery
-    # traces = []
-    # for seat_number, seat in gallery.items():
-    #     color = '#1E90FF'
-    #     trace = go.Scatter(
-    #         x=[seat['aisle']],
-    #         y=[seat['row']],
-    #         mode='markers',
-    #         marker=dict(size=6, color=color),
-    #         textfont=dict(
-    #             size=20
-    #         )
-    #     )
-    #     traces.append(trace)
     traces = []
     for seat_number, seat in gallery.items():
         color = '#1E90FF'
@@ -63,41 +33,233 @@ def create_venue_massey_hall_main(galleryDictInput):
         traces.append(trace)
 
     #########################################################
+    # create list of alphabetical row text labels & their coordinates
 
-    # Remove unnecessary traces to shape venue gallery layout
+    text_labels = ['100', '104', '106', '101', '103', '105', '102', 'A', 'B', 'C', 'D', 'E',
+                   'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'SRO', 'A', 'B', 'C', 'D', 'SRO', 'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'E', 'F']
+    text_coords = [(7, 9), (14, 21), (4, 1), (56, 1), (49, 21), (7, 33), (53, 33), (9, 2), (9, 3), (9, 4), (9, 5), (9, 6),
+                   (9, 7), (9, 8), (9, 9), (9, 10), (9, 11), (9, 12), (10, 14), (15, 16), (17, 19), (17, 20), (17, 21), (18, 22), (19, 23), (20, 24), (6, 3), (5, 3), (4, 3), (3, 3), (1, 3), (54, 3), (55, 3), (56, 3), (57, 3), (59, 3), (45, 19), (46, 20), (45, 21), (45, 22), (44, 23), (44, 24), (8, 22), (6, 22), (5, 23), (4, 24), (3, 25), (3, 27), (52, 22), (54, 22), (55, 23), (56, 24), (56, 26), (56, 28)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
 
-    # to_remove_2 = [29*28+i for i in range(28)]
-    # # Sort the indices in reverse order to avoid shifting
-    # to_remove_2.sort(reverse=True)
-    # # Remove the seats from the list
-    # for index in to_remove_2:
-    #     traces.pop(index)
+    # Add row lines to venue layout
+    rowline1 = go.Scatter(
+        x=[30, 30],
+        y=[2, 16],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
 
-    # to_remove_3 = [28*28+i for i in range(28)]
-    # # Sort the indices in reverse order to avoid shifting
-    # to_remove_3.sort(reverse=True)
-    # # Remove the seats from the list
-    # for index in to_remove_3:
-    #     traces.pop(index)
+    traces.append(rowline1)
 
-    # to_remove_4 = [27*28+i for i in range(28)]
-    # # Sort the indices in reverse order to avoid shifting
-    # to_remove_4.sort(reverse=True)
-    # # Remove the seats from the list
-    # for index in to_remove_4:
-    #     traces.pop(index)
+    rowline2 = go.Scatter(
+        x=[8, 8],
+        y=[1, 8],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
 
-    # seats_to_remove = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 51, 52, 53, 54, 55, 56, 74, 79, 80, 81, 82, 83, 84, 101, 102, 108, 109, 110, 111, 112, 129, 137, 138, 139, 140, 156, 157, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 280, 281, 308, 309, 336, 337, 364, 365, 392, 393, 394, 420, 421, 422, 448, 449, 450, 476, 477, 478, 504, 505, 506, 532, 533, 534, 560, 561, 562, 563, 588, 589, 590, 591, 616, 617, 618, 619, 644, 645, 646, 647, 672, 673, 674, 675, 700, 701, 702, 703, 728, 729, 730, 731, 756, 757, 758, 759, 784, 785, 786, 787, 812, 813, 814, 815, 840, 841,
-    #                    842, 843, 868, 869, 870, 871, 896, 897, 898, 899, 924, 925, 926, 927, 952, 953, 954, 980, 981, 982, 1008, 1009, 1010, 1036, 1037, 1038, 1064, 1065, 1066, 1092, 1093, 1094, 1120, 1121, 1148, 1149, 1176, 1177, 1204, 1205, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1316, 1317, 1318, 1319, 1320, 1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1343, 1344, 1360, 1361, 1370, 1371, 1372, 1389, 1397, 1398, 1399, 1400, 1417, 1418, 1424, 1425, 1426, 1427, 1428, 1446, 1451, 1452, 1453, 1454, 1455, 1456, 1457, 1458, 1459, 1460, 1461, 1462, 1463, 1464, 1465, 1466, 1467, 1468, 1469, 1470, 1471, 1472, 1473, 1474, 1475, 1478, 1479, 1480, 1481, 1482, 1483, 1504, 1505, 1506, 1507, 1508, 1509, 1510, 1511]
+    traces.append(rowline2)
 
-    # # Remove the seats from the gallery
-    # for i in reversed(seats_to_remove):
-    #     traces.pop(i)
+    rowline3 = go.Scatter(
+        x=[8, 8],
+        y=[10, 17],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline3)
+
+    arrow_2 = go.Scatter(
+        x=[9],
+        y=[1],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_2)
+
+    arrow_3 = go.Scatter(
+        x=[9],
+        y=[17],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_3)
+
+    rowline4 = go.Scatter(
+        x=[8, 9],
+        y=[17, 17],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline4)
+
+    rowline5 = go.Scatter(
+        x=[8, 9],
+        y=[1, 1],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline5)
+
+    rowline6 = go.Scatter(
+        x=[16, 16],
+        y=[18, 25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline6)
+
+    arrow_4 = go.Scatter(
+        x=[17],
+        y=[18],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_4)
+
+    rowline7 = go.Scatter(
+        x=[16, 17],
+        y=[18, 18],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline7)
+
+    arrow_5 = go.Scatter(
+        x=[17],
+        y=[25],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_5)
+
+    rowline8 = go.Scatter(
+        x=[16, 17],
+        y=[25, 25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline8)
+
+    rowline9 = go.Scatter(
+        x=[47, 47],
+        y=[18, 25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline9)
+
+    arrow_6 = go.Scatter(
+        x=[46],
+        y=[25],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_6)
+
+    arrow_7 = go.Scatter(
+        x=[46],
+        y=[18],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_7)
+
+    rowline10 = go.Scatter(
+        x=[46, 47],
+        y=[18, 18],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline10)
+
+    rowline11 = go.Scatter(
+        x=[46, 47],
+        y=[25, 25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline11)
 
     # Create stage layout as a half moon trace figure
-
     def stage_y_values(x):
-        return 6 * np.sin(x * np.pi / 60) - 8
+        return 6 * np.sin(x * np.pi / 60) - 6
 
     x = np.array(list(range(61)))
     y = stage_y_values(x)
@@ -109,7 +271,7 @@ def create_venue_massey_hall_main(galleryDictInput):
         fill='toself',
         line=dict(width=4, color='#333333'),
         fillcolor='#B3A301',
-        text='STAGE',
+        text=['STAGE'],
         textposition='middle center',
         textfont=dict(color='white')  # set the text color to white
     )
@@ -132,19 +294,93 @@ def create_venue_massey_hall_main(galleryDictInput):
     # Append the bottom line trace to the list of traces
     traces.append(bottom_line)
 
-    # return {
-    #     'gallery': gallery,
-    #     'traces' : traces
-    # }
-    return gallery, traces
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Massey Hall Main"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Massey Hall Main"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=False, width=900, height=625, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                y=min(traces[-2].y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ),
+        margin=dict(
+            l=20,  # adjust the left margin
+            r=20,  # adjust the right margin
+            t=30,  # adjust the title margin
+            b=20,  # adjust the bottom margin
+        )
+    )
+
+    return gallery, traces, fig
 
 
 def create_venue_massey_hall_balcony(galleryDictInput):
     # Create a dictionary for the gallery with seat names as keys and seat dictionaries as values
     gallery = {}
     gallery = galleryDictInput
-
-    #########################################################
 
     # Create a list of scatter traces to represent the seats in the gallery
     traces = []
@@ -165,13 +401,606 @@ def create_venue_massey_hall_balcony(galleryDictInput):
         traces.append(trace)
 
     #########################################################
+    # create list of alphabetical row text labels & their coordinates
 
-    # Remove unnecessary traces to shape venue gallery layout
+    text_labels = ['209', '208', '208', '207 SRO', '207', '206', '204', '205', '203', 'SRO 203', '202', '202', '201', 'A', 'B', 'C', 'D', 'E',
+                   'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
+    text_coords = [(11, 7), (11, 17), (0, 28), (-1, 43), (15, 29), (26, 29), (40, 29), (33, 47), (51, 29), (67, 43), (66, 28), (55, 17), (55, 7), (8, 4), (7, 2), (6, 2),
+                   (5, 2), (4, 3), (3, 5), (2, 6), (8, 22), (7, 22), (6, 22), (5, 22), (4, 22), (3, 22), (2, 21), (9, 24), (8, 24), (7, 24), (6, 24), (5, 24), (4, 24), (3, 24), (18, 32), (18, 33), (18, 34), (18, 35), (18, 36), (18, 37), (18, 38), (18, 39), (15, 40), (14, 41), (33, 31), (33, 32), (33, 33), (33, 34), (33, 35), (33, 36), (33, 37), (33, 38), (48, 32), (48, 33), (48, 34), (48, 35), (48, 36), (48, 37), (48, 38), (48, 39), (49, 40), (52, 41), (57, 24), (58, 24), (59, 24), (60, 24), (61, 24), (62, 24), (63, 26), (58, 22), (59, 22), (60, 22), (61, 22), (62, 22), (63, 22), (64, 22), (58, 4), (59, 2), (60, 1), (61, 2), (62, 3), (63, 4), (64, 5)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # Sec 209 line
+    rowline1 = go.Scatter(
+        x=[9, 9],
+        y=[2, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    # Sec 209 arrow 1
+    arrow_1 = go.Scatter(
+        x=[8],
+        y=[2],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_1)
+
+    rowline2 = go.Scatter(
+        x=[8, 9],
+        y=[2, 2],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    # Sec 209 arrow 2
+    arrow_2 = go.Scatter(
+        x=[8],
+        y=[12],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_2)
+
+    rowline3 = go.Scatter(
+        x=[8, 9],
+        y=[12, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline3)
+
+    # Sec 208 line
+    rowline4 = go.Scatter(
+        x=[9, 9],
+        y=[13, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline4)
+
+    # Sec 208 arrow 3
+    arrow_3 = go.Scatter(
+        x=[8],
+        y=[13],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_3)
+
+    rowline5 = go.Scatter(
+        x=[8, 9],
+        y=[13, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline5)
+
+    # Sec 208 arrow 4
+    arrow_4 = go.Scatter(
+        x=[8],
+        y=[23],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_4)
+
+    rowline6 = go.Scatter(
+        x=[8, 9],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline6)
+
+    # Sec 208 b line
+    rowline7 = go.Scatter(
+        x=[2, 2],
+        y=[23, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline7)
+
+    # Sec 208 arrow 5
+    arrow_5 = go.Scatter(
+        x=[3],
+        y=[23],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_5)
+
+    rowline8 = go.Scatter(
+        x=[2, 3],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline8)
+
+    # Sec 208 arrow 6
+    arrow_6 = go.Scatter(
+        x=[3],
+        y=[34],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_6)
+
+    rowline9 = go.Scatter(
+        x=[2, 3],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline9)
+
+    # Sec 206 line
+    rowline10 = go.Scatter(
+        x=[20, 32],
+        y=[30, 30],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline10)
+
+    # Sec 206 arrow up
+    arrow_7 = go.Scatter(
+        x=[32],
+        y=[31],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_7)
+
+    rowline11 = go.Scatter(
+        x=[32, 32],
+        y=[30, 31],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline11)
+
+    # Sec 206 arrow up
+    arrow_8 = go.Scatter(
+        x=[20],
+        y=[31],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_8)
+
+    rowline12 = go.Scatter(
+        x=[20, 20],
+        y=[30, 31],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline12)
+
+    # Sec 204 line
+    rowline13 = go.Scatter(
+        x=[34, 46],
+        y=[30, 30],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline13)
+
+    # Sec 206 arrow up
+    arrow_9 = go.Scatter(
+        x=[34],
+        y=[31],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_9)
+
+    # Sec 206 arrow up
+    arrow_10 = go.Scatter(
+        x=[46],
+        y=[31],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_10)
+
+    # Sec 204 vertical short line
+    rowline14 = go.Scatter(
+        x=[34, 34],
+        y=[30, 31],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline14)
+
+    # Sec 204 vertical short line
+    rowline15 = go.Scatter(
+        x=[46, 46],
+        y=[30, 31],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline15)
+
+    # Sec 205 line
+    rowline16 = go.Scatter(
+        x=[19, 47],
+        y=[46, 46],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline16)
+
+    # Sec 205 arrow up
+    arrow_11 = go.Scatter(
+        x=[19],
+        y=[45],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_11)
+
+    # Sec 205 vertical short line
+    rowline17 = go.Scatter(
+        x=[19, 19],
+        y=[46, 45],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline17)
+
+    # Sec 205 arrow up
+    arrow_12 = go.Scatter(
+        x=[47],
+        y=[45],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_12)
+
+    # Sec 205 vertical short line
+    rowline18 = go.Scatter(
+        x=[47, 47],
+        y=[46, 45],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline18)
+
+    # Sec 202 line
+    rowline19 = go.Scatter(
+        x=[64, 64],
+        y=[24, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline19)
+
+    # Sec 202 arrow left
+    arrow_13 = go.Scatter(
+        x=[63],
+        y=[24],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_13)
+
+    # Sec 202 horizontal short line
+    rowline19 = go.Scatter(
+        x=[63, 64],
+        y=[24, 24],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline19)
+
+    # Sec 202 arrow left
+    arrow_14 = go.Scatter(
+        x=[63],
+        y=[34],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_14)
+
+    # Sec 202 horizontal short line
+    rowline20 = go.Scatter(
+        x=[63, 64],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline20)
+
+    # Sec 202 line B
+    rowline21 = go.Scatter(
+        x=[57, 57],
+        y=[13, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline21)
+
+    # Sec 202 arrow RIGHT B
+    arrow_15 = go.Scatter(
+        x=[58],
+        y=[13],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_15)
+
+    # Sec 202 horizontal short line
+    rowline22 = go.Scatter(
+        x=[57, 58],
+        y=[13, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline22)
+
+    # Sec 202 arrow RIGHT B
+    arrow_16 = go.Scatter(
+        x=[58],
+        y=[23],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_16)
+
+    # Sec 202 horizontal short line
+    rowline23 = go.Scatter(
+        x=[57, 58],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline23)
+
+    # Sec 201 line
+    rowline24 = go.Scatter(
+        x=[57, 57],
+        y=[1, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline24)
+
+    # Sec 201 arrow RIGHT
+    arrow_17 = go.Scatter(
+        x=[58],
+        y=[1],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_17)
+
+    # Sec 201 horizontal short line
+    rowline25 = go.Scatter(
+        x=[57, 58],
+        y=[1, 1],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline25)
+
+    # Sec 201 arrow RIGHT
+    arrow_18 = go.Scatter(
+        x=[58],
+        y=[12],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_18)
+
+    # Sec 201 horizontal short line
+    rowline26 = go.Scatter(
+        x=[57, 58],
+        y=[12, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline26)
 
     # Create stage layout as a half moon trace figure
 
     def stage_y_values(x):
-        return 6 * np.sin(x * np.pi / 65) - 4
+        return 6 * np.sin(x * np.pi / 65) - 3
 
     x = np.array(list(range(66)))
     y = stage_y_values(x)
@@ -206,11 +1035,86 @@ def create_venue_massey_hall_balcony(galleryDictInput):
     # Append the bottom line trace to the list of traces
     traces.append(bottom_line)
 
-    # return {
-    #     'gallery': gallery,
-    #     'traces' : traces
-    # }
-    return gallery, traces
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Massey Hall Balcony"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Massey Hall Balcony"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=False, width=900, height=625, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                y=min(traces[-2].y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ),
+        margin=dict(
+            l=20,  # adjust the left margin
+            r=20,  # adjust the right margin
+            t=30,  # adjust the title margin
+            b=20,  # adjust the bottom margin
+        )
+    )
+
+    return gallery, traces, fig
 
 
 def create_venue_massey_hall_gallery(galleryDictInput):
@@ -460,6 +1364,54 @@ def create_venue_danforth_music_hall_main_section(galleryDictInput):
     )
 
     traces.append(rowline9)
+
+    rowline10 = go.Scatter(
+        x=[13, 13],
+        y=[39, 47],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline10)
+
+    rowline11 = go.Scatter(
+        x=[14, 14],
+        y=[39, 47],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline11)
+
+    rowline12 = go.Scatter(
+        x=[27, 27],
+        y=[39, 47],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline12)
+
+    rowline13 = go.Scatter(
+        x=[28, 28],
+        y=[39, 47],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline13)
 
     # Create stage layout as a half moon trace figure
     def stage_y_values(x):
