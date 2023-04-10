@@ -1120,6 +1120,7 @@ def create_venue_massey_hall_balcony(galleryDictInput):
 def create_venue_massey_hall_gallery(galleryDictInput):
     #########################################################
 
+    # Create a dictionary for the gallery with seat names as keys and seat dictionaries as values
     gallery = {}
     gallery = galleryDictInput
 
@@ -1142,15 +1143,608 @@ def create_venue_massey_hall_gallery(galleryDictInput):
         traces.append(trace)
 
     #########################################################
+    # create list of alphabetical row text labels & their coordinates
 
-    # Remove unnecessary traces to shape venue gallery layout
+    text_labels = ['311', '310', '309', '308', '307', '305', '306', '304', '303', '302', '301', 'A', 'B', 'C', 'D', 'E',
+                   'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'L', 'A', 'B', 'C', 'D', 'E', 'F', 'G',                      'A', 'B', 'C', 'D', 'E', 'F', 'G',                      'A', 'B', 'C', 'D', 'E', 'F', 'G']
+    text_coords = [(11, 7), (11, 17), (-2, 31), (-2, 43), (26, 33), (42, 33), (34, 51), (70, 43), (70, 31), (57, 17), (57, 7), (7, 1), (6, 0), (5, 1), (4, 2), (3, 2), (2, 2), (1, 2), (7, 24), (6, 23), (5, 24), (4, 24), (3, 24), (2, 23), (1, 23), (7, 25), (6, 25), (5, 25), (4, 25), (3, 25), (2, 25), (1, 25), (7, 37), (6, 38), (5, 39), (4, 40), (3, 41), (2, 42), (1, 43),
+                   (34, 37), (34, 38), (34, 39), (34, 40), (34, 43), (34, 44), (34, 45), (34, 46), (34, 47), (34, 49), (61, 37), (62, 38), (63, 39), (64, 40), (65, 41), (66, 42), (67, 43),                      (61, 24), (62, 23), (63, 24), (64, 24), (65, 24), (66, 23), (67, 23),                 (61, 1), (62, 0), (63, 1), (64, 2), (65, 2), (66, 2), (67, 2)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # Sec 311 line
+    rowline1 = go.Scatter(
+        x=[9, 9],
+        y=[2, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    # Sec 311 arrow 1
+    arrow_1 = go.Scatter(
+        x=[8],
+        y=[2],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_1)
+
+    rowline2 = go.Scatter(
+        x=[8, 9],
+        y=[2, 2],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    # Sec 311 arrow 2
+    arrow_2 = go.Scatter(
+        x=[8],
+        y=[12],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_2)
+
+    rowline3 = go.Scatter(
+        x=[8, 9],
+        y=[12, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline3)
+
+    # Sec 310 line
+    rowline4 = go.Scatter(
+        x=[9, 9],
+        y=[13, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline4)
+
+    # Sec 310 arrow 3
+    arrow_3 = go.Scatter(
+        x=[8],
+        y=[13],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_3)
+
+    rowline5 = go.Scatter(
+        x=[8, 9],
+        y=[13, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline5)
+
+    # Sec 310 arrow 4
+    arrow_4 = go.Scatter(
+        x=[8],
+        y=[23],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_4)
+
+    rowline6 = go.Scatter(
+        x=[8, 9],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline6)
+
+    # Sec 309 b line
+    rowline7 = go.Scatter(
+        x=[0, 0],
+        y=[24, 39],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline7)
+
+    # Sec 309 arrow 5
+    arrow_5 = go.Scatter(
+        x=[1],
+        y=[24],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_5)
+
+    rowline8 = go.Scatter(
+        x=[0, 1],
+        y=[24, 24],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline8)
+
+    # Sec 309 arrow 6
+    arrow_6 = go.Scatter(
+        x=[1],
+        y=[39],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_6)
+
+    rowline9 = go.Scatter(
+        x=[0, 1],
+        y=[39, 39],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline9)
+
+    # Sec 307 line
+    rowline10 = go.Scatter(
+        x=[20, 32],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline10)
+
+    # Sec 206 arrow up
+    arrow_7 = go.Scatter(
+        x=[32],
+        y=[35],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_7)
+
+    rowline11 = go.Scatter(
+        x=[32, 32],
+        y=[34, 35],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline11)
+
+    # Sec 307 arrow up
+    arrow_8 = go.Scatter(
+        x=[20],
+        y=[35],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_8)
+
+    rowline12 = go.Scatter(
+        x=[20, 20],
+        y=[34, 35],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline12)
+
+    # Sec 305 line
+    rowline13 = go.Scatter(
+        x=[36, 48],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline13)
+
+    # Sec 305 arrow up
+    arrow_9 = go.Scatter(
+        x=[36],
+        y=[35],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_9)
+
+    # Sec 305 arrow up
+    arrow_10 = go.Scatter(
+        x=[48],
+        y=[35],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_10)
+
+    # Sec 305 vertical short line
+    rowline14 = go.Scatter(
+        x=[36, 36],
+        y=[34, 35],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline14)
+
+    # Sec 305 vertical short line
+    rowline15 = go.Scatter(
+        x=[48, 48],
+        y=[34, 35],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline15)
+
+    # Sec 306 line
+    rowline16 = go.Scatter(
+        x=[18, 50],
+        y=[50, 50],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline16)
+
+    # Sec 306 arrow down
+    arrow_11 = go.Scatter(
+        x=[18],
+        y=[49],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_11)
+
+    # Sec 306 vertical short line
+    rowline17 = go.Scatter(
+        x=[18, 18],
+        y=[49, 50],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline17)
+
+    # Sec 306 arrow down
+    arrow_12 = go.Scatter(
+        x=[50],
+        y=[49],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_12)
+
+    # Sec 306 vertical short line
+    rowline18 = go.Scatter(
+        x=[50, 50],
+        y=[49, 50],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline18)
+
+    # Sec 303 line
+    rowline19 = go.Scatter(
+        x=[68, 68],
+        y=[24, 38],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline19)
+
+    # Sec 303 arrow left
+    arrow_13 = go.Scatter(
+        x=[67],
+        y=[24],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_13)
+
+    # Sec 303 horizontal short line
+    rowline19 = go.Scatter(
+        x=[67, 68],
+        y=[24, 24],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline19)
+
+    # Sec 303 arrow left
+    arrow_14 = go.Scatter(
+        x=[67],
+        y=[38],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_14)
+
+    # Sec 303 horizontal short line
+    rowline20 = go.Scatter(
+        x=[67, 68],
+        y=[38, 38],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline20)
+
+    # Sec 302 line B
+    rowline21 = go.Scatter(
+        x=[59, 59],
+        y=[13, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline21)
+
+    # Sec 302 arrow RIGHT B
+    arrow_15 = go.Scatter(
+        x=[60],
+        y=[13],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_15)
+
+    # Sec 302 horizontal short line
+    rowline22 = go.Scatter(
+        x=[59, 60],
+        y=[13, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline22)
+
+    # Sec 302 arrow RIGHT B
+    arrow_16 = go.Scatter(
+        x=[60],
+        y=[23],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_16)
+
+    # Sec 302 horizontal short line
+    rowline23 = go.Scatter(
+        x=[59, 60],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline23)
+
+    # Sec 301 line
+    rowline24 = go.Scatter(
+        x=[59, 59],
+        y=[1, 11],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline24)
+
+    # Sec 301 arrow RIGHT
+    arrow_17 = go.Scatter(
+        x=[60],
+        y=[1],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_17)
+
+    # Sec 201 horizontal short line
+    rowline25 = go.Scatter(
+        x=[59, 60],
+        y=[1, 1],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline25)
+
+    # Sec 201 arrow RIGHT
+    arrow_18 = go.Scatter(
+        x=[60],
+        y=[11],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_18)
+
+    # Sec 201 horizontal short line
+    rowline26 = go.Scatter(
+        x=[59, 60],
+        y=[11, 11],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline26)
 
     # Create stage layout as a half moon trace figure
 
     def stage_y_values(x):
-        return 6 * np.sin(x * np.pi / 68) - 4
+        return 6 * np.sin(x * np.pi / 67) - 3
 
-    x = np.array(list(range(69)))
+    x = np.array(list(range(68)))
     y = stage_y_values(x)
 
     stage = go.Scatter(
@@ -1174,8 +1768,8 @@ def create_venue_massey_hall_gallery(galleryDictInput):
 
     # Add a contour line to the bottom of the half-moon stage outline
     bottom_line = go.Scatter(
-        x=list(range(69)),
-        y=[min(y) for i in range(69)],
+        x=list(range(68)),
+        y=[min(y) for i in range(68)],
         mode='lines',
         line=dict(width=2, color='#333333'),
     )
@@ -1183,11 +1777,86 @@ def create_venue_massey_hall_gallery(galleryDictInput):
     # Append the bottom line trace to the list of traces
     traces.append(bottom_line)
 
-    # return {
-    #     'gallery': gallery,
-    #     'traces' : traces
-    # }
-    return gallery, traces
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Massey Hall Gallery"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Massey Hall Gallery"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=False, width=900, height=625, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                y=min(traces[-2].y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ),
+        margin=dict(
+            l=20,  # adjust the left margin
+            r=20,  # adjust the right margin
+            t=30,  # adjust the title margin
+            b=20,  # adjust the bottom margin
+        )
+    )
+
+    return gallery, traces, fig
 
 
 def create_venue_danforth_music_hall_main_section(galleryDictInput):

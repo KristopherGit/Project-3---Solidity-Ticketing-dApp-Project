@@ -470,22 +470,30 @@ with col1:
             #seat_index = seat_options.index(selected_seat)
             # gallery[list(gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
             gallery[selected_seat]['color'] = '#00FF00'  # green
+            print("gallery[selected_seat]: ", gallery[selected_seat])
             st.write("")
 
             if selected_seat not in st.session_state:
                 # st.session_state[selected_seat] = gallery[list(
                 #     gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
                 st.session_state[selected_seat] = gallery[selected_seat]['color']
+                print("st.session_state[selected_seat]: ",
+                      st.session_state[selected_seat])
         if st.button('confirm seat(s)'):
             st.success(
                 f"{selected_seat} successfully confirmed.", icon="✅")
             st.write()
+            st.experimental_rerun()
 
         if st.button('clear all selected seat(s)'):
             st.session_state.clear()
 
+    # concert_layout = st.plotly_chart(
+    #     fig, use_container_width=False, height=400, width=1000)
+    fig.update(data=traces)
     concert_layout = st.plotly_chart(
         fig, use_container_width=False, height=400, width=1000)
+    st.session_state
 
 #########################################################
 # Right hand side column section of code
