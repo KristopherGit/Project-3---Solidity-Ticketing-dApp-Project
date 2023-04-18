@@ -371,7 +371,9 @@ def create_venue_massey_hall_main(galleryDictInput):
             r=20,  # adjust the right margin
             t=30,  # adjust the title margin
             b=20,  # adjust the bottom margin
-        )
+        ),
+        paper_bgcolor='#000000',  # super dark grey, almost black
+        plot_bgcolor='#000000'  # super dark grey almost black
     )
 
     return gallery, traces, fig
@@ -1111,7 +1113,9 @@ def create_venue_massey_hall_balcony(galleryDictInput):
             r=20,  # adjust the right margin
             t=30,  # adjust the title margin
             b=20,  # adjust the bottom margin
-        )
+        ),
+        paper_bgcolor='#000000',  # super dark grey, almost black
+        plot_bgcolor='#000000'
     )
 
     return gallery, traces, fig

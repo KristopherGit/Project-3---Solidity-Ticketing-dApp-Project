@@ -51,10 +51,10 @@ def add_logo(logo_path, width, height):
 #########################################################
 
 
-st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
-                    unsafe_allow_html=True)
+# st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
+#                     unsafe_allow_html=True)
 st.sidebar.image(
-    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=500, height=500))
+    add_logo(logo_path="Image_Data/ticketholder_minter_logo_v1.png", width=650, height=425), output_format="auto", use_column_width="auto")
 
 # Web3 Contract Loading & Execution
 # load dotenv
@@ -81,7 +81,7 @@ else:
 
 # Current Smart Contract Address
 current_smart_contract_address = st.sidebar.text_input(
-    "Deployed Smart Contract Address:", placeholder=None)
+    "Enter Smart Contract Address:", placeholder=None)
 
 # Create button for updating contract address
 if st.sidebar.button("Update Contract Address"):
@@ -113,14 +113,46 @@ with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
 #########################################################
 
 # Create display for contract connection status & type for admin confirmation & troubleshooting
+
+# Set the contract address display encapsulated within the container in the sidebar itself
+# Add the contract.address event id later on down in the code
+
+container_1 = st.sidebar.container()
+
 if contract is None:
-    st.sidebar.write("Unable to connect to the deployed contract.")
-    st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
-                        unsafe_allow_html=True)
+    container_1.write("Unable to connect to the deployed contract.")
+    container_1.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+                         unsafe_allow_html=True)
 else:
-    st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
-                        unsafe_allow_html=True)
-    st.sidebar.write(contract.address)
+    # container_1.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
+    #                      unsafe_allow_html=True)
+    container_1.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address: </b><span style='color:white'> {}</span></p>".format(contract.address),
+                         unsafe_allow_html=True)
+    # container_1.write(contract.address)
+    print("contract.address: ", contract.address)
+
+    # Find the contract.address associated event in the json/event_dictionary.json
+    with open("json/event_dictionary.json", "r") as file:
+        # load data from event_dictionary.json file
+        data = json.load(file)
+        eventList = data["eventList"]
+
+    for event in eventList:
+        if event["smartContract"] == contract.address:
+            # container_1.write(f'unique_id: {event["unique_id"]}')
+            container_1.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>unique_id: </b><span style='color:white'> {}</span></p>".format(event["unique_id"]),
+                                 unsafe_allow_html=True)
+
+
+# if contract is None:
+#     st.sidebar.write("Unable to connect to the deployed contract.")
+#     st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
+#                         unsafe_allow_html=True)
+# else:
+#     st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Successfully connected to the deployed contract at address:.</b></p>",
+#                         unsafe_allow_html=True)
+#     st.sidebar.write(contract.address)
+#     print("contract.address: ", contract.address)
 
 #########################################################
 
@@ -192,6 +224,8 @@ with col1:
         with open("json/venues_dictionary.json", "r") as file:
             venueDictionary = json.load(file)
             venueNamesJSONList = list(venueDictionary.keys())
+            # Add 'None' spacer item to the list so that in the streamlit app it doesn't pre-select a venue item and pre-populate the dynamic price st.number_input boxes
+            venueNamesJSONList = [None] + venueNamesJSONList
 
         # create session_state to save selectedVenueNameNew for multiple refreshers
         # if 'venueNameNew' not in st.session_state:
@@ -205,7 +239,9 @@ with col1:
                     unsafe_allow_html=True)
         eventNameNew = st.text_input("Enter event:", placeholder="")
         venueNameNew = st.selectbox(
-            "Select venue:", venueNamesJSONList, index=venueNamesJSONList.index(st.session_state.selected_venue))
+            "Select venue:", venueNamesJSONList)
+        # venueNameNew = st.selectbox(
+        #     "Select venue:", venueNamesJSONList, index=venueNamesJSONList.index(st.session_state.selected_venue))
         dateTimeNew = st.date_input(
             "Enter event date:", datetime.date(2023, 1, 1))
         hourTimeNewString = st.time_input(
@@ -223,9 +259,9 @@ with col1:
 
         unixTimeStampNew = int(unixTimeStampFloatNew)
         smartContractNew = st.text_input(
-            "Enter associated smart contract:", placeholder="")
+            "Enter associated smart contract:", value="0x85A15452938D53a2a7DAE730C4f1489dC0a337e1")
         seatJSONBinURLNew = st.text_input(
-            "Enter associated JSONbin URL (for purchased seat memory):", placeholder="")
+            "Enter associated JSONbin URL (for purchased seat memory):", value="https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1")
 
         # convert dateTimeNew datetime format to str to store in event_dictionary.json file
         dateTimeNewString = dateTimeNew.strftime("%Y-%m-%d")
@@ -236,142 +272,147 @@ with col1:
         # package all event related variables into a dictionary for JSON submission & setup
         # note all strings
 
-        eventForJSONInput = {
-            # "unique_id": f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.json',
-            "unique_id": f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json',
-            "eventName": eventNameNew,
-            "venueName": venueNameNew,
-            "dateTime": dateTimeNewString,
-            "hourTime": hourTimeNewString,
-            "timeStamp": str(unixTimeStampNew),
-            "smartContract": smartContractNew,
-            "seatJSONBinURL": seatJSONBinURLNew
-        }
+        if venueNameNew != None:
+            eventForJSONInput = {
+                # "unique_id": f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.json',
+                "unique_id": f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json',
+                "eventName": eventNameNew,
+                "venueName": venueNameNew,
+                "dateTime": dateTimeNewString,
+                "hourTime": hourTimeNewString,
+                "timeStamp": str(unixTimeStampNew),
+                "smartContract": smartContractNew,
+                "seatJSONBinURL": seatJSONBinURLNew
+            }
 
-        st.session_state.selected_venue = venueNameNew
-        print(st.session_state.selected_venue)
+            #st.session_state.selected_venue = venueNameNew
+            # print(st.session_state.selected_venue)
 
-        selectedUniqueIDNewText = st.text(
-            f'Unique Id: {eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json')
-        selectedEventNameNewText = st.text(f"Selected event: {eventNameNew}")
-        selectedVenueNameNewText = st.text(f"Selected venue: {venueNameNew}")
-        selectedDateTimeNewText = st.text(
-            f"Selected date & time: {dateTimeNew} @ {hourTimeNewString}. UNIX timestamp format: {unixTimeStampNew}")
-        selectedSmartContractText = st.text(
-            f"Selected smart contract: {contract.address}")
-        selectedseatJSONBinURLNewText = st.text(
-            f"Selected seat bin url: {seatJSONBinURLNew}")
+            selectedUniqueIDNewText = st.text(
+                f'Unique Id: {eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json')
+            selectedEventNameNewText = st.text(
+                f"Selected event: {eventNameNew}")
+            selectedVenueNameNewText = st.text(
+                f"Selected venue: {venueNameNew}")
+            selectedDateTimeNewText = st.text(
+                f"Selected date & time: {dateTimeNew} @ {hourTimeNewString}. UNIX timestamp format: {unixTimeStampNew}")
+            selectedSmartContractText = st.text(
+                f"Selected smart contract: {contract.address}")
+            selectedseatJSONBinURLNewText = st.text(
+                f"Selected seat bin url: {seatJSONBinURLNew}")
 
-        # Function to create unique event .py file and functions based on event, venue and date data
-        # **** new added 03/15/2023
-        # **************
+            # Function to create unique event .py file and functions based on event, venue and date data
+            # **** new added 03/15/2023
+            # **************
 
-        # unique pricing
-        # update unique price values for unique 'sec'/'seat's of a venue
-        venue_file = venueNameNew + ".json"
-        venue_file_path = os.path.join("json/venue_template_json/", venue_file)
-        with open(venue_file_path, 'r') as file:
-            venue_json_dict_copy = json.load(file)
+            # unique pricing
+            # update unique price values for unique 'sec'/'seat's of a venue
+            venue_file = venueNameNew + ".json"
+            venue_file_path = os.path.join(
+                "json/venue_template_json/", venue_file)
+            with open(venue_file_path, 'r') as file:
+                venue_json_dict_copy = json.load(file)
 
-        # get all the unique 'sec' values in the venue
-        unique_sections = set()
-        for unique_sec in venue_json_dict_copy["venueSections"]:
-            for seat in unique_sec.values():
-                for key, value in seat.items():
-                    #print(f"{key}: {value}")
-                    unique_sections.add(value['sec'])
-        # print(unique_sec)
-
-        # create st.number_input boxes for each unique 'sec' value
-        for unique_sec in sorted(unique_sections):
-            price = st.number_input(
-                f"Enter price for section {unique_sec}", value=0)
-            # update price value for all seats with the current 'sec' value
-            for section_dict in venue_json_dict_copy["venueSections"]:
-                print(section_dict)
-                for seat in section_dict.values():
+            # get all the unique 'sec' values in the venue
+            unique_sections = set()
+            for unique_sec in venue_json_dict_copy["venueSections"]:
+                for seat in unique_sec.values():
                     for key, value in seat.items():
-                        if value["sec"] == unique_sec:
-                            value["price"] = price
+                        #print(f"{key}: {value}")
+                        unique_sections.add(value['sec'])
+            # print(unique_sec)
 
-        def create_unique_event_functions(event_name, venue_name, event_date):
-            # check if there's a matching .json file name in the json/venue_template_json directory
-            venue_template_json_files = os.listdir("json/venue_template_json")
-            matching_file = None
-            for filename in venue_template_json_files:
-                if filename.replace(".json", "") == venue_name:
-                    matching_file = filename
-                    break
+            # create st.number_input boxes for each unique 'sec' value
+            for unique_sec in sorted(unique_sections):
+                price = st.number_input(
+                    f"Enter price for section {unique_sec}", value=0)
+                # update price value for all seats with the current 'sec' value
+                for section_dict in venue_json_dict_copy["venueSections"]:
+                    # print(section_dict)
+                    for seat in section_dict.values():
+                        for key, value in seat.items():
+                            if value["sec"] == unique_sec:
+                                value["price"] = price
 
-            if matching_file:
-                # copy the matching file to a new file in the event_venue_library dir for storage/use
-                new_filename = f'event_venue_library/{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json'
-                shutil.copy(
-                    f'json/venue_template_json/{matching_file}', new_filename)
-            else:
-                st.warning(
-                    f"No matching template found for the selected venue {venue_name}.")
+            def create_unique_event_functions(event_name, venue_name, event_date):
+                # check if there's a matching .json file name in the json/venue_template_json directory
+                venue_template_json_files = os.listdir(
+                    "json/venue_template_json")
+                matching_file = None
+                for filename in venue_template_json_files:
+                    if filename.replace(".json", "") == venue_name:
+                        matching_file = filename
+                        break
 
-        # **** new added 03/15/2023
-        # **************
+                if matching_file:
+                    # copy the matching file to a new file in the event_venue_library dir for storage/use
+                    new_filename = f'event_venue_library/{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json'
+                    shutil.copy(
+                        f'json/venue_template_json/{matching_file}', new_filename)
+                else:
+                    st.warning(
+                        f"No matching template found for the selected venue {venue_name}.")
 
-        st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
-                    unsafe_allow_html=True)
+            # **** new added 03/15/2023
+            # **************
 
-        ##########
-        # Submit Event Details (Start) #
+            st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
+                        unsafe_allow_html=True)
 
-        if st.button("Submit Event Details"):
-            # with open("json/event_dictionary.json", "a") as file:
-            with open("json/event_dictionary.json", "r") as file:
-                eventDictionary = json.load(file)
-            # append new event to "eventList" list (which is the key to the list of dictionaries (value) ["eventList] = key, list of dictionaries = value)
-            eventDictionary["eventList"].append(eventForJSONInput)
-            # save upadated eventDictionary to file
-            with open("json/event_dictionary.json", "w") as file:
-                json.dump(eventDictionary, file, indent=4)
-                # file.write("\n")
+            ##########
+            # Submit Event Details (Start) #
 
-            # create actual unique_id event, date and venue file (f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.py')
-            # def create_unique_event_functions(event_name, venue_name, event_date)
-            create_unique_event_functions(
-                eventNameNew, venueNameNew, dateTimeNewString)
+            if st.button("Submit Event Details"):
+                # with open("json/event_dictionary.json", "a") as file:
+                with open("json/event_dictionary.json", "r") as file:
+                    eventDictionary = json.load(file)
+                # append new event to "eventList" list (which is the key to the list of dictionaries (value) ["eventList] = key, list of dictionaries = value)
+                eventDictionary["eventList"].append(eventForJSONInput)
+                # save upadated eventDictionary to file
+                with open("json/event_dictionary.json", "w") as file:
+                    json.dump(eventDictionary, file, indent=4)
+                    # file.write("\n")
 
-            # update the unique event .json with the new prices based on the section 'sec' price setting above
-            # re-open the unique .json created above with the 'create_unique_event_functions' to update .json with new 'price' per 'sec'
-            event_file_path = f'event_venue_library/{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json'
-            with open(event_file_path, 'r') as file:
-                event_json_dict = json.load(file)
+                # create actual unique_id event, date and venue file (f'{eventNameNew}_{venueNameNew}_{dateTimeNewString}.py')
+                # def create_unique_event_functions(event_name, venue_name, event_date)
+                create_unique_event_functions(
+                    eventNameNew, venueNameNew, dateTimeNewString)
 
-            for target_dict in event_json_dict["venueSections"]:
-                for seat in target_dict.values():
-                    for key, value in seat.items():
-                        # compare the 'sec' value with the 'sec' value in the 'venue_json_dict_copy' <- original updated dictionary from above
-                        for section_dict in venue_json_dict_copy["venueSections"]:
-                            for seat_copy in section_dict.values():
-                                for key_copy, value_copy in seat_copy.items():
-                                    if value_copy['sec'] == value['sec']:
-                                        # update the price value with the corresponding updated new price value from the 'venue_json_dict_copy'
-                                        value['price'] = value_copy['price']
+                # update the unique event .json with the new prices based on the section 'sec' price setting above
+                # re-open the unique .json created above with the 'create_unique_event_functions' to update .json with new 'price' per 'sec'
+                event_file_path = f'event_venue_library/{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.json'
+                with open(event_file_path, 'r') as file:
+                    event_json_dict = json.load(file)
 
-            # save the updated unique new event .json file
-            with open(event_file_path, 'w') as file:
-                json.dump(event_json_dict, file, indent=4)
+                for target_dict in event_json_dict["venueSections"]:
+                    for seat in target_dict.values():
+                        for key, value in seat.items():
+                            # compare the 'sec' value with the 'sec' value in the 'venue_json_dict_copy' <- original updated dictionary from above
+                            for section_dict in venue_json_dict_copy["venueSections"]:
+                                for seat_copy in section_dict.values():
+                                    for key_copy, value_copy in seat_copy.items():
+                                        if value_copy['sec'] == value['sec']:
+                                            # update the price value with the corresponding updated new price value from the 'venue_json_dict_copy'
+                                            value['price'] = value_copy['price']
 
-            # loop through all the 'sec' seat values and update the price according to 'sec'
-            # for section_dict in event_json_dict["venueSections"]:
-            #     for seat in section_dict.values():
-            #         for key, value in seat.items():
-            #             if value['sec'] == unique_sec:
-            #                 value['price'] = price
+                # save the updated unique new event .json file
+                with open(event_file_path, 'w') as file:
+                    json.dump(event_json_dict, file, indent=4)
 
-        ##########
-        # Submit Event Details (End) #
+                # loop through all the 'sec' seat values and update the price according to 'sec'
+                # for section_dict in event_json_dict["venueSections"]:
+                #     for seat in section_dict.values():
+                #         for key, value in seat.items():
+                #             if value['sec'] == unique_sec:
+                #                 value['price'] = price
 
-            st.success(
-                "Event successfully added to event_dictionary.json database", icon="✅")
-        st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
-                    unsafe_allow_html=True)
+            ##########
+            # Submit Event Details (End) #
+
+                st.success(
+                    "Event successfully added to event_dictionary.json database", icon="✅")
+            st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
+                        unsafe_allow_html=True)
         if st.button("View"):
             with open("json/event_dictionary.json", "r") as file:
                 data = json.load(file)
@@ -392,19 +433,19 @@ with col1:
             data = json.load(file)
             # use "eventList" key from the data from the json file to get the key's value. in this case the "eventList" value is the list of event dictionaries
             eventListValue = data.get("eventList", [])
-            print(eventListValue)
+            # print(eventListValue)
             # generate a list with all unique "eventName" names
             # check to see if there's only on dictionary 'event' entry in the entire "eventList" list, if so create a list from it so it follows convention and can be used
             # in st.selectbox still later on from the "eventName" st.selectbox dropdown list
             if isinstance(eventListValue, dict):
                 eventListValue = [eventListValue]
-            print(eventListValue)
+            # print(eventListValue)
 
             # first creates a set of unique "eventName" values taken from the "eventList" key value pair 'eventListValue' (value of the key-value pair)
             masterEventsList = list(
                 set(value["eventName"] for value in eventListValue))
             masterEventsList.sort()
-            print(masterEventsList)
+            # print(masterEventsList)
 
         #st.header("Minter Admin Console")
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
@@ -414,14 +455,14 @@ with col1:
         # st.write("")
         # st.write("")
         # # Set Maximum Tickets to Batch/Sell
-        st.write("Set Maximum Tickets Available for Mint/Purchase:")
-        # for trial purposes set to max Massey Hall gallery size
-        _maxNumberOfTickets = st.number_input("Enter max tickets", 1217)
-        if st.button("Set Max Tickets"):
-            set_max_tickets = contract.functions.setMAX_TICKETS(
-                _maxNumberOfTickets).transact({"from": selected_address})
-            tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
-            st.write("Transaction receipt:", tx_receipt)
+        # st.write("Set Maximum Tickets Available for Mint/Purchase:")
+        # # for trial purposes set to max Massey Hall gallery size
+        # _maxNumberOfTickets = st.number_input("Enter max tickets", 1217)
+        # if st.button("Set Max Tickets"):
+        #     set_max_tickets = contract.functions.setMAX_TICKETS(
+        #         _maxNumberOfTickets).transact({"from": selected_address})
+        #     tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
+        #     st.write("Transaction receipt:", tx_receipt)
 
         # new added 03/15/2023
         # create code to get the 'unique_id' from the json/event_dictionary to get all info required to fill form to generate tickets
@@ -459,7 +500,7 @@ with col1:
                         "smartContract": value["smartContract"],
                         "seatJSONBinURL": value["seatJSONBinURL"]
                     }
-                print(unique_ids_dict)
+                # print(unique_ids_dict)
                 return unique_ids_dict
 
         # call the obtain all unique ids function and save returned dictionary to variable
@@ -471,7 +512,7 @@ with col1:
 
         _uniqueId = st.selectbox(
             "Select event (unique_id): ", masterUniqueIdsList)
-        print('_uniqueId: ', _uniqueId)
+        #print('_uniqueId: ', _uniqueId)
 
         if _uniqueId:
             _uniqueIdValues = masterUniqueIdsDictionary[_uniqueId]
@@ -484,17 +525,142 @@ with col1:
             _seatContract = _uniqueIdValues["seatJSONBinURL"]
 
         # Form text_input & unique_id selected output prior to batch minting nft ticket
-        _ownerFirstName = st.text_input(
-            "enter string memory _ownerFirstName", "First Name")
-        _ownerLastName = st.text_input(
-            "enter string memory _ownerLastName", "Last Name")
+        # _ownerFirstName = st.text_input(
+        #     "enter string memory _ownerFirstName", "First Name")
+        # _ownerLastName = st.text_input(
+        #     "enter string memory _ownerLastName", "Last Name")
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _ownerFirstName:  <span style='color:green'> first name </span></p>",
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _ownerLastName:  <span style='color:green'> last name </span></p>",
+                    unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _eventName: <span style='color:green'> {}</span></p>".format(_eventName),
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _venueName: <span style='color:green'> {}</span></p>".format(_venueName),
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _concertDate [UNIX Format]: <span style='color:green'> {}</span></p>".format(_timeStamp),
                     unsafe_allow_html=True)
+        st.write("")
+        st.write("")
 
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_dateTime: <span style='color:green'> {}</span></p>".format(_dateTime),
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_hourTime: <span style='color:green'> {}</span></p>".format(_hourTime),
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_smartContract address: <span style='color:green'> {}</span></p>".format(_smartContract),
+                    unsafe_allow_html=True)
+        st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_seatContract JSON Bin URL: <span style='color:green'> {}</span></p>".format(_seatContract),
+                    unsafe_allow_html=True)
+        st.write("")
+        st.write("")
+
+        # st.write("Set Maximum Tickets Available for Mint/Purchase:")
+        # for trial purposes set to max Massey Hall gallery size
+
+        def return_total_venue_seats(_venueName):
+            # Open the venue_template_json .json file that corresponds to the accompanying _venueName and set as data
+
+            json_path = os.path.join(
+                "json/venue_template_json", f'{_venueName}.json')
+            print("json_path: ", json_path)
+            with open(json_path, 'r') as file:
+                data = json.load(file)
+
+            # Get a list of all unique seat names from seat value in list of sections
+            uniqueSeatNames = set()
+            for venue_section in data["venueSections"]:
+                for section_name, section_data in venue_section.items():
+                    for seat_name, seat_data in section_data.items():
+                        uniqueSeatNames.add(seat_data["name"])
+
+            # Get total number of unique seats from the length of uniqueSeatNames
+            numberOfSeats = len(uniqueSeatNames)
+
+            return numberOfSeats
+
+        _total_venue_seats = return_total_venue_seats(_venueName)
+
+        _maxNumberOfTickets = st.number_input(
+            "Enter maximum number of tickets to be minted (default placeholder value is max venue capacity):", _total_venue_seats)
+        # if st.button("Set Max Tickets"):
+        #     set_max_tickets = contract.functions.setMAX_TICKETS(
+        #         _maxNumberOfTickets).transact({"from": selected_address})
+        #     tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
+        #     st.write("Transaction receipt:", tx_receipt)
+
+        if contract.address == _smartContract:
+
+            # Create function to set maximum number of tickets (placeholder dependant on max venue capacity size)
+            if st.button("Set Max Tickets"):
+                set_max_tickets = contract.functions.setMAX_TICKETS(
+                    _maxNumberOfTickets).transact({"from": selected_address})
+                tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
+                st.write("Transaction receipt:", tx_receipt)
+
+            # Global variable to statically store the eth_cad_rate as to not dynamically call the coingecko/price API as to be blocked for multiple requests
+            eth_cad_rate = None
+
+            # Create function using API to recover the eth_cad_rate
+            def retrieve_eth_cad_conversion():
+                response = requests.get(
+                    'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
+                cad_to_eth_exchange_rate = response.json()
+                return float(cad_to_eth_exchange_rate['ethereum']['cad'])
+
+            # Implement a button that automatically locks in the current eth_cad_rate
+            if st.button("Set current ETH/CAD rate"):
+                eth_cad_rate = retrieve_eth_cad_conversion()
+                st.write("Current ETH/CAD conversion rate: ", eth_cad_rate)
+
+            if st.button("Clear current ETH/CAD rate"):
+                eth_cad_rate = None
+                st.write("Current ETH/CAD global variable value: ",
+                         eth_cad_rate)
+
+            st.success(
+                'unique_id event _smartContract address compatible to connected contract. Max Ticket & Mint Batch function buttons unlocked.')
+            container_1.success('Matched to Minter Admin Console')
+
+            def cad_to_wei_converter():
+                _price_CAD = st.number_input("Enter uint _price (in $CAD)", 0)
+                # Put in API request to api.coingecko.com/api to obtain ETH/CAD exchange rate
+                response = requests.get(
+                    'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
+                cad_to_eth_exchange_rate = response.json()
+                eth_cad_rate = float(
+                    cad_to_eth_exchange_rate['ethereum']['cad'])
+                # CAD to ETH
+                ethValue = _price_CAD / eth_cad_rate
+                # Conversion of ETH to wei
+                weiValue = w3.toWei(ethValue, 'ether')
+                _priceConversionOutput = st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
+                                                     unsafe_allow_html=True)
+
+                return _priceConversionOutput
+
+            # **** new added 03/16/2023
+
+            # _venueName = st.text_input(
+            #    "Enter string memory _venueName", "Venue Name")
+            _seatColor = "#5A5A5A"
+            batchSize = st.number_input(
+                "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
+
+            # CAD to Gwei/wei converter function
+
+            # *** Keep function for final conversion to send into Solidity below
+            # Gwei to wei converter function
+            # _price = int(gwei_price * 10**9)  # in wei
+
+            # Mint batchSize of Tickets
+            if st.button("Mint Batch"):
+                mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
+                                               _eventName, 1660176000, weiValue, _venueName, _seatColor, batchSize).transact({"from": selected_address})
+                tx_receipt = w3.eth.waitForTransactionReceipt(mint)
+                st.write("Transaction receipt:", tx_receipt)
+
+        else:
+            st.warning('Warning: unique_id event _smartContract address not compatible to connected contract. Please select corresponding unique_id event from above selectbox.', icon="⚠️")
+            container_1.warning('Unmatched to Minter Admin Console')
         # Enter CAD ticket price using CoinGecko API
         # def cad_to_gwei_converter(_price_CAD):
 
@@ -516,117 +682,42 @@ with col1:
         # st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
         #             unsafe_allow_html=True)
 
-        def cad_to_wei_converter():
-            _price_CAD = st.number_input("Enter uint _price (in $CAD)", 0)
-            # Put in API request to api.coingecko.com/api to obtain ETH/CAD exchange rate
-            response = requests.get(
-                'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
-            cad_to_eth_exchange_rate = response.json()
-            eth_cad_rate = float(cad_to_eth_exchange_rate['ethereum']['cad'])
-            # CAD to ETH
-            ethValue = _price_CAD / eth_cad_rate
-            # Conversion of ETH to wei
-            weiValue = w3.toWei(ethValue, 'ether')
-            _priceConversionOutput = st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
-                                                 unsafe_allow_html=True)
+        # def cad_to_wei_converter():
+        #     _price_CAD = st.number_input("Enter uint _price (in $CAD)", 0)
+        #     # Put in API request to api.coingecko.com/api to obtain ETH/CAD exchange rate
+        #     response = requests.get(
+        #         'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
+        #     cad_to_eth_exchange_rate = response.json()
+        #     eth_cad_rate = float(cad_to_eth_exchange_rate['ethereum']['cad'])
+        #     # CAD to ETH
+        #     ethValue = _price_CAD / eth_cad_rate
+        #     # Conversion of ETH to wei
+        #     weiValue = w3.toWei(ethValue, 'ether')
+        #     _priceConversionOutput = st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
+        #                                          unsafe_allow_html=True)
 
-            return _priceConversionOutput
+        #     return _priceConversionOutput
 
-        # declare cad_to_wei_converter
-        #cad_to_wei_converter_1 = cad_to_wei_converter()
+        # # **** new added 03/16/2023
 
-        # **** new added 03/16/2023
+        # # _venueName = st.text_input(
+        # #    "Enter string memory _venueName", "Venue Name")
+        # _seatColor = "#5A5A5A"
+        # batchSize = st.number_input(
+        #     "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
 
-        # Generate dynamic pricing code for each Section ('sec') or Seating ('seat number') of each unique event/venue
-        # selected_unique_id_path = Path(f"event_venue_library/{_uniqueId}")
-        # print('selected_unique_id_path: ', selected_unique_id_path)
-        # print('selected_unique_id_path file type: ',
-        #       type(selected_unique_id_path))
+        # # CAD to Gwei/wei converter function
 
-        # # load modules
-        # spec = importlib.util.spec_from_file_location(
-        #     _uniqueId, selected_unique_id_path)
-        # selected_event_module_ = importlib.util.module_from_spec(spec)
-        # spec.loader.exec_module(selected_event_module_)
+        # # *** Keep function for final conversion to send into Solidity below
+        # # Gwei to wei converter function
+        # # _price = int(gwei_price * 10**9)  # in wei
 
-        # # get all available sections for the unique_id .py event & venue file
-        # unique_section_functions = []
-        # for section_function in dir(selected_event_module_):
-        #     if section_function.startswith("create_venue_"):
-        #         section_name = section_function.replace(
-        #             "create_venue_", "").replace("_", " ")
-        #         unique_section_functions.append(section_name)
-
-        # # generate st.selectbox for available sections
-        # selected_section_name = st.selectbox(
-        #     "Select section: ", unique_section_functions)
-
-        # # retrieve dictionary for selected sections
-        # selected_section_function_name_ = f"create_venue_{selected_section_name.replace(' ', '_')}"
-        # selected_section_function = getattr(
-        #     selected_event_module_, selected_section_function_name_)
-        # print("selected section function: ", selected_section_function)
-
-        # # check if 'gallery' exists within the function
-        # if 'gallery' in selected_section_function.__code__.co_names:
-        #     # 'gallery' exists within the function
-        #     section_dictionary = dict(selected_section_function())
-        #     print("section dictionary: ", section_dictionary)
-        #     # collect the unique 'sec' values
-        #     unique_venue_secs = set([seat["sec"]
-        #                             for seat in section_dictionary.values()])
-        #     print("Unique secs:", unique_venue_secs)
-        #     # create number_input for each unique 'sec' value
-        #     for sec in unique_venue_secs:
-        #         section_price = st.number_input(
-        #             f"Enter price for sec {sec}", value=0)
-        # else:
-        #     # 'gallery' does not exist within the function
-        #     st.error(
-        #         "Selected section function does not have a gallery dictionary.")
-
-        # Import the selected event venue file as a module
-        # venue_module = importlib.import_module(
-        #     'event_venue_library.' + _uniqueId.replace(' ', '_').replace('.py', ''))
-
-        # # Get all the global variables in the selected event venue file
-        # global_vars = vars(venue_module)
-
-        # # Iterate over each global variable
-        # for var_name in global_vars:
-
-        #     # Check if the variable is a dictionary with 'sec' values
-        #     if isinstance(global_vars[var_name], dict) and any('sec' in item for item in list(global_vars[var_name].values())):
-        #         # Create a list of the unique 'sec' names
-        #         sec_names = list(
-        #             set(item['sec'] for item in global_vars[var_name].values()))
-
-        #         # Allow the admin user to update the 'price' associated with each 'sec' name using st.number_input
-        #         for sec_name in sec_names:
-        #             price = st.number_input(
-        #                 f'Enter the price for {sec_name}', value=global_vars[var_name][f'sec {sec_name}']['price'], key=f'{var_name}_{sec_name}')
-        #             global_vars[var_name][f'sec {sec_name}']['price'] = price
-
-        # **** new added 03/16/2023
-
-        # _venueName = st.text_input(
-        #    "Enter string memory _venueName", "Venue Name")
-        _seatColor = "#5A5A5A"
-        batchSize = st.number_input(
-            "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
-
-        # CAD to Gwei/wei converter function
-
-        # *** Keep function for final conversion to send into Solidity below
-        # Gwei to wei converter function
-        # _price = int(gwei_price * 10**9)  # in wei
-
-        # Mint batchSize of Tickets
-        if st.button("Mint Batch"):
-            mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
-                                           _eventName, 1660176000, weiValue, _venueName, _seatColor, batchSize).transact({"from": selected_address})
-            tx_receipt = w3.eth.waitForTransactionReceipt(mint)
-            st.write("Transaction receipt:", tx_receipt)
+        # # Mint batchSize of Tickets
+        # if st.button("Mint Batch"):
+        #     mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
+        #                                    _eventName, 1660176000, weiValue, _venueName, _seatColor, batchSize).transact({"from": selected_address})
+        #     tx_receipt = w3.eth.waitForTransactionReceipt(mint)
+        #     st.write("Transaction receipt:", tx_receipt)
 
 with col2:
     #st.header("NFT Image Constructor")

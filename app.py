@@ -89,7 +89,7 @@ contract = load_contract()
 # Main Logo Addition Function
 
 
-@st.cache
+# @st.cache
 def add_logo(logo_path, width, height):
     """Read and return a resized logo"""
     logo = Image.open(logo_path)
@@ -99,7 +99,12 @@ def add_logo(logo_path, width, height):
 
 # Sidebar Main Logo Image
 st.sidebar.image(
-    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=550, height=550))
+    add_logo(logo_path="Image_Data/tickETHolder_logo.png", width=650, height=425), output_format="auto", use_column_width="auto")
+st.markdown(f'''
+    <style>
+    section[data-testid="stSidebar"] .css-ng1t4o {{width: 14rem;}}
+    </style>
+''', unsafe_allow_html=True)
 
 #########################################################
 
@@ -122,9 +127,6 @@ with col2:
         masterEventsList.sort()
         print("masterEventsList:", masterEventsList)
 
-    # event_list
-    # event_list = ["Gorillaz", "Fleetwood Mac",
-    #               "Bob Dylan", "Phoenix", "The Strokes"]
     # event_select = st.selectbox("select event:", event_list)
     _eventName = st.selectbox("select event:", masterEventsList)
 
@@ -147,7 +149,7 @@ with col2:
     _venueName = st.selectbox("select venue:", masterVenuesList)
 
     # function to fetch all dates for a particular event & venue combination
-    # @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True)
     def obtain_date_string_for_event_venue(_eventName, _venueName):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
@@ -256,64 +258,24 @@ with col2:
 # Show concert_layout header
 with col1:
     # st.header("tickETHolder")
-    st.markdown("<p style='color: #B3A301; font-size: 24px; margin-top: 0px;'><b>tickETHolder™</b></p>",
-                unsafe_allow_html=True)
+    # st.markdown("<p style='color: #B3A301; font-size: 24px; margin-top: 0px;'><b>tickETHolder™</b></p>",
+    #             unsafe_allow_html=True)
 
-# Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded
-#"st.session_state object:", st.session_state
+    # Create a dictionary that holds the attributes of each seat but first reference it with session_state seats already coded
+    #"st.session_state object:", st.session_state
 
-# Import gallery & traces from venues.py as venue_massey_hall
-# gallery, traces = ven.create_venue_massey_hall_gallery()
-try:
-    gallery, traces, fig = venueSectionFunctionName(galleryDictInput)
-    #print("gallery:", gallery)
-    #print("traces:", traces)
-except:
-    st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
-                unsafe_allow_html=True)
-    image = Image.open('Image_Data/under_construction.jpeg')
-    st.image(image, caption='Maintenance underway.')
-    gallery, traces, fig = {}, [], {}
-
-
-# # Create a layout for the plot
-# @st.cache(allow_output_mutation=True)
-# def concert_layout(gallery):
-#     largest_x_value = max(seat['x'] for seat in gallery.values())
-#     center_x_value = largest_x_value/2
-#     layout = go.Layout(
-#         title=dict(text=str(_sectionName),
-#                    font=dict(
-#                        family='monospace',
-#                        color='#B3A301'
-#         )
-#         ),
-#         xaxis=dict(title='X-coordinate',
-#                    autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
-#         yaxis=dict(title='Y-coordinate',
-#                    autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
-#         showlegend=False,
-#         legend=dict(itemclick="toggleothers"),
-#         annotations=[
-#             dict(
-#                 text='STAGE',
-#                 # x=center_x_value,
-#                 # y=-2.5,
-#                 # xanchor='center',
-#                 # yanchor='top',
-#                 showarrow=False,
-#             )
-#         ],
-#         font=dict(
-#             family='monospace',
-#             size=32,
-#             color='black'
-#         )
-#     )
-#     return layout
-
-
-# layout = concert_layout(gallery)
+    # Import gallery & traces from venues.py as venue_massey_hall
+    # gallery, traces = ven.create_venue_massey_hall_gallery()
+    try:
+        gallery, traces, fig = venueSectionFunctionName(galleryDictInput)
+        #print("gallery:", gallery)
+        #print("traces:", traces)
+    except:
+        st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
+                    unsafe_allow_html=True)
+        image = Image.open('Image_Data/under_construction.jpeg')
+        st.image(image, caption='Maintenance underway.')
+        gallery, traces, fig = {}, [], {}
 
 #########################################################
 
@@ -365,47 +327,12 @@ try:
 except:
     None
 
-# # Plot seating layout
-# fig = go.Figure(data=traces, layout=layout)
-# fig
-# st.plotly_chart(fig)
-
-
-# # Update traces/seats & add stage name
-# fig.update_traces(textposition='top center', hoverlabel=(dict(namelength=-1)))
-# fig.update_layout(
-#     title={
-#         'text': str(_sectionName),
-#         'font': {'family': 'monospace', 'color': '#B3A301'}
-#     },
-#     title_font=dict(
-#         family='monospace',
-#         size=18,
-#         color='#B3A301'
-#     ),
-#     autosize=True, width=900, height=675, annotations=[
-#         dict(
-#             text="S T A G E",
-#             font=dict(
-#                 size=24,
-#                 family='monospace',
-#                 color='#B3A301'
-#             ),
-#             x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
-#             y=min(traces[-2].y) + 2
-#         )
-#     ], hoverlabel=dict(
-#         font=dict(
-#             size=16,
-#             color="#B3A301"
-#         )
-#     ))
-
 #########################################################
 # JSON Read/Write to Central Server - To Update Seat Color & Non-Sensitive Info for Data Analysis
 #########################################################
 
 
+@st.cache(allow_output_mutation=True)
 def update_jsonbin(ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
     # url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
@@ -483,7 +410,6 @@ with col1:
             st.success(
                 f"{selected_seat} successfully confirmed.", icon="✅")
             st.write()
-            st.experimental_rerun()
 
         if st.button('clear all selected seat(s)'):
             st.session_state.clear()
@@ -510,48 +436,9 @@ with col2:
             st.write(selected_seat)
             seat_index = seat_options.index(selected_seat)
             # st.write(gallery[list(gallery.keys())[seat_index]])
-            st.write(gallery[selected_seat], expanded=False)
+            st.write(gallery[selected_seat])
     except:
         None
-
-    # # access event_dictionary master events list to compile unique events, venues, dates & associated JSONbin info
-    # with open("json/event_dictionary.json", "r") as file:
-    #     data = json.load(file)
-    #     eventListValue = data.get("eventList", [])
-    #     print("eventList values:", eventListValue)
-    #     masterEventsList = list(
-    #         set(value["eventName"] for value in eventListValue))
-    #     masterEventsList.sort()
-    #     print("masterEventsList:", masterEventsList)
-
-    # # event_list
-    # # event_list = ["Gorillaz", "Fleetwood Mac",
-    # #               "Bob Dylan", "Phoenix", "The Strokes"]
-    # # event_select = st.selectbox("select event:", event_list)
-    # _eventName = st.selectbox("select event:", masterEventsList)
-
-    # # function for obtaining all possible venues for a unique event (each 'event' is a dictionary structure and are entered in list format where the entirety of the list is a value corresponding to the "eventList" key name)
-    # masterVenuesList = obtain_all_venues_for_event(_eventName)
-
-    # # _venueName variable represents selectbox list choice of all possible unique events available for one event
-    # _venueName = st.selectbox("select venue:", masterVenuesList)
-
-    # # function for obtaining all possible concert dates (UNIX format) for a unique event (_eventName) at a specific venue (_venueName)
-    # masterDatesList = obtain_date_string_for_event_venue(_venueName)
-
-    # # _concertDate variable represents selectbox list choice of all dates pertaining to the above _venueName (and hence, _eventName)
-    # _concertDate = st.selectbox("select event date:", masterDatesList)
-
-    # venue_list
-    # st.markdown("<p style='color: white; padding: 0; margin-top: 0px;'>select venue:</p>",
-    #            unsafe_allow_html=True)
-    # venue_list = ["Massey Hall", "Opera House", "Danforth Music Hall", 'Koerner Hall',
-    #               "The Cameron House", "DROM Taberna", "Lee's Palace", "Roy Thompson Hall", "Horeshoe Tavern"]
-    # venue_select = st.selectbox("select venue:", venue_list)
-
-    # date_select override
-    # date_select = 1660176000
-
 
 with col2:
 
@@ -739,7 +626,7 @@ with st.sidebar:
         st.markdown("<p style='color: red; font-size: 15px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
                     unsafe_allow_html=True)
     else:
-        st.markdown("<p style='color: green; font-size: 15px; margin-top: 0px;'><span style='color: #B3A301;'>Contract Status:</span><b><span style='color: green; font-size: 16px;'> Connected</span></b></p>",
+        st.markdown("<p style='color: green; font-size: 15px; margin-top: 0px;'><span style='color: #B3A301;'>Contract Connection Status:</span><b><span style='color: green; font-size: 16px;'> Connected</span></b></p>",
                     unsafe_allow_html=True)
         st.markdown(f"<p style='color: #B3A301; font-size: 15px; margin-top: 0px;'>Contract Address: <b>{contract.address}</b></p>",
                     unsafe_allow_html=True)
