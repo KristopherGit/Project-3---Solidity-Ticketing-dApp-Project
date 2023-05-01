@@ -22,6 +22,7 @@ import shutil
 import inspect
 import importlib.util
 import importlib
+import time
 
 
 #########################################################
@@ -71,11 +72,11 @@ selected_address = st.sidebar.selectbox(
 st.sidebar.write("Connection Status:")
 
 if w3.isConnected():
-    #st.write("Connected to ETH Test Network.")
+    # st.write("Connected to ETH Test Network.")
     st.sidebar.markdown("<p style='color: green; font-size: 16px; margin-top: 0px;'><b>Connected to ETH Test Network.</b></p>",
                         unsafe_allow_html=True)
 else:
-    #st.write("Unable to Connect to ETH Test Network.")
+    # st.write("Unable to Connect to ETH Test Network.")
     st.sidebar.markdown("<p style='color: red; font-size: 16px; margin-top: 0px;'><b>Unable to Connect to ETH Test Network.</b></p>",
                         unsafe_allow_html=True)
 
@@ -173,7 +174,7 @@ for i in range(3):
     st.sidebar.write("")
 st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getTicketDetails</u></b></p>",
                     unsafe_allow_html=True)
-ticket_tokenId = st.sidebar.number_input("tokenId:")
+ticket_tokenId = st.sidebar.number_input("tokenId:", step=1, format="%d")
 ticket_tokenId = int(ticket_tokenId)
 st.sidebar.write("The tokenId value is %d", int(ticket_tokenId))
 if st.sidebar.button("Ticket Details"):
@@ -185,20 +186,45 @@ if st.sidebar.button("Ticket Details"):
     _concertDate = result[4]
     _price = result[5]
     _venueName = result[6]
-    _seatNumber = result[7]
-    _seatColor = result[8]
-    _ipfsHash = result[9]
+    _tokenIdNumber = result[7]
+    _seatName = result[8]
+    _seatColor = result[9]
+    _ipfsHash = result[10]
 
-    st.sidebar.write("owner: ", _owner)
-    st.sidebar.write("owner first name ", _ownerFirstName)
-    st.sidebar.write("owner last name ", _ownerLastName)
-    st.sidebar.write("event name: ", _eventName)
-    st.sidebar.write("concert date: ", _concertDate)
-    st.sidebar.write("price ", _price)
-    st.sidebar.write("venue name ", _venueName)
-    st.sidebar.write("seat number: ", _seatNumber)
-    st.sidebar.write("seat color: ", _seatColor)
-    st.sidebar.write("ipfs Hash: ", _ipfsHash)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>owner: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_owner),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_ownerFirstName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_ownerFirstName),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_ownerLastName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_ownerLastName),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_eventName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_eventName),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_concertDate [UNIX format]: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_concertDate),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_price: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_price),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_venueName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_venueName),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_tokenIdNumber: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_tokenIdNumber),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_seatName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_seatName),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_seatColor: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_seatColor),
+                        unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_ipfsHash: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_ipfsHash),
+                        unsafe_allow_html=True)
+
+    # st.sidebar.text("owner: ", _owner)
+    # st.sidebar.text("owner first name ", _ownerFirstName)
+    # st.sidebar.write("owner last name ", _ownerLastName)
+    # st.sidebar.write("event name: ", _eventName)
+    # st.sidebar.write("concert date: ", _concertDate)
+    # st.sidebar.write("price: ", _price)
+    # st.sidebar.write("venue name: ", _venueName)
+    # st.sidebar.write("token Id number: ", _tokenIdNumber)
+    # st.sidebar.write("seat name: ", _seatName)
+    # st.sidebar.write("seat color: ", _seatColor)
+    # st.sidebar.write("ipfs Hash: ", _ipfsHash)
 
     # getSeatsMintedSoFar Solidity smart contract function
 st.sidebar.markdown("<p style='color: white; font-size: 20px; margin-top: 0px;'><b><u>getSeatsMintedSoFar</u></b></p>",
@@ -267,7 +293,7 @@ with col1:
         dateTimeNewString = dateTimeNew.strftime("%Y-%m-%d")
 
         # create dictionary to store events
-        #eventForJSONInput = {"eventList": []}
+        # eventForJSONInput = {"eventList": []}
 
         # package all event related variables into a dictionary for JSON submission & setup
         # note all strings
@@ -285,7 +311,7 @@ with col1:
                 "seatJSONBinURL": seatJSONBinURLNew
             }
 
-            #st.session_state.selected_venue = venueNameNew
+            # st.session_state.selected_venue = venueNameNew
             # print(st.session_state.selected_venue)
 
             selectedUniqueIDNewText = st.text(
@@ -318,7 +344,7 @@ with col1:
             for unique_sec in venue_json_dict_copy["venueSections"]:
                 for seat in unique_sec.values():
                     for key, value in seat.items():
-                        #print(f"{key}: {value}")
+                        # print(f"{key}: {value}")
                         unique_sections.add(value['sec'])
             # print(unique_sec)
 
@@ -418,7 +444,7 @@ with col1:
                 data = json.load(file)
                 eventList = data["eventList"]
                 # st.write(eventList)
-                #eventsList = [json.loads(line) for line in file]
+                # eventsList = [json.loads(line) for line in file]
             with st.container():
                 st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Events Database (Master List):</b></u></p>",
                             unsafe_allow_html=True)
@@ -447,7 +473,7 @@ with col1:
             masterEventsList.sort()
             # print(masterEventsList)
 
-        #st.header("Minter Admin Console")
+        # st.header("Minter Admin Console")
         st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Admin Console:</b></u></p>",
                     unsafe_allow_html=True)
         # st.write("Event Contract Generator Form:")
@@ -512,7 +538,7 @@ with col1:
 
         _uniqueId = st.selectbox(
             "Select event (unique_id): ", masterUniqueIdsList)
-        #print('_uniqueId: ', _uniqueId)
+        # print('_uniqueId: ', _uniqueId)
 
         if _uniqueId:
             _uniqueIdValues = masterUniqueIdsDictionary[_uniqueId]
@@ -520,7 +546,7 @@ with col1:
             _venueName = _uniqueIdValues["venueName"]
             _dateTime = _uniqueIdValues["dateTime"]
             _hourTime = _uniqueIdValues["hourTime"]
-            _timeStamp = _uniqueIdValues["timeStamp"]
+            _timeStamp = int(_uniqueIdValues["timeStamp"])
             _smartContract = _uniqueIdValues["smartContract"]
             _seatContract = _uniqueIdValues["seatJSONBinURL"]
 
@@ -529,6 +555,17 @@ with col1:
         #     "enter string memory _ownerFirstName", "First Name")
         # _ownerLastName = st.text_input(
         #     "enter string memory _ownerLastName", "Last Name")
+
+        # _ownerFirstName "first name" string holder
+        _ownerFirstName = "first name"
+        # _ownerLastName "last name" string holder
+        _ownerLastName = "last name"
+        # _seatColor = "#5A5A5A" hex color string holder, dark grey indicating a seat has been purchase (last resort to call from blockchain to determine objective seatColor)
+        _seatColor = "#5A5A5A"
+
+        st.write("")
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'><u>Information to be Added to Blockchain Metadata:</u></p>",
+                    unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _ownerFirstName:  <span style='color:green'> first name </span></p>",
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _ownerLastName:  <span style='color:green'> last name </span></p>",
@@ -540,8 +577,8 @@ with col1:
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>string memory _concertDate [UNIX Format]: <span style='color:green'> {}</span></p>".format(_timeStamp),
                     unsafe_allow_html=True)
         st.write("")
-        st.write("")
-
+        st.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'><u>Additional Event JSON Data:</u></p>",
+                    unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_dateTime: <span style='color:green'> {}</span></p>".format(_dateTime),
                     unsafe_allow_html=True)
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_hourTime: <span style='color:green'> {}</span></p>".format(_hourTime),
@@ -551,7 +588,9 @@ with col1:
         st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>_seatContract JSON Bin URL: <span style='color:green'> {}</span></p>".format(_seatContract),
                     unsafe_allow_html=True)
         st.write("")
-        st.write("")
+
+        print("_timeStamp :", _timeStamp)
+        print("_timeStamp type() :", type(_timeStamp))
 
         # st.write("Set Maximum Tickets Available for Mint/Purchase:")
         # for trial purposes set to max Massey Hall gallery size
@@ -596,54 +635,303 @@ with col1:
                 tx_receipt = w3.eth.waitForTransactionReceipt(set_max_tickets)
                 st.write("Transaction receipt:", tx_receipt)
 
-            # Global variable to statically store the eth_cad_rate as to not dynamically call the coingecko/price API as to be blocked for multiple requests
-            eth_cad_rate = None
-
             # Create function using API to recover the eth_cad_rate
+
+            @st.cache(allow_output_mutation=True)
             def retrieve_eth_cad_conversion():
                 response = requests.get(
                     'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
                 cad_to_eth_exchange_rate = response.json()
                 return float(cad_to_eth_exchange_rate['ethereum']['cad'])
 
-            # Implement a button that automatically locks in the current eth_cad_rate
+            # Implement a button that automatically locks in the current eth_cad_rate without repetitively recalling the coingecko API (careful of timeouts if mutation set to FALSE)
             if st.button("Set current ETH/CAD rate"):
                 eth_cad_rate = retrieve_eth_cad_conversion()
                 st.write("Current ETH/CAD conversion rate: ", eth_cad_rate)
 
-            if st.button("Clear current ETH/CAD rate"):
-                eth_cad_rate = None
-                st.write("Current ETH/CAD global variable value: ",
-                         eth_cad_rate)
+            # Clear caches in order to recall API from above 'retrieve_eth_cad_conversion' functions. This will reset and clear the cache until 'retrieve_eth_cad_conversion' is run again
+            if st.button("Refresh & Recall ETH/CAD API"):
+                st.runtime.legacy_caching.clear_cache()
+                st.success(
+                    "ETH/CAD cache cleared. Press 'Set current ETH/CAD rate to retrieve new rate from API.")
+
+            print("current eth_cad_rate: ", retrieve_eth_cad_conversion())
 
             st.success(
                 'unique_id event _smartContract address compatible to connected contract. Max Ticket & Mint Batch function buttons unlocked.')
             container_1.success('Matched to Minter Admin Console')
 
-            def cad_to_wei_converter():
-                _price_CAD = st.number_input("Enter uint _price (in $CAD)", 0)
-                # Put in API request to api.coingecko.com/api to obtain ETH/CAD exchange rate
-                response = requests.get(
-                    'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
-                cad_to_eth_exchange_rate = response.json()
-                eth_cad_rate = float(
-                    cad_to_eth_exchange_rate['ethereum']['cad'])
-                # CAD to ETH
-                ethValue = _price_CAD / eth_cad_rate
-                # Conversion of ETH to wei
-                weiValue = w3.toWei(ethValue, 'ether')
-                _priceConversionOutput = st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
-                                                     unsafe_allow_html=True)
+            # Using the selected '_uniqueId' event .json file sort out and store the unique sec, row & seat number
+            # unique_secs = set()
+            # unique_rows = set()
+            # unique_seat_number = set()
 
-                return _priceConversionOutput
+            # Iterate through the venue sections
+            event_file_path = f'event_venue_library/{_uniqueId}'
+            with open(event_file_path, 'r') as file:
+                event_json_dict = json.load(file)
+
+                # Create a list to hold all unqiue venue sections to refine selection on where to start batch minting in the venue
+                section_names = []
+                for venue_dict in event_json_dict["venueSections"]:
+                    all_seats_minted = True
+                    for section_key, section_value in venue_dict.items():
+                        mintable_seats_exist = False
+                        # print("section_key: ", section_key)
+
+                        for seat_key, seat_value in section_value.items():
+                            if not seat_value["minted"]:
+                                mintable_seats_exist = True
+                                all_seats_minted = False
+                                break
+                        if mintable_seats_exist:
+                            section_names.append(section_key)
+                    if all_seats_minted:
+                        section_names.remove(section_key)
+                        # print("section_value: ", section_value)
+                        # if any(not seat_data["minted"] for seat_data in section_value.values()):
+                        #     section_names.append(section_key)
+                venueSectionSelected = st.selectbox(
+                    "Venue Section To Mint: ", list(set(section_names)))
+
+                # Create an empty list holder for select batch group of seats
+                selected_batch_seats_list = []
+
+                if venueSectionSelected:
+                    # Retrieve the section dictionary corresponding to the selected venue section
+                    section_dict = next((section for section in event_json_dict["venueSections"] if section.get(
+                        venueSectionSelected)), None)
+
+                    # Generate section_value dictionary & save to said variable based on the section_key (venueSectionSelected) from above
+                    if section_dict:
+                        section_key = venueSectionSelected
+                        section_value = section_dict[section_key]
+
+                        # Generate list of unique "sec" values in the selected section based on selected 'venueSectionSelected'
+                        sec_values = sorted(list(set(
+                            seat_data["sec"] for seat_data in section_value.values() if not seat_data["minted"])))
+
+                        if sec_values:
+                            # Generate a selectbox for the unique "sec" values
+                            sec_selected = st.selectbox(
+                                "Section ('sec') To Mint: ", sec_values)
+
+                            # Filter & refine the row options available within 'sec' that have not been "minted" yet
+                            row_options = [seat_data["row"] for seat_data in section_value.values(
+                            ) if seat_data["sec"] == sec_selected and not seat_data["minted"]]
+
+                            # Create list of unique "row" values for the selected "sec" value
+                            row_values = sorted(set(row_options))
+
+                            # Admin prompted to refine seat minting options down to "row" within selected "sec"
+                            row_selected = st.selectbox(
+                                "Row ('row') To Mint: ", row_values)
+
+                            # Prompt user to enter batch size of tickets to mint into NFTs
+                            batchSize = st.number_input(
+                                "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
+
+                            # Filter down to the seat options available to the admin that are still able to be minted
+                            seat_options = [seat_data["seat number"] for seat_data in section_value.values(
+                            ) if seat_data["sec"] == sec_selected and seat_data["row"] == row_selected and not seat_data["minted"]]
+
+                            # Create a list of unique "name" (seat names) for the selected "row" value
+                            seat_values = sorted(set(seat_options), key=int)
+                            # print("seat_values: ", seat_values)
+
+                            # Write out to the admin the seats still available that haven't been minted into NFT seats
+                            # seat_number_selected = st.selectbox(
+                            #     "Available seat options: ", seat_values)
+
+                            # Split the seat numbers into batches
+                            try:
+                                seat_batch_groups = [seat_values[i: i + batchSize]
+                                                     for i in range(0, len(seat_values), batchSize)]
+                                # print("seat_batch_groups: ", seat_batch_groups)
+
+                                # Important: If last batch is < batch size, take the remainder batch group to its own list on the seat_batch_groups list
+                                if len(seat_batch_groups) > 0 and len(seat_batch_groups[-1]) < batchSize:
+                                    # Remove & return the last remainder element on the list
+                                    remainderBatch = seat_batch_groups.pop()
+                                    seat_batch_groups.append(remainderBatch)
+
+                                # Construct a list of customized labels for the dropdown list to present to the admin user
+                                seat_batch_groups_labels = [
+                                    f"{(batch[0])}:{(batch[-1])}" for batch in seat_batch_groups]
+
+                                # Generate a selectbox for user to choose from with dropdown (st.selectbox)
+                                seat_batch_group_selected = st.selectbox(
+                                    "Seat(s) ('seat number') Range To Mint: ", seat_batch_groups_labels)
+                                # print("seat_batch_group_selected: ",
+                                #       seat_batch_group_selected)
+
+                                # Display the seat_batch_group_selected in a printout format
+                                st.write("Seat groups selected:",
+                                         seat_batch_group_selected)
+
+                                # Create the lower & upper bound int from the seat_batch_group_selected range
+                                start, end = [
+                                    int(num) for num in seat_batch_group_selected.split(":")]
+
+                                # Create a list of integers based on the lower & upper limit values in the mini-list of seat_batch_group_selected_numbers
+                                seat_batch_group_selected_numbers = list(
+                                    range(start, end + 1))
+                                # print("seat_batch_group_selected_numbers: ",
+                                #       seat_batch_group_selected_numbers)
+
+                                # Retrieve the metadata from the original seat_data (seat_options) by filtering out only the seats selected based on "seat number" (seat_data["seat number"])
+                                # selected_batch_seats_list = []
+                                selected_batch_seats_list.clear()
+                                for seat_num in seat_batch_group_selected_numbers:
+                                    for seat in section_value.values():
+                                        if seat["sec"] == sec_selected and seat["row"] == row_selected and not seat["minted"]:
+                                            #print("seat: ", seat)
+                                            if int(seat["seat number"]) == seat_num:
+                                                selected_batch_seats_list.append(
+                                                    seat)
+                                                break
+                                # print("selected_batch_seats_list: ",
+                                #      selected_batch_seats_list)
+                                # st.experimental_set_buffer(0)
+                                st.write("selected_batch_seats_list: ",
+                                         selected_batch_seats_list)
+
+                                # Perform fiat currency/wei conversion (i.e. CAD/wei)
+                                eth_cad_rate = retrieve_eth_cad_conversion()
+
+                                # Batch Mint Function
+                                try:
+                                    if st.button("Mint Batch"):
+                                        # Create empty list for 'pending' transaction hashes
+                                        tx_hashes_list = []
+                                        for seat in selected_batch_seats_list:
+                                            if not seat["minted"] or seat["minted"] == False or seat["minted"] == "false":
+                                                _gweiValue = int(
+                                                    ((seat["price"]/eth_cad_rate)) * 1000000000)
+                                                _seatName = seat["name"]
+                                                _batchSize = 1
+                                                print("eth_cad_rate: ",
+                                                      eth_cad_rate)
+                                                print("_gweiValue :",
+                                                      _gweiValue)
+                                                print(
+                                                    "seat[price] :", seat["price"])
+                                                print(
+                                                    "seat[name]: ", seat["name"])
+
+                                                print("_ownerFirstName: ",
+                                                      _ownerFirstName)
+                                                print("_ownerLastName: ",
+                                                      _ownerLastName)
+                                                print("_eventName :",
+                                                      _eventName)
+                                                print("_timeStamp :",
+                                                      _timeStamp)
+                                                print("_gweiValue: ",
+                                                      _gweiValue)
+                                                print("_venueName: ",
+                                                      _venueName)
+                                                print("_seatColor: ",
+                                                      _seatColor)
+                                                print("_batchSize: ",
+                                                      _batchSize)
+                                                print("selected_address: ",
+                                                      selected_address)
+
+                                                mint = contract.functions.mint(
+                                                    _ownerFirstName,
+                                                    _ownerLastName,
+                                                    _eventName,
+                                                    _timeStamp,
+                                                    _gweiValue,
+                                                    _venueName,
+                                                    _seatName,
+                                                    _seatColor,
+                                                    _batchSize
+                                                ).transact({'from': selected_address})
+
+                                                # Get the tx_hash from the raw transaction
+                                                tx_hash = mint.hex()
+
+                                                # Get seat name of the seat that will be minted
+                                                # i.e. 'Sec 100 Row A Seat 1':
+                                                # seat_dict_holder = {
+                                                #     seat["name"]: tx_hash}
+
+                                                seat_dict_holder = {
+                                                    "name": seat["name"],
+                                                    "tx_hash": tx_hash
+                                                }
+
+                                                # Append pending transaction tx_hash to the tx_hashes_list to be awaiting updating the event .json "minted" = tx_hash
+                                                tx_hashes_list.append(
+                                                    seat_dict_holder)
+                                                # print("tx_hashes_list: ",
+                                                #      tx_hashes_list)
+
+                                        # Iterate through all venue sections & seats in the event_venue_library/{_uniqueId}
+                                        event_file_path = f'event_venue_library/{_uniqueId}'
+                                        with open(event_file_path, 'r') as file:
+                                            event_json_dict = json.load(file)
+
+                                            # Create a list to hold all unique venue sections to refine selection on where to start batch minting in the venue
+                                            section_names = []
+                                            for venue_dict in event_json_dict["venueSections"]:
+                                                # all_seats_minted = True
+                                                for section_key, section_value in venue_dict.items():
+                                                    # mintable_seats_exist = False
+                                                    # print("section_key: ", section_key)
+                                                    for seat_key, seat_value in section_value.items():
+                                                        # Update event .json with seat["minted"] = tx_hash pending status hash to be used later to confirm mint successful with tx_receipt manually
+                                                        for seat_placeholder in tx_hashes_list:
+                                                            if seat_key == seat_placeholder["name"] and not seat_value["minted"]:
+                                                                seat_value["minted"] = seat_placeholder["tx_hash"]
+                                                                st.write(
+                                                                    seat_value)
+
+                                        # Update the unique event .json file now with the updated changes to seat["minted"] = tx_hash after the minting process to store the hashes to lookup on the blockchain later to get a tx_receipt to confirm completion
+                                        with open(event_file_path, 'w') as file:
+                                            json.dump(event_json_dict,
+                                                      file, indent=4)
+                                        # Print success and notify admin of updated event .json seat["minted"] tx_hash mint pending value
+                                        st.success(
+                                            "Mint Batch Pending Completed. Check back for tx_receipt later.")
+                                except Exception as e:
+                                    st.write(
+                                        "Batch transaction hashing (tx_hash): ", e)
+
+                            except:
+                                st.warning(
+                                    "Batch size must be greater than zero.")
+
+                # for key, value in seat.items():
+                # print("key: ", key)
+                # print("values: ", value)
+
+            # def cad_to_wei_converter():
+            #     _price_CAD = st.number_input("Enter uint _price (in $CAD)", 0)
+            #     # Put in API request to api.coingecko.com/api to obtain ETH/CAD exchange rate
+            #     response = requests.get(
+            #         'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=cad')
+            #     cad_to_eth_exchange_rate = response.json()
+            #     eth_cad_rate = float(
+            #         cad_to_eth_exchange_rate['ethereum']['cad'])
+            #     # CAD to ETH
+            #     ethValue = _price_CAD / eth_cad_rate
+            #     # Conversion of ETH to wei
+            #     weiValue = w3.toWei(ethValue, 'ether')
+            #     _priceConversionOutput = st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'>price in $ CAD and wei: <span style='color:white'> ${} CAD</span>, <span style='color:green'> [{:,} wei]</span></p>".format(_price_CAD, weiValue),
+            #                                          unsafe_allow_html=True)
+
+            #     return _priceConversionOutput
 
             # **** new added 03/16/2023
 
             # _venueName = st.text_input(
             #    "Enter string memory _venueName", "Venue Name")
-            _seatColor = "#5A5A5A"
-            batchSize = st.number_input(
-                "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
+            # _seatColor = "#5A5A5A"
+            # batchSize = st.number_input(
+            #     "Enter event ticket batch size (minting genesis: 0 to seatsMintedSoFar, nth batch afterwards: _seatsMintedSoFar += numToMint)", 0)
 
             # CAD to Gwei/wei converter function
 
@@ -652,11 +940,11 @@ with col1:
             # _price = int(gwei_price * 10**9)  # in wei
 
             # Mint batchSize of Tickets
-            if st.button("Mint Batch"):
-                mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
-                                               _eventName, 1660176000, weiValue, _venueName, _seatColor, batchSize).transact({"from": selected_address})
-                tx_receipt = w3.eth.waitForTransactionReceipt(mint)
-                st.write("Transaction receipt:", tx_receipt)
+            # if st.button("Mint Batch"):
+            #     mint = contract.functions.mint(_ownerFirstName, _ownerLastName,
+            #                                    _eventName, 1660176000, weiValue, _venueName, _seatColor, batchSize).transact({"from": selected_address})
+            #     tx_receipt = w3.eth.waitForTransactionReceipt(mint)
+            #     st.write("Transaction receipt:", tx_receipt)
 
         else:
             st.warning('Warning: unique_id event _smartContract address not compatible to connected contract. Please select corresponding unique_id event from above selectbox.', icon="⚠️")
@@ -719,8 +1007,9 @@ with col1:
         #     tx_receipt = w3.eth.waitForTransactionReceipt(mint)
         #     st.write("Transaction receipt:", tx_receipt)
 
+
 with col2:
-    #st.header("NFT Image Constructor")
+    # st.header("NFT Image Constructor")
     st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Venue Generator & Admin Database:</b></u></p>",
                 unsafe_allow_html=True)
 
@@ -809,7 +1098,7 @@ with col2:
                 for sectionName, sectionFunction in venueSection.items():
                     st.markdown(
                         f"\t&nbsp;&nbsp;&nbsp;&nbsp; <span style= 'color: green; font-family:monospace;'>{sectionName}: {sectionFunction}</span>", unsafe_allow_html=True)
-                    #st.write(f"{sectionName}: {sectionFunction.__name__}")
+                    # st.write(f"{sectionName}: {sectionFunction.__name__}")
                 i += 1
         venue_database()
     # venue_database()
@@ -851,11 +1140,11 @@ for ticketholder in data_json['record']['ticketholder'][1:]:
 
 # NFT For-Loop Automatic NFT Generator
 for ticketId, info in ticket_holders.items():
-    #print(f"ticketId [key]", ticketId)
-    #print(f"info [value]", info)
+    # print(f"ticketId [key]", ticketId)
+    # print(f"info [value]", info)
     for key, value in info.items():
-        #print(f'key:', key)
-        #print(f'value:', value)
+        # print(f'key:', key)
+        # print(f'value:', value)
         event_ticket_holders = _eventName
         venue_ticket_holders = _venueName
 
@@ -872,11 +1161,11 @@ for ticketId, info in ticket_holders.items():
 
 # NFT For-Loop Automatic NFT Generator
 for ticketId, info in ticket_holders.items():
-    #print(f"ticketId [key]", ticketId)
-    #print(f"info [value]", info)
+    # print(f"ticketId [key]", ticketId)
+    # print(f"info [value]", info)
     for key, value in info.items():
-        #print(f'key:', key)
-        #print(f'value:', value)
+        # print(f'key:', key)
+        # print(f'value:', value)
         event_ticket_holders = "Gorillaz"
         venue_ticket_holders = "Massey Hall"
 
@@ -944,7 +1233,7 @@ for ticketId, info in ticket_holders.items():
             return new_im
 
         # Open the background image
-        #background = Image.open("Image_Data/black_background_ticket.png")
+        # background = Image.open("Image_Data/black_background_ticket.png")
         background = Image.new('RGBA', (400, 600), (0, 0, 0, 255))
 
         # Integrate background & border together
@@ -964,7 +1253,7 @@ for ticketId, info in ticket_holders.items():
         artwork = artwork.resize((350, 350))
 
         # Resize the foreground to 200x200
-        #foreground = foreground.resize((200, 200))
+        # foreground = foreground.resize((200, 200))
 
         # Overlay the text_info_bottom_left text onto the left bottom corner of the black template background image
         background.alpha_composite(
@@ -978,7 +1267,7 @@ for ticketId, info in ticket_holders.items():
 
         # QR Code Generator
 
-        #text = "testing"
+        # text = "testing"
 
         # Concatenate all strings together
         qr_code_text = (event_text + "," + "\n" +
@@ -1007,8 +1296,8 @@ for ticketId, info in ticket_holders.items():
         background.alpha_composite(
             qr_code_img, (275, (background.height - qr_code_img.height) - 20))
 
-        #qr_code = segno.make(text)
-        #qr_code.save("test.png", scale=7)
+        # qr_code = segno.make(text)
+        # qr_code.save("test.png", scale=7)
         # print(segno.__version__)
 
         #########################################################

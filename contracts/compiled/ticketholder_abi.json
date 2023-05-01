@@ -227,6 +227,11 @@
 				"internalType": "string",
 				"name": "_ownerLastName",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_seatName",
+				"type": "string"
 			}
 		],
 		"name": "buyTicket",
@@ -350,6 +355,11 @@
 			},
 			{
 				"internalType": "string",
+				"name": "seatName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "seatColor",
 				"type": "string"
 			},
@@ -416,6 +426,11 @@
 			{
 				"internalType": "string",
 				"name": "_venueName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_seatName",
 				"type": "string"
 			},
 			{
