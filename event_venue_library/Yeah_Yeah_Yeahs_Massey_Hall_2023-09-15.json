@@ -1063,7 +1063,7 @@
                     "x": 10,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf418587646520ab9f3ef9c412a478fc28b71b8d4c728d51a6f78bcea40984e9d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1076,7 +1076,7 @@
                     "x": 11,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x63f3e5a8c5b23edbc7dd92d3bba9c72f919aafd8da06c33c820e8d4b6641042f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1089,7 +1089,7 @@
                     "x": 12,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb1946796a3720aa738b3b4665ecbbd6765c19ee1e0f38c70dbc3affe1a581cbb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1102,7 +1102,7 @@
                     "x": 13,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x950e5dec654f10f4c2c47865359580fdf3b60ba238fcc2a01e1cfa47a0554581",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1115,7 +1115,7 @@
                     "x": 14,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2ea963094e56aca8173938a93bb5017348028d2ab61acf86d9f282a1bc7a1be7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1128,7 +1128,7 @@
                     "x": 15,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9a76fc23de817523a7d4c24e4c5a59112fcad4827656542d4d5a1825953b8e3e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1141,7 +1141,7 @@
                     "x": 16,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1d3999bf94cc1ec2fa01dd75de31ddac51aababd07be312c53d9105a0f71c3ee",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1154,7 +1154,7 @@
                     "x": 17,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3487e11b924a365a8535519331fcd6dc3a300cfeac746952e71ff43b78f1e6a0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1167,7 +1167,7 @@
                     "x": 18,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd6c7685e3b837894ab5ba03a3ea1dd22359347bb979583dcc583f326bfeb858a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1180,7 +1180,7 @@
                     "x": 19,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3213ad2d098c68f4e0e118c4eb33937805a382cae68af24c61921f104c629c1b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1193,7 +1193,7 @@
                     "x": 20,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3361a42163ff11937c37fd1e2d7a05c697c9f284af94ee21fd83abdb9abf825a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1206,7 +1206,7 @@
                     "x": 21,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc85001fd103635db92bdcf6ff762db1b6b139819f62f50e5ccbd87d34aec00b9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1219,7 +1219,7 @@
                     "x": 22,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbdab2b50d7982b87ea99503c85535ef5c0466fc0f794e9c560121466511f9e2b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1297,7 +1297,7 @@
                     "x": 28,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8c672bcbb1fddf1a7d1ae0eb651784bb9add4fb7077159844350b76c98927393",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1310,7 +1310,7 @@
                     "x": 32,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaa6de1729f42b6d9a26f4cf046d2af5572aa45f8f93d01f37ca9cc97b8ce8de1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1323,7 +1323,7 @@
                     "x": 10,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xae2fc3050014ef8236a1cdc3a8b23789710901c31325a59029c233aca2527c9b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1336,7 +1336,7 @@
                     "x": 11,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbd5510b9aaf56ff6fd688f5508d08bd4f1a0b7f06f8b920209ae113e4f495c04",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1349,7 +1349,7 @@
                     "x": 12,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0160a1b475474a4a080f4bd4979a6f4a42950a3fd23e00641c681c8befa1d9fa",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1362,7 +1362,7 @@
                     "x": 13,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe22e709a499e1f37ea522302c6cc2e55abb420439b3aa57f2becbf89f251b45f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1375,7 +1375,7 @@
                     "x": 14,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd1f873d389538cb2e676ef8f13f48b0a4a2b0c9b15763e074f7731f7a3d29ca2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1388,7 +1388,7 @@
                     "x": 15,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5ddb8f9bfb49e24f5f8533a89ac8dd4189ca087b5788856331a7e271f35ecb05",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1401,7 +1401,7 @@
                     "x": 16,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x76c6b4fd8025e8fa400009a40a9ac98409edb1497c28a0089046efe218d0e4cb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1414,7 +1414,7 @@
                     "x": 17,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0e3bbfe5fefba076239ca4469f165b6e3959320571985e78f9bb1e665c7afaa9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1427,7 +1427,7 @@
                     "x": 18,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa74bdba72c255a8ab44e081e3900a669ca6d332b48224e2ab6a149668f384674",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1440,7 +1440,7 @@
                     "x": 19,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf1148b3d0de53678f05e81a339e67ad64cec1e6d3521becbbe9ea27f8057e8c0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1453,7 +1453,7 @@
                     "x": 20,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0f0dfb6fb8cc22d8f19d4864c758797c8918eb13404e52c8edf54509b9d4e800",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1466,7 +1466,7 @@
                     "x": 21,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x782b49518f1be4df19f42056a8cfe6f476f490af1a3ccd8b672b438ac1d747cb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1479,7 +1479,7 @@
                     "x": 22,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4a97eae2e0f02f79a6a07787e4c64f78cb75b253e67a8f266bfa5b0183371a86",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1492,7 +1492,7 @@
                     "x": 23,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc14f9f7c8cf147a30ab9092ce0c9204f596791be6a8565980847960f9be24a35",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1505,7 +1505,7 @@
                     "x": 24,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x03944d6b6c2a5551a0f9ad9ef46a605a2355fc666543dcd44db4aae231080f04",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1518,7 +1518,7 @@
                     "x": 25,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9aaca587e32a9db44ad5910672d2a962aabe5e0711e4d66978fef417c22ef583",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1531,7 +1531,7 @@
                     "x": 26,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcf0c660961f60880e739e290c15042b772f905777a2d59f25c5f29c5ea64a611",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1544,7 +1544,7 @@
                     "x": 27,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7f390f5e5948c54035edc2755ea6e5cf9cf0976ddcc84e2f8aa3ca0428c409cd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1557,7 +1557,7 @@
                     "x": 28,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x59251876a49602f2c79129cc09f8d6e8c20dfde4f9b0829d551c42aeb8948690",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1570,7 +1570,7 @@
                     "x": 10,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc1c6f5467cf752f4dd468101978fbee54ee496bb1177031271db9999202ef82b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1583,7 +1583,7 @@
                     "x": 11,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2126b15c2fd7b394fc3d131513bbf6ec5dda47024fb8448c9906527cfa07ea8d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1596,7 +1596,7 @@
                     "x": 12,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa4181226fbd265b17aa4f9182bde3263271356168932e41b996acff634df263a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1609,7 +1609,7 @@
                     "x": 13,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xea1042d8768d21e0bfe84e2191d32af8d7bdfdc3782f2a5ab95b30399df29fed",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1622,7 +1622,7 @@
                     "x": 14,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5eafc6883fb4605690b5cdb4878cb56f3b4d07065caec14ec9e218be546fdb61",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1635,7 +1635,7 @@
                     "x": 15,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa0b595ee650196705b0d11d16d27d50ba7beac2b7057490abdc3546723dc8452",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1648,7 +1648,7 @@
                     "x": 16,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8919655f1e0107cce33b5d96176bea6b75d805a369066f2d49d5f309f416cd69",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1661,7 +1661,7 @@
                     "x": 17,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x53de1c05e10553149e9a14aecd4df58b367dcdde4eed2b243d63160fa2e6c8d3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1674,7 +1674,7 @@
                     "x": 18,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x038f50ae6567c27ca79c819926983262c56dab550d4b268c250554b588a0b47b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1687,7 +1687,7 @@
                     "x": 19,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3ef245e81a9c225f2453a394ebf4b774e7797f91c122e350e8d2404add803a55",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1700,7 +1700,7 @@
                     "x": 20,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa5c4e1335b05d3b8419087450011121e4c7051030ed0f333d5f01914a65e6168",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1713,7 +1713,7 @@
                     "x": 21,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd9c32fcf46cbc08fa672040c97b5fdcb5f2a63b41dbec474892ada440c39e3c1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1726,7 +1726,7 @@
                     "x": 22,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1c7b7f91701890351be3497a5443f18c0610db5b22847a2f597f1d705c40a1a7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1739,7 +1739,7 @@
                     "x": 23,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8bfd60a21840d518f65d8d49a49b855943ca44b39bd8d12978a23d2962a71651",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1752,7 +1752,7 @@
                     "x": 24,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd93c94dc46a840e42c935acec2297ce2604dce1289e47d0472ea73773c0e5463",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1765,7 +1765,7 @@
                     "x": 25,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x488307e394c1abd62621a68c0fb161e3c47c0443a01db090dc9dcaa034d1a10b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1778,7 +1778,7 @@
                     "x": 26,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3340a7df6267905c177c22f5dccc519ff1291b884de84f9dab63ebde04b85fcd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1791,7 +1791,7 @@
                     "x": 27,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5eefd071492badc4f4ae9af95c63da74724af1cdab13785a28f73689ca4923fc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1804,7 +1804,7 @@
                     "x": 28,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0758b917861acd688a0fba3a0829f4f0e466895391c0f98b33801b4963559ffc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1817,7 +1817,7 @@
                     "x": 10,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xed2157b0743569df6f30abea1a61826a2e8e2c7f089e9814e4d58b339151b72d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1830,7 +1830,7 @@
                     "x": 11,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9c56d53a5c5af19a49906654cfe36e1493bddfcde87adedfd05c4c042e03a61d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1843,7 +1843,7 @@
                     "x": 12,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2f680d0020e5f208be064e81823848e09f00288e2e0641c054df02ac0210279f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1856,7 +1856,7 @@
                     "x": 13,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdaa072b295261fa91cb9a5016c55d0d66277f0eefb4bc44fa39b28afed2a94f9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1869,7 +1869,7 @@
                     "x": 14,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x21bcb4a826dd56d01523a9d3c8af4d57b136d4873fc963f3852a8aa901971b36",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1882,7 +1882,7 @@
                     "x": 15,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf8febf28fff73240b01f8508596347370585e9ef646ed6a0516e1726ceb71597",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1895,7 +1895,7 @@
                     "x": 16,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf7723846a5c8d1975f62854018fa02a83c226ac1cd3682c956d933adff8a7d41",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1908,7 +1908,7 @@
                     "x": 17,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2deec2cfc66c1ca2516c062850f8f888766d5a3b300b0ced8b8a9f11dfca8965",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1921,7 +1921,7 @@
                     "x": 18,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9b3f453a907d54e7ee997bd6bdfc568f820a3bb32e0f6ab5a542890969f213d6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1934,7 +1934,7 @@
                     "x": 19,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaeb08faceee3ed9b18c9204bdf8de6406c10afc9600eb94c1b1711a6e6c7bb8c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1947,7 +1947,7 @@
                     "x": 20,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38614542c7f9e675dde9483ced3b1c304e74d86db81bcdc71615d1534a7117bd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1960,7 +1960,7 @@
                     "x": 21,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8dbb10d8b124cc6c100c03cab3760764d0fe792f1f2fa8cc255dce95473e2121",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1973,7 +1973,7 @@
                     "x": 22,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc618792c091136267055a3d6b8bf8b75248403f6d5053d1cea01745ef310983c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1986,7 +1986,7 @@
                     "x": 23,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbf2c8856cc0cee2ef7016165153979bc1a00d649380c071e648761d446fc6207",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -1999,7 +1999,7 @@
                     "x": 24,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3f5000223335a3ea03439a65256ae2e11ebcab5fa6f7c3eb4e2eb5e6d97bbf42",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2012,7 +2012,7 @@
                     "x": 25,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x137d24aad976c3be6f309865006758e23a275bea8bc0a2baeba4da314bea603e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2025,7 +2025,7 @@
                     "x": 26,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x80d5a877ce3f0acc99894af119a7319b9109282c5b943fcdb1331c3710a3d8c9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2038,7 +2038,7 @@
                     "x": 27,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc6b7c1164d8679afae0d5fa75409066c233e95e157035f592e6eb6f0d654990a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2051,7 +2051,7 @@
                     "x": 28,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x038028af74c13753195f47cb49b3657cac7a83be727f9ce2e11eca4943dffdea",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2064,7 +2064,7 @@
                     "x": 10,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x441be89e73d66642d3893dfa04aff71aac67c63f0e37990b292a3752a2ba3952",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2077,7 +2077,7 @@
                     "x": 11,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x174ea47ed2bd81325f578e28d993967c240580a5344ffd1eb17832cd9728af9f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2090,7 +2090,7 @@
                     "x": 13,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x57e08b2d905357aef0ef1b67284bf798bf70ca57546c4bcef879803a9f7b411a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2103,7 +2103,7 @@
                     "x": 14,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8ef1c38ee51014b73fa67c8155ec5bbb8abb6a4e2ea26e8798d375b3c8b3ac10",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2116,7 +2116,7 @@
                     "x": 15,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe65bee456e99ef84673f3e631d49c0cb748d75975ee4c20effac5ef1fdf9031e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2129,7 +2129,7 @@
                     "x": 16,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4146f3568e548ca1878ad2a56efde825dacdd7e724d7784dcba1bfea61b584b7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2142,7 +2142,7 @@
                     "x": 17,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7d2dfbcf27b60141ac9cfd5fd0168ae0c48ddf62895fbc8c8e25164b7a529b47",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2155,7 +2155,7 @@
                     "x": 18,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8360520c40eec955db0f8ceb60c75d2fa451ed7f27e231c28e06f873c3a87502",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2168,7 +2168,7 @@
                     "x": 19,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbb6cb4a3e4bcd03bae4315183dd469557b914e8146d3969bd7ad214a091de2f0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2181,7 +2181,7 @@
                     "x": 20,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2c0a982723e4e0e2da76ed898ca6e614de67565d317ad68ee9cfd777210f9a02",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2194,7 +2194,7 @@
                     "x": 21,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x181d5bfdd040132ac99bc3f8165bb5a7c205218df5426a83020745f7d9d12deb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2207,7 +2207,7 @@
                     "x": 22,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6546f0ead4f86336974e6acffdebebf5b4ac07b4f533f4f7a01f487a13e9a7b0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2220,7 +2220,7 @@
                     "x": 23,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb85d1f97ff5dc56a54edb70400b87d63ae989315a1e74c7fc4bb048f88abab0b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2233,7 +2233,7 @@
                     "x": 24,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x59c14ec11fd648efa76ea44c090b23916dda4fc99f985edeb03bb8b12ab3b62f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2246,7 +2246,7 @@
                     "x": 25,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x93e939b65d51193deecb14d5cb76b5cf84af1d5a832e1a3d4a88c318de1028fe",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2259,7 +2259,7 @@
                     "x": 26,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2be8cc2063714d17a36d3f14ce07b5417798d03b6c7f034a0f98a008ed680ca5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2272,7 +2272,7 @@
                     "x": 27,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x19eacfae3e6d62d9331625f66b427e928dcb9c9d7c4386829e826f6d169782dc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2285,7 +2285,7 @@
                     "x": 28,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xffd784fa0fbc4ef182da578aa014d827508a23772b13fba4042778e17c5a9c81",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2298,7 +2298,7 @@
                     "x": 10,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc3da2b8a12bd2a0ba7c7186fd059b7f11be173ff73ca1ea3ff9e93b6ed5822f8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2311,7 +2311,7 @@
                     "x": 11,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x50ffbca6245dce448fb5822c7d30b0b9a3384a1faac76b9df7f2c0e1c657e52c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2324,7 +2324,7 @@
                     "x": 12,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf0c12cd9b179057b158a5b3c3ac3de9134e9541af44812d6b13e7b7629f53a6b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2337,7 +2337,7 @@
                     "x": 12,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x25a6b2e13e5f50d78857cdc7e104ce65676b21463a2bf01f42a5aa6da0e25764",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2350,7 +2350,7 @@
                     "x": 13,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8ffa37885430043800b433d7e07d687daef23dd28afa06e7706e2af5c16f304c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2363,7 +2363,7 @@
                     "x": 14,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4d905e10b0f09dff351619306d84df4799267844134b7791795dd7f6a0f8c64f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2376,7 +2376,7 @@
                     "x": 15,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38c099a69b224b5d3e3df4bfc696e24f3738caa5491fe0127a4da360377e34e5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2389,7 +2389,7 @@
                     "x": 16,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8c6724ec720cb2396536bb1d07c5de2790ec520d1f4279bf69b0a4d6125d727a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2402,7 +2402,7 @@
                     "x": 17,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x20bbf96a763a7c4b6f23d17060832bf3ad3f9539bd3268f98a4d186102879d25",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2415,7 +2415,7 @@
                     "x": 18,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x24de3c204d6e32459f0376a3ff224ce792c9629e1f508d500db2c8ff57627092",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2428,7 +2428,7 @@
                     "x": 19,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xccdfef84979243c2f1fadc2c2befcb9b3ac9f38e9e55267443bd65f1bac42859",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2441,7 +2441,7 @@
                     "x": 20,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf9fb9b4e5aebf1fb2319b627dac4fd7c9d10d49dd3e50c029980228e010e28e1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2454,7 +2454,7 @@
                     "x": 21,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb808cb28313d3ded2f352a7351627a1975e57ccb54a6eefdbc022b0b4e6b2f6d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2467,7 +2467,7 @@
                     "x": 22,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x22e9959c3c0e613888b393716a079046aa62109fc32e0af45690475c3fd6e38d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2480,7 +2480,7 @@
                     "x": 23,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xec799c5179c3139b4dfe30c60968d32f1ea79812e722cc358ac8c577d4aa60ed",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2493,7 +2493,7 @@
                     "x": 24,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x58c4f3dfe382128a49ff91ee177f6379e00e1e002ab9f933abc1fce0be7b4f99",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2506,7 +2506,7 @@
                     "x": 25,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x672b6f539026b9d2b662aea48ab68fbc3b3600303aa62251a51cf305a1634202",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2519,7 +2519,7 @@
                     "x": 26,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd6628f6ea56b017506058a13e242eb870ed34652e039c6702f1155d21e39f729",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2532,7 +2532,7 @@
                     "x": 27,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf1f926647a8a5bd9932fa0ef65e3a002c9ee4f0cd3b0574bc9585fc4086e6414",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2545,7 +2545,7 @@
                     "x": 28,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x625288825dce2a427af185da5b62a8b0c34baa33a1e8fb6c2801e8ab9cc419ff",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2558,7 +2558,7 @@
                     "x": 10,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcd66c04ac787aca5a11014b8e3efa5c9179d12192092798b1d6df4c2015c5079",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2571,7 +2571,7 @@
                     "x": 11,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2c6794db412cf8620b91790a90d97a380b9773ee06c8d457ee1d242a3f1ccaa0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2584,7 +2584,7 @@
                     "x": 12,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc35bd0f3ab94aa56da253be8291762fcbbd8630a4bc624fad66da19ddf90884d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2597,7 +2597,7 @@
                     "x": 13,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x82b9c5c45a66b948255a841e9e5a294a8b89555bda895ae70d0bc41ae75380d1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2610,7 +2610,7 @@
                     "x": 14,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x590afeee92f20557a109d0a64b7a31341cfd818b4b5742f7627fa7ae1152379d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2623,7 +2623,7 @@
                     "x": 15,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x593264c877a12f378be82cb9b201e96f86dbb8aa6612a98b3fea406d1b634ae3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2636,7 +2636,7 @@
                     "x": 16,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe84f18abeccb2e657fedd0dec611bb20a687301c093bc4d16101d8234bae1a29",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2649,7 +2649,7 @@
                     "x": 17,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4427dae850646844263785428b0c008752447068af281d2920161e64b334b5d6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2662,7 +2662,7 @@
                     "x": 18,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9a315371f3d4b135d59bee99aa39ed795cea69f8dd42627f4dc609d9b2bedb8a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2675,7 +2675,7 @@
                     "x": 19,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xca9b78d69b1fefd1a7d8d384a8985f91182f5ab900f29852b2436778bf804d94",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2688,7 +2688,7 @@
                     "x": 20,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb2d24c773a31d2ada773e1f757ec636e618edc3541f48bd0156dc156ea0acd5d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2701,7 +2701,7 @@
                     "x": 21,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x577c65920c21e45f2385776c1ccf4326d5a38fb93d118bb00804b9365260c8e7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2714,7 +2714,7 @@
                     "x": 22,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4863e567631f02ed1efd828e1fe4948e1ce2586c45ba4ec7aafeb3be19aaa93d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2727,7 +2727,7 @@
                     "x": 23,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x530a4661cdcc0314011bc8261623d550607699392f87add60f1b709d4cc7d028",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2740,7 +2740,7 @@
                     "x": 24,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdb1788b92df464bbc0d658d18531fd99e42db5e9cbd188f82d4d800e9a245612",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2753,7 +2753,7 @@
                     "x": 25,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x67db68752be099c90b1625bcc86efc62df6a2d21eb6869c39b9964c192aab57f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2766,7 +2766,7 @@
                     "x": 26,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf9d10322387092d50bb15400f909fbc59d46b942b6f3537bad3d16cabf241313",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2779,7 +2779,7 @@
                     "x": 27,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x316e6d2d05a305c3c990b64feb380603ad3675c2af472716a74cc14d5baaae90",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2792,7 +2792,7 @@
                     "x": 28,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xab5e0d52c8b1faf3276bc894a8fc82fd1f64f2a817a0326592252ccba27e51e1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2805,7 +2805,7 @@
                     "x": 10,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8e4c82d6093cfc037f6799679e09767f2f5168ef57308ebd1a95835776336b2b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2818,7 +2818,7 @@
                     "x": 11,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf5bf1d840fbcba56480436462fe2b1c92425dfdfd4682a8d92f8a7dbd256e369",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2831,7 +2831,7 @@
                     "x": 12,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0bf472507c48d08d1e8111e0ed4a734c1b9d639d3ec1d1aab54e0a6d72a49e56",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2844,7 +2844,7 @@
                     "x": 13,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcdfff59648a45c54e3286703fb33542dd1d729ad0c7a68d7d4dc62fd38c03053",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2857,7 +2857,7 @@
                     "x": 14,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6f1732d52a8b79f366539ea96ae3a16cde6a1a133b2a3d09261223d3c0876f8b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2870,7 +2870,7 @@
                     "x": 15,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xec2538c5c96ccd7777210578c840120f5b62326abbf3b6d9d8633908ca3277fc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2883,7 +2883,7 @@
                     "x": 16,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4d5f94d5630197d46210f25a6b5d81928a582895a890e4fba757460bb94987ac",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2896,7 +2896,7 @@
                     "x": 17,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x86cfd55996c81dbcae82edbb115e106163e43781005fab1aa2fc4c49d25c8254",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2909,7 +2909,7 @@
                     "x": 18,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7a632b5a7a6d677d71747a8f66ec04d022ed4d78c488a85daf3c7d89b17ab776",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2922,7 +2922,7 @@
                     "x": 19,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb08d436d6a2737c57c4f6e6abc0b146f763daa560ecc6fca71273ff80db6430c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2935,7 +2935,7 @@
                     "x": 20,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa29c365fa10aa2bc12a80de725a83a3818ccc36516d55565f4c4511e63e5c910",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2948,7 +2948,7 @@
                     "x": 21,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe4876febe1a509a464032445757ce07a4a71bdf31ccb0ebddc8a0bdd2e805a2b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2961,7 +2961,7 @@
                     "x": 22,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7467025fd61d122bdb1b33d2df9ac9c035e5057d3ba1bf61578317ca070442e5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2974,7 +2974,7 @@
                     "x": 23,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xeb26c74497fd8621a8fc768083d714ad85681fa6fd736780033dc3ab6fe8a7ee",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -2987,7 +2987,7 @@
                     "x": 24,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf3f4af02ce8abd7644bd40cd5d436f8678712aac43f8350858cdc24a62c28aca",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3000,7 +3000,7 @@
                     "x": 25,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x244ca580ed82f556cd979cfbfed74e4c7879e0c7422fa44604e8195ebb324a02",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3013,7 +3013,7 @@
                     "x": 26,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x16c07d972caebf9f54f9d163c5d523739cb8e648c3c31779c1337cbbe98bfa75",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3026,7 +3026,7 @@
                     "x": 27,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbf033aba58d8f3912507759329730ba5ec5b5edd0e6261bf88d68f6b8165b3c3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3039,7 +3039,7 @@
                     "x": 28,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2ee7e5ab99181b3373e7b6c749632ce274d65512eab7c85b3d00b2b327c5b0c7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3052,7 +3052,7 @@
                     "x": 10,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1702d9aa025d1575ecb0023b6f96d935e291d2fac9f7b940a615b7d3425c0b42",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3065,7 +3065,7 @@
                     "x": 11,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x49c5085f157d47db291a30ea0e9e431101f8175adf0419cc57fc16ba36804d3f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3078,7 +3078,7 @@
                     "x": 12,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6f502143b8fdd394d554a787c7eccd1adb2a22f63f65298ea55f72d331cc3f15",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3091,7 +3091,7 @@
                     "x": 13,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9c0103731269935d0ecbb93fd957e9887b997c50dccac2986e5b6f3f054ee9fb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3104,7 +3104,7 @@
                     "x": 14,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd3b7be88072215f9c7beed2b01407f4b74bd8beaab3bc428a3ae655d4635b1bd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3117,7 +3117,7 @@
                     "x": 15,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x87d01ca928db5c2b11f30169ee98820d5dfbd7eed30df48d60ffe1413efb8f70",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3130,7 +3130,7 @@
                     "x": 16,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2abcfc97d4fa7bc72633e4f013afcfe4f5818e57f51fda155e6617bda0a6bc88",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3143,7 +3143,7 @@
                     "x": 17,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa3c9e8d3bb6b4a0fb116ebbea537121306e20d3ab8852a7bc4980949db7e8fc0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3156,7 +3156,7 @@
                     "x": 18,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0044342022529ffabe7eefbaad88aed7d1d0b2c0436e3b0a4d434e83c50a5035",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3169,7 +3169,7 @@
                     "x": 19,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0bfa2faba827fcfeedaadcb61145bdd86410e20b21ee6af3a5f91f34aa5572b1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3182,7 +3182,7 @@
                     "x": 20,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8e58dbbb1e0a1b6b357a99d8e58205fba298884afa49f3a2ac590b71a73d1d7a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3195,7 +3195,7 @@
                     "x": 21,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbb3c54b1f66f20e90e82ab3b4c827e1044a002f67221b05047221febb3da6b66",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3208,7 +3208,7 @@
                     "x": 22,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x27cc8d2b1ffa7255278f7fbcc073e521bf09bd796e59ee596ce830040d2b6e52",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3221,7 +3221,7 @@
                     "x": 23,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x149ca56b25792d97c3eea5228f68b4a97a11eb6da1b4397e6d3f17e852ed6e84",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3234,7 +3234,7 @@
                     "x": 24,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd200ade399e991af0a1092e6229311f5c9b037ae68d6f7f4b4e822c5ee6b7cf0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3247,7 +3247,7 @@
                     "x": 25,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4e62bd94966df12c8341b67025a5737b52bf244f4f335022a76d919de3b3bb18",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3260,7 +3260,7 @@
                     "x": 26,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x57420643a3b394437a59e956550e753a71d85a131737bd864d124bca6ab95e2f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3273,7 +3273,7 @@
                     "x": 27,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe09165b53d75ed1e53b3f15a25754b71138e2fc4b17c9d05a69698a4867c5635",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3286,7 +3286,7 @@
                     "x": 28,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbcc2cf0c09bf1fe2c7f32eb7dfd8a07177d0506640022e4779c2e9ce7bcb538d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3299,7 +3299,7 @@
                     "x": 10,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5657108eff0c5287fe363a0cd20b572f7459d998e9131a68d1714378924cd8e3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3312,7 +3312,7 @@
                     "x": 11,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x08cfeebf81445fea053b653ba6449cac5eede8e52d34127c92a8ca39f316e082",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3325,7 +3325,7 @@
                     "x": 12,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb457780ea2296a6151ea8c0e32321cc645d5f69dfadf4e065addce960a160b3c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3338,7 +3338,7 @@
                     "x": 13,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x17c51e17a8bb715c7149839cd08b42c489260487f26350da1cc172ae1eb269d2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3351,7 +3351,7 @@
                     "x": 14,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0c66af8a61abcfc15b852d74f318e98ae4e6b790263f576cbc3600f627f0ec12",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3364,7 +3364,7 @@
                     "x": 15,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xab6183567d5ed82422b3ab5c9ddf4552bab572816d55ef931d3b169485f41ad3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3377,7 +3377,7 @@
                     "x": 16,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x20b8d4e4264bc123d87f07952c090429c3265d3aea51e54e428fc990e811f4ea",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3390,7 +3390,7 @@
                     "x": 17,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x69374f379f6ce4af3e9fa50fd9b3fbf6f123d89126b49cc8678439b5962b748f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3403,7 +3403,7 @@
                     "x": 18,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7457d6d0b1aacd1098e12748c1da6a632ee285be87ee434b255e49f8e87d843e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3416,7 +3416,7 @@
                     "x": 19,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x235a371d547b4eef4e0ce37addf95e70f65f0f2c5406b948eda467a769e9f593",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3429,7 +3429,7 @@
                     "x": 20,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2240727b84cb04ad94de9e364996655b20f2b68d1980aeb48d89e6c46f7d24e7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3442,7 +3442,7 @@
                     "x": 21,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf1c1a16f15e7e631158914e709d030651915291fae1c9934a73d67316367957c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3455,7 +3455,7 @@
                     "x": 22,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd68f754c95c5d3a5e04ac115dc881a93c186cf71ed96d2321f5f5682e60468bd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3468,7 +3468,7 @@
                     "x": 23,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf68649ac471bdfb40b5ec139aaa9ab47238195ca7e5aae3cb179f68abdd79b39",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3481,7 +3481,7 @@
                     "x": 24,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaac1f75228ed33f57227657a0a6538b4f5f41f2aeae520a4e139426c81869c51",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3494,7 +3494,7 @@
                     "x": 25,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0ebbbb4f369c6d9090002187178cfa8ea85169e3afe9b0d7951190410d0376c0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3507,7 +3507,7 @@
                     "x": 26,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xac29e0cc2dcf1375bc03289a1401b640880330beb845e856d34dd56167cb9961",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3520,7 +3520,7 @@
                     "x": 27,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x162aad2402c1f5fa7bd721cc5d78d9165d3b2d59fbc2390c18e79aabba05104a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3533,7 +3533,7 @@
                     "x": 28,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x570a378cb162dff0a1f8c37774491b09fa6a72849fc8e9f32e5fab272aa190e5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3546,7 +3546,7 @@
                     "x": 10,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x14011e308b376b699aa7969ad211e76277dbb02eb0a5a50985c22c5c701ddbec",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3559,7 +3559,7 @@
                     "x": 11,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9d3d4b765c19bec6ac147e1faf9360b6951cf41db537e743604c72785e7d178b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3572,7 +3572,7 @@
                     "x": 12,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x46e6a9ad90b2b5258224f5c5bef6c85d4d72d8b96c0a946cbd15f8d3e6f3528d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3585,7 +3585,7 @@
                     "x": 13,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7edc1d6be8584e9946edb870422719124f83ea73426016090d49a75e62c4657c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3598,7 +3598,7 @@
                     "x": 14,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x51f0f7dcfd701fe822021f62bb95a2ccc03f8bc72a0825bac1a9592902d80ff7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3611,7 +3611,7 @@
                     "x": 15,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x933fde93e05b4f3d49d9032cd960099e599c97086b00f8f3d96a0f03640f038f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3624,7 +3624,7 @@
                     "x": 16,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb01cd6a365b17b543a83bedf8d15fb2890bff7689a8305755326909adf14e42e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3637,7 +3637,7 @@
                     "x": 17,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x630bfbda2b160c34424f6b3653189507dc094d23f9dae5c3a9906bf08fe240d5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3650,7 +3650,7 @@
                     "x": 18,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd85ea89e7a2ecc8e81cf5242085d4f208766baa9c5e9204e9d11faad93f33aa0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3663,7 +3663,7 @@
                     "x": 19,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x145c68aac75ed896182876acf837f0672d7cc8bace8490702b7b006a2bd8a58c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3676,7 +3676,7 @@
                     "x": 20,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb2f66c0f15f4559f94a8e8f047c6d3baa058f3a97398f102c642934ebbe31963",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3689,7 +3689,7 @@
                     "x": 21,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd068b4db384e10c25ecde0bc3a726afe9a53012d051d049f533ba8d83f1b1c33",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3702,7 +3702,7 @@
                     "x": 22,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe00b55127abe749582ed49f0cace5d7d0fbd16529d44974543abc32b78a07657",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3715,7 +3715,7 @@
                     "x": 23,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4aa41d0aa15e7e85bc6a87fbad978312b2d227166aac69ac688bcda430a1d402",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3728,7 +3728,7 @@
                     "x": 24,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7d038e4e85c615d9b2450ed8511a0d3d73468c646b8fa07479faed0f435a2686",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3741,7 +3741,7 @@
                     "x": 25,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x946e28a7f195320b07acd28843c42ffffcf8d75f09dd53ed6693be331fb7f63d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3754,7 +3754,7 @@
                     "x": 26,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8a0dd4116fe1597b5fc6594ed3b0c600917153b8fa21e4c6054c688638a00948",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3767,7 +3767,7 @@
                     "x": 27,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x645643007c80dfc4c3b014a01afa610299b39489f8f00197d3f7a6d6c988e3fa",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3780,7 +3780,7 @@
                     "x": 28,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5ec873bea41f5c7ed29c28d3c7470c962fb9e6173f6505123233141506948882",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3793,7 +3793,7 @@
                     "x": 11,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8a36046ffeba86d12509c7d4807edc49663b05787a19322a2ef5a330a7982c9d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3806,7 +3806,7 @@
                     "x": 12,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe88dc2cb04c1ca1acbbe33c4e8c8e49af34d3c6df103ded07878f166bbe0f150",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3819,7 +3819,7 @@
                     "x": 13,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4a674978217f549448ac258961d163b53cbeae5c1ee85705f899068eec88b96a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3832,7 +3832,7 @@
                     "x": 14,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x438228813e4c7eebe7a8728df4c7d87d477650ada6d4420926fee59fcc0a2734",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3845,7 +3845,7 @@
                     "x": 15,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9c7ea2179d6684533e78d15368896aa4fc6deaf13246a8905d24999d3970ae42",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3858,7 +3858,7 @@
                     "x": 16,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x32bd3e380058b7764ceb9d9c0d1f03a51bb8eab6f15779206238024d49442650",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3871,7 +3871,7 @@
                     "x": 17,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1bf3fc30f850fcf3958cedecf33a567f6a95d8f77dc021249094a1bd6636aa63",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3884,7 +3884,7 @@
                     "x": 18,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3e39452c78c483d8092e2060d7737d65e20e1c41127216e8310e8932228aa83b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3897,7 +3897,7 @@
                     "x": 19,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf1e17c898c3f9507fb6b73bc2939d16ccbbdf2427881010aadb9a247989d420c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3910,7 +3910,7 @@
                     "x": 20,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdf1d759217ff1fadcbc6b3dee59ace7f0b64edc4ca060aad43420aa20cd44543",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3923,7 +3923,7 @@
                     "x": 21,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x573688853b330f4635416c7249383f7197f8068f1ddf2b035a9d3bf2a2cf5f24",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3936,7 +3936,7 @@
                     "x": 22,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x05d03491bf47266f135b55414470d9482a3b910d9cdcc71bf0eebbb30ea9584a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3949,7 +3949,7 @@
                     "x": 23,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x990f985658a0d1bf0b0ffe804d4537b7622a646f8da932971ec59429c5f38fd5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3962,7 +3962,7 @@
                     "x": 24,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x19bb11506a9759035a3bb302a7e0c43e5101ffa084c5bd1b398c6d8a3ba5320a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3975,7 +3975,7 @@
                     "x": 25,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd23a2be713a216aaef90e586ee3a281ca7c088340f68b4e7f5b9c95ee56b6a77",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -3988,7 +3988,7 @@
                     "x": 26,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4d1eb606045b4a45f9fc2d3f33e1aa82249bfaa3052e6124384dbc7faa916485",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4001,7 +4001,7 @@
                     "x": 27,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x438031d093dee172bb30d79716f1d7d68b1248b28133607bd5c793c3a59cd92b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4014,7 +4014,7 @@
                     "x": 28,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x548b4f43a1d79797e23474ea56e14556ff87a31c4bf7f6ff1c885939b739bebc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4027,7 +4027,7 @@
                     "x": 16,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb04ed243c0ae36a6be9e3f4a89119d354c1f4cd5e40f94c246d03eac28bb0d8e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4040,7 +4040,7 @@
                     "x": 17,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x70be1a3e719494e368b7a8921309c65a77f7a3e39a879b010922197bc612caa8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4053,7 +4053,7 @@
                     "x": 18,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x41cb5719f9870216c9dc93b96c2a87c78ad7150df31086f15e169bf4e4f4fd29",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4066,7 +4066,7 @@
                     "x": 19,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6a84cf767e1c9626029e4ec8fab9303162a7a3668998fdedc13939a5ca5fba69",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4079,7 +4079,7 @@
                     "x": 20,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xae52d0742647fd3af3a2a7367afd231c1f6d2d1715683df67a245b8b8d4d1993",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4092,7 +4092,7 @@
                     "x": 21,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x96c1d8c969dd3d39a2fb1927a4d5dd9c3a7ad5568f97408a2bdb3f86a8c62df1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4105,7 +4105,7 @@
                     "x": 22,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa41332c5a7cbe262f50d317469aba6468969c35d9c8e9d3f203b5815abc76acd",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4118,7 +4118,7 @@
                     "x": 23,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe1657d7dbfc316513bc1cbb21ad67e840894da28f734cdd1184b36bfeb5bb26e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4131,7 +4131,7 @@
                     "x": 24,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0a94c523d0275a0fc1009a8a862d29ef2ffadd4a9cef19871008778f6d8b886e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4144,7 +4144,7 @@
                     "x": 25,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc75272cba80b3d562446f38c5465561247f93d78fe5d9796c7318aad6e2eaf4d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4157,7 +4157,7 @@
                     "x": 26,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x13c47c31935eb6a188034c45c469cf09156d41eb51c2b57aff8d05c78d0d6329",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4170,7 +4170,7 @@
                     "x": 33,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x683e415a22ede93ab0c9ec7f363d0fb379bbdcc27ea374093b42901a95ad3dd2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4183,7 +4183,7 @@
                     "x": 34,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf8b6efaa57b67632aadbf90a36d71d9d5554f23cecdae22d01b09f52aed3525b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4196,7 +4196,7 @@
                     "x": 35,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7e3849389cb3c4db31f453945c2f2aeef6a7af98834d1cac1765912ed7128672",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4274,7 +4274,7 @@
                     "x": 41,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3754ae89d667f0d5941d1c36c024985dcc3225ee7e896679808a9ca7073deb02",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4287,7 +4287,7 @@
                     "x": 42,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x24b6849e97a4e5e2aa2d815c0d244cbbdff4b349d0682e5350a109d45e657d30",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4300,7 +4300,7 @@
                     "x": 43,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb2e1d13e414768004ddb78acdea099c65e2a837ca50934fedde1281397ef3e2c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4313,7 +4313,7 @@
                     "x": 44,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0bbfffb68f564e7b39c83b63b7c17f1a72bc0b25d5860800b6db9c4059275268",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4326,7 +4326,7 @@
                     "x": 45,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdf18cf706e5dd49e955b9c5fc96ee2b7442b4229a0c403a423c3e1defad78e52",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4339,7 +4339,7 @@
                     "x": 46,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8143992b450a46b6c1ed44255bd94853bb40e3e5a24d1d0679461f6e83a47673",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4352,7 +4352,7 @@
                     "x": 47,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc029fd3dee8d0a518b4a894515c159e66d357dfc79d4b757178f9ba7f056f3b7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4365,7 +4365,7 @@
                     "x": 48,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x10404f5a1a71e28cdece693f6df95a1906690a27d499c30aad75bc7db5078390",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4378,7 +4378,7 @@
                     "x": 49,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcf93e0e710d93d4e422ba8e745c25bf4260a7b38eec2b9e2a5fd452098643723",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4391,7 +4391,7 @@
                     "x": 50,
                     "y": 2,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf73c00a474ae4dea6873e4a7a6b259621b60d97649a1a998350547a19265d8a2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4404,7 +4404,7 @@
                     "x": 32,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x52d44617b336ac55a367fc45dc6e3bc5ac49be55741e99ba1812cb3009cbe93a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4417,7 +4417,7 @@
                     "x": 33,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x87fbe5ed903ea0739bf54866d49b0c4a4724b20247a4d0bb3b5b429db383ed4f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4430,7 +4430,7 @@
                     "x": 34,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaece5d2bbe504350d092c1858102ae1168cb3ecb2436c053312c217646aa5f66",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4443,7 +4443,7 @@
                     "x": 35,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x046930a4a7e1580286d2aca6f15c42bf079ff851fa2e003513f0b0f1fabf5eae",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4456,7 +4456,7 @@
                     "x": 36,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x62ea558e62e984e0587b0670c0774f72ce61278989aec2302cb1aac3eb97a1a0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4469,7 +4469,7 @@
                     "x": 37,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7f53f192ee5f5507b15944e77f5b6e80f64b9f613f859d3093f3110140c6762b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4482,7 +4482,7 @@
                     "x": 38,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x51efc09e039b5442727cd706396a7c0b7468b632a4ad2b5ca0efb9cc21c79b57",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4495,7 +4495,7 @@
                     "x": 39,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x48e45d157b4dfdd0dd966f31ecb56e0bbb54869f5c0ff9f432dbf9443576ac45",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4508,7 +4508,7 @@
                     "x": 40,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x37f45692a86f302b78fccf97271bfaab112021f6d0151ba15bcbb8ac7232651b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4521,7 +4521,7 @@
                     "x": 41,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7bf546820387816ae6d8b4791f396a898957d47bcc28891c8d6884a4c9a01321",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4534,7 +4534,7 @@
                     "x": 42,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x45b161137aff4a2870c12bb4aaf204852fa386c1a8b1beedef227f50dd25a408",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4547,7 +4547,7 @@
                     "x": 43,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7c9e949d6a6dffad691b25aab0e208b17597577d3b04f581d4100bf2955a2f5b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4560,7 +4560,7 @@
                     "x": 44,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf63b6c20a9e39145f5e8b20b9b8349314b91d3ac8036bf77f7beb1b897b0023b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4573,7 +4573,7 @@
                     "x": 45,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9c194a5c8ad54ef6698cf143a4ac225ba2ff3e37e257adbb15e9bf59abf97953",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4586,7 +4586,7 @@
                     "x": 46,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x53c73ba2dd1417ebc8af90e31dbcbd8548ce7f7becf07254ee58cea7b7117101",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4599,7 +4599,7 @@
                     "x": 47,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1ae6c2b4e34388a36ba615306b130a77237ae64e58e1cbef490fdda1a358ac7b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4612,7 +4612,7 @@
                     "x": 48,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x91b9796d4d6171ed623ffa6d9f12cac572142bca6bc9cb3702f562d1b8a7a111",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4625,7 +4625,7 @@
                     "x": 49,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x35e8d7e2655e68ab7894a2fe9ab2d2399cf884d1e0586a58188b928620201ce8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4638,7 +4638,7 @@
                     "x": 50,
                     "y": 3,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6b1e45066245a388ffe58f149b5c2ce6973bccef135d514a0796e0a97f97f011",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4651,7 +4651,7 @@
                     "x": 32,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xea1a6fd45f9fbe511025b9f46a91c2d92c47c7c403a7a1278c7f121dd2129b66",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4664,7 +4664,7 @@
                     "x": 33,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xeec3cd7cea05df118529edc4f203e88604b18839fb31824035931e4d91137160",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4677,7 +4677,7 @@
                     "x": 34,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9d0c95316aa57bd0feec03262f2c9aaad0e8f7eec6ac10df6727c60fd2b5fbea",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4690,7 +4690,7 @@
                     "x": 35,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf905a9cd4939157f0fbb23b56f24987a4e0c4b941662102ffdf12bbd08b44274",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4703,7 +4703,7 @@
                     "x": 36,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe9ea27fb4ffe94150c110abbb8346b76641957a00886ff2847af3b45ff35fe5f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4716,7 +4716,7 @@
                     "x": 37,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcc2486d5b112f9ecd2bcbed513babde4fd15690cda6bdfa64424dc4673144417",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4729,7 +4729,7 @@
                     "x": 38,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0e3a28f6db87a20515696824664c90fe811172bba81ea56d6b8d666af52623ad",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4742,7 +4742,7 @@
                     "x": 39,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xef17a0778bbc3763ab22216e5f1b8fb133732bab6f384ce14211be9160694be1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4755,7 +4755,7 @@
                     "x": 40,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x255764df0097e35620d123f64deb8a422d21cece4a8ec49abc75a73301bac3c6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4768,7 +4768,7 @@
                     "x": 41,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0372bc324767b5f55ec2fa5f98b16b11f042e04afef8e6fcb42f11c9f6f37d9f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4781,7 +4781,7 @@
                     "x": 42,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x564f96849053ef7f3e1972d63ead70c022c035f978dba6762fc9b1f2020552a9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4794,7 +4794,7 @@
                     "x": 43,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x384a975851b56a8453604f3248626bbf0cabbb35f22067bfe680eae68cceb2ec",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4807,7 +4807,7 @@
                     "x": 44,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x825cd089703e299338361578b93a38ad877cb78f0c1e40cdc84499a4d19e7f8f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4820,7 +4820,7 @@
                     "x": 45,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6ce83fbc362cc1f347e55ba47d033a0a4c7d38946bb55f87a12b2274a9f93fef",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4833,7 +4833,7 @@
                     "x": 46,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3a86e4ed47f52b4e5bece5953e0509dc653b26548d9b5528b6914176b480c948",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4846,7 +4846,7 @@
                     "x": 47,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2758c3e223b98c3a275b4a5ac545e3144fad7746391bd54d51df82592909ccd8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4859,7 +4859,7 @@
                     "x": 48,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc9580e63c83fdb5c234660a8b9745f1945e17452462a21437e93ea20cf4a6b84",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4872,7 +4872,7 @@
                     "x": 49,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4ee30e3604856ae2630c41e019ec379f444a1bd25b64991e0eeaecbcbb69dbab",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4885,7 +4885,7 @@
                     "x": 50,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6f7607c65386ed9959545aefc6b90a2824aa3750fc6f4c1b38640511fba5a8c3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4898,7 +4898,7 @@
                     "x": 32,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1ec9a20b7a768af548efdb57f67b0233b62e1cc6a978f68e61a7ec00e77ab9ce",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4911,7 +4911,7 @@
                     "x": 33,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd804bddc9730b6ff8d5af2ac9196a4dc63aca757e4d64783ada4e48212b655c8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4924,7 +4924,7 @@
                     "x": 34,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa58c42af54028acf4e04b24f273dee47aef328d44515b7136f5bb2874cbb3157",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4937,7 +4937,7 @@
                     "x": 35,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38204fdb890a99a569d429dda55e2f1d1ae6a56b652a53109269d8116a7654a6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4950,7 +4950,7 @@
                     "x": 36,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3f361e7ae549f4f62515706b24515d9dbf66b01e95cfec57946d95e626d0406c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4963,7 +4963,7 @@
                     "x": 37,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc8f4a952c2aec6d9c3973a57b6578a26d033dacffe454607fdbd0f73264bc796",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4976,7 +4976,7 @@
                     "x": 38,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xda85f0b78e4d0677b9882abeabca7a9453b0bc5c6da03e09f7103bc929e48dee",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -4989,7 +4989,7 @@
                     "x": 39,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc128402e1bd7d4409dd335ff9676e281125c530aa7174c02c7021e12a1e884c5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5002,7 +5002,7 @@
                     "x": 40,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xce664960ad25c206481a656a0408462752bc8994f6734d3d12e414a9aac4c4f8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5015,7 +5015,7 @@
                     "x": 41,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc00ec264f97d8efb12c9f310625fb8d6703014fd15ea729c03febdd828f65ab9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5028,7 +5028,7 @@
                     "x": 42,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xeb4f297842074dc5315dd65cece2b1bdaeeafd05588ffbf29c236e1229fdd38c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5041,7 +5041,7 @@
                     "x": 43,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf7a1c7be2543227a4b0ca1029455e4f7076e9da8133fb8ef11e7ab3c707c90d4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5054,7 +5054,7 @@
                     "x": 44,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc78fc283d2b52320dea1ee3f92c9bd55c6f28201f80153dde3e144f3f92c1ff8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5067,7 +5067,7 @@
                     "x": 45,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5078929f9ff4ea64dd877b1f7baccdf285a6f3052c022ae9bcdf0a4eb3358ce7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5080,7 +5080,7 @@
                     "x": 46,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9b7d1960478261790c67e3feb46c2ace788f97ceaac9bdfb7614dace3894d24a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5093,7 +5093,7 @@
                     "x": 47,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xda3caf76d8ab9b1171e66fc542e6f68a92782ed47d6fdd8678dd6e4dc2243bae",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5106,7 +5106,7 @@
                     "x": 48,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8339c84fbab3f7a43ebcebad5d01adc122f60d93f3c0f709c1659e820d108c2e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5119,7 +5119,7 @@
                     "x": 49,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x66a53c4b0953cc46efc9b4bd5fb765872338f6bfbd85e5eb6b9e5bb749044fb1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5132,7 +5132,7 @@
                     "x": 50,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf939d9ed57860647a4f4ab514e1873607afaf7c85f1b25ef3c8dd20ecadd5f18",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5145,7 +5145,7 @@
                     "x": 32,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc294ac571c6456d2b05e24df013b3466c8f02d9d80aca83579e64e8d209c7dac",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5158,7 +5158,7 @@
                     "x": 33,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdad0a538ba4d5101f902caa3e917d2b10363bee819517c4ad15b73bbe4bc0ed3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5171,7 +5171,7 @@
                     "x": 34,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7fdf82693c268d7b16652604f2482504c22ab77f8279376b959fdc2538540e40",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5184,7 +5184,7 @@
                     "x": 35,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6946c82dc2df673610b1f63621a13e7bd43c69fe769921872f38080b1e328081",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5197,7 +5197,7 @@
                     "x": 36,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4a6ba830234d9b01607bf05b35b41ff1696e8c3e5860ec9f40af75f838848bf0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5210,7 +5210,7 @@
                     "x": 37,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xec18bde9298c46cc32f230e4072503a5d2f25e10971cdfef2c71b73a114e5956",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5223,7 +5223,7 @@
                     "x": 38,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf7d1e226e61a6ea96f3fa64c601e5d3a1d816560c7c49ba11e6e6db8603b7b74",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5236,7 +5236,7 @@
                     "x": 39,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x72d56aaf1d4fee4de6ae4417f63f6fe022c0264cddac790b771060a3612d29b3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5249,7 +5249,7 @@
                     "x": 40,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x86e3d4e6959c0734c7f47ecd5e6558bb8e77a68e9303776ab3f93b4c07d3a467",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5262,7 +5262,7 @@
                     "x": 41,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdb9f8795da32e52b6318fed4640b0900a5bd3fbad24936c154c50cb7319ccde0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5275,7 +5275,7 @@
                     "x": 42,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1d26b2a32c40ef3c8cedeb722c1f9c210e4ae6a591ed110f25756316ba8598a4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5288,7 +5288,7 @@
                     "x": 43,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa81a77209412439e0628ab47badab54285c5270bd04edf8ce3e5357c613fc63d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5301,7 +5301,7 @@
                     "x": 44,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3f2c509f7922b501106e719f5865875327c5081887850fcf74ef4fd353b4b4d3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5314,7 +5314,7 @@
                     "x": 45,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6cc07f27316e8e126972e56a1fd57536a4201781aabc6f761bcc61f672f4cce3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5327,7 +5327,7 @@
                     "x": 46,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd14313e3f56426cee9a5a1a7db4b16cc410c64880fdd7e7ca6061edff05591ac",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5340,7 +5340,7 @@
                     "x": 47,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf4d5fdf84b64c9c0b044ecf4e7e6116507172dcf27897edb23d5bafc83e253e5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5353,7 +5353,7 @@
                     "x": 48,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xfdb05dc02930530cc9d2f22c4e58c59d0848b6dee3c9ba9278ae4c4418f3565d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5366,7 +5366,7 @@
                     "x": 49,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa682d35cb963392462d9ea14fc97af4cb0f73255d2c7267beef72f434428761d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5379,7 +5379,7 @@
                     "x": 50,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc530ccb22a5f63c05d203e1a2bc406c13fe57ccda933b04500139458ab58416f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5392,7 +5392,7 @@
                     "x": 32,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x146cf5ce640dbdd9a00ca015de8c368d92630587ce4e41f91d75631a3f96f241",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5405,7 +5405,7 @@
                     "x": 33,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa7ed6b8a89f4cab4effc762c0a2e931c85cfe90ccf3b57e96a291e2e69a84e21",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5418,7 +5418,7 @@
                     "x": 34,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaf8773578311615579b7f3a3deb958923991a253238b75538f9179bab014b1da",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5431,7 +5431,7 @@
                     "x": 35,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xefc0b45f0cb1f63c3d6b987adaab5d6f4ff3a3f37abcca94492de921e36f232e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5444,7 +5444,7 @@
                     "x": 36,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x985b2111495f0fdd8357458a368fc8cca437414253090bb82e4dd5f7dffaa5af",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5457,7 +5457,7 @@
                     "x": 37,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe3c87b34b52391680cd5d6a7c1c95ce04b5e0d714bc1d42c09f086a5e2f53cf5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5470,7 +5470,7 @@
                     "x": 38,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0a997fb23c7c31b421baf9f5b54a3e86a188eb38b12ddc0bac3e02d09b927939",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5483,7 +5483,7 @@
                     "x": 39,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa4f4caeef0208fae9ca0f07c301f449fcb0f6e74fdd46160acd0c6325caece57",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5496,7 +5496,7 @@
                     "x": 40,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x830a81c983975045bb323514e3fdc643ef805b717c768cb6a4bd62c9cc55a93b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5509,7 +5509,7 @@
                     "x": 41,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5a423378c0613b88aa7f19d1cbc39f9b68b5f47dfc5d05a42a5159aa6d12195e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5522,7 +5522,7 @@
                     "x": 42,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x93c9915c5ea5f564e3a7bce6cc3236e23e5168ccaac96bd8869323fb30b7d6cb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5535,7 +5535,7 @@
                     "x": 43,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9eb2eac77adc27061a2c4dce6c739073389a026e09a40a007d63a4867a8e9753",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5548,7 +5548,7 @@
                     "x": 44,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xed84fd31c7529122e29df5ec46b92de2734e812a70e8fba16c80aaa326b45ced",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5561,7 +5561,7 @@
                     "x": 45,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdc14b8c0f471927c27e91d10dbde702ca9112bc0ee1dda53ee1e59766681f7b1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5574,7 +5574,7 @@
                     "x": 46,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x62167095a0839bee264e712afa16cfe40c2ba98533f64dc60275716841505da0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5587,7 +5587,7 @@
                     "x": 47,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1e86498bb9d54ab3ca8f40ec7d9abc46be4e01930a9faa592fba982770212dc8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5600,7 +5600,7 @@
                     "x": 48,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2d16acc88acb382d26bbdc61900c1c74482f7f55ec4e6aefd2e37905a5b133c6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5613,7 +5613,7 @@
                     "x": 49,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8ef62156d0a1f5565855f4cd06f4e30f0818eb9e4daaed90093cd5a014a044c2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5626,7 +5626,7 @@
                     "x": 50,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcc1f888502718e69818950e4b3803ee83d4535766c14690713c779f4ed792bab",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5639,7 +5639,7 @@
                     "x": 32,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x03d3dcdf95144a4681e32c6bb7178ce6adecd0c857230ce9a7c42ba5b65d53a3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5652,7 +5652,7 @@
                     "x": 33,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x914eaa9d5fc5a1ce20d2f88540507714239cb0f4eb3de15ac85b1bd57ea3cf6c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5665,7 +5665,7 @@
                     "x": 34,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbb15b9a9cf0d710c56bb6f9f9cbb6daa97e7b0141ac3249d7f0c669ef313d5bf",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5678,7 +5678,7 @@
                     "x": 35,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7bc289e484adae006c145dea1c81d0c1d9b5553c3603a9b388161ee90d9812d3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5691,7 +5691,7 @@
                     "x": 36,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9f92fc6dde7e45b16f18da882406540c8f355408e2739cb051a996e4bd6de5eb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5704,7 +5704,7 @@
                     "x": 37,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38145733e313de0ca653b02a95ec26327db685a9f45a5683f8fcc5227d78fa5b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5717,7 +5717,7 @@
                     "x": 38,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x06848dfcb0cb2c6bb5e22a5dee733016432640ca7ccc6b9649c09b9d532284a3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5730,7 +5730,7 @@
                     "x": 39,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x285d97fa31fcf75ca5efe1dc261b695085722af2e4b4dccb6044c81173bbde2a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5743,7 +5743,7 @@
                     "x": 40,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x59f5a4b84a4544988830686f64d62b1aedc9229ee9c2ebe5233f92e56f4b1eeb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5756,7 +5756,7 @@
                     "x": 41,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6db0ef60b7882db7e8bafe2524b065007aef32b91f00643af3731895da091518",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5769,7 +5769,7 @@
                     "x": 42,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xeceecc0ce26d3601ede6df22656176f81c92f615ad2b1bc1164acc3f1155c221",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5782,7 +5782,7 @@
                     "x": 43,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x40eb0edc10abb89a00f7102c133166ebf8ede231d2b276df63a2c54ab6e452db",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5795,7 +5795,7 @@
                     "x": 44,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x433c66d8ad472427c472039a4ad72211f74fa6ea2c916f0ca3f72163ba582c54",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5808,7 +5808,7 @@
                     "x": 45,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x20dde5c0e9642d85ab6f6f6f14056d404de7dcbdb21f6dabe3cf28d0215e4115",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5821,7 +5821,7 @@
                     "x": 46,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1d9feaf2d37029ed428715d0c30d8a49c46285170ba20593a4703bb3ebbe0ccb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5834,7 +5834,7 @@
                     "x": 47,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x871413c8474bc320eaf57ccb1e695084c630bf032155a8fc7ca9dd9f03b25855",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5847,7 +5847,7 @@
                     "x": 48,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xea70390cec0c15f4a0671b3fd35ba842362bd31979149beb8777913c8f575dba",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5860,7 +5860,7 @@
                     "x": 49,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3f540e6d8628a60f4982476f9de2c8348a668aa98324a38d9d5b2b85afa1fca6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5873,7 +5873,7 @@
                     "x": 50,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8b1d8768b002e19beb9f3e0d9e0a9c8f9ff71fb887502c2d27f3f5e6f09b7889",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5886,7 +5886,7 @@
                     "x": 32,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4d398e00db1dc3c2930dfcce701a9390963fe3de734c12d423a6f0522fa18b62",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5899,7 +5899,7 @@
                     "x": 33,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc3c35e2768e9962b7123e8837f7c15250d56a5a5cf61a06be38620e39b12f8e0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5912,7 +5912,7 @@
                     "x": 34,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2528be60dc15f951ae539bd84598ae6af3817e8f6a5d7b0f46e4fff7f445cfa4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5925,7 +5925,7 @@
                     "x": 35,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xec8d0fcce73c3d8b61792628a3169805051cb1b3f2cc3db72e42aff35f2926ae",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5938,7 +5938,7 @@
                     "x": 36,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9e628a2ce684580c8b2efef168ac40b7a849360e29ed1330cefac212fd0e47e2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5951,7 +5951,7 @@
                     "x": 37,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x32de65d605bb21f903a2255243ec09c6754ae2582744faf2fd204f3ce2d611b3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5964,7 +5964,7 @@
                     "x": 38,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6756d9263c6928539b0fae64a51619ee167ed21787a8ee19929dda36c1d9f0c2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5977,7 +5977,7 @@
                     "x": 39,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x513ace5c8f9a96644f4806f3aac1261bbecc8c8cbf7063d5b8649c2ccef9fe32",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -5990,7 +5990,7 @@
                     "x": 40,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x904c603182a4fa1a402b553c11e57bc29a1dae9e5a7493f4945c9d4a78fcd403",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6003,7 +6003,7 @@
                     "x": 41,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe871d273cac56164592283ea60adbbe110e6bf7409c8da79c22efc49bf0fdb17",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6016,7 +6016,7 @@
                     "x": 42,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbe355d95fda0e586ac29151934075dc553f9412c4d633992f359b74e58b2d2ae",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6029,7 +6029,7 @@
                     "x": 43,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x30c303c3418f13addee60fd42ce2d699022c9d6929fe83844469400f967cde66",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6042,7 +6042,7 @@
                     "x": 44,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x54a1c8bb81cb5015e2f94ac07115cd45cd5aa48425c7ab5310a798ed226e02cc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6055,7 +6055,7 @@
                     "x": 45,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4c0a246a76b49f630c31142d0a4d9549d8f41b096ea0452cbc7787a328a19377",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6068,7 +6068,7 @@
                     "x": 46,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1fefe262b95a342df46c5116f7253b885c41519895d7ae2f840e1ae875aea6d5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6081,7 +6081,7 @@
                     "x": 47,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4a1042d4a6acad1c358fdbd8a73e81cd34523add5bd26fe96d415a2ca8f1ed57",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6094,7 +6094,7 @@
                     "x": 48,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4699bd0aae000606e03eb1c46c06b7273170c5c1a03a220e5d83b7a2cb18647e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6107,7 +6107,7 @@
                     "x": 49,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6ea0eea994960ac861ec60a2aebd929b2bb9b7a978462f55df22c73212bd5d06",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6120,7 +6120,7 @@
                     "x": 50,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf27c1b8d03555c7677215dfd7769f589fd53704d5680af83945ce55fde62f27d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6133,7 +6133,7 @@
                     "x": 32,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0017619db439e65c0568a2252f2f3a89239195f0525536bf5beb72e718a5ffa0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6146,7 +6146,7 @@
                     "x": 33,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2f05eccefe82311a1f407a30f6b5a244cfd1a6dc80e1a4ee4c2f08a392ef6d14",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6159,7 +6159,7 @@
                     "x": 34,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa2f3a8a47ec03ae5cfeb8bb09b442a437a1267471db6946e30bfdb2ae8910ee1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6172,7 +6172,7 @@
                     "x": 35,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x960f6cff6a795b0ea617f08d63edc2ebb98fb195a7294e6700399b97881c6ee2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6185,7 +6185,7 @@
                     "x": 36,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9a47c272909167bebb55f28bb18914cdef64b22118da709c30a0e6eb60725667",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6198,7 +6198,7 @@
                     "x": 37,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9fe84968889ebac6664f09a707c2418661033dd86d9cb8a9dde31237fc93ee75",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6211,7 +6211,7 @@
                     "x": 38,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf6350ddad69ca96a6c4eb61a0e0b227a67d0e707c1657f3c33bde56c3605e697",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6224,7 +6224,7 @@
                     "x": 39,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1e67ea50b07a879c47e908be82b2a53252c24f9d42047864febf46088cd7b1ea",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6237,7 +6237,7 @@
                     "x": 41,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xab4ce6b41a0d918368e52cd90da32543939de64be39aec41a552efc29d3ce2de",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6250,7 +6250,7 @@
                     "x": 42,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc750f1c3779191bfa8af6ed8f364c57672bcf806ce6a43f2d0cbdc69f800991b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6263,7 +6263,7 @@
                     "x": 43,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xffbf269f2b360d18489d39e77439bfc3cac81ea2c08559ff7f713bb76f0f8082",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6276,7 +6276,7 @@
                     "x": 44,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x480cfd5244eb46870b4aac8088e4efe9155f60ad9ea4a4e01b49f3bb534c4c63",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6289,7 +6289,7 @@
                     "x": 45,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe3ad36f356ac07b64fff0bf2061af6d1b261343554303c9d7cde59331226e72f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6302,7 +6302,7 @@
                     "x": 46,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc47d2d3db0ddb5f030126580fd1c3b02c17c42c98d226373fb16f6df74f42ab0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6315,7 +6315,7 @@
                     "x": 47,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x788203985310c3a8c5183a1888f0050d6334bcc10c067ceb62f782bdccdb9a66",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6328,7 +6328,7 @@
                     "x": 48,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9efca1f13a9705b5006ddd6e531a1c644b04dc67a7cdbfb0dc7a94c6cdec4cd6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6341,7 +6341,7 @@
                     "x": 49,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa6cc8a0eb0942d9c12bbecc14186c794b781ffcad9d1fd60c230fdba5a821f49",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6354,7 +6354,7 @@
                     "x": 50,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9b4f7609417aac83a3b0b82cc6b27709e7173c67e9678885a044146b1d4aab0e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6367,7 +6367,7 @@
                     "x": 32,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x454d83a83dee92b9651740524d8000517444340120ee7e5ec1b21971d60b0b26",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6380,7 +6380,7 @@
                     "x": 33,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x895798dc2aebe56677ebae41649810f3e9e7c22beed9552f1cf0fae632b110d4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6393,7 +6393,7 @@
                     "x": 34,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8eb9f780ec2fc4a7d08370f9370feceff7fadadd99192a1612a8eca0d013aa4e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6406,7 +6406,7 @@
                     "x": 35,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc2d0b5c9181a53accbb7dc545cbe9acecb40e999fbde73989a76ff475a574f99",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6419,7 +6419,7 @@
                     "x": 36,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0f17be6fdcfbf859ae83ec356ccf32ad1a90edcb6bee9826990c4bd4229dc14b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6432,7 +6432,7 @@
                     "x": 37,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xe2990446ecf9689be8533e2ba374846311bdc3830d86baf43c598b4e32cb13bb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6445,7 +6445,7 @@
                     "x": 38,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x48d5e9d69afdb5900b970a1f5d6923d7127d9534581baf0fa776d51a19ca9d09",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6458,7 +6458,7 @@
                     "x": 39,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd1a6d5a28995605e7c0d5b9898fc9323576adf3747a4c89e1b82df1d23f452c3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6471,7 +6471,7 @@
                     "x": 40,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x36a036f6ae2af9ab901b39f7497fa46c3de4cc8a2700421fe3da7da1b5eb317b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6484,7 +6484,7 @@
                     "x": 40,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xacaef1ea7c0a8667b1a33c8cfa1b3cc9293eaf33dd97fdd889dd4376d923d9d4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6497,7 +6497,7 @@
                     "x": 41,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x17e30dd2e8623c2120e9d310aefae0411ec13927b571c88558f2f67f1371c946",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6510,7 +6510,7 @@
                     "x": 42,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9d776dae6504c3efab1458123e867503f3d5d94f9a6667e8fe7097a0ec3ae829",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6523,7 +6523,7 @@
                     "x": 43,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5b8d0bddce0117dfac99fc9fcf9aca1c0831b46198cdbc0b4a2d2e96ae81265e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6536,7 +6536,7 @@
                     "x": 44,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf3ec89ba2cdaaf75888ee1642226304f467d32b89dcc58597f03434ee674cdea",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6549,7 +6549,7 @@
                     "x": 45,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x46019721faac669f53155a878216672a2df5ac178a87b9c12c3a519f787ae4ae",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6562,7 +6562,7 @@
                     "x": 46,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbe9ff3f3e9730d4b5408e623f984a24419126d74214245b6daa9f3e09ac05ac2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6575,7 +6575,7 @@
                     "x": 47,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcd6ac85da04e876d9d5042f9a197ce3ed2a594499e13e0a820be900c0319c003",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6588,7 +6588,7 @@
                     "x": 48,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x226914abe00abc0a394ad75cc1dc141601a7b7a57576e115ccbf7d8c8c40dbb6",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6601,7 +6601,7 @@
                     "x": 49,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x58bc183dd0887afc714020368090428cc100015cac57d13ff4d23efe562a96b7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6614,7 +6614,7 @@
                     "x": 50,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb87c7c263b8c0f0859c131f6901df1a197621ed5ba19ce0d97e987e3d8f2d2f9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6627,7 +6627,7 @@
                     "x": 32,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x26211345c416a6add005ec1f36cb2aa935ed4a261440bf3875e8401d2d24ecad",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6640,7 +6640,7 @@
                     "x": 33,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x47efb42040c9b1254279ddba793d4fa4c4121bb81b0ec5d6003fba170dedbe64",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6653,7 +6653,7 @@
                     "x": 34,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x714dd0aa332babced2634e708a8d959f9c34fffa783277f04fc4d5d7fa760e2c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6666,7 +6666,7 @@
                     "x": 35,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb7bd21bafb206491d04f78b6b9926856c31d9aa2914a94d38b14f04b16e55180",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6679,7 +6679,7 @@
                     "x": 36,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6cf4049bd880edfa42c6fa9502056c9f6e9fdeece68f199308c116d6062352f8",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6692,7 +6692,7 @@
                     "x": 37,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa8d6e6c0755273c30e5abdac30e5574bf2c4aeee8c8f3b2c8f42d1b75dc873ec",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6705,7 +6705,7 @@
                     "x": 38,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa189efacf882532b4b5b5f69e06a4031806fbbe0a38b88272f2ff56950492aeb",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6718,7 +6718,7 @@
                     "x": 39,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5f93d74e18b0b6aed2b5560d8911225439339855e5a6a737ffc8a9146d779f86",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6731,7 +6731,7 @@
                     "x": 40,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6b4c429dfe03218f75c1a9c50fa0d18dbaf700fc84607cc5283a55eff60963b7",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6744,7 +6744,7 @@
                     "x": 41,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdf01dd62a1d5c6f2ebbd31b7b058d71cfc1635f09fbea6bee6d46302f004c56d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6757,7 +6757,7 @@
                     "x": 42,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc21b1d1ddfba27a42bdc2d1c1fcd9ce1cfd8b69de614e497adf8877c8d734505",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6770,7 +6770,7 @@
                     "x": 43,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xb0cc28e9a965d49136b8dd735ac4bac6a140d23f34a35d06aa9bb22346f3800f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6783,7 +6783,7 @@
                     "x": 44,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5eaa1516a446c1471d5139c200b3cf449ef592614732c9f76c388723edf5bc4f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6796,7 +6796,7 @@
                     "x": 45,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x62d1c9783edb50516df487350a158f2f77e6ed818a5b69d4000d126afa7aae61",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6809,7 +6809,7 @@
                     "x": 46,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf3b2e38d397e970e6786418e7b195b519c5f060cbd8f475485a8766fd71fc800",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6822,7 +6822,7 @@
                     "x": 47,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x161b2ff82e30a9e37aa8e37142b4c1788d234b56b8deabbe1f02f715337ef1c1",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6835,7 +6835,7 @@
                     "x": 48,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1537cc5450366de5a23a8040f9684a6d32fdf3bed245287dcd382b684c47e5cc",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6848,7 +6848,7 @@
                     "x": 49,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x65c4687c3e7b7a99e40765ca6af6829a5a55086cc23f984b3640f8fe32685ad3",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6861,7 +6861,7 @@
                     "x": 50,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x986932e6dd38538befff8434d8edb730b2a956acddbcbffc3a9b65b5ba8c625e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6874,7 +6874,7 @@
                     "x": 32,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x82fca22b1eda7d3df5933174af38fec88b7758b145f2b4f28f144977e7de413b",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6887,7 +6887,7 @@
                     "x": 33,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6913e79bc6cb08614f25736a1dfe0c359ee5401e59af09dfb85d2565a21c5689",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6900,7 +6900,7 @@
                     "x": 34,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x622b889f74f7c8a8327d2b3567106c8041eee7e9613d4ec4e6bd1a4d79c206c4",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6913,7 +6913,7 @@
                     "x": 35,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd54abfdff7a6494c78c86ffe3cca2eab3ee3c1c220800158ef85854fd434e173",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6926,7 +6926,7 @@
                     "x": 36,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7ad14beeef7b5aeccf89461f66103df354cf3f07526e35639d57b9994ff2fc44",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6939,7 +6939,7 @@
                     "x": 37,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdff802e9fbbe5e075cc58d62d648a34a44746d65e41ef4fd5051f1fc436f0bb0",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6952,7 +6952,7 @@
                     "x": 38,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1e3597a1ab13279458da45613b1e3cd254ecc624b2d184f587738d6128d49b6f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6965,7 +6965,7 @@
                     "x": 39,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbfe561721023c006654a893e3038a4ee2bb828ed41ea3e68042c40a7b92cf44e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6978,7 +6978,7 @@
                     "x": 40,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa27f333ad9b17fe0a0484ade7e8b18cc397971b4472b0d5f337095c492d8996e",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -6991,7 +6991,7 @@
                     "x": 41,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x84bbd0727c793b7dae427857f390b83e0234354b16f1484e70457720fb04ea33",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7004,7 +7004,7 @@
                     "x": 42,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38f33e290f2e843208113aaba1a4a12d8ff9d4daa4d8508f3adf85e25be1f3f9",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7017,7 +7017,7 @@
                     "x": 43,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa57ee46f3fdf3020c0f6806dae35717c25655037261d1d9a318de5cf367d5a54",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7030,7 +7030,7 @@
                     "x": 44,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xef09e27a6181ac39b0469f1a196cb384c9862e53f5ac3192f1f7ff698e4a8f1a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7043,7 +7043,7 @@
                     "x": 45,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x5fe34464121142f3bc16c414691d4a738c7402ace5944d5b5a5a2b0600ff8870",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7056,7 +7056,7 @@
                     "x": 46,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x23ac5254994a989a939bd87ff560a1587402ce809021fb920a64f596d8922484",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7069,7 +7069,7 @@
                     "x": 47,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8e4a5f3b4f98f069b964cd629b57cb8ead5b6722134c03cde62ab0c508645c3c",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7082,7 +7082,7 @@
                     "x": 48,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x19e719d87a564180a6d2f0d7e9739d9c0bbc7bb1c9d7eb14bebeb12eaaeca707",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7095,7 +7095,7 @@
                     "x": 49,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7e53f56710fd8745e96829b93b27f7a2b79d4b621717a1e6e55130e254959a07",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7108,7 +7108,7 @@
                     "x": 34,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x70e4f3bbbccf69ab0c6655fb0b84d42611c9d325999157ca67dc01b853cd8799",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7121,7 +7121,7 @@
                     "x": 35,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6caef6c1ee500795e4d959f89115920972618d96f66455695ae65e17f8c678f2",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7134,7 +7134,7 @@
                     "x": 36,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcb2e27fa9fa03592d6f0dab8ad834287b6737d35cb5dab8ee84260a207b4cb60",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7147,7 +7147,7 @@
                     "x": 37,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf4b7f356b8ba87531c66be77f47c85dd333fc454b0cb5f4207caefd459380613",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7160,7 +7160,7 @@
                     "x": 38,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x36bd368c808fd2c863cd4be020512fb2ddab86a8194c071aa0ddd6db0e845948",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7173,7 +7173,7 @@
                     "x": 39,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xaf1aaae4b6a889c2fd84e8e4213f122451ef921bf46527b8258b1b5678cfaf9d",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7186,7 +7186,7 @@
                     "x": 40,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6270835291cdf0c6ba7de9ecfb66fa123b6e70b3c282ee543e54b28bcdf7f87f",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7199,7 +7199,7 @@
                     "x": 41,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4551fbf63c93f3938cd7fd0c1112f90eb1acb9d9fa6db1f6af073dacf4174b5a",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7212,7 +7212,7 @@
                     "x": 42,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x66027382d3cce89878170ef6b1b91781c51c87366b116ce580bda06ccfe2ff53",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7225,7 +7225,7 @@
                     "x": 43,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc2e8fa678e3e1939b63f125a42c7d3e5e9e6266b215ce350ac519d537e514755",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7238,7 +7238,7 @@
                     "x": 44,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x3b053e05e4679c3ee59c64791fdf9426c7da574afe7cb96f1331dafecaf397e5",
                     "tokenID": "None",
                     "price": 500,
                     "bought": false
@@ -7251,7 +7251,7 @@
                     "x": 54,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xfa2a164fc12aaa33205f1cfcf6f4ddc17c866578d99a681183b01e5d49af67f6",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7264,7 +7264,7 @@
                     "x": 54,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x70349555cac3bf9cb1cdd138034493677a269c82bcbabc87a12959444d6c28d0",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7277,7 +7277,7 @@
                     "x": 54,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xfb4cca873e2167602c02f0139d08f279de694a8a139c8c244593d6de30bbac91",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7290,7 +7290,7 @@
                     "x": 54,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdef22583546bd12eced075a57711565fe2086801d387a5ec944544f3ed190f0d",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7303,7 +7303,7 @@
                     "x": 54,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x932368bb14e131b66f6886da7704d65b2ba36fa78d90b48dd9afe0ca3aa521b8",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7316,7 +7316,7 @@
                     "x": 54,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x37ccc63645681c297525abd23e528a1f6307f7c6b2ad19fe3b67ce3035f2871d",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7329,7 +7329,7 @@
                     "x": 54,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x0b2efac3c64b7f7af9735ae633a981dba159fa24d04616ff8e1eef62ecdbe007",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7342,7 +7342,7 @@
                     "x": 54,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4ae73b69768c20308e0471d57845cc28706dc0682032c04757bdeb370272de8d",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7355,7 +7355,7 @@
                     "x": 54,
                     "y": 13,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x599f6ff0940a39d87afa68a5a58df0c2e8c1ef9c783faabfbf010116c55246b6",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7368,7 +7368,7 @@
                     "x": 54,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xd2c347dbc821d10b35de5a30b252574f83eeafbf965ba7967386a3b4796be9d4",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7381,7 +7381,7 @@
                     "x": 54,
                     "y": 15,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xa998b3090108c91953ea74f73cffa972e30fbc1341773dc58244ad6be3769434",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7394,7 +7394,7 @@
                     "x": 54,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x7d1001f181a1ed8b9f224440655b9b6b9830141a8ee5007d24b3f5eff5855532",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7407,7 +7407,7 @@
                     "x": 54,
                     "y": 17,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8cd25693c679aa97705cf10b246195d9f4d3649022ba8d40624e819c3d52767e",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7420,7 +7420,7 @@
                     "x": 54,
                     "y": 18,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x012c2b6e6842bc2d00286a35737920d28f80061f1ffa613aec61adecaf50cf25",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7433,7 +7433,7 @@
                     "x": 54,
                     "y": 19,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x22700cb6decef39a4610de8b7c19093679c9c5885529792f8cf12c85d9d27cad",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7446,7 +7446,7 @@
                     "x": 55,
                     "y": 4,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x410a8d37ac432813fe348d6d2a4567c7c6943df969bf643e3aa73a5eedb083d1",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7459,7 +7459,7 @@
                     "x": 55,
                     "y": 5,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xdf1d5a484da124039fcef56ea1f6406cd68aa59d41a02531c485a2789ac82266",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7472,7 +7472,7 @@
                     "x": 55,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x054da9544875401eec078839dd6df3eda4d7a4f54515c99e2cc8da0200e37512",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7485,7 +7485,7 @@
                     "x": 55,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x4f4e60b38446765797c86c058e0a0edbca7cb76fb89f01fccdc1529a53f398b9",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7498,7 +7498,7 @@
                     "x": 55,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x38ddfaeacf1de1f1a4420b3422d9881598a2dd2d0e3554bb32ab03769c76c73d",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7511,7 +7511,7 @@
                     "x": 55,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9eb6523e9ea56596814a9454d70464dc9e337107a9ea153de21339e5bd6b1f2c",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7524,7 +7524,7 @@
                     "x": 55,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x96e71a5aa9c2a234a1df19fc52e75019cd6dffc312e5086ab5dc7af533ac53cf",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7537,7 +7537,7 @@
                     "x": 55,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1a6e06c0342e5f06b3321a5533a7d96e689fd8308dc0b380e024b5755c625bc7",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7550,7 +7550,7 @@
                     "x": 55,
                     "y": 13,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcfdbbbd3471a1fbafeb7324d775d6f3576e79ff960410a0b00c2074202c892ce",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7563,7 +7563,7 @@
                     "x": 55,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf89a72fcf854d722b3f22132fae56b989fbcc14f06cd8fd5733812fc0fb4aa82",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7576,7 +7576,7 @@
                     "x": 55,
                     "y": 15,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xbbd75fe4b01431466d114c345f30c91fc84ecb90272b9504032d04272d8e9821",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7589,7 +7589,7 @@
                     "x": 55,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x53371162954ec489913e50fb4bb40d3fd4a7b3c7b69be13262c4aaa97fc67f56",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7602,7 +7602,7 @@
                     "x": 55,
                     "y": 17,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x07c62f6117710a7ae59a68b94ef2aba78c341f954ffde0a6b57a016f3f243f53",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7615,7 +7615,7 @@
                     "x": 55,
                     "y": 18,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x11eae90ae657f7c3a89e1d585b71fb5148bd71de7e1df73b1bf9c054737e9cec",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7628,7 +7628,7 @@
                     "x": 55,
                     "y": 19,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x66a926b4d176a0fa423df6c62d73c364f978850c902a678fc8ecd67cfba7cd54",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7641,7 +7641,7 @@
                     "x": 55,
                     "y": 20,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x73f7000f95fd8c47bb1accd327d48d4acd596e76e295e8c4c0b8da6c4f717f29",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7654,7 +7654,7 @@
                     "x": 56,
                     "y": 6,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x70ef3adb0f2b7a0d87e6a7797aac9c0957a0e283b06e138b05a7b4ee874b9b98",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7667,7 +7667,7 @@
                     "x": 56,
                     "y": 7,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x1a1e2205d643f96cad7828b82fda873d1cbdab01d4dde3d3771204e6f460b5e2",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7680,7 +7680,7 @@
                     "x": 56,
                     "y": 9,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x6458ae623f89188593f69627d965c516b388d40ed40b06c9a765f96c9f9910f4",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7693,7 +7693,7 @@
                     "x": 56,
                     "y": 10,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xac82d8dc3aa712b8b9d8e1066e4040c556ae9c2b2faf9a5b90de1b0306e1904b",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7706,7 +7706,7 @@
                     "x": 56,
                     "y": 11,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x33a824c8105ef279f4af0642848e1b8a25da9f5922eae3cb55393aa3d332682b",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7719,7 +7719,7 @@
                     "x": 56,
                     "y": 12,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x669df032bca35b05e463b950d42872d1bb7a428f1898ccbe52b8602e5846b177",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7732,7 +7732,7 @@
                     "x": 56,
                     "y": 13,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x17849ff3a805be94b67b87110146c06d4457987c1a42a1bd552993ccb2668d77",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7745,7 +7745,7 @@
                     "x": 56,
                     "y": 14,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9593515a9b4a9e30568b2f38a9765b47d6358ed4550319d4483f2216dc66266e",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7758,7 +7758,7 @@
                     "x": 56,
                     "y": 15,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x17d29e324356bf62f0a78fa55cfb8e7114343b7f3275822d45a1150f903c7e71",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7771,7 +7771,7 @@
                     "x": 56,
                     "y": 16,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xc910ed9e2e94d81cc8f7b1d0e87331eb3e558b60a6aea77d4052db437c6ff32f",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7784,7 +7784,7 @@
                     "x": 56,
                     "y": 17,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xcf156e0e013d32828ba1a5bb09754f3a272ed4593d2274d0b614665dddec489e",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7797,7 +7797,7 @@
                     "x": 56,
                     "y": 8,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x9c3cd80bf5c9d62dbda8d2a4ef145c3fc602ff4a636668ca13514cbc77ed7786",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7810,7 +7810,7 @@
                     "x": 56,
                     "y": 18,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x2e079c86caa31c503b9347f8d29a739219aa27f97e261fc919857307fa3cdf12",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7823,7 +7823,7 @@
                     "x": 56,
                     "y": 19,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x35c0fb9a7f152516f0b14413a82228f4ecd6a674ad556011808a189e3613afc0",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7836,7 +7836,7 @@
                     "x": 56,
                     "y": 20,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0xf721343c79c86bc03b4386e2eebd8df800eca61e7362ceb6a7de8c96963d6be2",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
@@ -7849,7 +7849,7 @@
                     "x": 56,
                     "y": 21,
                     "color": "#010C80",
-                    "minted": false,
+                    "minted": "0x8ad64bf562bcf4af594fafd690b091b22096a673aa284a82ceda2ae8da20c9d0",
                     "tokenID": "None",
                     "price": 450,
                     "bought": false
