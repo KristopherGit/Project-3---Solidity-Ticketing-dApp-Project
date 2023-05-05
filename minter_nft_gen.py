@@ -52,8 +52,7 @@ def add_logo(logo_path, width, height):
 #########################################################
 
 
-# st.sidebar.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><b><u>Admin Dashboard</u></b></p>",
-#                     unsafe_allow_html=True)
+# Load tickETHolder logo via add_logo() function
 st.sidebar.image(
     add_logo(logo_path="Image_Data/ticketholder_minter_logo_v1.png", width=650, height=425), output_format="auto", use_column_width="auto")
 
@@ -240,6 +239,13 @@ if st.sidebar.button("Get Max Tickets"):
     max_tix = contract.functions.MAX_TICKETS().call()
     st.sidebar.write("Maximum number of tickets : ", max_tix)
 
+for i in range(5):
+    st.sidebar.write("")
+st.sidebar.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'><b>Remix IDE Hyperlink:</b></p>",
+                    unsafe_allow_html=True)
+st.sidebar.write(
+    "https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
+
 
 # Show minter_layout header
 # mint() Solidity smart contract function & #setMAX_TICKETS Solidity smart contract function
@@ -250,6 +256,7 @@ with col1:
         with open("json/venues_dictionary.json", "r") as file:
             venueDictionary = json.load(file)
             venueNamesJSONList = list(venueDictionary.keys())
+            venueNamesJSONList.sort()
             # Add 'None' spacer item to the list so that in the streamlit app it doesn't pre-select a venue item and pre-populate the dynamic price st.number_input boxes
             venueNamesJSONList = [None] + venueNamesJSONList
 
@@ -261,7 +268,7 @@ with col1:
         #    st.session_state.selected_venue = venueNamesJSONList[0]
 
         # event and venue generator admin user text input requirements (eventNameNew, venueNameNew, dateTimeNew, hourTimeNew, smartContractNew)
-        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Event & Venue Generator:</b></u></p>",
+        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>2.) Event & Venue Generator:</b></u></p>",
                     unsafe_allow_html=True)
         eventNameNew = st.text_input("Enter event:", placeholder="")
         venueNameNew = st.selectbox(
@@ -474,7 +481,7 @@ with col1:
             # print(masterEventsList)
 
         # st.header("Minter Admin Console")
-        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Request Admin Console:</b></u></p>",
+        st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>3.) Minter Request Admin Console:</b></u></p>",
                     unsafe_allow_html=True)
         # st.write("Event Contract Generator Form:")
         # st.write("File: ticketholder.sol -> contract.functions.mint")
@@ -970,7 +977,8 @@ with col1:
 
         else:
             st.warning('Warning: unique_id event _smartContract address not compatible to connected contract. Please select corresponding unique_id event from above selectbox.', icon="⚠️")
-            container_1.warning('Unmatched to Minter Admin Console')
+            container_1.warning(
+                'Unmatched to Minter Request Admin Console event (_uniqueId)')
         # Enter CAD ticket price using CoinGecko API
         # def cad_to_gwei_converter(_price_CAD):
 
@@ -1032,7 +1040,7 @@ with col1:
 
 with col2:
     # st.header("NFT Image Constructor")
-    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Venue Generator & Admin Database:</b></u></p>",
+    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>1.) Venue Generator & Admin Database:</b></u></p>",
                 unsafe_allow_html=True)
 
     # Load the venues_dictionary.json from JSON file
@@ -1123,13 +1131,6 @@ with col2:
                     # st.write(f"{sectionName}: {sectionFunction.__name__}")
                 i += 1
         venue_database()
-    # venue_database()
-
-    for i in range(5):
-        st.write("")
-    st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'><b>Remix IDE Hyperlink:</b></p>",
-                unsafe_allow_html=True)
-    st.write("https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
 
     #########################################################
 
@@ -1138,7 +1139,7 @@ with col2:
     #########################################################
 
     # Minting Transaction Confirmation Receipt Requester
-    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>Minter Transaction Receipt Generator:</b></u></p>",
+    st.markdown("<p style='color: white; font-size: 28px; margin-top: 0px;'><u><b>4.) Minter Transaction Receipt Generator (Final):</b></u></p>",
                 unsafe_allow_html=True)
 
     # call the obtain all unique ids function and save returned dictionary to variable
@@ -1146,39 +1147,238 @@ with col2:
 
     # create 'unique_Ids' list based on the above dictionary & sort() alphabetically
     masterUniqueIdsList = list(masterUniqueIdsDictionary.keys())
+    # add a 'None' placeholder so the st.selectbox list will default on 'None' and not set off the conditions of the other if statements to keep dashboard generic
     masterUniqueIdsList.sort()
+    masterUniqueIdsList = [None] + masterUniqueIdsList
 
     _uniqueId = st.selectbox(
         "Select event (unique_id): ", masterUniqueIdsList)
 
-    # Iterate through the venue sections
-    event_file_path = f'event_venue_library/{_uniqueId}'
-    with open(event_file_path, 'r') as file:
-        event_json_dict = json.load(file)
+    if _uniqueId != None:
+        # Iterate through the venue sections
+        event_file_path = f'event_venue_library/{_uniqueId}'
+        with open(event_file_path, 'r') as file:
+            event_json_dict = json.load(file)
 
-        # Create a list to hold all unqiue venue sections to refine selection on where to start batch minting in the venue
-        section_names = []
-        for venue_dict in event_json_dict["venueSections"]:
-            all_seats_minted = True
-            for section_key, section_value in venue_dict.items():
-                mintable_seats_exist = False
-                # print("section_key: ", section_key)
+            # Create a list to hold all unique venue sections to refine selection on where to start updating the minting status (find all seats minted=True)
+            section_names_2 = []
+            for venue_dict in event_json_dict["venueSections"]:
+                all_seats_minted = True
+                for section_key, section_value in venue_dict.items():
+                    mintable_seats_exist = False
+                    # print("section_key: ", section_key)
 
-                for seat_key, seat_value in section_value.items():
-                    if not seat_value["minted"]:
-                        mintable_seats_exist = True
-                        all_seats_minted = False
-                        break
-                if mintable_seats_exist:
-                    section_names.append(section_key)
-            if all_seats_minted:
-                section_names.remove(section_key)
-                # print("section_value: ", section_value)
-                # if any(not seat_data["minted"] for seat_data in section_value.values()):
-                #     section_names.append(section_key)
-        venueSectionSelected = st.selectbox(
-            "Venue Section To Mint: ", list(set(section_names)))
+                    for seat_key, seat_value in section_value.items():
+                        if seat_value["minted"] not in [False, True, "false", "true", "True", "False"]:
+                            mintable_seats_exist = True
+                            all_seats_minted = False
+                            break
+                    if mintable_seats_exist:
+                        section_names_2.append(section_key)
 
+                if all_seats_minted and len(section_names_2) > 0:
+                    section_names_2.remove(section_key)
+                    # print("section_value: ", section_value)
+                    # if any(not seat_data["minted"] for seat_data in section_value.values()):
+                    #     section_names.append(section_key)
+            venueSectionSelected = st.selectbox(
+                "Venue Section To Update: ", list(set(section_names_2)))
+
+            # Create an empty list holder for select batch group of seats
+            selected_batch_seats_list = []
+
+            if venueSectionSelected:
+                # Retrieve the section dictionary corresponding to the selected venue section
+                section_dict = next((section for section in event_json_dict["venueSections"] if section.get(
+                    venueSectionSelected)), None)
+
+                # Generate section_value dictionary & save to said variable based on the section_key (venueSectionSelected) from above
+                if section_dict:
+                    section_key = venueSectionSelected
+                    section_value = section_dict[section_key]
+
+                    # Generate list of unique "sec" values in the selected section based on selected 'venueSectionSelected'
+                    sec_values = sorted(list(set(
+                        seat_data["sec"] for seat_data in section_value.values() if seat_data["minted"] not in [False, True, "false", "true", "True", "False"])))
+
+                    if sec_values:
+                        # Generate a selectbox for the unique "sec" values
+                        sec_selected = st.selectbox(
+                            "Section ('sec') To Update Mint Status ['minted']: ", sec_values)
+
+                        # Filter & refine the row options available within 'sec' that have not been "minted" yet
+                        row_options = [seat_data["row"] for seat_data in section_value.values(
+                        ) if seat_data["sec"] == sec_selected and seat_data["minted"] not in [False, True, "false", "true", "True", "False"]]
+
+                        # Create list of unique "row" values for the selected "sec" value
+                        row_values = sorted(set(row_options))
+
+                        # Admin prompted to refine seat minting options down to "row" within selected "sec"
+                        row_selected = st.selectbox(
+                            "Row ('row') To Update Mint Status ['minted']: ", row_values)
+
+                        # Prompt user to enter batch size of tickets to mint into NFTs
+                        batchSize = st.number_input(
+                            "Enter ticket batch size (to lookup to confirm minted status): ", 0, key="batchSize_tx_receipt")
+
+                        # Filter down to the seat options available to the admin that are still able to be minted
+                        seat_options = [seat_data["seat number"] for seat_data in section_value.values(
+                        ) if seat_data["sec"] == sec_selected and seat_data["row"] == row_selected and seat_data["minted"] not in [False, True, "false", "true", "True", "False"]]
+
+                        # Create a list of unique "name" (seat names) for the selected "row" value
+                        seat_values = sorted(set(seat_options), key=int)
+                        # print("seat_values: ", seat_values)
+
+                        # Split the seat numbers into batches
+                        try:
+                            seat_batch_groups = [seat_values[i: i + batchSize]
+                                                 for i in range(0, len(seat_values), batchSize)]
+                            # print("seat_batch_groups: ", seat_batch_groups)
+
+                            # Important: If last batch is < batch size, take the remainder batch group to its own list on the seat_batch_groups list
+                            if len(seat_batch_groups) > 0 and len(seat_batch_groups[-1]) < batchSize:
+                                # Remove & return the last remainder element on the list
+                                remainderBatch = seat_batch_groups.pop()
+                                seat_batch_groups.append(remainderBatch)
+
+                            # Construct a list of customized labels for the dropdown list to present to the admin user
+                            seat_batch_groups_labels = [
+                                f"{(batch[0])}:{(batch[-1])}" for batch in seat_batch_groups]
+
+                            # Generate a selectbox for user to choose from with dropdown (st.selectbox)
+                            # *** Important: added 05/01/2023 -> st.empty() container created to hold seat dropdown list items to be used for refresh after minting to remove minted seats dynamically
+                            seat_container_1 = st.empty()
+
+                            # seat_batch_group_selected = st.selectbox( <-- Original before st.empty() variable was added
+                            seat_batch_group_selected = seat_container_1.selectbox(
+                                "Seat(s) ('seat number') Range To Update Mint Status [minted']: ", seat_batch_groups_labels,  key=f"third_invoke_of_seat_container_1")
+                            # print("seat_batch_group_selected: ",
+                            #       seat_batch_group_selected)
+
+                            # Display the seat_batch_group_selected in a printout format
+                            st.write("Seat groups selected:",
+                                     seat_batch_group_selected)
+
+                            # Create the lower & upper bound int from the seat_batch_group_selected range
+                            start, end = [
+                                int(num) for num in seat_batch_group_selected.split(":")]
+
+                            # Create a list of integers based on the lower & upper limit values in the mini-list of seat_batch_group_selected_numbers
+                            seat_batch_group_selected_numbers = list(
+                                range(start, end + 1))
+                            # print("seat_batch_group_selected_numbers: ",
+                            #       seat_batch_group_selected_numbers)
+
+                            # Retrieve the metadata from the original seat_data (seat_options) by filtering out only the seats selected based on "seat number" (seat_data["seat number"])
+                            # selected_batch_seats_list = []
+                            selected_batch_seats_list.clear()
+                            for seat_num in seat_batch_group_selected_numbers:
+                                for seat in section_value.values():
+                                    if seat["sec"] == sec_selected and seat["row"] == row_selected and seat["minted"] not in [False, True, "false", "true", "True", "False"]:
+                                        #print("seat: ", seat)
+                                        if int(seat["seat number"]) == seat_num:
+                                            selected_batch_seats_list.append(
+                                                seat)
+                                            break
+                            # print("selected_batch_seats_list: ",
+                            #      selected_batch_seats_list)
+                            # st.experimental_set_buffer(0)
+                            st.write("selected_batch_seats_list: ",
+                                     selected_batch_seats_list)
+
+                            try:
+                                # Create markdown text to indicate to admin user button will check tx_hash on chain & update seat['minted'] = True if tx_receipt is confirmed
+                                st.write(
+                                    "Check tx_hashes on-chain & update event .json minted status if completed on selected batch size:")
+                                # st.button for "Confirm Mint Status"
+                                if st.button("Update Mint Status"):
+
+                                    # *** added 05/05/2023
+
+                                    tx_receipt_list = []
+                                    for seat in selected_batch_seats_list:
+                                        if seat["minted"] not in [False, True, "false", "true", "True", "False"]:
+
+                                            # important: get the transaction hash from the previous tx_hash request that was saved to the unique event .json ["minted"] key/value pair
+                                            tx_hash = seat["minted"]
+                                            # _batchSize = 1
+
+                                            # get transaction receipt
+                                            tx_receipt = w3.eth.getTransactionReceipt(
+                                                tx_hash)
+
+                                            # If the transaction receipt exists (minting completed) assign a temp key/value seat['minted'] = True
+                                            if tx_receipt is not None:
+                                                seat["minted"] = True
+
+                                            seat_dict_holder = {
+                                                "name": seat["name"],
+                                                "minted": True,
+                                                "tx_receipt": tx_receipt
+                                            }
+
+                                            # Append pending transaction tx_hash to the tx_hashes_list to be awaiting updating the event .json "minted" = tx_hash
+                                            tx_receipt_list.append(
+                                                seat_dict_holder)
+
+                                    st.write(
+                                        "Transaction Receipt List: ", tx_receipt_list)
+
+                                    # Create empty list to hold finalized 'mint pending' list of seats that are in the process of being queued for minting
+                                    confirm_minted_seats = []
+
+                                    # Iterate through all venue sections & seats in the event_venue_library/{_uniqueId}
+                                    event_file_path = f'event_venue_library/{_uniqueId}'
+                                    with open(event_file_path, 'r') as file:
+                                        event_json_dict = json.load(file)
+
+                                        # Create a list to hold all unique venue sections to refine selection on where to start batch minting in the venue
+                                        section_names = []
+                                        for venue_dict in event_json_dict["venueSections"]:
+                                            # all_seats_minted = True
+                                            for section_key, section_value in venue_dict.items():
+                                                # mintable_seats_exist = False
+                                                # print("section_key: ", section_key)
+                                                for seat_key, seat_value in section_value.items():
+                                                    # Update event .json with seat["minted"] = tx_receipt (minting completed receipt) status
+                                                    for seat_placeholder in tx_receipt_list:
+                                                        if seat_key == seat_placeholder["name"] and seat_value["minted"] not in [False, True, "false", "true", "True", "False"]:
+                                                            seat_value["minted"] = seat_placeholder["minted"]
+                                                            # seat_value["minted"] = seat_placeholder["tx_receipt"]
+                                                            # Append the seat_value that had its seat_value["minted"] updated to the tx_hash value to the mint_pending_seats list
+                                                            confirm_minted_seats.append(
+                                                                seat_value)
+                                                            # st.write(
+                                                            #     seat_value)
+
+                                    # Update the unique event .json file now with the updated changes to seat["minted"] = tx_hash after the minting process to store the hashes to lookup on the blockchain later to get a tx_receipt to confirm completion
+                                    with open(event_file_path, 'w') as file:
+                                        json.dump(event_json_dict,
+                                                  file, indent=4)
+                                    # Print success and notify admin of updated event .json seat["minted"] tx_hash mint pending value
+                                    st.success(
+                                        "Confirmation of mint status & status updated. See below for confirmed minted tickets (seats).")
+                                    # Print the mint_pending_seats list for the most current batch just currently queued for batch mint
+                                    st.write(
+                                        "Mint Pending Seats List: ", confirm_minted_seats)
+
+                            except Exception as e:
+                                st.write("Error: ", e)
+
+                        except:
+                            st.warning(
+                                "Batch size must be greater than zero.")
+
+    # for i in range(15):
+    #     st.write("")
+    # st.markdown("<p style='color: white; font-size: 16px; margin-top: 0px;'><b>Remix IDE Hyperlink:</b></p>",
+    #             unsafe_allow_html=True)
+    # st.write("https://remix-beta.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js")
+
+#########################################################
+
+
+#########################################################
 
 # NFT Generator Functions - CURRENTLY NOT IMPLEMENTED
 
