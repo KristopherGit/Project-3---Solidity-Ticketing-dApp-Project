@@ -666,7 +666,7 @@ with col1:
 
             st.success(
                 'unique_id event _smartContract address compatible to connected contract. Max Ticket & Mint Batch function buttons unlocked.')
-            container_1.success('Matched to Minter Admin Console')
+            container_1.success("Matched to 'Minter Request Admin' Console")
 
             # Using the selected '_uniqueId' event .json file sort out and store the unique sec, row & seat number
             # unique_secs = set()
@@ -1154,6 +1154,23 @@ with col2:
     _uniqueId = st.selectbox(
         "Select event (unique_id): ", masterUniqueIdsList)
 
+    if _uniqueId:
+        _uniqueIdValues = masterUniqueIdsDictionary[_uniqueId]
+        _eventName = _uniqueIdValues["eventName"]
+        _venueName = _uniqueIdValues["venueName"]
+        _dateTime = _uniqueIdValues["dateTime"]
+        _hourTime = _uniqueIdValues["hourTime"]
+        _timeStamp = int(_uniqueIdValues["timeStamp"])
+        _smartContract = _uniqueIdValues["smartContract"]
+        _seatContract = _uniqueIdValues["seatJSONBinURL"]
+
+    if contract.address == _smartContract and _uniqueId != None:
+        container_1.success(
+            "Matched to 'Minter Transaction Receipt Generator (Final)'")
+    else:
+        container_1.warning(
+            "Unmatched to 'Minter Transaction Receipt Generator (Final)'")
+
     if _uniqueId != None:
         # Iterate through the venue sections
         event_file_path = f'event_venue_library/{_uniqueId}'
@@ -1308,13 +1325,19 @@ with col2:
                                                 tx_hash)
 
                                             # If the transaction receipt exists (minting completed) assign a temp key/value seat['minted'] = True
+                                            # Important: Use tx
                                             if tx_receipt is not None:
                                                 seat["minted"] = True
+                                                log = tx_receipt['logs'][0]
+                                                token_Id = int(
+                                                    log['data'][-64:], 16)
+                                                print("token_Id: ", token_Id)
 
                                             seat_dict_holder = {
                                                 "name": seat["name"],
                                                 "minted": True,
-                                                "tx_receipt": tx_receipt
+                                                "tx_receipt": tx_receipt,
+                                                "tokenID": token_Id
                                             }
 
                                             # Append pending transaction tx_hash to the tx_hashes_list to be awaiting updating the event .json "minted" = tx_hash
@@ -1344,6 +1367,7 @@ with col2:
                                                     for seat_placeholder in tx_receipt_list:
                                                         if seat_key == seat_placeholder["name"] and seat_value["minted"] not in [False, True, "false", "true", "True", "False"]:
                                                             seat_value["minted"] = seat_placeholder["minted"]
+                                                            seat_value["tokenID"] = seat_placeholder["tokenID"]
                                                             # seat_value["minted"] = seat_placeholder["tx_receipt"]
                                                             # Append the seat_value that had its seat_value["minted"] updated to the tx_hash value to the mint_pending_seats list
                                                             confirm_minted_seats.append(
