@@ -62,14 +62,15 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI"),
 
 @st.cache(allow_output_mutation=True)
 # Load the contract ABI
-def load_contract():
+def load_contract(smart_contract_address):
 
     # Load the contract ABI
     with open(Path('./contracts/compiled/ticketholder_abi.json')) as f:
         ticketholder_abi = json.load(f)
 
     # Set the contract address (Ethereum address of the deployed contract)
-    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+    # contract_address = os.getenv("SMART_CONTRACT_ADDRESS") <--- original code connected to the .env file prior to 05/06/2023
+    contract_address = smart_contract_address
 
     # Get the contract
     contract = w3.eth.contract(
@@ -81,7 +82,8 @@ def load_contract():
 
 
 # Load the ticketholder Ethereum contract
-contract = load_contract()
+# contract = load_contract() <-- original code connected to the .env file prior to 05/06/2023
+contract = None
 
 #########################################################
 
@@ -182,6 +184,24 @@ with col2:
     _uniqueId = _uniqueIdList[0]
     print("_uniqueId: ", _uniqueId)
 
+    # function that gets the smart contract address for a specific event name
+    @st.cache(allow_output_mutation=True)
+    def obtain_smart_contract_address_for_event(_uniqueId):
+        with open("json/event_dictionary.json", "r") as file:
+            data = json.load(file)
+            eventList = data["eventList"]
+            for event in eventList:
+                if event["unique_id"] == _uniqueId:
+                    smart_contract_address = str(event["smartContract"])
+            # smart_contract_address = value["smartContract"] for value in eventList if value["unique_id"] == _uniqueId
+            # smart_contract_address = str(smart_contract_address)
+            return smart_contract_address
+
+    # obtain smart contract address using above defined obtain_smart_contract_address_for_event that pulls data fro the json/event_dictionary.json json file
+    smart_contract_address = obtain_smart_contract_address_for_event(_uniqueId)
+    # set the contract attributes (contract_address & abi from ticketholder.json abi) previously defined prior to the 'with col_1:' statement
+    contract = load_contract(smart_contract_address)
+
     # function that will fetch the 'seat JSONbin url' that corresponds to its associated _eventName, _venueName & _concertDate above
 
     @st.cache(allow_output_mutation=True)
@@ -239,7 +259,7 @@ with col2:
     # Obtain gallery={} equivalent dictionary data from .json file to be passed into the venues.py 'create_..' functions to be converted to gallery = {} below
     # match section name from the unique_Id matching .json file to the _sectionName (key) and use that to obtain the values sectionFunctionNameString (value)
     # ****** added 03/30/2023
-    @st.cache(allow_output_mutation=True)
+    # @st.cache(allow_output_mutation=True)
     def obtain_venue_section_json_dictionary(_sectionName, _uniqueId):
         with open(f"event_venue_library/{_uniqueId}", "r") as file:
             data = json.load(file)
@@ -313,12 +333,12 @@ seat_options = [seat for seat in sorted(gallery.keys())]
 # Update recently created seats in venue pulling archived/cached seat_color from session_state that was created on previous run downstream
 try:
     if st.session_state:
-        for seat_name, seat_color in st.session_state.items():
-            gallery[seat_name]['color'] = seat_color
-            gallery[seat_name]['bought'] = True
+        for seat_key, seat_value in st.session_state.items():
+            gallery[seat_key]['color'] = seat_value['color']
+            gallery[seat_key]['bought'] = False
             for trace in traces:
-                if trace.name == seat_name:
-                    trace.marker.color = seat_color
+                if trace.name == seat_key:
+                    trace.marker.color = seat_value['color']
                     break
             # seat_index = seat_options.index(seat_name)
             # traces[seat_index]['marker']['color'] = seat_color
@@ -403,7 +423,8 @@ with col1:
             if selected_seat not in st.session_state:
                 # st.session_state[selected_seat] = gallery[list(
                 #     gallery.keys())[seat_index]]['color'] = '#00FF00'  # green
-                st.session_state[selected_seat] = gallery[selected_seat]['color']
+                st.session_state[selected_seat] = gallery[selected_seat]
+                # st.session_state[selected_seat] = gallery[selected_seat]
                 print("st.session_state[selected_seat]: ",
                       st.session_state[selected_seat])
         if st.button('confirm seat(s)'):
@@ -445,7 +466,7 @@ with col2:
     for i in range(3):
         st.write("")
 
-    # Venue Image
+    # Venue Image - * Note needs to be remade with venue associated image
     venue_image = Image.open('Image_Data/massey_hall_bw.png')
     st.image(venue_image, 'Massey Hall - North Entrance')
 

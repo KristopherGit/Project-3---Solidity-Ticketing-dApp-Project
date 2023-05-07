@@ -1048,9 +1048,9 @@ with col2:
         venues_dictionary_json = json.load(file)
 
     # Form Submission for Venue Addition
-    venue_name = st.text_input("venue name: ")
-    section_name = st.text_input("section name: ")
-    section_function_name = st.text_input("section function name: ")
+    venue_name = st.text_input("Venue name: ")
+    section_name = st.text_input("Section name: ")
+    section_function_name = st.text_input("Section function name: ")
 
     if st.button("Add to venues"):
         # check to see if venue_name already exists as a main key in the venues_dictionary.json file
