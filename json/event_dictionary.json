@@ -49,6 +49,17 @@
             "timeStamp": "1682726400",
             "smartContract": "0x5A48a48F0571191DD2264FBca933C991C5B3E6A5",
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+        },
+        {
+            "unique_id": "Kelly_Lee_Owens_Danforth_Music_Hall_2023-08-20.json",
+            "eventName": "Kelly Lee Owens",
+            "venueName": "Danforth Music Hall",
+            "dateTime": "2023-08-20",
+            "hourTime": "22:00",
+            "timeStamp": "1692583200",
+            "smartContract": "0x39b93Eb8dC5D43b3C841F95230b454A18e719eA5",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
+            "nftArtwork": "Kelly_Lee_Owens_Danforth_Music_Hall_2023-08-20.png"
         }
     ]
 }

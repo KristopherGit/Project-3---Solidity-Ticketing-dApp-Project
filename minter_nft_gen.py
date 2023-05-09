@@ -290,6 +290,11 @@ with col1:
         # unixTimeStampFloatNew = datetime.datetime.combine(
         #     dateTimeNew, datetime.datetime.min.time()).timestamp()
 
+        # prompt admin user to select nft artwork image for the associated event using the file_uploader() method
+        raw_artwork_file = st.file_uploader(
+            "Raw artwork NFT image (.png):", type=[".png"])
+        print("raw_artwork_file: ", raw_artwork_file)
+
         unixTimeStampNew = int(unixTimeStampFloatNew)
         smartContractNew = st.text_input(
             "Enter associated smart contract:", value="0x85A15452938D53a2a7DAE730C4f1489dC0a337e1")
@@ -315,7 +320,8 @@ with col1:
                 "hourTime": hourTimeNewString,
                 "timeStamp": str(unixTimeStampNew),
                 "smartContract": smartContractNew,
-                "seatJSONBinURL": seatJSONBinURLNew
+                "seatJSONBinURL": seatJSONBinURLNew,
+                "nftArtwork": f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.png'
             }
 
             # st.session_state.selected_venue = venueNameNew
@@ -333,6 +339,8 @@ with col1:
                 f"Selected smart contract: {contract.address}")
             selectedseatJSONBinURLNewText = st.text(
                 f"Selected seat bin url: {seatJSONBinURLNew}")
+            selectedNFTArtworkText = st.text(
+                f'NFT Artwork: {eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.png')
 
             # Function to create unique event .py file and functions based on event, venue and date data
             # **** new added 03/15/2023
@@ -365,7 +373,8 @@ with col1:
                     for seat in section_dict.values():
                         for key, value in seat.items():
                             if value["sec"] == unique_sec:
-                                value["price"] = price
+                                value["price"] = {
+                                    "CAD": price, "_gweiValue": None}
 
             def create_unique_event_functions(event_name, venue_name, event_date):
                 # check if there's a matching .json file name in the json/venue_template_json directory
@@ -386,8 +395,36 @@ with col1:
                     st.warning(
                         f"No matching template found for the selected venue {venue_name}.")
 
-            # **** new added 03/15/2023
-            # **************
+            def create_unique_nft_artwork(raw_artwork_file, event_name, venue_name, event_date):
+                # determine if the raw_artwork_file exists and is of correct .png format
+                try:
+                    if raw_artwork_file is not None:
+
+                        # pull file name attribute from the raw_artwork_file
+                        raw_artwork_file_name = raw_artwork_file.name
+
+                        # establish directory to place the nft artwork file
+                        file_dest_dir = "event_venue_library/nft_artwork"
+
+                        # create new file name format
+                        nft_artwork_filename = f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")}.png'
+
+                        # establish the destination pathway
+                        file_path = os.path.join(
+                            file_dest_dir, nft_artwork_filename)
+
+                        # save the chosen uploaded file via the established destination path
+                        with open(file_path, "wb") as file:
+                            file.write(raw_artwork_file.getbuffer())
+
+                        st.success(
+                            f"NFT artwork image file {nft_artwork_filename} uploaded, copied & allocated to appropriate directory successfully.")
+                except:
+                    st.warning(
+                        "Problem with uploaded file. Check file format is .png")
+
+                    # **** new added 03/15/2023
+                    # **************
 
             st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>Enter event details for event_dictionary.json database:</b></u></p>",
                         unsafe_allow_html=True)
@@ -410,6 +447,10 @@ with col1:
                 # def create_unique_event_functions(event_name, venue_name, event_date)
                 create_unique_event_functions(
                     eventNameNew, venueNameNew, dateTimeNewString)
+
+                # create unique NFT artwork file allocated to directory event_venue_library/nft_artwork
+                create_unique_nft_artwork(
+                    raw_artwork_file, eventNameNew, venueNameNew, dateTimeNewString)
 
                 # update the unique event .json with the new prices based on the section 'sec' price setting above
                 # re-open the unique .json created above with the 'create_unique_event_functions' to update .json with new 'price' per 'sec'
@@ -443,7 +484,7 @@ with col1:
             # Submit Event Details (End) #
 
                 st.success(
-                    "Event successfully added to event_dictionary.json database", icon="✅")
+                    f'{eventNameNew.replace(" ", "_")}_{venueNameNew.replace(" ", "_")}_{dateTimeNewString.replace(" ", "_")} successfully added to event_dictionary.json database", icon="✅"')
             st.markdown("<p style='color: green; font-size: 18px; margin-top: 0px;'><u><b>View All Scheduled Events.json database:</b></u></p>",
                         unsafe_allow_html=True)
         if st.button("View"):
@@ -818,7 +859,7 @@ with col1:
                                         for seat in selected_batch_seats_list:
                                             if not seat["minted"] or seat["minted"] == False or seat["minted"] == "false":
                                                 _gweiValue = int(
-                                                    ((seat["price"]/eth_cad_rate)) * 1000000000)
+                                                    ((seat["price"]["CAD"]/eth_cad_rate)) * 1000000000)
                                                 _seatName = seat["name"]
                                                 _batchSize = 1
 
@@ -844,7 +885,8 @@ with col1:
 
                                                 seat_dict_holder = {
                                                     "name": seat["name"],
-                                                    "tx_hash": tx_hash
+                                                    "tx_hash": tx_hash,
+                                                    "_gweiValue": _gweiValue
                                                 }
 
                                                 # Append pending transaction tx_hash to the tx_hashes_list to be awaiting updating the event .json "minted" = tx_hash
@@ -875,7 +917,11 @@ with col1:
                                                         # Update event .json with seat["minted"] = tx_hash pending status hash to be used later to confirm mint successful with tx_receipt manually
                                                         for seat_placeholder in tx_hashes_list:
                                                             if seat_key == seat_placeholder["name"] and not seat_value["minted"]:
+                                                                # Replace the seat_value["minted"]: false with seat_value["minted"]: "tx_hash" value
                                                                 seat_value["minted"] = seat_placeholder["tx_hash"]
+                                                                # Add the updated _gweiValue to the seat_value["price"] sub-dictionary so there's the CAD and wei values stored
+                                                                seat_value["price"]["_gweiValue"] = seat_placeholder["_gweiValue"]
+
                                                                 # Append the seat_value that had its seat_value["minted"] updated to the tx_hash value to the mint_pending_seats list
                                                                 mint_pending_seats.append(
                                                                     seat_value)

@@ -14,18 +14,22 @@ import requests
 # Import urllib.parse to fix filepaths (to remove spaces that affect url hyperlinks)
 import urllib.parse
 
-def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
+# def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
+def nft_generator(nft_artwork_file_path, event_select, venue_select, date, time, selected_seat):
 
     # Access the row & aisle values from each trace (seat) that corresponds to each tokenId/seat number
-    aisle = traces[ticket_id - 1]['x'][0]
-    row = traces[ticket_id - 1]['y'][0]
+#aisle = traces[ticket_id - 1]['x'][0]
+#row = traces[ticket_id - 1]['y'][0]
+    
+#     aisle = selected_seat["sec"]
+#     row = selected_seat["row"]
 
-    event_ticket_holders = event_select
-    venue_ticket_holders = venue_select
+#     event_ticket_holders = event_select
+#     venue_ticket_holders = venue_select
 
-    aisle_ticket_holders = aisle
-    row_ticket_holders = row
-    seat_ticket_holders = selected_seat
+#     aisle_ticket_holders = selected_seat["sec"]
+#     row_ticket_holders = selected_seat["row"]
+#     seat_ticket_holders = selected_seat["name"]
 
     # Create Background Template to Overlay Foreground Images
     img = Image.new('RGB', (1000, 600), color='black')
@@ -42,27 +46,38 @@ def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
     draw = ImageDraw.Draw(black_blank)
 
     # Create 'event_text' & 'venue_text' text variables to be added for event & venue info
-    event_text = event_ticket_holders
-    venue_text = venue_ticket_holders
+#     event_text = event_ticket_holders
+#     venue_text = venue_ticket_holders
+    event_text = event_select
+    venue_text = venue_select
 
     # Fetch UNIX event date stamp from Solidity and convert to formatted_date_time format ('%m/%d/%Y %H:%M:%S')
-    date_time = datetime.datetime.fromtimestamp(
-            1660176000)  # UNIX timestamp variable inputs here
-    formatted_date_time = date_time.strftime('%m/%d/%Y %H:%M:%S')
+#     date_time = datetime.datetime.fromtimestamp(
+#             1660176000)  # UNIX timestamp variable inputs here
+#     formatted_date_time = date_time.strftime('%m/%d/%Y %H:%M:%S')
+#     date_time = datetime.datetime.fromtimestamp(
+#             1660176000)  # UNIX timestamp variable inputs here
+    formatted_date_time_text = str(date + " " + time)
 
     # Create aisle, row & seat text variables
-    aisle_text = "Aisle " + str(aisle_ticket_holders)
-    row_text = "Row " + str(row_ticket_holders)
-    selected_seat_text = seat_ticket_holders
+#     aisle_text = "Aisle " + str(aisle_ticket_holders)
+#     row_text = "Row " + str(row_ticket_holders)
+    selected_seat_text = selected_seat["name"]
 
     # Create info box ticket component
 
-    draw.text((15, 20), event_text, (255, 255, 255), font=font)
-    draw.text((15, 50), venue_text, (255, 255, 255), font=font)
-    draw.text((15, 80), formatted_date_time,
+#     draw.text((15, 20), event_text, (255, 255, 255), font=font)
+#     draw.text((15, 50), venue_text, (255, 255, 255), font=font)
+#     draw.text((15, 80), formatted_date_time,
+#                   (255, 255, 255), font=font_time_small)
+#     draw.text((15, 110), aisle_text, (255, 255, 255), font=font)
+#     draw.text((15, 140), row_text, (255, 255, 255), font=font)
+#     draw.text((15, 170), selected_seat_text, (255, 255, 255), font=font)
+    
+    draw.text((15, 80), event_text, (255, 255, 255), font=font)
+    draw.text((15, 110), venue_text, (255, 255, 255), font=font)
+    draw.text((15, 140), formatted_date_time_text,
                   (255, 255, 255), font=font_time_small)
-    draw.text((15, 110), aisle_text, (255, 255, 255), font=font)
-    draw.text((15, 140), row_text, (255, 255, 255), font=font)
     draw.text((15, 170), selected_seat_text, (255, 255, 255), font=font)
 
     # Draw image to 'draw' canvas and save as .png
@@ -97,7 +112,7 @@ def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
 
     # Open the artwork image
     artwork = Image.open(
-    "Image_Data/gorillaz_art.png").convert('RGBA')
+    f"event_venue_library/nft_artwork/{nft_artwork_file_path}").convert('RGBA')
 
     # Resize the artwork image
     artwork = artwork.resize((350, 350))
@@ -122,9 +137,7 @@ def nft_generator(traces, ticket_id, event_select, venue_select, selected_seat):
     # Concatenate all strings together
     qr_code_text = (event_text + "," + "\n" +
                     venue_text + "," + "\n" +
-                    formatted_date_time + "," + "\n" +
-                    aisle_text + "," + "\n" +
-                    row_text + "," + "\n" +
+                    formatted_date_time_text + "," + "\n" +
                     selected_seat_text
                     )
     # print(qr_code_text)
