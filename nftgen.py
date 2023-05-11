@@ -40,7 +40,7 @@ def nft_generator(nft_artwork_file_path, event_select, venue_select, date, time,
     black_blank = Image.open("Image_Data/black_blank_square.png")
     font = ImageFont.truetype('/Library/Fonts/Arial Black.ttf', 13)
     font_time_small = ImageFont.truetype(
-                '/Library/Fonts/Arial Black.ttf', 13)
+                '/Library/Fonts/Arial Black.ttf', 11)
 
     # Get Black Blank as Canvas Template
     draw = ImageDraw.Draw(black_blank)
@@ -78,7 +78,7 @@ def nft_generator(nft_artwork_file_path, event_select, venue_select, date, time,
     draw.text((15, 110), venue_text, (255, 255, 255), font=font)
     draw.text((15, 140), formatted_date_time_text,
                   (255, 255, 255), font=font_time_small)
-    draw.text((15, 170), selected_seat_text, (255, 255, 255), font=font)
+    draw.text((15, 170), selected_seat_text, (255, 255, 255), font=font_time_small)
 
     # Draw image to 'draw' canvas and save as .png
     black_blank.save("Image_Data/text_box.png")
