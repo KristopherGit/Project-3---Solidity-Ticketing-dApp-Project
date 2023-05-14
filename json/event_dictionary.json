@@ -61,6 +61,17 @@
             "smartContract": "0x3B600828bd176a31BA6e2593B93d8AFd83FA7BfB",
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
             "nftArtwork": "Dave_Chappelle_Elgin_Theatre_2023-10-21.png"
+        },
+        {
+            "unique_id": "Jerry_Seinfeld_Winter_Garden_Theatre_2023-11-25.json",
+            "eventName": "Jerry Seinfeld",
+            "venueName": "Winter Garden Theatre",
+            "dateTime": "2023-11-25",
+            "hourTime": "20:00",
+            "timeStamp": "1700960400",
+            "smartContract": "0xa01C86250553DFCAe8DD04B710d3D9c9287D63f6",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
+            "nftArtwork": "Jerry_Seinfeld_Winter_Garden_Theatre_2023-11-25.png"
         }
     ]
 }

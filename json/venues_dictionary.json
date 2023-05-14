@@ -11,5 +11,10 @@
         "Elgin Theatre Orchestra Section": "create_venue_elgin_theatre_orchestra_section",
         "Elgin Theatre Mezzanine Section": "create_venue_elgin_theatre_mezzanine_section",
         "Elgin Theatre Balcony Section": "create_venue_elgin_theatre_balcony_section"
+    },
+    "Winter Garden Theatre": {
+        "Winter Garden Theatre Orchestra Section": "create_venue_winter_garden_theatre_orchestra_section",
+        "Winter Garden Theatre Mezzanine Section": "create_venue_winter_garden_theatre_mezzanine_section",
+        "Winter Garden Theatre Balcony Section": "create_venue_winter_garden_theatre_balcony_section"
     }
 }

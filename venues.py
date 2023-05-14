@@ -2804,6 +2804,800 @@ def create_venue_elgin_theatre_balcony_section(galleryDictInput):
     return gallery, traces, fig
 
 
+def create_venue_winter_garden_theatre_orchestra_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']['CAD']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Create rectangle stage trace object
+
+    stage = go.Scatter(
+        x=[15, 15, 30, 30, 15],
+        y=[33, 37, 37, 33, 33],
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        text='STAGE',
+        textposition='middle center',
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage)
+
+    # Add lines to separate rows for aesthetic purposes on venue floor
+    rowline1 = go.Scatter(
+        x=[14, 14],
+        y=[12, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    rowline2 = go.Scatter(
+        x=[31, 31],
+        y=[12, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    rowline3 = go.Scatter(
+        x=[8, 13],
+        y=[22, 22],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline3)
+
+    rowline4 = go.Scatter(
+        x=[32, 37],
+        y=[22, 22],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline4)
+
+    rowline5 = go.Scatter(
+        x=[0, 6],
+        y=[32, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline5)
+
+    rowline6 = go.Scatter(
+        x=[0, 0],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline6)
+
+    rowline7 = go.Scatter(
+        x=[0, 6],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline7)
+
+    rowline8 = go.Scatter(
+        x=[3, 3],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline8)
+
+    rowline9 = go.Scatter(
+        x=[6, 6],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline9)
+
+    rowline10 = go.Scatter(
+        x=[1, 1],
+        y=[8, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline10)
+
+    rowline11 = go.Scatter(
+        x=[1, 4],
+        y=[21, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline11)
+
+    rowline12 = go.Scatter(
+        x=[4, 4],
+        y=[8, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline12)
+
+    rowline13 = go.Scatter(
+        x=[1, 4],
+        y=[8, 8],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline13)
+
+    rowline14 = go.Scatter(
+        x=[39, 45],
+        y=[32, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline14)
+
+    rowline15 = go.Scatter(
+        x=[39, 45],
+        y=[32, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline15)
+
+    rowline16 = go.Scatter(
+        x=[39, 39],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline16)
+
+    rowline17 = go.Scatter(
+        x=[39, 45],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline17)
+
+    rowline18 = go.Scatter(
+        x=[39, 45],
+        y=[23, 23],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline18)
+
+    rowline18 = go.Scatter(
+        x=[45, 45],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline18)
+
+    rowline19 = go.Scatter(
+        x=[42, 42],
+        y=[23, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline19)
+
+    rowline20 = go.Scatter(
+        x=[41, 44],
+        y=[21, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline20)
+
+    rowline21 = go.Scatter(
+        x=[41, 44],
+        y=[21, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline21)
+
+    rowline22 = go.Scatter(
+        x=[41, 41],
+        y=[8, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline22)
+
+    rowline23 = go.Scatter(
+        x=[41, 44],
+        y=[8, 8],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline23)
+
+    rowline24 = go.Scatter(
+        x=[44, 44],
+        y=[8, 21],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline24)
+
+    rowline25 = go.Scatter(
+        x=[15, 30],
+        y=[32, 32],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline25)
+
+    # create list of alphabetical row text labels & their coordinates
+    text_labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                   'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U']
+    text_coords = [(14, 30), (11, 29), (10, 28), (9, 27),
+                   (9, 26), (8, 25), (10, 24), (7, 23), (7, 22), (5, 21), (5, 20), (5, 19), (5, 18), (5, 17), (5, 16), (5, 15), (5, 14), (5, 13), (8, 12)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # create label list & coordinates with zip() for the upbox & lowbox box sections
+    text_labels_2 = ['UPBOX', 'LOWBOX', 'LOWBOX', 'UPBOX', 'LOWBOX', 'LOWBOX']
+    text_coords_2 = [(43, 33), (39, 33), (3, 33), (0, 33), (1, 22), (41, 22)]
+    for label, coord in zip(text_labels_2, text_coords_2):
+        x, y = coord
+        text_trace_2 = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle right'
+        )
+        traces.append(text_trace_2)
+
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Winter Garden Theatre Balcony Section"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Winter Garden Theatre Balcony Section"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=True, width=900, height=675, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # y=min(traces[-2].y) + 2
+                x=(max(stage.x) - min(stage.x)) / 2 + min(stage.x),
+                y=(max(stage.y) - min(stage.y)) / 2 + min(stage.y)
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    return gallery, traces, fig
+
+
+def create_venue_winter_garden_theatre_mezzanine_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Create rectangle stage trace object
+
+    stage = go.Scatter(
+        x=[19, 19, 34, 34, 19],
+        y=[35, 39, 39, 35, 35],
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        text='STAGE',
+        textposition='middle center',
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage)
+
+    # Add lines to separate rows for aesthetic purposes on venue floor
+    rowline1 = go.Scatter(
+        x=[18, 18],
+        y=[10, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    rowline2 = go.Scatter(
+        x=[35, 35],
+        y=[10, 13],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    rowline3 = go.Scatter(
+        x=[19, 34],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline3)
+
+    # create list of alphabetical row text labels & their coordinates
+    text_labels = ['A', 'B', 'C', 'D']
+    text_coords = [(5, 13), (4, 12), (3, 11), (2, 10)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Winter Garden Theatre Mezzanine Section"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Elgin Theatre Balcony Section"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=True, width=900, height=675, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # y=min(traces[-2].y) + 2
+                x=(max(stage.x) - min(stage.x)) / 2 + min(stage.x),
+                y=(max(stage.y) - min(stage.y)) / 2 + min(stage.y)
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    return gallery, traces, fig
+
+
+def create_venue_winter_garden_theatre_balcony_section(galleryDictInput):
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=6, color=color),
+            textfont=dict(
+                size=16
+            )
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Create rectangle stage trace object
+
+    stage = go.Scatter(
+        x=[19, 19, 34, 34, 19],
+        y=[35, 39, 39, 35, 35],
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        text='STAGE',
+        textposition='middle center',
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage)
+
+    # Add lines to separate rows for aesthetic purposes on venue floor
+    rowline1 = go.Scatter(
+        x=[26, 26],
+        y=[7, 15],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline1)
+
+    rowline2 = go.Scatter(
+        x=[19, 34],
+        y=[34, 34],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline2)
+
+    # create list of alphabetical row text labels & their coordinates
+    text_labels = ['E', 'F', 'G', 'H', 'J', 'K', 'L']
+    text_coords = [(2, 15), (2, 14), (3, 13), (3, 12),
+                   (3, 9), (3, 8), (5, 7)]
+    for label, coord in zip(text_labels, text_coords):
+        x, y = coord
+        text_trace = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace)
+
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Winter Garden Theatre Balcony Section"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text='STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Winter Garden Theatre Balcony Section"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        autosize=True, width=900, height=675, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=24,
+                    family='monospace',
+                    color='#B3A301'
+                ),
+                # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # y=min(traces[-2].y) + 2
+                x=(max(stage.x) - min(stage.x)) / 2 + min(stage.x),
+                y=(max(stage.y) - min(stage.y)) / 2 + min(stage.y)
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    return gallery, traces, fig
 # Dictionary to map venue names as keys to venue property function as values
 # Venue dictionary for st.selectbox i.) key (venue) ii.) value (section; gallery, mezzanine, balcony, etc)
 # venue_dictionary = {
