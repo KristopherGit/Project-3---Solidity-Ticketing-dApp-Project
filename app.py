@@ -92,6 +92,11 @@ contract = None
 # Variable to hold the NFT Artwork Image File Name
 _artworkName = None
 
+# Variable to hold a list of all the different unique seat ticket prices of a particular venue to be used with the st.slider function to change seat color/filter seat prices
+all_prices = None
+min_price = None
+max_price = None
+
 
 #########################################################
 
@@ -99,7 +104,7 @@ _artworkName = None
 # Main Logo Addition Function
 
 
-# @st.cache
+@st.cache(allow_output_mutation=True)
 def add_logo(logo_path, width, height):
     """Read and return a resized logo"""
     logo = Image.open(logo_path)
@@ -210,7 +215,7 @@ with col2:
     print("_artworkName: ", _artworkName)
 
     # function that gets the smart contract address for a specific event name
-    # @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True)
     def obtain_smart_contract_address_for_event(_uniqueId):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
@@ -229,7 +234,7 @@ with col2:
 
     # function that will fetch the 'seat JSONbin url' that corresponds to its associated _eventName, _venueName & _concertDate above
 
-    # @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True)
     def obtain_seat_json_for_event(_eventName, _venueName, _concertDate):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
@@ -249,7 +254,7 @@ with col2:
     # print(type(_jsonBinURL))
 
     # function that will generate a list of available seating sections for the specific venue selected above
-    # @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True)
     def obtain_venue_section(_venueName):
         with open("json/venues_dictionary.json", "r") as file:
             data = json.load(file)
@@ -284,7 +289,7 @@ with col2:
     # Obtain gallery={} equivalent dictionary data from .json file to be passed into the venues.py 'create_..' functions to be converted to gallery = {} below
     # match section name from the unique_Id matching .json file to the _sectionName (key) and use that to obtain the values sectionFunctionNameString (value)
     # ****** added 03/30/2023
-    # @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True)
     def obtain_venue_section_json_dictionary(_sectionName, _uniqueId):
         with open(f"event_venue_library/{_uniqueId}", "r") as file:
             data = json.load(file)
@@ -313,6 +318,22 @@ with col1:
     # gallery, traces = ven.create_venue_massey_hall_gallery()
     try:
         gallery, traces, fig = venueSectionFunctionName(galleryDictInput)
+
+        # get a list of 'all_prices' that represent a list of all the different prices in the gallery dictionary for each section
+        all_prices = (list(set(value['price']['CAD']
+                               for key, value in gallery.items())))
+        # print("all_price: ", all_prices)
+        # for key, value in gallery.items():
+        #     print("value for price selector: ", value)
+        #     # price range selector slider
+        #     st.slider(label="price selector")
+        min_price = min(all_prices)
+        max_price = max(all_prices)
+
+        # Create condition so that the slider bar doesn't contract and error out so that there's at least two values to create a differential between (or if min_price >= max_price)
+        if min_price == max_price or min_price > max_price:
+            min_price = 0
+
         #print("gallery:", gallery)
         #print("traces:", traces)
     except:
@@ -324,10 +345,56 @@ with col1:
 
 #########################################################
 
-# Pull updated seats color from JSONbin json archive to color sold seats grey downstream
+with col2:
+    # gallery, traces, fig = venueSectionFunctionName(galleryDictInput)
+    # all_prices = (list(set(value['price']['CAD']
+    #                        for key, value in gallery.items())))
+    # print("all_price: ", all_prices)
+    # # for key, value in gallery.items():
+    # #     print("value for price selector: ", value)
+    # #     # price range selector slider
+    # #     st.slider(label="price selector")
+    # min_price = min(all_prices)
+    # max_price = max(all_prices)
 
-# JSONBin Bin Active URL
-# url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
+    # Create slider for price distribution filter within an event's venue section to highlight user affordable seats
+    set_price_filter = st.slider(label="price selector",
+                                 min_value=min_price, max_value=max_price, value=max_price, format="$%d", label_visibility="hidden")
+
+# Updated traces based on st.slider filtering
+for trace in traces:
+    if trace['customdata'] is not None and len(trace['customdata']) > 0:
+        price = trace['customdata'][0]
+        print("price_trace['customdata'][0]", price)
+        if price > set_price_filter:
+            trace.marker.color = '#002447'
+        else:
+            trace.marker.color = '#1E90FF'
+
+    # updated_traces = []
+    # for key, value in gallery.items():
+    #     if value['price']['CAD'] > set_price_filter:
+    #         for trace in traces:
+    #             if trace['name'] == value['name']:
+    #                 trace.marker.color = 'dark blue'
+    #             else:
+    #                 trace.marker.color = '#1E90FF'
+    #             updated_traces.append(trace)
+    # traces = updated_traces
+
+    # except:
+    #     st.markdown("<p style='color: #B3A301; font-size: 16px; margin-top: 0px;'><b>Venue section under construction. Please check back.</b></p>",
+    #                 unsafe_allow_html=True)
+    #     image = Image.open('Image_Data/under_construction.jpeg')
+    #     st.image(image, caption='Maintenance underway.')
+    #     gallery, traces, fig = {}, [], {}
+
+    #########################################################
+
+    # Pull updated seats color from JSONbin json archive to color sold seats grey downstream
+
+    # JSONBin Bin Active URL
+    # url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
 url = _jsonBinURL
 # define headers for api request
 headers = {"content-type": "application/json",
@@ -489,12 +556,12 @@ with col2:
 
 with col2:
 
-    for i in range(3):
-        st.write("")
+    # for i in range(3):
+    #     st.write("")
 
-    # Venue Image - * Note needs to be remade with venue associated image
-    venue_image = Image.open('Image_Data/massey_hall_bw.png')
-    st.image(venue_image, 'Massey Hall - North Entrance')
+    # # Venue Image - * Note needs to be remade with venue associated image
+    # venue_image = Image.open('Image_Data/massey_hall_bw.png')
+    # st.image(venue_image, 'Massey Hall - North Entrance')
 
     # # Title for Option to Select Venue Seating Area View
     # st.markdown("<p style='color: #807501; padding: 0; margin-top: 0px;'><b>seating map section:</b></p>",

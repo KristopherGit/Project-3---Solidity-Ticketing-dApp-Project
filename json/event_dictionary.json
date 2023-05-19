@@ -1,46 +1,6 @@
 {
     "eventList": [
         {
-            "unique_id": "Radiohead_Massey_Hall_2023-04-07.json",
-            "eventName": "Radiohead",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-04-07",
-            "hourTime": "20:00",
-            "timeStamp": "1680912000",
-            "smartContract": "0x6cf5e0f5A51FeF359EF44a437ff8266D9376B73a",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Yeah_Yeah_Yeahs_Massey_Hall_2023-09-15.json",
-            "eventName": "Yeah Yeah Yeahs",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-09-15",
-            "hourTime": "20:00",
-            "timeStamp": "1694822400",
-            "smartContract": "0x315881082441FF3a67aed8c15B144dDad3d8Dd99",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Massive_Attack_Massey_Hall_2023-10-13.json",
-            "eventName": "Massive Attack",
-            "venueName": "Massey Hall",
-            "dateTime": "2023-10-13",
-            "hourTime": "20:00",
-            "timeStamp": "1697241600",
-            "smartContract": "0xF642d9cd9C1D9812ff3dEbE800EfB5a5aD441488",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
-            "unique_id": "Mac_Demarco_Danforth_Music_Hall_2023-06-17.json",
-            "eventName": "Mac Demarco",
-            "venueName": "Danforth Music Hall",
-            "dateTime": "2023-06-17",
-            "hourTime": "20:00",
-            "timeStamp": "1687046400",
-            "smartContract": "0x655A65bDC2Ff5596EEB32C89851C09cA6B21b5D6",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
-        },
-        {
             "unique_id": "Kelly_Lee_Owens_Danforth_Music_Hall_2023-08-20.json",
             "eventName": "Kelly Lee Owens",
             "venueName": "Danforth Music Hall",
