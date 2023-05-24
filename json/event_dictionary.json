@@ -8,7 +8,7 @@
             "hourTime": "22:00",
             "timeStamp": "1692583200",
             "smartContract": "0x39b93Eb8dC5D43b3C841F95230b454A18e719eA5",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/646d104d8e4aa6225ea2bc6e",
             "nftArtwork": "Kelly_Lee_Owens_Danforth_Music_Hall_2023-08-20.png"
         },
         {
@@ -19,7 +19,7 @@
             "hourTime": "20:00",
             "timeStamp": "1697932800",
             "smartContract": "0x3B600828bd176a31BA6e2593B93d8AFd83FA7BfB",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/646d1101b89b1e2299a368e4",
             "nftArtwork": "Dave_Chappelle_Elgin_Theatre_2023-10-21.png"
         },
         {
@@ -30,8 +30,19 @@
             "hourTime": "20:00",
             "timeStamp": "1700960400",
             "smartContract": "0xa01C86250553DFCAe8DD04B710d3D9c9287D63f6",
-            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/646d113e8e4aa6225ea2bcdf",
             "nftArtwork": "Jerry_Seinfeld_Winter_Garden_Theatre_2023-11-25.png"
+        },
+        {
+            "unique_id": "Massive_Attack_Meridian_Arts_Centre_-_George_Weston_2023-07-28.json",
+            "eventName": "Massive Attack",
+            "venueName": "Meridian Arts Centre - George Weston",
+            "dateTime": "2023-07-28",
+            "hourTime": "20:00",
+            "timeStamp": "1690588800",
+            "smartContract": "0xEE8bD782E560273c129e6141C426831F5221771E",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/646bfe929d312622a363695b",
+            "nftArtwork": "Massive_Attack_Meridian_Arts_Centre_-_George_Weston_2023-07-28.png"
         }
     ]
 }

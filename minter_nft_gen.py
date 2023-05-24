@@ -185,7 +185,7 @@ if st.sidebar.button("Ticket Details"):
     _concertDate = result[4]
     _price = result[5]
     _venueName = result[6]
-    _tokenIdNumber = result[7]
+    _seatNumber = result[7]
     _seatName = result[8]
     _seatColor = result[9]
     _ipfsHash = result[10]
@@ -204,7 +204,7 @@ if st.sidebar.button("Ticket Details"):
                         unsafe_allow_html=True)
     st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_venueName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_venueName),
                         unsafe_allow_html=True)
-    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_tokenIdNumber: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_tokenIdNumber),
+    st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_tokenIdNumber: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_seatNumber),
                         unsafe_allow_html=True)
     st.sidebar.markdown("<p style='color: white; font-size: 14px; margin-top: 0px;'>_seatName: <span style='color:green; font-size: 13px; font-family: monospace; background-color: #0E1117; padding: 2px;'> {}</span></p>".format(_seatName),
                         unsafe_allow_html=True)

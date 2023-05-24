@@ -4266,6 +4266,548 @@ def create_venue_the_velvet_underground_main_section(galleryDictInput):
         ))
 
     return gallery, traces, fig
+
+
+def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInput):
+
+    # Meridian Arts Centre George Weston Main Section
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        price = seat['price']['CAD']
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']['CAD']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=5, color=color),
+            textfont=dict(
+                size=16
+            ),
+            customdata=[price]
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Create rectangle stage trace object
+
+    # Create stage layout as a half moon trace figure
+
+    def stage_y_values(x):
+        return 5 * np.sin((x+0.5) * np.pi / 26) + 20
+
+    x = np.array(list(range(26)))
+    y = stage_y_values(x)
+
+    stage = go.Scatter(
+        x=x + 12,
+        y=y,
+        mode='lines',
+        fill='toself',
+        line=dict(width=5, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage)
+
+    # Add trapezoid object below to create the complete stage trace object for the Merdiain Arts Centre - George Weston theatre section
+    stage_trapezoid_x_coord = [12, 19, 30, 37, 12]
+    stage_trapezoid_y_coord = [20, 15, 15, 20, 20]
+
+    stage_trapezoid = go.Scatter(
+        x=stage_trapezoid_x_coord,
+        y=stage_trapezoid_y_coord,
+        mode='lines',
+        fill='toself',
+        line=dict(width=6, color='#333333'),
+        fillcolor='#333333',
+        text='STAGE',
+        textposition='middle center',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    )
+    traces.append(stage_trapezoid)
+
+    # Create coordinates for the trapezoid boundary to outline the C-LOGE section
+    trapezoid_c_loge_x = [12, 37, 41, 8, 12]  # x-coord
+    trapezoid_c_loge_y = [13, 13, 9, 9, 13]  # y-coord
+
+    # Create trapezoid for C-LOGE section
+    trapezoid_c_loge = go.Scatter(
+        x=trapezoid_c_loge_x,
+        y=trapezoid_c_loge_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.3
+        ),
+    )
+
+    # Add C-LOGE trapezoid to traces list
+    traces.append(trapezoid_c_loge)
+
+    # Create coordinates for the trapezoid boundary to outline the R-LOGE section
+    trapezoid_r_loge_x = [3, 8, 10.5, 7, 3]  # x-coord
+    trapezoid_r_loge_y = [28, 12, 14, 28, 28]  # y-coord
+
+    # Create trapezoid for C-LOGE section
+    trapezoid_r_loge = go.Scatter(
+        x=trapezoid_r_loge_x,
+        y=trapezoid_r_loge_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.3
+        ),
+    )
+
+    # Add C-LOGE trapezoid to traces list
+    traces.append(trapezoid_r_loge)
+
+    # Create coordinates for the trapezoid boundary to outline the L-LOGE section
+    trapezoid_l_loge_x = [38.5, 41, 46, 42, 38.5]  # x-coord
+    trapezoid_l_loge_y = [14, 12, 28, 28, 14]  # y-coord
+
+    # Create trapezoid for L-LOGE section
+    trapezoid_l_loge = go.Scatter(
+        x=trapezoid_l_loge_x,
+        y=trapezoid_l_loge_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.3
+        ),
+    )
+
+    # Add L-LOGE trapezoid to traces list
+    traces.append(trapezoid_l_loge)
+
+    # Create coordinates for the trapezoid boundary to outline the R-ORCH section
+    trapezoid_r_orch_x = [16, 11.5, 11.5, 17.5, 17.5, 16]  # x-coord
+    trapezoid_r_orch_y = [44, 41, 26, 26, 44, 44]  # y-coord
+
+    # Create trapezoid for R-ORCH section
+    trapezoid_r_orch = go.Scatter(
+        x=trapezoid_r_orch_x,
+        y=trapezoid_r_orch_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add R-ORCH trapezoid to traces list
+    traces.append(trapezoid_r_orch)
+
+    # Create coordinates for the trapezoid boundary to outline the L-ORCH section
+    trapezoid_l_orch_x = [31.5, 37.5, 37.5, 33, 31.5, 31.5]  # x-coord
+    trapezoid_l_orch_y = [26, 26, 41, 44, 44, 26]  # y-coord
+
+    # Create trapezoid for L-ORCH section
+    trapezoid_l_orch = go.Scatter(
+        x=trapezoid_l_orch_x,
+        y=trapezoid_l_orch_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add L-ORCH trapezoid to traces list
+    traces.append(trapezoid_l_orch)
+
+    # Create coordinates for the trapezoid boundary to outline the C-ORCH section
+    trapezoid_c_orch_x = [18.5, 24, 25, 30.5, 30.5, 18.5, 18.5]  # x-coord
+    trapezoid_c_orch_y = [25, 26, 26, 25, 44.5, 44.5, 25]  # y-coord
+
+    # Create trapezoid for C-ORCH section
+    trapezoid_c_orch = go.Scatter(
+        x=trapezoid_c_orch_x,
+        y=trapezoid_c_orch_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.05
+        ),
+    )
+
+    # Add C-ORCH trapezoid to traces list
+    traces.append(trapezoid_c_orch)
+
+    # Create coordinates for the trapezoid boundary to outline the C-TERR section
+    trapezoid_c_terr_x = [18.5, 18.5, 30.5, 30.5, 18.5]  # x-coord
+    trapezoid_c_terr_y = [52, 44.5, 44.5, 52, 52]  # y-coord
+
+    # Create trapezoid for C-TERR section
+    trapezoid_c_terr = go.Scatter(
+        x=trapezoid_c_terr_x,
+        y=trapezoid_c_terr_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.05
+        ),
+    )
+
+    # Add R-TERR trapezoid to traces list
+    traces.append(trapezoid_c_terr)
+
+    # Create coordinates for the trapezoid boundary to outline the R-TERR section
+    trapezoid_r_terr_x = [9, 7.5, 14, 17.5, 17.5, 11, 9]  # x-coord
+    trapezoid_r_terr_y = [40.5, 44, 52, 52, 44.5, 43.5, 40.5]  # y-coord
+
+    # Create trapezoid for R-TERR section
+    trapezoid_r_terr = go.Scatter(
+        x=trapezoid_r_terr_x,
+        y=trapezoid_r_terr_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.4
+        ),
+    )
+
+    # Add R-TERR trapezoid to traces list
+    traces.append(trapezoid_r_terr)
+
+    # Create coordinates for the trapezoid boundary to outline the L-TERR section
+    trapezoid_l_terr_x = [40, 41.5, 35, 31.5, 31.5, 38, 40]  # x-coord
+    trapezoid_l_terr_y = [40.5, 44, 52, 52, 44.5, 43.5, 40.5]  # y-coord
+
+    # Create trapezoid for L-TERR section
+    trapezoid_l_terr = go.Scatter(
+        x=trapezoid_l_terr_x,
+        y=trapezoid_l_terr_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.4
+        ),
+    )
+
+    # Add L-TERR trapezoid to traces list
+    traces.append(trapezoid_l_terr)
+
+    # Create coordinates for the trapezoid boundary to outline the DRESS section
+    trapezoid_dress_x = [11, 38, 43, 46, 44,
+                         40, 36, 13, 9, 5, 3, 6, 11]  # x-coord
+    trapezoid_dress_y = [54, 54, 48, 48, 54, 62,
+                         72, 72, 62, 54, 48, 48, 54]  # y-coord
+
+    # Create trapezoid for DRESS section
+    trapezoid_dress = go.Scatter(
+        x=trapezoid_dress_x,
+        y=trapezoid_dress_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.35
+        ),
+    )
+
+    # Add DRESS trapezoid to traces list
+    traces.append(trapezoid_dress)
+
+    # Create coordinates for the trapezoid boundary to outline the L-PART section
+    trapezoid_l_part_x = [38.65, 40.35, 40.35, 38.65, 38.65]  # x-coord
+    trapezoid_l_part_y = [22.5, 22.5, 39.5, 39.5, 22.5]  # y-coord
+
+    # Create trapezoid for L-PART section
+    trapezoid_l_part = go.Scatter(
+        x=trapezoid_l_part_x,
+        y=trapezoid_l_part_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add L-PART trapezoid to traces list
+    traces.append(trapezoid_l_part)
+
+    # Create coordinates for the trapezoid boundary to outline the R-PART section
+    trapezoid_l_part_x = [10.5, 8.65, 8.65, 10.5, 10.5]  # x-coord
+    trapezoid_l_part_y = [22.5, 22.5, 39.5, 39.5, 22.5]  # y-coord
+
+    # Create trapezoid for R-PART section
+    trapezoid_l_part = go.Scatter(
+        x=trapezoid_l_part_x,
+        y=trapezoid_l_part_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add R-PART trapezoid to traces list
+    traces.append(trapezoid_l_part)
+
+    # Create coordinates for the trapezoid boundary to outline the L-DC section
+    trapezoid_l_dc_x = [43.75, 46.25, 46.25, 43.75, 43.75]  # x-coord
+    trapezoid_l_dc_y = [28.75, 28.75, 46.25, 46.25, 28.75]  # y-coord
+
+    # Create trapezoid for L-DC section
+    trapezoid_l_dc = go.Scatter(
+        x=trapezoid_l_dc_x,
+        y=trapezoid_l_dc_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add L-DC trapezoid to traces list
+    traces.append(trapezoid_l_dc)
+
+    # Create coordinates for the trapezoid boundary to outline the R-DC section
+    trapezoid_r_dc_x = [2.75, 5.25, 5.25, 2.75, 2.75]  # x-coord
+    trapezoid_r_dc_y = [28.75, 28.75, 46.25, 46.25, 28.75]  # y-coord
+
+    # Create trapezoid for R-DC section
+    trapezoid_r_dc = go.Scatter(
+        x=trapezoid_r_dc_x,
+        y=trapezoid_r_dc_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=0.5,
+            shape='spline',
+            smoothing=0.2
+        ),
+    )
+
+    # Add R-DC trapezoid to traces list
+    traces.append(trapezoid_r_dc)
+
+    # Fill seat gaps for the middle continuity gap for the DRESS section
+    trace_gap_filler = go.Scatter(
+        x=[24, 24, 24, 24, 24],
+        y=[56, 58, 60, 62, 64],
+        mode='markers',
+        marker=dict(size=6, color='#1E90FF'),
+        hoverinfo='none'
+    )
+    traces.append(trace_gap_filler)
+
+    # create list of alphabetical row text labels & their coordinates for DRESS section
+    text_labels_dress = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    text_coords_dress = [(4, 50), (6, 54), (9, 59), (10, 62),
+                         (14, 64), (16, 66), (16, 68), (14, 70)]
+
+    for label, coord in zip(text_labels_dress, text_coords_dress):
+        x, y = coord
+        text_trace_dress = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace_dress)
+
+    # create list of alphabetical row text labels & their coordinates for C-ORCH section
+    text_labels_c_orch = ['A', 'B', 'C', 'D', 'E',
+                          'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T']
+    text_coords_c_orch = [(18, 27), (18, 28), (18, 29),
+                          (18, 30), (18, 31), (18, 32), (18, 33), (18, 34), (18, 35), (18, 36), (18, 37), (18, 38), (18, 39), (18, 40), (18, 41), (18, 42), (18, 43), (18, 44)]
+
+    # create C-ORCH text trace objects and append to the master traces list
+    for label, coord in zip(text_labels_c_orch, text_coords_c_orch):
+        x, y = coord
+        text_trace_c_orch = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace_c_orch)
+
+    # create list of alphabetical row text labels & their coordinates for C-TERR section
+    # Note: 'ZZ' label added even though it's not part of C-TERR for simplicity
+    text_labels_c_terr = ['U', 'V', 'W', 'X', 'Y', 'Z', 'ZZ']
+    text_coords_c_terr = [(18, 45), (18, 46), (18, 47),
+                          (18, 48), (18, 49), (18, 50)]
+
+    # create C-TERR text trace objects and append to the master traces list
+    for label, coord in zip(text_labels_c_terr, text_coords_c_terr):
+        x, y = coord
+        text_trace_c_terr = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=12, color='#B3A301'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_trace_c_terr)
+
+    # create list of numerical row text labels & their coordinates for L, R & C-TERR sections
+    # text_labels_num_terr = ['114', '115', '116', '117', '118', '119', '120', '121', '122']
+    # text_coords_num_terr = [(41, 46), (40, 47), (39, 49),
+    #                         (38, 50), (37, 51), (36, 52), (35, 53), (34, 53), (33, 53)]
+
+    # # create C-TERR text trace objects and append to the master traces list
+    # for label, coord in zip(text_labels_num_terr, text_coords_num_terr):
+    #     x, y = coord
+    #     text_trace_num_terr = go.Scatter(
+    #         x=[x],
+    #         y=[y],
+    #         mode='text',
+    #         text=label,
+    #         textfont=dict(size=11, color='#B3A301'),
+    #         showlegend=False,
+    #         textposition='middle center',
+    #         # textangle=90
+    #     )
+    #     traces.append(text_trace_num_terr)
+
+    # Create a layout for the plot
+    # @st.cache(allow_output_mutation=True)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("Meridian Arts Centre George Weston Main Section"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate',
+                       autorange=True, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text=' STAGE',
+                    # x=center_x_value,
+                    # y=-2.5,
+                    # xanchor='center',
+                    # yanchor='top',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            )
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("Meridian Arts Centre George Weston Main Section"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        # autosize=True, width=900, height=675, annotations=[
+        autosize=True, width=950, height=1100, annotations=[
+            dict(
+                text="S T A G E",
+                font=dict(
+                    size=40,
+                    family='arial',
+                    color='#B3A301'  # '#B3A301' olive-gold
+                ),
+                # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # y=min(traces[-2].y) + 2
+                x=(max(stage_trapezoid.x) - min(stage_trapezoid.x)) / \
+                2 + min(stage_trapezoid.x),
+                y=(max(stage_trapezoid.y) - min(stage_trapezoid.y)) / \
+                2 + min(stage_trapezoid.y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        ))
+
+    # create list of numerical row text labels & their coordinates for L, R & C-TERR sections
+    text_labels_num_terr = ['114', '115', '116',
+                            '117', '118', '119', '120', '121', '122', '123', '125', '126', '127', '128',
+                            '129', '130', '131', '132', '132', '133', '134', '135', '138', '139', '140', '141', '142', '143', '144', '145', '146', '147']
+    text_coords_num_terr = [(41, 46), (40, 47), (39, 49),
+                            (38, 50), (37, 51), (36, 52), (35, 53.35), (34, 53.35),
+                            (33, 53.35), (32, 53.35), (30, 51.25), (29, 51.25),
+                            (28, 51.25), (27, 51.25), (26, 51.25), (25, 51.25),
+                            (24, 51.25), (23, 51.25), (22,
+                                                       51.25), (21, 51.25), (20, 51.25),
+                            (19, 51.25), (17, 53.35), (16, 53.35), (15, 53.35), (14, 53.35), (13, 52), (12, 51), (11, 50), (10, 49), (9, 47), (8, 46)]
+
+    # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
+    # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
+    for label, coord in zip(text_labels_num_terr, text_coords_num_terr):
+        x, y = coord
+        print("label: ", label)
+        print("coord: ", coord)
+        fig.add_annotation(text=label, x=x,
+                           y=y, showarrow=False, textangle=90, font=dict(size=12, color='#B3A301'))
+
+    return gallery, traces, fig
+
+
 # Dictionary to map venue names as keys to venue property function as values
 # Venue dictionary for st.selectbox i.) key (venue) ii.) value (section; gallery, mezzanine, balcony, etc)
 # venue_dictionary = {

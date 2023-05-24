@@ -26,5 +26,8 @@
     },
     "The Velvet Underground": {
         "The Velvet Underground Main Section": "create_venue_the_velvet_underground_main_section"
+    },
+    "Meridian Arts Centre - George Weston": {
+        "Meridian Arts Centre George Weston Main Section": "create_venue_meridian_arts_centre_george_weston_main_section"
     }
 }

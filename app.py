@@ -234,7 +234,7 @@ with col2:
 
     # function that will fetch the 'seat JSONbin url' that corresponds to its associated _eventName, _venueName & _concertDate above
 
-    @st.cache(allow_output_mutation=True)
+    # @st.cache(allow_output_mutation=True)
     def obtain_seat_json_for_event(_eventName, _venueName, _concertDate):
         with open("json/event_dictionary.json", "r") as file:
             data = json.load(file)
@@ -289,7 +289,7 @@ with col2:
     # Obtain gallery={} equivalent dictionary data from .json file to be passed into the venues.py 'create_..' functions to be converted to gallery = {} below
     # match section name from the unique_Id matching .json file to the _sectionName (key) and use that to obtain the values sectionFunctionNameString (value)
     # ****** added 03/30/2023
-    @st.cache(allow_output_mutation=True)
+    # @st.cache(allow_output_mutation=True)
     def obtain_venue_section_json_dictionary(_sectionName, _uniqueId):
         with open(f"event_venue_library/{_uniqueId}", "r") as file:
             data = json.load(file)
@@ -359,7 +359,7 @@ with col2:
 
     # Create slider for price distribution filter within an event's venue section to highlight user affordable seats
     set_price_filter = st.slider(label="price selector",
-                                 min_value=min_price, max_value=max_price, value=max_price, format="$%d", label_visibility="hidden")
+                                 min_value=min_price, max_value=max_price, value=max_price, format="CA $%d", label_visibility="hidden")
 
 # Updated traces based on st.slider filtering
 for trace in traces:
@@ -406,12 +406,20 @@ data_json = response.json()
 
 #########################################################
 
+# if 'record' in data_json and 'ticketholder' in data_json['record']:
+#     ticketholders = data_json['record']['ticketholder']
+#     for ticketholder in ticketholders[1:]:
+#         for index, trace in enumerate(traces):
+#             token_id = str(ticketholder['tokenID'])
+#             if token_id.isdigit() and int(token_id) == index:
+#                 trace['marker']['color'] = 'darkgrey'
+
 if 'record' in data_json and 'ticketholder' in data_json['record']:
     ticketholders = data_json['record']['ticketholder']
     for ticketholder in ticketholders[1:]:
         for index, trace in enumerate(traces):
-            token_id = str(ticketholder['tokenID'])
-            if token_id.isdigit() and int(token_id) == index:
+            seat_name = str(ticketholder['name'])
+            if seat_name is not None and seat_name == trace['name']:
                 trace['marker']['color'] = 'darkgrey'
 
 #########################################################
@@ -444,7 +452,7 @@ except:
 #########################################################
 
 
-@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+# @st.cache(allow_output_mutation=True, suppress_st_warning=True)
 def update_jsonbin(_jsonBinURL, ticketId, first_name_input, last_name_input, selected_address, selected_seat):
     # jsonbin url for .json file data
     # url = "https://api.jsonbin.io/v3/b/63efe266c0e7653a057997d1"
