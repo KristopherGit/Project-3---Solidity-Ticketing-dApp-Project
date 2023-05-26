@@ -4301,7 +4301,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
     # Create stage layout as a half moon trace figure
 
     def stage_y_values(x):
-        return 5 * np.sin((x+0.5) * np.pi / 26) + 20
+        return 5 * np.sin((x+0.5) * np.pi / 26) + 18.75
 
     x = np.array(list(range(26)))
     y = stage_y_values(x)
@@ -4311,7 +4311,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
         y=y,
         mode='lines',
         fill='toself',
-        line=dict(width=5, color='#333333'),
+        line=dict(width=3, color='#333333'),
         fillcolor='#333333',
         hoverinfo='skip',  # exclude hoverinfo for this trace
         textfont=dict(color='#B3A301', size=16)  # set the text color to white
@@ -4320,14 +4320,14 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
 
     # Add trapezoid object below to create the complete stage trace object for the Merdiain Arts Centre - George Weston theatre section
     stage_trapezoid_x_coord = [12, 19, 30, 37, 12]
-    stage_trapezoid_y_coord = [20, 15, 15, 20, 20]
+    stage_trapezoid_y_coord = [19, 14, 14, 19, 19]
 
     stage_trapezoid = go.Scatter(
         x=stage_trapezoid_x_coord,
         y=stage_trapezoid_y_coord,
         mode='lines',
         fill='toself',
-        line=dict(width=6, color='#333333'),
+        line=dict(width=3, color='#333333'),
         fillcolor='#333333',
         text='STAGE',
         textposition='middle center',
@@ -4398,7 +4398,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
 
     # Create coordinates for the trapezoid boundary to outline the R-ORCH section
     trapezoid_r_orch_x = [16, 11.5, 11.5, 17.5, 17.5, 16]  # x-coord
-    trapezoid_r_orch_y = [44, 41, 26, 26, 44, 44]  # y-coord
+    trapezoid_r_orch_y = [44, 41, 26.5, 26.5, 44, 44]  # y-coord
 
     # Create trapezoid for R-ORCH section
     trapezoid_r_orch = go.Scatter(
@@ -4418,7 +4418,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
 
     # Create coordinates for the trapezoid boundary to outline the L-ORCH section
     trapezoid_l_orch_x = [31.5, 37.5, 37.5, 33, 31.5, 31.5]  # x-coord
-    trapezoid_l_orch_y = [26, 26, 41, 44, 44, 26]  # y-coord
+    trapezoid_l_orch_y = [26.5, 26.5, 41, 44, 44, 26.5]  # y-coord
 
     # Create trapezoid for L-ORCH section
     trapezoid_l_orch = go.Scatter(
@@ -4438,7 +4438,8 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
 
     # Create coordinates for the trapezoid boundary to outline the C-ORCH section
     trapezoid_c_orch_x = [18.5, 24, 25, 30.5, 30.5, 18.5, 18.5]  # x-coord
-    trapezoid_c_orch_y = [25, 26, 26, 25, 44.5, 44.5, 25]  # y-coord
+    trapezoid_c_orch_y = [25.75, 26.5, 26.5,
+                          25.75, 44.5, 44.5, 25.75]  # y-coord
 
     # Create trapezoid for C-ORCH section
     trapezoid_c_orch = go.Scatter(
@@ -4640,7 +4641,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
             y=[y],
             mode='text',
             text=label,
-            textfont=dict(size=12, color='#B3A301'),
+            textfont=dict(size=11, color='#B3A301', family='arial'),
             showlegend=False,
             textposition='middle center'
         )
@@ -4660,7 +4661,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
             y=[y],
             mode='text',
             text=label,
-            textfont=dict(size=12, color='#B3A301'),
+            textfont=dict(size=11, color='#B3A301', family='arial'),
             showlegend=False,
             textposition='middle center'
         )
@@ -4680,11 +4681,791 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
             y=[y],
             mode='text',
             text=label,
-            textfont=dict(size=12, color='#B3A301'),
+            textfont=dict(size=11, color='#B3A301', family='arial'),
             showlegend=False,
             textposition='middle center'
         )
         traces.append(text_trace_c_terr)
+
+    # create left line for C-LOGE venue section label
+    rowline_c_loge_left = go.Scatter(
+        x=[8, 22],
+        y=[7, 7],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_loge_left)
+
+    # create right line for C-LOGE venue section label
+    rowline_c_loge_right = go.Scatter(
+        x=[26, 41],
+        y=[7, 7],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_loge_right)
+
+    rowline_c_loge_vertical_left = go.Scatter(
+        x=[8, 8],
+        y=[7, 8],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_loge_vertical_left)
+
+    rowline_c_loge_vertical_right = go.Scatter(
+        x=[41, 41],
+        y=[7, 8],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_loge_vertical_right)
+
+    arrow_c_loge_left = go.Scatter(
+        x=[8],
+        y=[8],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_loge_left)
+
+    arrow_c_loge_right = go.Scatter(
+        x=[41],
+        y=[8],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_loge_right)
+
+    # create left diagonal line for R-LOGE venue section label
+    rowline_r_loge_left = go.Scatter(
+        x=[1, 3],
+        y=[28, 22],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_loge_left)
+
+    # create right diagonal line for R-LOGE venue section label
+    rowline_r_loge_right = go.Scatter(
+        x=[4.25, 6.25],
+        y=[18, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_loge_right)
+
+    # create horizontal line connecting main line with top right arrow for R-LOGE
+    rowline_r_loge_vertical_left = go.Scatter(
+        x=[1, 2],
+        y=[28, 28],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_loge_vertical_left)
+
+    # create horizontal line connecting main line with bottom right arrow for R-LOGE
+    rowline_r_loge_vertical_right = go.Scatter(
+        x=[6.25, 7.25],
+        y=[12, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_loge_vertical_right)
+
+    # create top right-facing arrow for R-LOGE
+    arrow_r_loge_top = go.Scatter(
+        x=[2],
+        y=[28],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_r_loge_top)
+
+    # create a bottom right-facing arrow for R-LOGE
+    arrow_r_loge_bottom = go.Scatter(
+        x=[7.25],
+        y=[12],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_r_loge_bottom)
+
+    # create top vertical line for R-DC venue section label
+    rowline_r_dc_top = go.Scatter(
+        x=[1, 1],
+        y=[46, 39.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_dc_top)
+
+    # create bottom vertical line for R-DC venue section label
+    rowline_r_dc_bottom = go.Scatter(
+        x=[1, 1],
+        y=[35.5, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_dc_bottom)
+
+    # create horizontal line connecting main line with top right arrow for R-DC
+    rowline_r_dc_vertical_left = go.Scatter(
+        x=[1, 2],
+        y=[46, 46],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_dc_vertical_left)
+
+    # create horizontal line connecting main line with bottom right arrow for R-DC
+    rowline_r_dc_vertical_right = go.Scatter(
+        x=[1, 2],
+        y=[29, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_dc_vertical_right)
+
+    # create top right-facing arrow for R-DC
+    arrow_r_dc_top = go.Scatter(
+        x=[2],
+        y=[46],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_r_dc_top)
+
+    # create a bottom right-facing arrow for R-DC
+    arrow_r_dc_bottom = go.Scatter(
+        x=[2],
+        y=[29],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_r_dc_bottom)
+
+    # create top diagonal line for DRESS venue section label
+    rowline_dress_top = go.Scatter(
+        x=[7.33, 12],
+        y=[61.82, 72],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_dress_top)
+
+    # create bottom vertical line for DRESS venue section label
+    rowline_dress_bottom = go.Scatter(
+        x=[5.67, 1],
+        y=[58.21, 48],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_dress_bottom)
+
+    # create horizontal line connecting main line with top right arrow for DRESS
+    rowline_dress_horizontal_top = go.Scatter(
+        x=[12, 12.5],
+        y=[72, 72],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_dress_horizontal_top)
+
+    # create horizontal line connecting main line with bottom right arrow for DRESS
+    rowline_dress_horizontal_bottom = go.Scatter(
+        x=[1, 2],
+        y=[48, 48],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_dress_horizontal_bottom)
+
+    # create top right-facing arrow for DRESS
+    arrow_dress_top = go.Scatter(
+        x=[12.5],
+        y=[72],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_dress_top)
+
+    # create a bottom right-facing arrow for DRESS
+    arrow_dress_bottom = go.Scatter(
+        x=[2],
+        y=[48],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-right', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_dress_bottom)
+
+    # create left diagonal line for L-LOGE venue section label
+    rowline_l_loge_left = go.Scatter(
+        x=[48, 46],
+        y=[28, 22],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_loge_left)
+
+    # create right diagonal line for L-LOGE venue section label
+    rowline_l_loge_right = go.Scatter(
+        x=[44.75, 42.75],
+        y=[18, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_loge_right)
+
+    # create horizontal line connecting main line with top right arrow for L-LOGE
+    rowline_l_loge_horizontal_left = go.Scatter(
+        x=[47, 48],
+        y=[28, 28],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_loge_horizontal_left)
+
+    # create horizontal line connecting main line with bottom right arrow for L-LOGE
+    rowline_l_loge_horizontal_right = go.Scatter(
+        x=[42.75, 41.75],
+        y=[12, 12],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_loge_horizontal_right)
+
+    # create top left-facing arrow for L-LOGE
+    arrow_l_loge_top = go.Scatter(
+        x=[47],
+        y=[28],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_loge_top)
+
+    # create a bottom left-facing arrow for L-LOGE
+    arrow_l_loge_bottom = go.Scatter(
+        x=[41.75],
+        y=[12],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_loge_bottom)
+
+    # create top vertical line for L-DC venue section label
+    rowline_l_dc_top = go.Scatter(
+        x=[48, 48],
+        y=[46, 39.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_dc_top)
+
+    # create bottom vertical line for L-DC venue section label
+    rowline_l_dc_bottom = go.Scatter(
+        x=[48, 48],
+        y=[35.5, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_dc_bottom)
+
+    # create horizontal line connecting main line with top right arrow for L-DC
+    rowline_l_dc_vertical_left = go.Scatter(
+        x=[48, 47],
+        y=[46, 46],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_dc_vertical_left)
+
+    # create horizontal line connecting main line with bottom right arrow for L-DC
+    rowline_l_dc_vertical_right = go.Scatter(
+        x=[48, 47],
+        y=[29, 29],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_dc_vertical_right)
+
+    # create top left-facing arrow for L-DC
+    arrow_l_dc_top = go.Scatter(
+        x=[47],
+        y=[46],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_dc_top)
+
+    # create a bottom left-facing arrow for L-DC
+    arrow_l_dc_bottom = go.Scatter(
+        x=[47],
+        y=[29],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-left', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_dc_bottom)
+
+    # create left line for C-TERR venue section label
+    rowline_c_terr_left = go.Scatter(
+        x=[18.5, 22.5],
+        y=[53.5, 53.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_terr_left)
+
+    # create right line for C-TERR venue section label
+    rowline_c_terr_right = go.Scatter(
+        x=[26.5, 30.5],
+        y=[53.5, 53.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_terr_right)
+
+    rowline_c_terr_vertical_left = go.Scatter(
+        x=[18.5, 18.5],
+        y=[53.5, 52.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_terr_vertical_left)
+
+    rowline_c_terr_vertical_right = go.Scatter(
+        x=[30.5, 30.5],
+        y=[53.5, 52.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_terr_vertical_right)
+
+    arrow_c_terr_left = go.Scatter(
+        x=[18.5],
+        y=[52.5],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_terr_left)
+
+    arrow_c_terr_right = go.Scatter(
+        x=[30.5],
+        y=[52.5],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-down', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_terr_right)
+
+    # create left line for C-ORCH venue section label
+    rowline_c_orch_left = go.Scatter(
+        x=[18.5, 22.5],
+        y=[24.5, 24.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_left)
+
+    # create right line for C-ORCH venue section label
+    rowline_c_orch_right = go.Scatter(
+        x=[26.5, 30.5],
+        y=[24.5, 24.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_right)
+
+    rowline_c_orch_vertical_left = go.Scatter(
+        x=[18.5, 18.5],
+        y=[24.75, 24.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_vertical_left)
+
+    rowline_c_orch_vertical_right = go.Scatter(
+        x=[30.5, 30.5],
+        y=[24.75, 24.5],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_vertical_right)
+
+    arrow_c_orch_left = go.Scatter(
+        x=[18.5],
+        y=[25],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_orch_left)
+
+    arrow_c_orch_right = go.Scatter(
+        x=[30.5],
+        y=[25],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_orch_right)
+
+    # create left line for R-ORCH venue section label
+    rowline_r_orch_left = go.Scatter(
+        x=[11.5, 12.5],
+        y=[25.25, 25.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_orch_left)
+
+    # create right line for R-ORCH venue section label
+    rowline_r_orch_right = go.Scatter(
+        x=[16.5, 17.5],
+        y=[25.25, 25.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_r_orch_right)
+
+    rowline_c_orch_vertical_left = go.Scatter(
+        x=[11.5, 11.5],
+        y=[25.25, 25.75],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_vertical_left)
+
+    rowline_c_orch_vertical_right = go.Scatter(
+        x=[17.5, 17.5],
+        y=[25.25, 25.75],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_c_orch_vertical_right)
+
+    arrow_c_orch_left = go.Scatter(
+        x=[11.5],
+        y=[25.75],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_orch_left)
+
+    arrow_c_orch_right = go.Scatter(
+        x=[17.5],
+        y=[25.75],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_c_orch_right)
+
+    # create left line for L-ORCH venue section label
+    rowline_l_orch_left = go.Scatter(
+        x=[31.5, 32.5],
+        y=[25.25, 25.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_orch_left)
+
+    # create right line for L-ORCH venue section label
+    rowline_l_orch_right = go.Scatter(
+        x=[36.5, 37.5],
+        y=[25.25, 25.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_orch_right)
+
+    rowline_l_orch_vertical_left = go.Scatter(
+        x=[31.5, 31.5],
+        y=[25.25, 25.75],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_orch_vertical_left)
+
+    rowline_l_orch_vertical_right = go.Scatter(
+        x=[37.5, 37.5],
+        y=[25.25, 25.75],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1
+        ),
+    )
+
+    traces.append(rowline_l_orch_vertical_right)
+
+    arrow_l_orch_left = go.Scatter(
+        x=[31.5],
+        y=[25.75],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_orch_left)
+
+    arrow_l_orch_right = go.Scatter(
+        x=[37.5],
+        y=[25.75],
+        mode='lines+markers+text',
+        name='Arrow',
+        line=dict(width=1, color='#333333'),
+        marker=dict(symbol='triangle-up', size=10, color='#333333'),
+        hoverinfo=None
+    )
+
+    traces.append(arrow_l_orch_right)
+
+    # create list of alphabetical section labels
+    text_section_labels = ['C-LOGE', 'R-LOGE',
+                           'R-DC', 'DRESS', 'L-LOGE', 'L-DC', 'C-TERR', 'C-ORCH', 'R-ORCH', 'L-ORCH']
+    text_section_coords = [(24, 7), (2.625, 20), (1, 37),
+                           (6.49, 60), (46.375, 20), (48, 37), (24.5, 53.5), (24.5, 24.5), (14.5, 25.25), (34.5, 25.25)]
+
+    # create section label text trace objects and append to the master traces list
+    for label, coord in zip(text_section_labels, text_section_coords):
+        x, y = coord
+        text_section_traces = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=14, color='#B3A301', family='arial'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_section_traces)
 
     # create list of numerical row text labels & their coordinates for L, R & C-TERR sections
     # text_labels_num_terr = ['114', '115', '116', '117', '118', '119', '120', '121', '122']
@@ -4762,7 +5543,7 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
             color='#B3A301'
         ),
         # autosize=True, width=900, height=675, annotations=[
-        autosize=True, width=950, height=1100, annotations=[
+        autosize=True, width=950, height=1200, annotations=[
             dict(
                 text="S T A G E",
                 font=dict(
@@ -4795,6 +5576,33 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
                             (24, 51.25), (23, 51.25), (22,
                                                        51.25), (21, 51.25), (20, 51.25),
                             (19, 51.25), (17, 53.35), (16, 53.35), (15, 53.35), (14, 53.35), (13, 52), (12, 51), (11, 50), (10, 49), (9, 47), (8, 46)]
+
+    # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
+    # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
+    for label, coord in zip(text_labels_num_terr, text_coords_num_terr):
+        x, y = coord
+        print("label: ", label)
+        print("coord: ", coord)
+        fig.add_annotation(text=label, x=x,
+                           y=y, showarrow=False, textangle=90, font=dict(size=12, color='#B3A301', family='arial'))
+
+    # create list of numerical row text labels & their coordinates for DRESS section
+    text_labels_num_terr = ['212', '213', '214', '215', '216',
+                            '217', '218', '219', '220', '221',
+                            '222', '223', '224', '225', '226',
+                            '227', '228', '229', '230', '231',
+                            '232', '233', '234', '235', '236',
+                            '237', '238', '239', '240']
+    text_coords_num_terr = [(44, 51.5), (43, 52.5), (42, 55.5), (41, 56.5), (40, 57.5),
+                            (39, 60.5), (38, 63.5), (36,
+                                                     63.5), (35, 63.5), (34, 71.5),
+                            (33, 71.5), (32, 71.5), (31,
+                                                     71.5), (30, 71.5), (29, 71.5),
+                            (28, 71.5), (27, 71.5), (26,
+                                                     71.5), (25, 71.5), (24, 71.5),
+                            (23, 71.5), (22, 71.5), (21,
+                                                     71.5), (20, 71.5), (19, 71.5),
+                            (18, 71.5), (17, 71.5), (16, 71.5), (15, 71.5)]
 
     # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
     # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
