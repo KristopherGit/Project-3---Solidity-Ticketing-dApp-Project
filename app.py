@@ -540,7 +540,7 @@ with col1:
     #     fig, use_container_width=False, height=400, width=1000)
     fig.update(data=traces)
     concert_layout = st.plotly_chart(
-        fig, use_container_width=False, height=400, width=1000)
+        fig, use_container_width=False, height=800, width=800)
     st.session_state
 
 #########################################################

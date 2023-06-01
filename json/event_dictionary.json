@@ -43,6 +43,17 @@
             "smartContract": "0xEE8bD782E560273c129e6141C426831F5221771E",
             "seatJSONBinURL": "https://api.jsonbin.io/v3/b/646bfe929d312622a363695b",
             "nftArtwork": "Massive_Attack_Meridian_Arts_Centre_-_George_Weston_2023-07-28.png"
+        },
+        {
+            "unique_id": "Sloan_History_2023-07-07.json",
+            "eventName": "Sloan",
+            "venueName": "History",
+            "dateTime": "2023-07-07",
+            "hourTime": "19:00",
+            "timeStamp": "1688770800",
+            "smartContract": "0x51FEA12A4cEafE18F0944C5298f9A5A454BACe7C",
+            "seatJSONBinURL": "https://api.jsonbin.io/v3/b/6477daee9d312622a3689900",
+            "nftArtwork": "Sloan_History_2023-07-07.png"
         }
     ]
 }

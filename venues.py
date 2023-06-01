@@ -5616,6 +5616,635 @@ def create_venue_meridian_arts_centre_george_weston_main_section(galleryDictInpu
     return gallery, traces, fig
 
 
+def create_venue_history_main_section(galleryDictInput):
+    # History Main Section
+    gallery = {}
+    gallery = galleryDictInput
+
+    # Create a list of scatter traces to represent the seats in the gallery
+    traces = []
+    for seat_number, seat in gallery.items():
+        price = seat['price']['CAD']
+        color = '#1E90FF'
+        trace = go.Scatter(
+            x=[seat['x']],
+            y=[seat['y']],
+            mode='markers',
+            name=seat['name'],
+            hovertext=[f"{seat['name']}<br>$ {seat['price']['CAD']} CAD"],
+            hovertemplate='%{hovertext}<extra></extra>',
+            marker=dict(size=5, color=color),
+            textfont=dict(
+                size=16
+            ),
+            customdata=[price]
+        )
+        traces.append(trace)
+
+    #########################################################
+
+    # Create rectangle stage trace object
+
+    # Create stage layout as a half moon trace figure
+
+    # def stage_y_values(x):
+    #     return 5 * np.sin((x+0.5) * np.pi / 26) + 18.75
+
+    # x = np.array(list(range(26)))
+    # y = stage_y_values(x)
+
+    # stage = go.Scatter(
+    #     x=x + 12,
+    #     y=y,
+    #     mode='lines',
+    #     fill='toself',
+    #     line=dict(width=3, color='#333333'),
+    #     fillcolor='#333333',
+    #     hoverinfo='skip',  # exclude hoverinfo for this trace
+    #     textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    # )
+    # traces.append(stage)
+
+    stage = go.Scatter(
+        x=[1, -5, -5, 1, 1],
+        y=[31, 31, 6, 6, 31],
+        mode='lines',
+        fill='toself',
+        line=dict(width=4, color='#333333'),
+        fillcolor='#333333',
+        hoverinfo='skip',  # exclude hoverinfo for this trace
+        text='STAGE',
+        textposition='middle center',
+        # set the text color to white
+        textfont=dict(color='#B3A301', size=16, family='arial')
+    )
+    traces.append(stage)
+
+    # Add trapezoid object below to create the complete stage trace object for the Merdiain Arts Centre - George Weston theatre section
+    # mezz_row_x_coord = [1.85, 2.77, 7.55]
+    # mezz_row_y_coord = [22.85, 22.5, 20.5]
+
+    # mezz_row_structure = go.Scatter(
+    #     x=mezz_row_x_coord,
+    #     y=mezz_row_y_coord,
+    #     mode='lines',
+    #     fill='toself',
+    #     line=dict(width=3, color='#333333'),
+    #     fillcolor='#333333',
+    #     text='STAGE',
+    #     textposition='middle center',
+    #     hoverinfo='skip',  # exclude hoverinfo for this trace
+    #     textfont=dict(color='#B3A301', size=16)  # set the text color to white
+    # )
+    # traces.append(mezz_row_structure)
+
+    # Create coordinates for the trapezoid boundary to outline the C-LOGE section
+    # mezz_row_x_coord = [1.85, 7.55, 28.7, 32.29, 1.85]
+    # mezz_row_y_coord = [22.85, 20.5, 11.75, 6.53, 22.85]
+
+    # mezz_row_x_coord = [22.75, 20.5, 21.24, 22.17, 23.09, 23.99,
+    #                     24.87, 25.74, 26.58, 27.41, 28.21, 28.7, 32.29, 31.5, 30.69, 29.86, 29.02, 28.16, 27.29, 26.39, 25.5, 24.58, 23.65, 22.75]
+    # mezz_row_y_coord = [1.44, 7.55,  7.78, 8.13, 8.52, 8.95,
+    #                     9.41, 9.90, 10.43, 10.98, 11.57, 11.75, 6.53, 6.04, 5.45, 4.90, 4.37, 3.87, 3.39, 2.95, 2.53, 2.14, 1.77, 1.44]
+
+    # mezz_row_x_coord = [1, 7, 28, 32, 1]
+    # mezz_row_y_coord = [22, 20, 11, 6, 22]
+
+    # Create trapezoid for C-LOGE section
+    # mezz_row_structure = go.Scatter(
+    #     x=mezz_row_x_coord,
+    #     y=mezz_row_y_coord,
+    #     mode='lines',
+    #     line=dict(
+    #         color='darkgray',
+    #         width=0.5,
+    #         shape='spline',
+    #         smoothing=1
+    #     ),
+    # )
+
+    # # Add C-LOGE trapezoid to traces list
+    # traces.append(mezz_row_structure)
+
+    # Add row lines to venue layout
+    rowline1 = go.Scatter(
+        x=[22.77, 20.53785],
+        y=[1.2405, 7.66416],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline1)
+
+    # Add row lines to venue layout
+    rowline2 = go.Scatter(
+        x=[28.64035, 32.29],
+        y=[12.16, 6.40],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline2)
+
+    # Create an arc to border the MEZZ seats
+    mezz_outer_border_1_center = (12.25, 32.15)
+    mezz_outer_border_1_radius = 32.65
+
+    # Define start and end angle of the arc
+    mezz_outer_border_1_start_angle = -94.85
+    mezz_outer_border_1_end_angle = 30
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(mezz_outer_border_1_start_angle),
+                         np.deg2rad(mezz_outer_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = mezz_outer_border_1_center[0] + \
+        mezz_outer_border_1_radius * np.cos(angles)
+    y = mezz_outer_border_1_center[1] + \
+        mezz_outer_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    mezz_outer_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.5
+        )
+    )
+    traces.append(mezz_outer_border_1)
+
+    # Create an arc to border the MEZZ seats
+    mezz_inner_border_1_center = (12.25, 32.15)
+    mezz_inner_border_1_radius = 31.65
+
+    # Define start and end angle of the arc
+    mezz_inner_border_1_start_angle = -71.2
+    mezz_inner_border_1_end_angle = 30
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(mezz_inner_border_1_start_angle),
+                         np.deg2rad(mezz_inner_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = mezz_inner_border_1_center[0] + \
+        mezz_inner_border_1_radius * np.cos(angles)
+    y = mezz_inner_border_1_center[1] + \
+        mezz_inner_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    mezz_inner_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.25
+        )
+    )
+    traces.append(mezz_inner_border_1)
+
+    # Create an arc to border the MEZZ seats
+    sbox_inner_border_1_center = (12.25, 32.15)
+    sbox_inner_border_1_radius = 25.85
+
+    # Define start and end angle of the arc
+    sbox_inner_border_1_start_angle = -71.3
+    sbox_inner_border_1_end_angle = -50.65
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(sbox_inner_border_1_start_angle),
+                         np.deg2rad(sbox_inner_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = sbox_inner_border_1_center[0] + \
+        sbox_inner_border_1_radius * np.cos(angles)
+    y = sbox_inner_border_1_center[1] + \
+        sbox_inner_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    sbox_inner_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.25
+        )
+    )
+    traces.append(sbox_inner_border_1)
+
+    # Create an arc to border the MEZZ seats
+    bottom_curve_border_1_center = (12.25, 32.15)
+    bottom_curve_border_1_radius = 36.75
+
+    # Define start and end angle of the arc
+    bottom_curve_border_1_start_angle = -94.35
+    bottom_curve_border_1_end_angle = -11.325
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(bottom_curve_border_1_start_angle),
+                         np.deg2rad(bottom_curve_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = bottom_curve_border_1_center[0] + \
+        bottom_curve_border_1_radius * np.cos(angles)
+    y = bottom_curve_border_1_center[1] + \
+        bottom_curve_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    bottom_curve_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.5
+        )
+    )
+    traces.append(bottom_curve_border_1)
+
+    # Add the connecting vertical line to connect the inner MEZZ border structure to thw outer MEZZ structural section
+    rowline3 = go.Scatter(
+        x=[9.489, 9.489],
+        y=[-0.383, -4.494],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline3)
+
+    # Mezzanine Standing Room Only Structure Section
+
+    # Diagonal line creating corner structure of the standing room only structure section
+    rowline4 = go.Scatter(
+        x=[29.7215, 30.75],
+        y=[-0.1812, -2.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline4)
+
+    # Horizontal bottom line of the Mezzanine Standing Room Only Structure Section
+
+    rowline5 = go.Scatter(
+        x=[30.75, 52.00],
+        y=[-2.25, -2.25],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline5)
+
+    # Vertical right most border line of the Mezzanine Standing Room Only Structure Section
+
+    rowline6 = go.Scatter(
+        x=[52.00, 52.00],
+        y=[-2.25, 50.525],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline6)
+
+    # Create an outer arc to border the BOX203 & BOX204 sections
+    outer_box203_box204_curve_border_1_center = (12.25, 32.15)
+    outer_box203_box204_curve_border_1_radius = 37.75
+
+    # Define start and end angle of the arc
+    outer_box203_box204_curve_border_1_start_angle = -11.25
+    outer_box203_box204_curve_border_1_end_angle = 6.75
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(outer_box203_box204_curve_border_1_start_angle),
+                         np.deg2rad(outer_box203_box204_curve_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = outer_box203_box204_curve_border_1_center[0] + \
+        outer_box203_box204_curve_border_1_radius * np.cos(angles)
+    y = outer_box203_box204_curve_border_1_center[1] + \
+        outer_box203_box204_curve_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    outer_box203_box204_curve_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.5
+        )
+    )
+    traces.append(outer_box203_box204_curve_border_1)
+
+    # Horizontal line separating the Box 203 & Box 204 sections
+
+    rowline7 = go.Scatter(
+        x=[43.86, 49.95795],
+        y=[30.65, 30.36],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline7)
+
+    # Horizontal line separating the Box 203 & Box 204 sections
+
+    rowline8 = go.Scatter(
+        x=[44.231, 49.27464],
+        y=[25.58, 24.78534],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline8)
+
+    # Diagonal top line separating the Box 202 & Box 203 sections
+
+    rowline9 = go.Scatter(
+        x=[44.80, 49.7833],
+        y=[35.85, 36.58704],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline9)
+
+    # Create an arc to border the MEZZ seats
+    upper_curve_border_1_center = (12.25, 32.15)
+    upper_curve_border_1_radius = 36.75
+
+    # Define start and end angle of the arc
+    upper_curve_border_1_start_angle = 6.75
+    upper_curve_border_1_end_angle = 30
+
+    # Generate array of angles within the specified range
+    angles = np.linspace(np.deg2rad(upper_curve_border_1_start_angle),
+                         np.deg2rad(upper_curve_border_1_end_angle), num=100)
+
+    # Caclulate the x & y coordinates of the arc
+    x = upper_curve_border_1_center[0] + \
+        upper_curve_border_1_radius * np.cos(angles)
+    y = upper_curve_border_1_center[1] + \
+        upper_curve_border_1_radius * np.sin(angles)
+
+    # Create a scatter trace
+    upper_curve_border_1 = go.Scatter(
+        x=x,
+        y=y,
+        mode='lines',
+        line_color='darkgray',
+        line=dict(
+            color='darkgray',
+            width=1.5
+        )
+    )
+    traces.append(upper_curve_border_1)
+
+    # Diagonal upper most top line containing Box 201
+
+    rowline10 = go.Scatter(
+        x=[39.6957, 44.07643],
+        y=[47.975, 50.525],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline10)
+
+    # Horizontal upper most top cap border line of the Mezzanine Standing Room Only Structure Section connecting to the Box 201 section
+
+    rowline11 = go.Scatter(
+        x=[44.07643, 52.00],
+        y=[50.525, 50.525],
+        mode='lines',
+        line=dict(
+            color='gray',
+            width=1.5
+        ),
+    )
+
+    traces.append(rowline11)
+
+    # Create coordinates for the trapezoid boundary to outline the R-LOGE section
+    top_mezz_standing_room_only_x = [
+        39.6957, 22.20, 22.20, 33.4, 33.4, 42.4, 42.4, 39.6957]  # x-coord
+    top_mezz_standing_room_only_y = [
+        47.975, 47.975, 53.475, 53.475, 52, 52, 49.5571129, 47.975]  # y-coord
+
+    # Create trapezoid for C-LOGE section
+    top_mezz_standing = go.Scatter(
+        x=top_mezz_standing_room_only_x,
+        y=top_mezz_standing_room_only_y,
+        mode='lines',
+        line=dict(
+            color='darkgray',
+            width=1.5,
+            shape='spline',
+            smoothing=0
+        ),
+    )
+
+    # Add C-LOGE trapezoid to traces list
+    traces.append(top_mezz_standing)
+
+    # create list of alphabetical section labels
+    text_section_labels = []
+    text_section_coords = []
+
+    # create section label text trace objects and append to the master traces list
+    for label, coord in zip(text_section_labels, text_section_coords):
+        x, y = coord
+        text_section_traces = go.Scatter(
+            x=[x],
+            y=[y],
+            mode='text',
+            text=label,
+            textfont=dict(size=14, color='#B3A301', family='arial'),
+            showlegend=False,
+            textposition='middle center'
+        )
+        traces.append(text_section_traces)
+
+    def concert_layout(gallery):
+        largest_x_value = max(seat['x'] for seat in gallery.values())
+        center_x_value = largest_x_value/2
+        layout = go.Layout(
+            title=dict(text=str("History Main Section"),
+                       font=dict(
+                family='monospace',
+                color='#B3A301'
+            )
+            ),
+            xaxis=dict(title='X-coordinate', range=[-10, 60],
+                       autorange=False, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            yaxis=dict(title='Y-coordinate', range=[-10, 60],
+                       autorange=False, showgrid=None, gridcolor=None, showticklabels=False, visible=False),
+            showlegend=False,
+            legend=dict(itemclick="toggleothers"),
+            annotations=[
+                dict(
+                    text=' STAGE',
+                    showarrow=False,
+                )
+            ],
+            font=dict(
+                family='monospace',
+                size=32,
+                color='black'
+            ),
+            images=[
+                dict(
+                    source="/Image_Data/history_2.png",
+                    xref="x",
+                    yref="y",
+                    x=0,
+                    y=50,
+                    sizex=50,
+                    sizey=50,
+                    sizing="contain",
+                    opacity=1,
+                    layer="below"
+                )
+            ]
+        )
+        return layout
+
+    layout = concert_layout(gallery)
+
+    # Plot seating layout
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Update traces/seats & add stage name
+    fig.update_traces(textposition='middle center',
+                      hoverlabel=(dict(namelength=-1)))
+    fig.update_layout(
+        title={
+            'text': str("History Main Section"),
+            'font': {'family': 'monospace', 'color': '#B3A301'}
+        },
+        title_font=dict(
+            family='monospace',
+            size=18,
+            color='#B3A301'
+        ),
+        # autosize=True, width=900, height=675, annotations=[
+        autosize=False, width=950, height=950, annotations=[
+            dict(
+                text="",
+                font=dict(
+                    size=40,
+                    family='arial',
+                    color='#B3A301'  # '#B3A301' olive-gold
+                )
+                # # x=((traces[-2].x[-1] + traces[-2].x[0]) / 2),
+                # # y=min(traces[-2].y) + 2
+                # x=(max(stage_trapezoid.x) - min(stage_trapezoid.x)) / \
+                # 2 + min(stage_trapezoid.x),
+                # y=(max(stage_trapezoid.y) - min(stage_trapezoid.y)) / \
+                # 2 + min(stage_trapezoid.y) + 2
+            )
+        ], hoverlabel=dict(
+            font=dict(
+                size=16,
+                color="#B3A301"
+            )
+        )
+    )
+
+    # create list of numerical row text labels & their coordinates for L, R & C-TERR sections
+    stage_text_label = ['S T A G E']
+    stage_text_coord = [(-2, 18.5)]
+
+    # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
+    # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
+    for label, coord in zip(stage_text_label, stage_text_coord):
+        x, y = coord
+        print("label: ", label)
+        print("coord: ", coord)
+        fig.add_annotation(text=label, x=x,
+                           y=y, showarrow=False, textangle=270, font=dict(size=40, color='#B3A301', family='arial'))
+
+    # create list of numerical row text labels & their coordinates for DRESS section
+    mezz_text_label = ['MEZZANINE', 'STANDING ROOM', 'ONLY']
+    mezz_text_coord = [(45, 4), (45, 2), (45, 0)]
+
+    # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
+    # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
+    for label, coord in zip(mezz_text_label, mezz_text_coord):
+        x, y = coord
+        print("label: ", label)
+        print("coord: ", coord)
+        fig.add_annotation(text=label, x=x,
+                           y=y, showarrow=False, textangle=0, font=dict(size=16, color='#B3A301', family='arial'))
+
+    # create list of numerical row text labels & their coordinates for L, R & C-TERR sections
+    top_mezzanine_text_label = ['MEZZANINE', 'STANDING ROOM', 'ONLY']
+    top_mezzanine_text_coord = [(27.8, 51.725), (27.8, 50.725), (27.8, 49.725)]
+
+    # add numerical text labels as 'add_annotation' in order to get textangle function to display seat row numbers vertically (90deg rotation)
+    # note: cannot rotate via traces directly, must use 'add_annotation' function to fig
+    for label, coord in zip(top_mezzanine_text_label, top_mezzanine_text_coord):
+        x, y = coord
+        print("label: ", label)
+        print("coord: ", coord)
+        fig.add_annotation(text=label, x=x,
+                           y=y, showarrow=False, textangle=0, font=dict(size=11, color='#B3A301', family='arial'))
+
+    fig.update_layout(images=[
+        dict(
+            source="Image_Data/history_2.png",
+            xref="x",
+            yref="y",
+            x=0,
+            y=50,
+            sizex=50,
+            sizey=50,
+            sizing="stretch",
+            opacity=1,
+            layer="above"
+        )
+    ])
+
+    return gallery, traces, fig
 # Dictionary to map venue names as keys to venue property function as values
 # Venue dictionary for st.selectbox i.) key (venue) ii.) value (section; gallery, mezzanine, balcony, etc)
 # venue_dictionary = {

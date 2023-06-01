@@ -29,5 +29,8 @@
     },
     "Meridian Arts Centre - George Weston": {
         "Meridian Arts Centre George Weston Main Section": "create_venue_meridian_arts_centre_george_weston_main_section"
+    },
+    "History": {
+        "History Main Section": "create_venue_history_main_section"
     }
 }
